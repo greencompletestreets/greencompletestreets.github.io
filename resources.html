@@ -18,6 +18,11 @@ body.resources {
 }
 </style>
 
+---
+layout: none
+permalink: /resources.html
+---
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -93,4 +98,275 @@ body.resources {
     <section class="wrap">
       <header>
         <h1>Data &amp; Mapping Resources</h1>
-        <p class="page-subtitle">Curated datasets and tools for heat,
+        <p class="page-subtitle">Curated datasets and tools for heat, air &amp; dust, health, water, biodiversity, infrastructure, equity/mobility, and integrated resilience.</p>
+      </header>
+
+      <!-- Filters -->
+      <div class="filters" role="region" aria-label="Filters">
+        <label for="globalSearch" class="sr-only">Search resources</label>
+        <input id="globalSearch" type="search" placeholder="Search (e.g., 'UTCI', 'GeoTIFF', 'Census tract', 'CalEnviroScreen')" aria-describedby="searchHelp" />
+        <span id="searchHelp" class="muted">Searches all sections.</span>
+        <div class="chips" aria-label="Format quick filters">
+          <button type="button" class="chip" data-chip="Raster" aria-pressed="false">Raster</button>
+          <button type="button" class="chip" data-chip="Vector" aria-pressed="false">Vector</button>
+          <button type="button" class="chip" data-chip="API" aria-pressed="false">API</button>
+          <button type="button" class="chip" data-chip="CSV" aria-pressed="false">CSV</button>
+          <button type="button" class="chip" data-chip="Shapefile" aria-pressed="false">Shapefile</button>
+          <button type="button" class="chip" data-chip="GeoJSON" aria-pressed="false">GeoJSON</button>
+        </div>
+      </div>
+
+      <!-- HEAT -->
+      <details class="resource-group" open>
+        <summary>HEAT <span class="tag">thermal</span></summary>
+        <div class="table-wrapper">
+          <table class="resources" data-group="HEAT">
+            <thead>
+              <tr>
+                <th>Tool / Data Source</th>
+                <th>Spatial Granularity</th>
+                <th>Formats</th>
+                <th>Description / Notes</th>
+                <th>URL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Landsat / MODIS Surface Temperature</td>
+                <td>Raster – 30 m (Landsat), 1 km (MODIS)</td>
+                <td>GeoTIFF, NetCDF</td>
+                <td>Remote-sensed surface temperature data from USGS/NASA.</td>
+                <td class="url"><a href="https://earthexplorer.usgs.gov">earthexplorer.usgs.gov</a> / <a href="https://modis.gsfc.nasa.gov">modis.gsfc.nasa.gov</a></td>
+              </tr>
+              <tr>
+                <td>CAL FIRE FRAP Urban Tree Canopy (2022)</td>
+                <td>Raster (30 m statewide); vector polygons</td>
+                <td>Shapefile, GeoTIFF</td>
+                <td>CAL FIRE statewide tree canopy and land cover datasets.</td>
+                <td class="url"><a href="https://www.fire.ca.gov/what-we-do/fire-resource-assessment-program/gis-mapping-and-data-analytics">fire.ca.gov › FRAP GIS</a></td>
+              </tr>
+              <tr>
+                <td>USFS Urban FIA</td>
+                <td>Regional (plot-based ~1/6,000 acres)</td>
+                <td>CSV, API, database</td>
+                <td>Tree structure, health, and species composition monitoring.</td>
+                <td class="url"><a href="https://www.fs.usda.gov/research/programs/urbanfia">fs.usda.gov › Urban FIA</a></td>
+              </tr>
+              <tr>
+                <td>TreePlotter / i-Tree Canopy</td>
+                <td>Parcel / corridor</td>
+                <td>CSV, Shapefile, web GIS</td>
+                <td>User-generated sampling and valuation of urban tree canopy.</td>
+                <td class="url"><a href="https://canopy.itreetools.org">canopy.itreetools.org</a> / <a href="https://support.treeplotter.com/article-categories/canopy">TreePlotter support</a></td>
+              </tr>
+              <tr>
+                <td>Healthy Places Index (HPI) 4.0</td>
+                <td>Census tract (California)</td>
+                <td>Shapefile, CSV, API</td>
+                <td>Social determinants of health & environmental vulnerability (incl. heat).</td>
+                <td class="url"><a href="https://www.healthyplacesindex.org">healthyplacesindex.org</a></td>
+              </tr>
+              <tr>
+                <td>Tree Equity Score (American Forests)</td>
+                <td>Census tract (urban U.S.)</td>
+                <td>Shapefile, CSV, API</td>
+                <td>Tree canopy vs. population need and equity scoring.</td>
+                <td class="url"><a href="https://www.treeequityscore.org">treeequityscore.org</a></td>
+              </tr>
+              <tr>
+                <td>CalEPA Urban Heat Island Index</td>
+                <td>Census tract (urban areas)</td>
+                <td>Shapefile, KMZ</td>
+                <td>Urban–rural heat differential (degree-hour index).</td>
+                <td class="url"><a href="https://calepa.ca.gov/climate/urban-heat-island-index-for-california">calepa.ca.gov › UHI</a></td>
+              </tr>
+              <tr>
+                <td>California Urban Tree Canopy (ArcGIS)</td>
+                <td>Raster 0.6 m, aggregated by tract</td>
+                <td>Raster, vector</td>
+                <td>2022 high-res canopy data across urbanized California.</td>
+                <td class="url"><a href="https://experience.arcgis.com/experience/eed846642273467ab698ab5435b493d6">ArcGIS Experience</a></td>
+              </tr>
+              <tr>
+                <td>NOAA Mean Radiant Temperature / UTCI models</td>
+                <td>City / neighborhood</td>
+                <td>CSV, model outputs</td>
+                <td>Simulates human-perceived temperature and comfort.</td>
+                <td class="url"><a href="https://www.ncei.noaa.gov">ncei.noaa.gov</a></td>
+              </tr>
+              <tr>
+                <td>Google 3D Building Models / City LiDAR</td>
+                <td>Block / corridor</td>
+                <td>3D models, LAS/LAZ</td>
+                <td>Shade modeling and mean radiant temperature analysis.</td>
+                <td class="url"><a href="https://opentopography.org">opentopography.org</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- AIR & DUST -->
+      <details class="resource-group">
+        <summary>AIR &amp; DUST <span class="tag">AQ/PM</span></summary>
+        <div class="table-wrapper">
+          <table class="resources" data-group="AIR & DUST">
+            <thead><tr><th>Tool / Data Source</th><th>Spatial Granularity</th><th>Formats</th><th>Description / Notes</th><th>URL</th></tr></thead>
+            <tbody>
+              <tr><td>PurpleAir / AirNow</td><td>Point (sensor-level)</td><td>API, CSV</td><td>Near real-time PM sensors.</td><td class="url"><a href="https://www.purpleair.com">purpleair.com</a> / <a href="https://www.airnow.gov">airnow.gov</a></td></tr>
+              <tr><td>CalEnviroScreen 4.0</td><td>Census tract (CA)</td><td>Shapefile, CSV</td><td>Pollution burden + population vulnerability.</td><td class="url"><a href="https://oehha.ca.gov/calenviroscreen">oehha.ca.gov › CalEnviroScreen</a></td></tr>
+              <tr><td>CARB Emissions Inventory</td><td>County / tract</td><td>CSV, API</td><td>GHG and criteria pollutants by sector.</td><td class="url"><a href="https://ww2.arb.ca.gov/ei-resources">arb.ca.gov › EI</a></td></tr>
+              <tr><td>Landsat NDVI / Bare-Soil Index</td><td>Raster – 30 m</td><td>GeoTIFF</td><td>Vegetation cover & exposed soil (dust proxy).</td><td class="url"><a href="https://landsat.gsfc.nasa.gov">landsat.gsfc.nasa.gov</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- HEALTH -->
+      <details class="resource-group">
+        <summary>HEALTH <span class="tag">public health</span></summary>
+        <div class="table-wrapper">
+          <table class="resources" data-group="HEALTH">
+            <thead><tr><th>Tool / Data Source</th><th>Spatial Granularity</th><th>Formats</th><th>Description / Notes</th><th>URL</th></tr></thead>
+            <tbody>
+              <tr><td>CDC PLACES Health Data</td><td>Census tract</td><td>CSV, API</td><td>Chronic disease, obesity, physical activity.</td><td class="url"><a href="https://www.cdc.gov/places">cdc.gov/places</a></td></tr>
+              <tr><td>CDPH Heat Illness (CalHHS)</td><td>County / ZIP</td><td>CSV, dashboard</td><td>ER visits & hospitalizations linked to extreme heat.</td><td class="url"><a href="https://data.chhs.ca.gov/dataset/heat-illness">data.chhs.ca.gov › heat-illness</a></td></tr>
+              <tr><td>EPA EJScreen 2.2</td><td>Census block group</td><td>Shapefile, CSV</td><td>National EJ screening tool.</td><td class="url"><a href="https://www.epa.gov/ejscreen">epa.gov/ejscreen</a></td></tr>
+              <tr><td>CalHHS Health Vulnerability Indicators</td><td>County / tract</td><td>CSV</td><td>Public health & social vulnerability metrics.</td><td class="url"><a href="https://data.chhs.ca.gov">data.chhs.ca.gov</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- WATER -->
+      <details class="resource-group">
+        <summary>WATER <span class="tag">GSI</span></summary>
+        <div class="table-wrapper">
+          <table class="resources" data-group="WATER">
+            <thead><tr><th>Tool / Data Source</th><th>Spatial Granularity</th><th>Formats</th><th>Description / Notes</th><th>URL</th></tr></thead>
+            <tbody>
+              <tr><td>EPA Green Infrastructure Modeling Toolkit</td><td>Site / parcel</td><td>XML, CSV</td><td>Green stormwater design & modeling tools.</td><td class="url"><a href="https://www.epa.gov/water-research/green-infrastructure-modeling-toolkit">epa.gov › GSI toolkit</a></td></tr>
+              <tr><td>Caltrans BMP / GSI Tools (MRP 3.0)</td><td>Project / site</td><td>Excel, CSV</td><td>Bay Area GSI & MRP 3.0 compliance toolkit.</td><td class="url"><a href="https://dot.ca.gov/programs/environmental-analysis/standard-specifications/gsi-mrp">dot.ca.gov › gsi-mrp</a></td></tr>
+              <tr><td>FEMA NFHL Flood Hazard</td><td>Parcel / watershed</td><td>Shapefile, GeoJSON</td><td>National Flood Hazard Layer.</td><td class="url"><a href="https://msc.fema.gov/nfhl">msc.fema.gov/nfhl</a></td></tr>
+              <tr><td>NRCS SSURGO Soil Survey</td><td>Parcel / field</td><td>Shapefile, CSV, API</td><td>Soil hydrology & infiltration suitability.</td><td class="url"><a href="https://websoilsurvey.nrcs.usda.gov">websoilsurvey.nrcs.usda.gov</a></td></tr>
+              <tr><td>NOAA Sea Level Rise Viewer</td><td>Coastal block</td><td>Web map, GeoJSON</td><td>Sea-level rise exposure & floodplain projections.</td><td class="url"><a href="https://coast.noaa.gov/slr">coast.noaa.gov/slr</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- BIODIVERSITY -->
+      <details class="resource-group">
+        <summary>BIODIVERSITY <span class="tag">ecology</span></summary>
+        <div class="table-wrapper">
+          <table class="resources" data-group="BIODIVERSITY">
+            <thead><tr><th>Tool / Data Source</th><th>Spatial Granularity</th><th>Formats</th><th>Description / Notes</th><th>URL</th></tr></thead>
+            <tbody>
+              <tr><td>Calflora</td><td>Point / parcel</td><td>Shapefile, CSV</td><td>Native species & vegetation occurrences (CA).</td><td class="url"><a href="https://www.calflora.org">calflora.org</a></td></tr>
+              <tr><td>iNaturalist (GBIF feed)</td><td>Point / polygon</td><td>CSV, API</td><td>Citizen science biodiversity observations.</td><td class="url"><a href="https://www.inaturalist.org">inaturalist.org</a></td></tr>
+              <tr><td>CalFire Fire Hazard Severity Zones</td><td>Parcel / landscape</td><td>Shapefile</td><td>Vegetation-based wildfire hazard zones.</td><td class="url"><a href="https://osfm.fire.ca.gov/divisions/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">osfm.fire.ca.gov › FHSZ</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- INFRASTRUCTURE -->
+      <details class="resource-group">
+        <summary>INFRASTRUCTURE <span class="tag">assets</span></summary>
+        <div class="table-wrapper">
+          <table class="resources" data-group="INFRASTRUCTURE">
+            <thead><tr><th>Tool / Data Source</th><th>Spatial Granularity</th><th>Formats</th><th>Description / Notes</th><th>URL</th></tr></thead>
+            <tbody>
+              <tr><td>Caltrans Pavement Condition Data (PMS)</td><td>Segment / route</td><td>CSV, Shapefile</td><td>Pavement materials & distress for state highways.</td><td class="url"><a href="https://dot.ca.gov/programs/maintenance/pavement-program">dot.ca.gov › pavement</a></td></tr>
+              <tr><td>Local ROW & Curb Inventory</td><td>Parcel / corridor</td><td>Shapefile</td><td>ROW dimensions, curb data (varies by jurisdiction).</td><td class="url"><span class="muted">varies by jurisdiction</span></td></tr>
+              <tr><td>SCVURPPP BMP Inventory</td><td>Parcel / site</td><td>Shapefile, Geodatabase</td><td>Existing bioretention, swales, infiltration BMPs (Bay Area).</td><td class="url"><a href="https://www.scvurppp.org">scvurppp.org</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- EQUITY / MOBILITY -->
+      <details class="resource-group">
+        <summary>EQUITY / MOBILITY <span class="tag">access</span></summary>
+        <div class="table-wrapper">
+          <table class="resources" data-group="EQUITY / MOBILITY">
+            <thead><tr><th>Tool / Data Source</th><th>Spatial Granularity</th><th>Formats</th><th>Description / Notes</th><th>URL</th></tr></thead>
+            <tbody>
+              <tr><td>CDC Social Vulnerability Index (SVI)</td><td>Census tract</td><td>CSV, Shapefile</td><td>Composite socioeconomic & demographic vulnerability.</td><td class="url"><a href="https://www.atsdr.cdc.gov/placeandhealth/svi">atsdr.cdc.gov › svi</a></td></tr>
+              <tr><td>Caltrans Disadvantaged Communities Map</td><td>Census tract</td><td>GIS</td><td>Transportation-disadvantaged areas by mode & access.</td><td class="url"><a href="https://gisdata-caltrans.opendata.arcgis.com">Caltrans Open Data</a></td></tr>
+              <tr><td>Census ACS Journey to Work</td><td>Census tract</td><td>CSV</td><td>Mode share, commute time, vehicle access, etc.</td><td class="url"><a href="https://data.census.gov">data.census.gov</a></td></tr>
+              <tr><td>StreetLight Data</td><td>Custom / O-D zones</td><td>API, CSV</td><td>Active transportation and O-D mobility analytics.</td><td class="url"><a href="https://www.streetlightdata.com">streetlightdata.com</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- INTEGRATED / RESILIENCE -->
+      <details class="resource-group">
+        <summary>INTEGRATED / RESILIENCE <span class="tag">multivariate</span></summary>
+        <div class="table-wrapper">
+          <table class="resources" data-group="INTEGRATED / RESILIENCE">
+            <thead><tr><th>Tool / Data Source</th><th>Spatial Granularity</th><th>Formats</th><th>Description / Notes</th><th>URL</th></tr></thead>
+            <tbody>
+              <tr><td>NOAA Heat Vulnerability Index (HVI)</td><td>County / metro</td><td>CSV, Shapefile</td><td>Combines temperature, demographics, and health data.</td><td class="url"><a href="https://www.ncei.noaa.gov/products/heat-health-vulnerability">ncei.noaa.gov › HVI</a></td></tr>
+              <tr><td>EPA Climate Resilience Screening Index (CRSI)</td><td>County</td><td>CSV, Shapefile</td><td>Resilience capacity vs environmental stress.</td><td class="url"><a href="https://www.epa.gov/healthresearch/climate-resilience-screening-index">epa.gov › CRSI</a></td></tr>
+              <tr><td>OpenStreetMap (Overpass API)</td><td>Street-level</td><td>OSM, JSON</td><td>Extract features (trees, sidewalks, bike lanes) for usability mapping.</td><td class="url"><a href="https://overpass-turbo.eu">overpass-turbo.eu</a></td></tr>
+              <tr><td>PlanetScope / Sentinel-2 Imagery</td><td>Raster 3–10 m</td><td>GeoTIFF</td><td>High-frequency reflectance & vegetation data.</td><td class="url"><a href="https://dataspace.copernicus.eu">Copernicus</a> / <a href="https://www.planet.com">planet.com</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <hr>
+      <p class="muted">Tip: Click section headers to collapse/expand. Search matches any text in the tables; chips toggle quick format filters.</p>
+
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      &copy; <script>document.write(new Date().getFullYear())</script> Green Complete Streets · Built on GitHub Pages.
+    </div>
+  </footer>
+
+  <script>
+    // Filtering
+    const q = document.getElementById('globalSearch');
+    const chips = Array.from(document.querySelectorAll('.chip'));
+    const activeChips = new Set();
+
+    function rowMatches(text, query){ return text.indexOf(query) !== -1; }
+    function chipMatches(text){
+      if (!activeChips.size) return true;
+      for (const t of activeChips) if (text.indexOf(t) !== -1) return true;
+      return false;
+    }
+    function applyFilters(){
+      const query = (q.value || '').trim().toLowerCase();
+      document.querySelectorAll('table.resources tbody').forEach(tbody=>{
+        let any = false;
+        tbody.querySelectorAll('tr').forEach(tr=>{
+          const text = tr.innerText.toLowerCase();
+          const show = (!query || rowMatches(text, query)) && chipMatches(text);
+          tr.style.display = show ? '' : 'none';
+          if (show) any = true;
+        });
+        const details = tbody.closest('details.resource-group');
+        if (details) details.style.display = any ? '' : 'none';
+      });
+    }
+    q.addEventListener('input', applyFilters);
+    chips.forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        const key = chip.dataset.chip;
+        const on = !chip.classList.contains('active');
+        chip.classList.toggle('active', on);
+        chip.setAttribute('aria-pressed', String(on));
+        if (on) activeChips.add(key); else activeChips.delete(key);
+        applyFilters();
+      });
+    });
+    applyFilters();
+  </script>
+</body>
+</html>
