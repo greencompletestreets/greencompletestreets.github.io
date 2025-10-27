@@ -1,7 +1,22 @@
 ---
-layout: none
+layout: default
 permalink: /resources.html
+body_class: resources
 ---
+
+<style>
+/* Nuke theme hero/background no matter how it's applied */
+body.resources:before,
+body.resources #wrapper:before,
+body.resources #bg,
+body.resources .hero,
+body.resources #banner { display:none !important; background:none !important; }
+
+/* Also remove any fixed bg the theme paints */
+body.resources {
+  background:none !important;
+}
+</style>
 
 <!doctype html>
 <html lang="en">
