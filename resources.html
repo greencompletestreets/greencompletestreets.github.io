@@ -57,12 +57,13 @@
     .kicker{ color:var(--brand); font-weight:700; font-size:.9rem; letter-spacing:.02em; text-transform:uppercase; }
     h1{ margin:.05em 0 .35em; font-size:clamp(1.6rem,1.2rem + 1.2vw,2.2rem); line-height:1.2; }
     /* .subtitle{ color:var(--muted); max-width:70ch; } */
-    .subtitle {
-        max-width: 70ch;   /* limits line length to ~70 characters for readability */
-        line-height: 1.5;
-        color: var(--muted);
-        margin-bottom: 1.5rem;
-    }
+  .subtitle {
+  max-width: 80ch;   /* matches typical paragraph width */
+  line-height: 1.55;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+}
 
     @media (max-width: 768px) {
         .subtitle {
