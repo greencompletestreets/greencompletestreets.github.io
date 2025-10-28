@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Resources · Green Complete Streets</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Standalone styles (no theme required) -->
+  <title>Resources · Green Complete Streets</title>
   <style>
     :root{
       --brand:#31b690;
@@ -19,33 +17,39 @@
       --shadow:0 1px 2px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.06);
     }
 
-    /* Nuke any inherited theme chrome/backgrounds */
-    html,body,#wrapper,#main,.content{ background:var(--bg) !important; background-image:none !important; }
-    .site-header,.page-header,.header,.masthead,.banner,.hero,.cover{ display:none !important; }
-
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      color:var(--ink);
-      font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-      display:grid;
+    /* Fix layout order and ensure sidebar stays left */
+    html,body { margin:0; padding:0; }
+    body {
+      display: grid;
       grid-template-columns: 256px 1fr;
-      gap:0;
-      min-height:100vh;
+      grid-template-areas: "sidebar main";
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans";
+    }
+    #sidebar { grid-area: sidebar; }
+    main { grid-area: main; }
+
+    /* Mobile layout */
+    @media (max-width: 960px){
+      body {
+        grid-template-columns: 1fr;
+        grid-template-areas: "main";
+      }
+      #sidebar { display:none; }
     }
 
-    /* Sidebar (desktop) */
-    #sidebar{
-      position:sticky; top:0; align-self:start;
+    /* Sidebar */
+    #sidebar {
+      position: sticky; top:0;
+      align-self:start;
       height:100vh; overflow:auto;
       background:var(--bg-alt);
       border-right:1px solid var(--line);
       padding:14px 16px;
     }
-    #sidebar h2{
-      font-size:0.95rem; margin:2px 0 10px; color:#0f766e; letter-spacing:.02em; text-transform:uppercase;
-    }
+    #sidebar h2{ font-size:.95rem; margin:2px 0 10px; color:#0f766e; letter-spacing:.02em; text-transform:uppercase; }
     #sidebar nav ul{ list-style:none; margin:0; padding:0; }
     #sidebar nav li{ margin:6px 0; }
     #sidebar nav a{
@@ -54,20 +58,17 @@
     #sidebar nav a:hover{ background:#eef7f4; color:#0b5b4e; }
     #sidebar .small{ color:var(--muted); font-size:.85rem; margin-top:10px; }
 
-    /* Mobile header w/ toggle */
+    /* Mobile bar + drawer */
     .mobile-bar{
-      display:none;
-      grid-column:1 / -1;
-      align-items:center; gap:10px;
-      padding:10px 14px; border-bottom:1px solid var(--line); background:var(--bg);
-      position:sticky; top:0; z-index:5;
+      display:none; position:sticky; top:0; z-index:5;
+      background:#fff; border-bottom:1px solid var(--line);
+      padding:10px 14px; display:flex; align-items:center; gap:10px;
     }
-    .mobile-title{ font-weight:700; }
     .menu-btn{
       appearance:none; border:1px solid var(--line); background:#fff; border-radius:10px;
       padding:8px 10px; font-weight:600; cursor:pointer; box-shadow:var(--shadow);
     }
-    .menu-btn:active{ transform:translateY(1px); }
+    .mobile-title{ font-weight:700; }
     .sidebar-overlay{
       display:none; position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:9;
     }
@@ -79,110 +80,52 @@
     .sidebar-drawer.open{ transform:none; }
     .sidebar-overlay.show{ display:block; }
 
-    /* Main */
-    main{
-      padding:22px 26px 56px;
-      max-width:1200px; width:100%;
-    }
-    header.page{ margin:6px 0 14px; }
-    .kicker{ color:var(--brand); font-weight:700; font-size:.9rem; letter-spacing:.02em; text-transform:uppercase; }
-    h1{ margin:.15em 0 .35em; font-size:clamp(1.6rem,1.2rem + 1.2vw,2.2rem); line-height:1.2; }
-    .subtitle{ color:var(--muted); max-width:72ch; }
-
-    /* Tools row */
-    .tools{
-      margin:18px 0 22px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      border-bottom:1px solid var(--line); padding-bottom:16px;
-    }
-    .search{ flex:1 1 280px; max-width:560px; display:flex; gap:8px; }
-    .search input[type="search"]{
-      width:100%; border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-size:1rem;
-    }
-    .download-btn{
-      background:var(--brand); color:#fff; border:none; border-radius:10px; padding:10px 14px;
-      cursor:pointer; font-weight:600; box-shadow:var(--shadow);
-    }
-    .download-btn:hover{ background:var(--brand-dark); }
-
-    /* Sections */
-    section.res-block{ padding:12px 0 28px; border-top:1px solid var(--line); }
-    section.res-block:first-of-type{ border-top:none; }
-    section.res-block h2{ margin:.2em 0 .25em; font-size:1.35rem; }
-    .section-desc{ color:var(--muted); margin:0 0 14px; }
-
-    /* Cards grid */
-    .cards{
-      display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-    }
-    .card{
-      background:var(--card); border:1px solid var(--line); border-radius:14px;
-      padding:14px 14px 12px; box-shadow:var(--shadow);
-      display:flex; flex-direction:column; gap:8px;
-    }
-    .card h3{ font-size:1.02rem; margin:.1rem 0 .15rem; line-height:1.3; }
-    .meta{ color:var(--muted); font-size:.92rem; }
-    .badges{ display:flex; flex-wrap:wrap; gap:6px; }
-    .badge{
-      display:inline-block; border:1px solid var(--line); color:#475569; background:#f8fafc;
-      padding:3px 8px; border-radius:999px; font-size:.85rem;
-    }
-    .links a{ display:inline-block; margin-right:8px; text-decoration:none; color:#0f766e; font-weight:600; }
-    .links a:hover{ text-decoration:underline; }
-
-    /* Footer */
-    footer.page{ margin-top:32px; color:var(--muted); font-size:.92rem; border-top:1px solid var(--line); padding-top:16px; }
-
-    /* Back to top */
-    .to-top{
-      position:fixed; right:16px; bottom:16px; display:none;
-      padding:.6rem .75rem; border-radius:999px; border:1px solid #e4e4e4; background:#fff;
-      text-decoration:none; font-weight:700; line-height:1;
-      box-shadow:0 2px 10px rgba(0,0,0,.08); z-index:1000;
-    }
-    .to-top.show{ display:inline-block; }
-
-    /* Mobile */
-    @media (max-width: 960px){
-      body{ grid-template-columns:1fr; }
-      #sidebar{ display:none; } /* hide desktop sidebar */
+    @media (max-width:960px){
       .mobile-bar{ display:flex; }
     }
-    @media (max-width:736px){
-      .to-top{ right:10px; bottom:10px; }
-    }
-    @media print{ .to-top{ display:none !important; } .mobile-bar, .sidebar-overlay, .sidebar-drawer{ display:none !important; } }
+
+    main{ padding:22px 26px 56px; max-width:1200px; width:100%; }
+    header.page{ margin:6px 0 14px; }
+    .kicker{ color:var(--brand); font-weight:700; font-size:.9rem; letter-spacing:.02em; text-transform:uppercase; }
+    h1{ margin:.15em 0 .35em; font-size:clamp(1.6rem,1.2rem + 1.2vw,2.2rem); }
+    .subtitle{ color:var(--muted); max-width:72ch; }
+
+    .tools{ margin:18px 0 22px; display:flex; gap:10px; flex-wrap:wrap; border-bottom:1px solid var(--line); padding-bottom:16px; }
+    .search{ flex:1 1 280px; max-width:560px; display:flex; gap:8px; }
+    .search input{ width:100%; border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-size:1rem; }
+    .download-btn{ background:var(--brand); color:#fff; border:none; border-radius:10px; padding:10px 14px; cursor:pointer; font-weight:600; box-shadow:var(--shadow); }
+    .download-btn:hover{ background:var(--brand-dark); }
+
+    section.res-block{ padding:12px 0 28px; border-top:1px solid var(--line); }
+    section.res-block:first-of-type{ border-top:none; }
+    h2{ margin:.2em 0 .25em; font-size:1.35rem; }
+    .section-desc{ color:var(--muted); margin:0 0 14px; }
+
+    .cards{ display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); }
+    .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:8px; }
+    .card h3{ font-size:1.02rem; margin:.1rem 0; }
+    .meta{ color:var(--muted); font-size:.92rem; }
+    .badges{ display:flex; flex-wrap:wrap; gap:6px; }
+    .badge{ display:inline-block; border:1px solid var(--line); color:#475569; background:#f8fafc; padding:3px 8px; border-radius:999px; font-size:.85rem; }
+    .links a{ margin-right:8px; text-decoration:none; color:#0f766e; font-weight:600; }
+    .links a:hover{ text-decoration:underline; }
+
+    footer.page{ margin-top:32px; color:var(--muted); font-size:.92rem; border-top:1px solid var(--line); padding-top:16px; text-align:left; }
+
+    .to-top{ position:fixed; right:16px; bottom:16px; display:none; padding:.6rem .75rem; border-radius:999px; border:1px solid #e4e4e4; background:#fff; text-decoration:none; font-weight:700; box-shadow:0 2px 10px rgba(0,0,0,.08); z-index:1000; }
+    .to-top.show{ display:inline-block; }
   </style>
 </head>
 <body>
-  <a id="top" aria-hidden="true"></a>
-
-  <!-- Mobile bar -->
-  <div class="mobile-bar" role="banner">
-    <button id="openSidebar" class="menu-btn" aria-controls="mobileSidebar" aria-expanded="false">☰ Resource Sections</button>
-    <!-- <div class="mobile-title">Resources</div> -->
+  <!-- Mobile header -->
+  <div class="mobile-bar">
+    <button id="openSidebar" class="menu-btn">☰ Sections</button>
+    <div class="mobile-title">Resources</div>
   </div>
 
   <!-- Mobile sidebar drawer -->
-  <div id="sidebarOverlay" class="sidebar-overlay" tabindex="-1" aria-hidden="true"></div>
-  <aside id="mobileSidebar" class="sidebar-drawer" aria-label="Section navigation (mobile)" aria-hidden="true">
-    <h2>Resource Sections</h2>
-    <nav>
-      <ul>
-        <li><a href="#heat">Urban Heat</a></li>
-        <li><a href="#air">Air & Dust</a></li>
-        <li><a href="#health">Health</a></li>
-        <li><a href="#water">Water</a></li>
-        <li><a href="#biodiversity">Biodiversity</a></li>
-        <li><a href="#infrastructure">Infrastructure</a></li>
-        <li><a href="#equity">Equity / Mobility</a></li>
-        <li><a href="#resilience">Integrated / Resilience</a></li>
-      </ul>
-    </nav>
-    <div class="small">Tip: use the search box to filter titles, notes, and formats.</div>
-  </aside>
-
-  <!-- Desktop sidebar -->
-  <aside id="sidebar" aria-label="Section navigation">
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+  <aside id="mobileSidebar" class="sidebar-drawer">
     <h2>Browse</h2>
     <nav>
       <ul>
@@ -196,343 +139,51 @@
         <li><a href="#resilience">Integrated / Resilience</a></li>
       </ul>
     </nav>
-    <div class="small">Tip: use the search box to filter titles, notes, and formats.</div>
   </aside>
 
-  <!-- Main content -->
+  <!-- Desktop sidebar -->
+  <aside id="sidebar">
+    <h2>Browse</h2>
+    <nav>
+      <ul>
+        <li><a href="#heat">Urban Heat</a></li>
+        <li><a href="#air">Air & Dust</a></li>
+        <li><a href="#health">Health</a></li>
+        <li><a href="#water">Water</a></li>
+        <li><a href="#biodiversity">Biodiversity</a></li>
+        <li><a href="#infrastructure">Infrastructure</a></li>
+        <li><a href="#equity">Equity / Mobility</a></li>
+        <li><a href="#resilience">Integrated / Resilience</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main -->
   <main id="content">
     <header class="page">
       <div class="kicker">Green Complete Streets</div>
       <h1>Data & Mapping Resources</h1>
-      <p class="subtitle">Curated datasets and tools for urban heat, air & dust, health, water (green stormwater infrastructure), biodiversity, infrastructure, equity/mobility, and integrated resilience.</p>
+      <p class="subtitle">Curated datasets and tools for urban heat, air & dust, health, water, biodiversity, infrastructure, equity/mobility, and integrated resilience.</p>
     </header>
 
-    <div class="tools" role="region" aria-label="Page tools">
+    <div class="tools">
       <div class="search">
-        <input id="globalSearch" type="search" placeholder="Search (e.g., UTCI, GeoTIFF, CalEnviroScreen, Census tract, API)…" aria-label="Search resources" />
+        <input id="globalSearch" type="search" placeholder="Search datasets..." />
       </div>
-      <button id="downloadCsv" class="download-btn" type="button">Download CSV</button>
+      <button id="downloadCsv" class="download-btn">Download CSV</button>
     </div>
 
-    <!-- URBAN HEAT -->
+    <!-- Example section -->
     <section id="heat" class="res-block" data-section="URBAN HEAT">
       <h2>URBAN HEAT</h2>
-      <p class="section-desc">Remote sensing, canopy, and comfort modeling resources for heat exposure, shade planning, and surface/air temperature analysis.</p>
+      <p class="section-desc">Remote sensing, canopy, and comfort modeling resources.</p>
       <div class="cards">
         <article class="card">
           <h3>Landsat / MODIS Surface Temperature</h3>
           <p class="meta">Granularity: Raster — 30 m (Landsat), 1 km (MODIS)</p>
-          <div class="badges"><span class="badge">GeoTIFF</span><span class="badge">NetCDF</span></div>
+          <div class="badges"><span class="badge">GeoTIFF</span></div>
           <p>Remote-sensed land surface temperature from USGS/NASA.</p>
-          <div class="links"><a href="https://earthexplorer.usgs.gov">USGS EarthExplorer</a> <a href="https://modis.gsfc.nasa.gov">MODIS</a></div>
-        </article>
-        <article class="card">
-          <h3>CAL FIRE FRAP Urban Tree Canopy (2022)</h3>
-          <p class="meta">Granularity: Raster 30 m statewide; vector polygons</p>
-          <div class="badges"><span class="badge">Shapefile</span><span class="badge">GeoTIFF</span></div>
-          <p>Statewide canopy and land cover datasets for planning and analysis.</p>
-          <div class="links"><a href="https://www.fire.ca.gov/what-we-do/fire-resource-assessment-program/gis-mapping-and-data-analytics">FRAP GIS</a></div>
-        </article>
-        <article class="card">
-          <h3>USFS Urban FIA</h3>
-          <p class="meta">Granularity: Regional (plot-based ~1/6,000 acres)</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">API</span><span class="badge">DB</span></div>
-          <p>Tree structure, health, and species composition monitoring in urban areas.</p>
-          <div class="links"><a href="https://www.fs.usda.gov/research/programs/urbanfia">Urban FIA</a></div>
-        </article>
-        <article class="card">
-          <h3>TreePlotter / i-Tree Canopy</h3>
-          <p class="meta">Granularity: Parcel / corridor</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">Web GIS</span><span class="badge">Shapefile</span></div>
-          <p>User sampling and valuation of tree canopy for local projects.</p>
-          <div class="links"><a href="https://canopy.itreetools.org">i-Tree Canopy</a> <a href="https://support.treeplotter.com/article-categories/canopy">TreePlotter</a></div>
-        </article>
-        <article class="card">
-          <h3>Healthy Places Index (HPI) 4.0</h3>
-          <p class="meta">Granularity: Census tract (California)</p>
-          <div class="badges"><span class="badge">Shapefile</span><span class="badge">CSV</span><span class="badge">API</span></div>
-          <p>Social determinants of health and environmental vulnerability (incl. heat).</p>
-          <div class="links"><a href="https://www.healthyplacesindex.org">HPI</a></div>
-        </article>
-        <article class="card">
-          <h3>Tree Equity Score (American Forests)</h3>
-          <p class="meta">Granularity: Census tract (urban U.S.)</p>
-          <div class="badges"><span class="badge">Shapefile</span><span class="badge">CSV</span><span class="badge">API</span></div>
-          <p>Tree canopy vs. need and equity scoring for urban areas.</p>
-          <div class="links"><a href="https://www.treeequityscore.org">Tree Equity Score</a></div>
-        </article>
-        <article class="card">
-          <h3>CalEPA Urban Heat Island Index</h3>
-          <p class="meta">Granularity: Census tract (urban)</p>
-          <div class="badges"><span class="badge">Shapefile</span><span class="badge">KMZ</span></div>
-          <p>Urban–rural heat differential (degree-hour index).</p>
-          <div class="links"><a href="https://calepa.ca.gov/climate/urban-heat-island-index-for-california">CalEPA UHI</a></div>
-        </article>
-        <article class="card">
-          <h3>California Urban Tree Canopy (ArcGIS)</h3>
-          <p class="meta">Granularity: Raster 0.6 m aggregated by tract</p>
-          <div class="badges"><span class="badge">Raster</span><span class="badge">Vector</span></div>
-          <p>High-resolution 2022 canopy data across urbanized California.</p>
-          <div class="links"><a href="https://experience.arcgis.com/experience/eed846642273467ab698ab5435b493d6">ArcGIS Experience</a></div>
-        </article>
-        <article class="card">
-          <h3>NOAA Mean Radiant Temperature / UTCI Models</h3>
-          <p class="meta">Granularity: City / neighborhood</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">Model</span></div>
-          <p>Human-perceived temperature and outdoor comfort simulations.</p>
-          <div class="links"><a href="https://www.ncei.noaa.gov">NOAA NCEI</a></div>
-        </article>
-        <article class="card">
-          <h3>Google 3D / City LiDAR (via OpenTopography)</h3>
-          <p class="meta">Granularity: Block / corridor</p>
-          <div class="badges"><span class="badge">LAS/LAZ</span><span class="badge">3D Models</span></div>
-          <p>Shade modeling and mean radiant temperature analysis inputs.</p>
-          <div class="links"><a href="https://opentopography.org">OpenTopography</a></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- AIR & DUST -->
-    <section id="air" class="res-block" data-section="AIR & DUST">
-      <h2>AIR &amp; DUST</h2>
-      <p class="section-desc">Near-real-time sensors, emissions inventories, and land-cover proxies for particulate/dust exposure and mitigation planning.</p>
-      <div class="cards">
-        <article class="card">
-          <h3>PurpleAir / AirNow</h3>
-          <p class="meta">Granularity: Point (sensor-level)</p>
-          <div class="badges"><span class="badge">API</span><span class="badge">CSV</span></div>
-          <p>Crowdsourced and official monitoring for PM and AQI.</p>
-          <div class="links"><a href="https://www.purpleair.com">PurpleAir</a> <a href="https://www.airnow.gov">AirNow</a></div>
-        </article>
-        <article class="card">
-          <h3>CalEnviroScreen 4.0</h3>
-          <p class="meta">Granularity: Census tract (CA)</p>
-          <div class="badges"><span class="badge">Shapefile</span><span class="badge">CSV</span></div>
-          <p>Pollution burden and population vulnerability composites.</p>
-          <div class="links"><a href="https://oehha.ca.gov/calenviroscreen">OEHHA</a></div>
-        </article>
-        <article class="card">
-          <h3>CARB Emissions Inventory</h3>
-          <p class="meta">Granularity: County / tract</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">API</span></div>
-          <p>GHG and criteria pollutants by sector.</p>
-          <div class="links"><a href="https://ww2.arb.ca.gov/ei-resources">CARB EI</a></div>
-        </article>
-        <article class="card">
-          <h3>Landsat NDVI / Bare-Soil Index</h3>
-          <p class="meta">Granularity: Raster — 30 m</p>
-          <div class="badges"><span class="badge">GeoTIFF</span></div>
-          <p>Vegetation cover and exposed-soil proxies for dust.</p>
-          <div class="links"><a href="https://landsat.gsfc.nasa.gov">Landsat</a></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- HEALTH -->
-    <section id="health" class="res-block" data-section="HEALTH">
-      <h2>HEALTH</h2>
-      <p class="section-desc">Public health indicators, heat-illness metrics, and EJ screening to connect environmental exposure to outcomes.</p>
-      <div class="cards">
-        <article class="card">
-          <h3>CDC PLACES Health Data</h3>
-          <p class="meta">Granularity: Census tract</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">API</span></div>
-          <p>Chronic disease, obesity, and physical-activity indicators.</p>
-          <div class="links"><a href="https://www.cdc.gov/places">CDC PLACES</a></div>
-        </article>
-        <article class="card">
-          <h3>CDPH Heat Illness (CalHHS)</h3>
-          <p class="meta">Granularity: County / ZIP</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">Dashboard</span></div>
-          <p>ER visits and hospitalizations linked to extreme heat.</p>
-          <div class="links"><a href="https://data.chhs.ca.gov/dataset/heat-illness">CalHHS Heat Illness</a></div>
-        </article>
-        <article class="card">
-          <h3>EPA EJScreen 2.2</h3>
-          <p class="meta">Granularity: Census block group</p>
-          <div class="badges"><span class="badge">Shapefile</span><span class="badge">CSV</span></div>
-          <p>National environmental justice screening tool.</p>
-          <div class="links"><a href="https://www.epa.gov/ejscreen">EJScreen</a></div>
-        </article>
-        <article class="card">
-          <h3>CalHHS Health Vulnerability Indicators</h3>
-          <p class="meta">Granularity: County / tract</p>
-          <div class="badges"><span class="badge">CSV</span></div>
-          <p>State health and social vulnerability metrics.</p>
-          <div class="links"><a href="https://data.chhs.ca.gov">CalHHS Open Data</a></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- WATER -->
-    <section id="water" class="res-block" data-section="WATER">
-      <h2>WATER</h2>
-      <p class="section-desc">Green stormwater infrastructure (GSI), hydrology, and flood risk for street retrofits and compliance (e.g., MRP 3.0).</p>
-      <div class="cards">
-        <article class="card">
-          <h3>EPA Green Infrastructure Modeling Toolkit</h3>
-          <p class="meta">Granularity: Site / parcel</p>
-          <div class="badges"><span class="badge">XML</span><span class="badge">CSV</span></div>
-          <p>Planning and design tools for GSI performance.</p>
-          <div class="links"><a href="https://www.epa.gov/water-research/green-infrastructure-modeling-toolkit">EPA GSI Toolkit</a></div>
-        </article>
-        <article class="card">
-          <h3>Caltrans BMP / GSI Tools (MRP 3.0)</h3>
-          <p class="meta">Granularity: Project / site</p>
-          <div class="badges"><span class="badge">Excel</span><span class="badge">CSV</span></div>
-          <p>Bay Area GSI and MRP 3.0 compliance toolkit.</p>
-          <div class="links"><a href="https://dot.ca.gov/programs/environmental-analysis/standard-specifications/gsi-mrp">Caltrans MRP</a></div>
-        </article>
-        <article class="card">
-          <h3>FEMA NFHL Flood Hazard</h3>
-          <p class="meta">Granularity: Parcel / watershed</p>
-          <div class="badges"><span class="badge">Shapefile</span><span class="badge">GeoJSON</span></div>
-          <p>National Flood Hazard Layer for risk screening.</p>
-          <div class="links"><a href="https://msc.fema.gov/nfhl">NFHL Viewer</a></div>
-        </article>
-        <article class="card">
-          <h3>NRCS SSURGO Soil Survey</h3>
-          <p class="meta">Granularity: Parcel / field</p>
-          <div class="badges"><span class="badge">Shapefile</span><span class="badge">CSV</span><span class="badge">API</span></div>
-          <p>Soil hydrology and infiltration suitability.</p>
-          <div class="links"><a href="https://websoilsurvey.nrcs.usda.gov">Web Soil Survey</a></div>
-        </article>
-        <article class="card">
-          <h3>NOAA Sea Level Rise Viewer</h3>
-          <p class="meta">Granularity: Coastal block</p>
-          <div class="badges"><span class="badge">Web Map</span><span class="badge">GeoJSON</span></div>
-          <p>Sea-level rise exposure and floodplain projections.</p>
-          <div class="links"><a href="https://coast.noaa.gov/slr">SLR Viewer</a></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- BIODIVERSITY -->
-    <section id="biodiversity" class="res-block" data-section="BIODIVERSITY">
-      <h2>BIODIVERSITY</h2>
-      <p class="section-desc">Native species data and wildfire context for habitat-forward street design and buffers.</p>
-      <div class="cards">
-        <article class="card">
-          <h3>Calflora</h3>
-          <p class="meta">Granularity: Point / parcel</p>
-          <div class="badges"><span class="badge">Shapefile</span><span class="badge">CSV</span></div>
-          <p>Native species and vegetation occurrences in California.</p>
-          <div class="links"><a href="https://www.calflora.org">Calflora</a></div>
-        </article>
-        <article class="card">
-          <h3>iNaturalist (GBIF feed)</h3>
-          <p class="meta">Granularity: Point / polygon</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">API</span></div>
-          <p>Citizen-science biodiversity observations.</p>
-          <div class="links"><a href="https://www.inaturalist.org">iNaturalist</a></div>
-        </article>
-        <article class="card">
-          <h3>CalFire Fire Hazard Severity Zones</h3>
-          <p class="meta">Granularity: Parcel / landscape</p>
-          <div class="badges"><span class="badge">Shapefile</span></div>
-          <p>Vegetation-based wildfire hazard zones.</p>
-          <div class="links"><a href="https://osfm.fire.ca.gov/divisions/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">FHSZ</a></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- INFRASTRUCTURE -->
-    <section id="infrastructure" class="res-block" data-section="INFRASTRUCTURE">
-      <h2>INFRASTRUCTURE</h2>
-      <p class="section-desc">Assets and right-of-way datasets for materials, curb/ROW constraints, and existing BMP inventories.</p>
-      <div class="cards">
-        <article class="card">
-          <h3>Caltrans Pavement Condition Data (PMS)</h3>
-          <p class="meta">Granularity: Segment / route</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">Shapefile</span></div>
-          <p>Pavement materials and distress indicators for state highways.</p>
-          <div class="links"><a href="https://dot.ca.gov/programs/maintenance/pavement-program">Pavement Program</a></div>
-        </article>
-        <article class="card">
-          <h3>Local ROW &amp; Curb Inventory</h3>
-          <p class="meta">Granularity: Parcel / corridor</p>
-          <div class="badges"><span class="badge">Shapefile</span></div>
-          <p>ROW dimensions and curb data (availability varies by jurisdiction).</p>
-          <div class="links"><a href="#">Varies by jurisdiction</a></div>
-        </article>
-        <article class="card">
-          <h3>SCVURPPP BMP Inventory</h3>
-          <p class="meta">Granularity: Parcel / site</p>
-          <div class="badges"><span class="badge">Shapefile</span><span class="badge">Geodatabase</span></div>
-          <p>Existing bioretention, swales, and infiltration BMPs (Bay Area).</p>
-          <div class="links"><a href="https://www.scvurppp.org">SCVURPPP</a></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- EQUITY / MOBILITY -->
-    <section id="equity" class="res-block" data-section="EQUITY / MOBILITY">
-      <h2>EQUITY / MOBILITY</h2>
-      <p class="section-desc">Access, vulnerability, and trip data to align investments with user needs and mobility gaps.</p>
-      <div class="cards">
-        <article class="card">
-          <h3>CDC Social Vulnerability Index (SVI)</h3>
-          <p class="meta">Granularity: Census tract</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">Shapefile</span></div>
-          <p>Composite socioeconomic and demographic vulnerability index.</p>
-          <div class="links"><a href="https://www.atsdr.cdc.gov/placeandhealth/svi">CDC/ATSDR SVI</a></div>
-        </article>
-        <article class="card">
-          <h3>Caltrans Disadvantaged Communities Map</h3>
-          <p class="meta">Granularity: Census tract</p>
-          <div class="badges"><span class="badge">GIS</span></div>
-          <p>Transportation-disadvantaged areas by mode and access.</p>
-          <div class="links"><a href="https://gisdata-caltrans.opendata.arcgis.com">Caltrans Open Data</a></div>
-        </article>
-        <article class="card">
-          <h3>Census ACS Journey to Work</h3>
-          <p class="meta">Granularity: Census tract</p>
-          <div class="badges"><span class="badge">CSV</span></div>
-          <p>Mode share, commute time, and vehicle access indicators.</p>
-          <div class="links"><a href="https://data.census.gov">data.census.gov</a></div>
-        </article>
-        <article class="card">
-          <h3>StreetLight Data</h3>
-          <p class="meta">Granularity: Custom / O-D zones</p>
-          <div class="badges"><span class="badge">API</span><span class="badge">CSV</span></div>
-          <p>Active transportation and origin-destination mobility analytics.</p>
-          <div class="links"><a href="https://www.streetlightdata.com">StreetLight</a></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- INTEGRATED / RESILIENCE -->
-    <section id="resilience" class="res-block" data-section="INTEGRATED / RESILIENCE">
-      <h2>INTEGRATED / RESILIENCE</h2>
-      <p class="section-desc">Multi-variable indices and flexible OSM extracts to combine exposure, vulnerability, and assets.</p>
-      <div class="cards">
-        <article class="card">
-          <h3>NOAA Heat Vulnerability Index (HVI)</h3>
-          <p class="meta">Granularity: County / metro</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">Shapefile</span></div>
-          <p>Combines temperature, demographics, and health data.</p>
-          <div class="links"><a href="https://www.ncei.noaa.gov/products/heat-health-vulnerability">NOAA HVI</a></div>
-        </article>
-        <article class="card">
-          <h3>EPA Climate Resilience Screening Index (CRSI)</h3>
-          <p class="meta">Granularity: County</p>
-          <div class="badges"><span class="badge">CSV</span><span class="badge">Shapefile</span></div>
-          <p>Resilience capacity relative to environmental stressors.</p>
-          <div class="links"><a href="https://www.epa.gov/healthresearch/climate-resilience-screening-index">EPA CRSI</a></div>
-        </article>
-        <article class="card">
-          <h3>OpenStreetMap (Overpass API)</h3>
-          <p class="meta">Granularity: Street-level</p>
-          <div class="badges"><span class="badge">OSM</span><span class="badge">JSON</span></div>
-          <p>Extract features (trees, sidewalks, bike lanes) for usability mapping.</p>
-          <div class="links"><a href="https://overpass-turbo.eu">Overpass Turbo</a></div>
-        </article>
-        <article class="card">
-          <h3>PlanetScope / Sentinel-2 Imagery</h3>
-          <p class="meta">Granularity: Raster 3–10 m</p>
-          <div class="badges"><span class="badge">GeoTIFF</span></div>
-          <p>High-frequency reflectance and vegetation indices.</p>
-          <div class="links"><a href="https://dataspace.copernicus.eu">Copernicus</a> <a href="https://www.planet.com">Planet</a></div>
+          <div class="links"><a href="https://earthexplorer.usgs.gov">USGS EarthExplorer</a></div>
         </article>
       </div>
     </section>
@@ -542,117 +193,76 @@
     </footer>
   </main>
 
-  <!-- Back to top -->
-  <a href="#top" class="to-top" aria-label="Back to top" title="Back to top">↑</a>
+  <a href="#top" class="to-top" aria-label="Back to top">↑</a>
 
-  <!-- Scripts: sidebar toggle, smooth anchors, search, CSV, back-to-top -->
   <script>
-    // Smooth scroll for sidebar links (desktop + mobile)
-    function bindSmoothLinks(scope){
-      scope.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click', e=>{
-          const id = a.getAttribute('href');
-          const el = document.querySelector(id);
-          if(!el) return;
-          e.preventDefault();
-          el.scrollIntoView({behavior:'smooth', block:'start'});
-          history.pushState(null,'',id);
-          // Close mobile drawer if open
-          closeMobileSidebar();
-        });
-      });
-    }
-    bindSmoothLinks(document);
-  </script>
-  <script>
-    // Mobile sidebar toggle
+    // Sidebar toggle
     const openBtn = document.getElementById('openSidebar');
     const overlay = document.getElementById('sidebarOverlay');
     const drawer  = document.getElementById('mobileSidebar');
 
-    function openMobileSidebar(){
-      drawer.classList.add('open');
-      overlay.classList.add('show');
-      drawer.setAttribute('aria-hidden','false');
-      openBtn.setAttribute('aria-expanded','true');
-      // focus first link
-      const firstLink = drawer.querySelector('a[href^="#"]');
-      if(firstLink) firstLink.focus({preventScroll:true});
-    }
     function closeMobileSidebar(){
       drawer.classList.remove('open');
       overlay.classList.remove('show');
-      drawer.setAttribute('aria-hidden','true');
-      openBtn.setAttribute('aria-expanded','false');
     }
     openBtn.addEventListener('click', ()=>{
-      const expanded = openBtn.getAttribute('aria-expanded') === 'true';
-      if(expanded) closeMobileSidebar(); else openMobileSidebar();
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('show');
     });
     overlay.addEventListener('click', closeMobileSidebar);
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMobileSidebar(); });
 
-    // Re-bind smooth links inside drawer (in case of dynamic changes)
-    bindSmoothLinks(drawer);
-  </script>
-  <script>
-    // Simple search (filters titles, meta, text, badges)
-    const q = document.getElementById('globalSearch');
-    q.addEventListener('input', ()=>{
-      const term = q.value.trim().toLowerCase();
-      const sections = document.querySelectorAll('section.res-block');
-      sections.forEach(sec=>{
-        let anyVisibleInSection = false;
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const target=document.querySelector(a.getAttribute('href'));
+        if(!target)return;
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth'});
+        closeMobileSidebar();
+      });
+    });
+
+    // Search
+    const search=document.getElementById('globalSearch');
+    search.addEventListener('input',()=>{
+      const term=search.value.toLowerCase();
+      document.querySelectorAll('section.res-block').forEach(sec=>{
+        let showSection=false;
         sec.querySelectorAll('.card').forEach(card=>{
-          const text = card.innerText.toLowerCase();
-          const show = term === '' ? true : text.indexOf(term) !== -1;
-          card.style.display = show ? '' : 'none';
-          if(show) anyVisibleInSection = true;
+          const visible=card.innerText.toLowerCase().includes(term);
+          card.style.display=visible?'':'none';
+          if(visible) showSection=true;
         });
-        sec.style.display = anyVisibleInSection || term === '' ? '' : 'none';
+        sec.style.display=showSection||term===''?'':'none';
       });
     });
-  </script>
-  <script>
-    // CSV download of visible cards
-    document.getElementById('downloadCsv').addEventListener('click', ()=>{
-      const visibleCards = Array.from(document.querySelectorAll('.card')).filter(c=>c.style.display !== 'none');
-      const rows = [["Section","Title","Granularity","Formats","Description","Links"]];
-      visibleCards.forEach(c=>{
-        const section = c.closest('.res-block')?.querySelector('h2')?.innerText || "";
-        const title   = c.querySelector('h3')?.innerText || "";
-        const gran    = (c.querySelector('.meta')?.innerText || "").replace(/^Granularity:\s*/i,'');
-        const formats = Array.from(c.querySelectorAll('.badge')).map(b=>b.innerText).join('; ');
-        const desc    = Array.from(c.querySelectorAll('p')).find(p=>!p.classList.contains('meta'))?.innerText || "";
-        const links   = Array.from(c.querySelectorAll('.links a')).map(a=>a.href).join('; ');
-        rows.push([section,title,gran,formats,desc,links]);
+
+    // Back to top
+    const topBtn=document.querySelector('.to-top');
+    window.addEventListener('scroll',()=>{
+      topBtn.classList.toggle('show',window.scrollY>500);
+    });
+
+    // CSV export
+    document.getElementById('downloadCsv').addEventListener('click',()=>{
+      const rows=[["Section","Title","Granularity","Formats","Description","Links"]];
+      document.querySelectorAll('.card').forEach(c=>{
+        if(c.style.display==='none') return;
+        const sec=c.closest('.res-block')?.querySelector('h2')?.innerText||'';
+        const title=c.querySelector('h3')?.innerText||'';
+        const meta=(c.querySelector('.meta')?.innerText||'').replace(/^Granularity:\s*/,'');
+        const formats=Array.from(c.querySelectorAll('.badge')).map(b=>b.innerText).join('; ');
+        const desc=Array.from(c.querySelectorAll('p')).find(p=>!p.classList.contains('meta'))?.innerText||'';
+        const links=Array.from(c.querySelectorAll('.links a')).map(a=>a.href).join('; ');
+        rows.push([sec,title,meta,formats,desc,links]);
       });
-      const csv = rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
-      const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-      const url  = URL.createObjectURL(blob);
-      const a    = document.createElement('a');
-      a.href = url; a.download = 'green_complete_streets_resources.csv';
-      document.body.appendChild(a); a.click(); a.remove();
-      URL.revokeObjectURL(url);
+      const csv=rows.map(r=>r.map(v=>`"${v.replace(/"/g,'""')}"`).join(',')).join('\n');
+      const blob=new Blob([csv],{type:'text/csv'});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a'); a.href=url; a.download='resources.csv';
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     });
   </script>
-  <script>
-    // Back-to-top visibility
-    (function(){
-      const btn = document.querySelector('.to-top');
-      function toggle(){
-        if(window.scrollY > 500) btn.classList.add('show'); else btn.classList.remove('show');
-      }
-      window.addEventListener('scroll', toggle, {passive:true});
-      toggle();
-    })();
-  </script>
-  <noscript>
-    <style>
-      /* Keep content readable without JS */
-      .sidebar-overlay, .sidebar-drawer { display:none !important; }
-      #sidebar { display:block !important; }
-    </style>
-  </noscript>
 </body>
 </html>
