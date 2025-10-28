@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <title>Research · Green Complete Streets</title>
@@ -8,311 +7,171 @@
   <style>
     :root {
       --brand: #31b690;
-      --brand-dark: #23906a;
-      --ink: #1f2937;
       --muted: #6b7280;
-      --bg: #ffffff;
-      --bg-alt: #f9fafb;
       --line: #e5e7eb;
+      --bg: #ffffff;
+      --ink: #1f2937;
     }
-
-    html, body {
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
       background: var(--bg);
-      margin: 0;
-      color: var(--ink);
-      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial;
-      display: grid;
-      grid-template-columns: 240px 1fr;
-    }
-
-    #sidebar {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: auto;
-      background: var(--bg-alt);
-      border-right: 1px solid var(--line);
-      padding: 14px 16px;
-    }
-
-    #sidebar h2 {
-      font-size: 1rem;
-      margin: 0 0 8px;
-      color: var(--brand-dark);
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    #sidebar nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    #sidebar nav li {
-      margin: 8px 0;
-    }
-
-    #sidebar nav a {
-      text-decoration: none;
-      color: var(--ink);
-      padding: 6px 8px;
-      display: block;
-      border-radius: 6px;
-    }
-
-    #sidebar nav a:hover {
-      background: #eaf7f3;
-      color: var(--brand-dark);
-    }
-
-    main {
-      padding: 24px 28px 48px;
+      margin: 0 auto;
       max-width: 900px;
+      padding: 40px 20px;
+      line-height: 1.6;
     }
-
-    header.page {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .sidebar-toggle {
-      display: none;
-      background: var(--brand);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 10px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .kicker {
-      color: var(--brand);
-      font-weight: 700;
-      font-size: .9rem;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-    }
-
     h1 {
-      margin: .15em 0 .25em;
-      font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem);
+      color: var(--brand);
+      margin-bottom: 0.2em;
     }
-
-    p.subtitle {
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 2.5em;
+      margin-bottom: 0.3em;
+    }
+    .subtitle {
       color: var(--muted);
-      margin-bottom: 24px;
-      max-width: 75ch;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    section h2 {
-      font-size: 1.4rem;
-      margin-top: 30px;
-      border-bottom: 2px solid var(--line);
-      padding-bottom: 6px;
-      color: var(--brand-dark);
-    }
-
-    article {
-      margin-top: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    article h3 {
       font-size: 1.05rem;
-      margin: 0 0 4px;
+      margin-bottom: 2em;
+      max-width: 70ch;
     }
-
-    article p {
-      margin: 0 0 8px;
-    }
-
-    .citation {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    footer.page {
+    section.paper {
       border-top: 1px solid var(--line);
-      padding-top: 16px;
-      margin-top: 40px;
-      color: var(--muted);
-      font-size: .9rem;
+      padding-top: 1.25em;
+      margin-top: 1.25em;
     }
-
-    @media (max-width: 900px) {
-      html, body {
-        grid-template-columns: 1fr;
-      }
-      #sidebar {
-        display: none;
-      }
-      #sidebar.open {
-        display: block;
-        position: fixed;
-        z-index: 1000;
-        width: 240px;
-        height: 100%;
-        left: 0;
-        top: 0;
-        background: var(--bg-alt);
-      }
-      .sidebar-toggle {
-        display: inline-block;
-      }
+    section.paper h3 {
+      margin: 0.4em 0 0.2em;
+      font-size: 1.15rem;
+      color: var(--brand);
+    }
+    section.paper a {
+      text-decoration: none;
+      color: var(--brand);
+    }
+    section.paper a:hover {
+      text-decoration: underline;
+    }
+    .citation {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin: 0.3em 0 0.7em;
+    }
+    .summary {
+      margin-bottom: 1em;
     }
   </style>
 </head>
-
 <body>
-  <aside id="sidebar">
-    <h2>Browse</h2>
-    <nav>
-      <ul>
-        <li><a href="resources.html">← Resources</a></li>
-        <li><a href="#heat">Urban Heat</a></li>
-        <li><a href="#air">Air Quality</a></li>
-        <li><a href="#health">Health</a></li>
-        <li><a href="#water">Water & Green Infrastructure</a></li>
-        <li><a href="#biodiversity">Biodiversity</a></li>
-        <li><a href="#equity">Equity & Mobility</a></li>
-        <li><a href="#resilience">Integrated Resilience</a></li>
-      </ul>
-    </nav>
-  </aside>
 
-  <main>
-    <header class="page">
-      <button class="sidebar-toggle" id="sidebarToggle">☰ Menu</button>
-      <div>
-        <div class="kicker">Green Complete Streets</div>
-        <h1>Research Library</h1>
-        <p class="subtitle">
-          Peer-reviewed research informing the design of climate-resilient and people-first streets.
-          This collection highlights studies linking green infrastructure, urban heat mitigation, air quality, biodiversity, and public health outcomes.
-        </p>
-      </div>
-    </header>
+<header class="page">
+  <h1>Research Library</h1>
+  <p class="subtitle">
+    Key academic and scientific sources informing <strong>Green Complete Streets</strong> — spanning heat, air quality, health, water, biodiversity, equity, and resilience.
+  </p>
+</header>
 
-    <section id="heat">
-      <h2>Urban Heat</h2>
-      <article>
-        <h3>Urban Tree Canopy and Heat Exposure in U.S. Cities</h3>
-        <p>Jamei et al. (2019) examined how urban tree canopy reduces land surface temperature across 30 U.S. cities. Their findings show that neighborhoods with higher canopy coverage experienced up to 20°F lower surface temperatures, emphasizing the cooling power of vegetative infrastructure in mitigating urban heat islands.</p>
-        <p class="citation">Jamei, E., Rajagopalan, P., Seyedmahmoudian, M., & Jamei, Y. (2019). Urban greenery and microclimate cooling: A review of the role of trees, vegetation, and green roofs in mitigating urban heat. <em>Renewable and Sustainable Energy Reviews, 91</em>, 612–620. https://doi.org/10.1016/j.rser.2018.04.039</p>
-      </article>
-      <article>
-        <h3>Heat Mitigation Strategies for Climate-Resilient Cities</h3>
-        <p>Jamei and colleagues (2021) analyzed global cooling strategies—trees, reflective surfaces, and water bodies—finding that combinations of shade and evapotranspiration provide the most consistent reduction in mean radiant temperature and human discomfort indices.</p>
-        <p class="citation">Jamei, E., et al. (2021). Urban form and microclimate: A review on heat mitigation strategies. <em>Urban Climate, 37</em>, 100866. https://doi.org/10.1016/j.uclim.2021.100866</p>
-      </article>
-    </section>
+<!-- URBAN HEAT -->
+<section class="paper">
+  <h3><a href="https://doi.org/10.1016/j.rser.2018.04.039" target="_blank" rel="noopener noreferrer">Urban greenery and micro-climate cooling: A review of the role of trees, vegetation, and green roofs in mitigating urban heat</a></h3>
+  <p class="citation">Jamei, E., Rajagopalan, P., Seyedmahmoudian, M., &amp; Jamei, Y. (2019). <i>Renewable and Sustainable Energy Reviews, 91</i>, 612–620. https://doi.org/10.1016/j.rser.2018.04.039</p>
+  <p class="summary">Synthesizes global evidence showing how trees and vegetation reduce surface and air temperatures via shade and evapotranspiration, directly improving pedestrian thermal comfort in dense urban areas.</p>
+</section>
 
-    <section id="air">
-      <h2>Air Quality</h2>
-      <article>
-        <h3>Vegetative Barriers and Air Pollution Reduction Near Roadways</h3>
-        <p>Baldauf et al. (2018) demonstrated that dense, multi-layered vegetation barriers can reduce PM₂.₅ concentrations by up to 50% at schools near highways, highlighting how green infrastructure can improve children’s exposure conditions.</p>
-        <p class="citation">Baldauf, R. W., Isakov, V., Deshmukh, P., Venkatram, A., Yang, B., & Zhang, K. M. (2018). Influence of roadside vegetation barriers on near-road pollutant dispersion. <em>Science of The Total Environment, 635</em>, 1134–1145. https://doi.org/10.1016/j.scitotenv.2018.04.057</p>
-      </article>
-      <article>
-        <h3>Ozone Formation and Temperature Linkages</h3>
-        <p>Jacob and Winner (2009) reviewed atmospheric chemistry showing that ozone formation accelerates with rising temperatures due to increased photochemical activity and precursor reaction rates—connecting heat waves with degraded air quality.</p>
-        <p class="citation">Jacob, D. J., & Winner, D. A. (2009). Effect of climate change on air quality. <em>Atmospheric Environment, 43</em>(1), 51–63. https://doi.org/10.1016/j.atmosenv.2008.09.051</p>
-      </article>
-    </section>
+<section class="paper">
+  <h3><a href="https://doi.org/10.3390/su17136132" target="_blank" rel="noopener noreferrer">The role of urban green spaces in mitigating the urban heat island effect: A systematic review from the perspective of types and mechanisms</a></h3>
+  <p class="citation">Lin, H., &amp; Li, X. (2025). <i>Sustainability, 17</i>(13), 6132. https://doi.org/10.3390/su17136132</p>
+  <p class="summary">A global review identifying cooling effects from parks, street trees, and green roofs, often reducing local ambient temperature by up to 5 °C depending on canopy density and spatial distribution.</p>
+</section>
 
-    <section id="health">
-      <h2>Health</h2>
-      <article>
-        <h3>Heat-Related Mortality and Tree Canopy</h3>
-        <p>Vargo et al. (2021) linked street-level canopy to reductions in heat-related mortality across multiple U.S. regions, demonstrating that tree equity investments can function as life-saving public health infrastructure.</p>
-        <p class="citation">Vargo, J., Stone, B., Habeeb, D., Liu, P., & Russell, A. (2021). The social and spatial distribution of urban heat-related mortality in the United States. <em>Environmental Research Letters, 16</em>(7), 074001. https://doi.org/10.1088/1748-9326/abed43</p>
-      </article>
-      <article>
-        <h3>Physical Activity, Green Streets, and Mental Health</h3>
-        <p>White et al. (2019) found that access to greener, tree-lined streets correlates with increased physical activity and improved mental well-being, reinforcing the mental-health benefits of active, comfortable public spaces.</p>
-        <p class="citation">White, M. P., Alcock, I., Grellier, J., et al. (2019). Spending at least 120 minutes a week in nature is associated with good health and wellbeing. <em>Scientific Reports, 9</em>(1), 7730. https://doi.org/10.1038/s41598-019-44097-3</p>
-      </article>
-    </section>
+<!-- AIR QUALITY -->
+<section class="paper">
+  <h3><a href="https://doi.org/10.1016/j.scitotenv.2018.04.057" target="_blank" rel="noopener noreferrer">Influence of roadside vegetation barriers on near-road pollutant dispersion</a></h3>
+  <p class="citation">Baldauf, R. W., Isakov, V., Deshmukh, P., Venkatram, A., Yang, B., &amp; Zhang, K. M. (2018). <i>Science of The Total Environment, 635</i>, 1134–1145. https://doi.org/10.1016/j.scitotenv.2018.04.057</p>
+  <p class="summary">Demonstrates that dense, multi-layered vegetation barriers can reduce PM₂.₅ and ultrafine particle concentrations near highways, offering guidance for designing green buffers along streets.</p>
+</section>
 
-    <section id="water">
-      <h2>Water & Green Infrastructure</h2>
-      <article>
-        <h3>Evaluating Urban Green Infrastructure for Stormwater Management</h3>
-        <p>Meerow and Newell (2017) examined the multifunctional role of green infrastructure in mitigating flooding and improving resilience. They emphasize integrating stormwater design with broader urban sustainability goals.</p>
-        <p class="citation">Meerow, S., & Newell, J. P. (2017). Spatial planning for multifunctional green infrastructure: Growing resilience in Detroit. <em>Landscape and Urban Planning, 159</em>, 62–75. https://doi.org/10.1016/j.landurbplan.2016.10.005</p>
-      </article>
-      <article>
-        <h3>Street-Scale Bioretention and Pollutant Removal Efficiency</h3>
-        <p>Dietz and Clausen (2008) demonstrated that street-integrated bioretention systems reduce runoff volumes by up to 40% and effectively filter nutrients and sediments, offering evidence for scalable green street retrofits.</p>
-        <p class="citation">Dietz, M. E., & Clausen, J. C. (2008). Stormwater runoff and export changes with development in a traditional and low impact subdivision. <em>Journal of Environmental Management, 87</em>(4), 560–566. https://doi.org/10.1016/j.jenvman.2007.03.026</p>
-      </article>
-    </section>
+<section class="paper">
+  <h3><a href="https://doi.org/10.1016/j.atmosenv.2008.09.051" target="_blank" rel="noopener noreferrer">Effect of climate change on air quality</a></h3>
+  <p class="citation">Jacob, D. J., &amp; Winner, D. A. (2009). <i>Atmospheric Environment, 43</i>(1), 51–63. https://doi.org/10.1016/j.atmosenv.2008.09.051</p>
+  <p class="summary">Explains how higher air temperatures accelerate photochemical ozone formation and worsen pollution, making “hotter air” also “dirtier air.”</p>
+</section>
 
-    <section id="biodiversity">
-      <h2>Biodiversity</h2>
-      <article>
-        <h3>Urban Biodiversity and Ecosystem Services</h3>
-        <p>Aronson et al. (2014) found that native vegetation in cities enhances biodiversity and ecosystem resilience, underscoring the ecological benefits of habitat-forward street design.</p>
-        <p class="citation">Aronson, M. F. J., et al. (2014). A global analysis of the impacts of urbanization on bird and plant diversity reveals key anthropogenic drivers. <em>Proceedings of the Royal Society B, 281</em>(1780), 20133330. https://doi.org/10.1098/rspb.2013.3330</p>
-      </article>
-      <article>
-        <h3>Green Corridors and Pollinator Habitat Connectivity</h3>
-        <p>Hall et al. (2017) showed that even small roadside plantings and bioswales can provide critical pollinator habitat connectivity, bridging ecological gaps in dense urban matrices.</p>
-        <p class="citation">Hall, D. M., Camilo, G. R., Tonietto, R. K., et al. (2017). The city as a refuge for insect pollinators. <em>Conservation Biology, 31</em>(1), 24–29. https://doi.org/10.1111/cobi.12840</p>
-      </article>
-    </section>
+<section class="paper">
+  <h3><a href="https://doi.org/10.1038/s43247-025-02306-0" target="_blank" rel="noopener noreferrer">Fallowed agricultural lands dominate anthropogenic dust sources in California</a></h3>
+  <p class="citation">Adebiyi, A. A., Kibria, M. M., Abatzoglou, J. T., Ginoux, P., Pandey, S., Heaney, A., Chen, S.-H., &amp; Akinsanola, A. A. (2025). <i>Communications Earth &amp; Environment, 6</i>(1). https://doi.org/10.1038/s43247-025-02306-0</p>
+  <p class="summary">Identifies fallowed agricultural lands as the dominant anthropogenic dust source in California, linking drought, land management, and increased dust exposure in the Central Valley.</p>
+</section>
 
-    <section id="equity">
-      <h2>Equity & Mobility</h2>
-      <article>
-        <h3>Tree Inequity and Environmental Justice</h3>
-        <p>Locke et al. (2021) mapped disparities in tree canopy across U.S. cities, revealing that lower-income and majority-minority neighborhoods have substantially less shade, exposing residents to higher ambient heat.</p>
-        <p class="citation">Locke, D. H., et al. (2021). Residential housing segregation and urban tree canopy in 37 U.S. cities. <em>Nature Communications, 12</em>(1), 2297. https://doi.org/10.1038/s41467-021-22485-4</p>
-      </article>
-      <article>
-        <h3>Inclusive Street Design for Active Mobility</h3>
-        <p>Dill and McNeil (2016) analyzed perceptions of comfort and safety among diverse demographic groups, finding that protected infrastructure dramatically increases biking rates among women and older adults.</p>
-        <p class="citation">Dill, J., & McNeil, N. (2016). Revisiting the four types of cyclists: Findings from a national survey. <em>Transportation Research Record, 2587</em>(1), 90–99. https://doi.org/10.3141/2587-11</p>
-      </article>
-    </section>
+<!-- HEALTH -->
+<section class="paper">
+  <h3><a href="https://doi.org/10.1088/1748-9326/abed43" target="_blank" rel="noopener noreferrer">The social and spatial distribution of urban heat-related mortality in the United States</a></h3>
+  <p class="citation">Vargo, J., Stone, B., Habeeb, D., Liu, P., &amp; Russell, A. (2021). <i>Environmental Research Letters, 16</i>(7), 074001. https://doi.org/10.1088/1748-9326/abed43</p>
+  <p class="summary">Analyzes U.S. heat-related mortality and shows that low-income and low-canopy neighborhoods face higher risk, emphasizing the public health role of urban greening.</p>
+</section>
 
-    <section id="resilience">
-      <h2>Integrated Resilience</h2>
-      <article>
-        <h3>Urban Systems and Climate Adaptation Frameworks</h3>
-        <p>Rosenzweig et al. (2018) presented a systems-based framework for integrating green, gray, and social infrastructure to build adaptive capacity across urban regions facing climate stressors.</p>
-        <p class="citation">Rosenzweig, C., Solecki, W., Romero-Lankao, P., Mehrotra, S., Dhakal, S., & Ali Ibrahim, S. (2018). <em>Climate Change and Cities: Second Assessment Report of the Urban Climate Change Research Network</em>. Cambridge University Press. https://doi.org/10.1017/9781316563878</p>
-      </article>
-      <article>
-        <h3>Nature-Based Solutions and Co-Benefits in Urban Design</h3>
-        <p>Raymond et al. (2017) synthesized global evidence showing that nature-based solutions enhance urban livability while reducing risks from heat, flooding, and pollution—reinforcing integrated design as essential for climate resilience.</p>
-        <p class="citation">Raymond, C. M., Frantzeskaki, N., Kabisch, N., Berry, P., et al. (2017). A framework for assessing and implementing the co-benefits of nature-based solutions in urban areas. <em>Environmental Science & Policy, 77</em>, 15–24. https://doi.org/10.1016/j.envsci.2017.07.008</p>
-      </article>
-    </section>
+<section class="paper">
+  <h3><a href="https://doi.org/10.1038/s41598-019-44097-3" target="_blank" rel="noopener noreferrer">Spending at least 120 minutes a week in nature is associated with good health and wellbeing</a></h3>
+  <p class="citation">White, M. P., Alcock, I., Grellier, J., et al. (2019). <i>Scientific Reports, 9</i>(1), 7730. https://doi.org/10.1038/s41598-019-44097-3</p>
+  <p class="summary">Finds a clear dose-response relationship between time in nature and improved health outcomes, underscoring the value of accessible green public spaces.</p>
+</section>
 
-    <footer class="page">
-      &copy; 2021–2025 Green Complete Streets · Built on GitHub Pages.
-    </footer>
-  </main>
+<!-- WATER -->
+<section class="paper">
+  <h3><a href="https://doi.org/10.1016/j.landurbplan.2016.10.005" target="_blank" rel="noopener noreferrer">Spatial planning for multifunctional green infrastructure: Growing resilience in Detroit</a></h3>
+  <p class="citation">Meerow, S., &amp; Newell, J. P. (2017). <i>Landscape and Urban Planning, 159</i>, 62–75. https://doi.org/10.1016/j.landurbplan.2016.10.005</p>
+  <p class="summary">Explores how strategically planned green infrastructure supports stormwater management, flood resilience, and urban livability.</p>
+</section>
 
-  <script>
-    const sidebar = document.getElementById('sidebar');
-    const toggle = document.getElementById('sidebarToggle');
-    toggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-    });
-  </script>
+<section class="paper">
+  <h3><a href="https://doi.org/10.1016/j.jenvman.2007.03.026" target="_blank" rel="noopener noreferrer">Stormwater runoff and export changes with development in a traditional and low-impact subdivision</a></h3>
+  <p class="citation">Dietz, M. E., &amp; Clausen, J. C. (2008). <i>Journal of Environmental Management, 87</i>(4), 560–566. https://doi.org/10.1016/j.jenvman.2007.03.026</p>
+  <p class="summary">Shows how low-impact design practices like bioretention and permeable pavements can reduce runoff by up to 40 %, offering quantifiable proof of green street effectiveness.</p>
+</section>
+
+<!-- BIODIVERSITY -->
+<section class="paper">
+  <h3><a href="https://doi.org/10.1098/rspb.2013.3330" target="_blank" rel="noopener noreferrer">A global analysis of the impacts of urbanization on bird and plant diversity reveals key anthropogenic drivers</a></h3>
+  <p class="citation">Aronson, M. F. J., et al. (2014). <i>Proceedings of the Royal Society B, 281</i>(1780), 20133330. https://doi.org/10.1098/rspb.2013.3330</p>
+  <p class="summary">Finds that well-designed urban vegetation can sustain biodiversity, mitigating species loss and supporting ecosystem functions in cities.</p>
+</section>
+
+<section class="paper">
+  <h3><a href="https://doi.org/10.1111/cobi.12840" target="_blank" rel="noopener noreferrer">The city as a refuge for insect pollinators</a></h3>
+  <p class="citation">Hall, D. M., Camilo, G. R., Tonietto, R. K., et al. (2017). <i>Conservation Biology, 31</i>(1), 24–29. https://doi.org/10.1111/cobi.12840</p>
+  <p class="summary">Documents how street-scale vegetation networks support pollinators, suggesting that green corridors and bioswales can enhance ecological connectivity.</p>
+</section>
+
+<!-- EQUITY / MOBILITY -->
+<section class="paper">
+  <h3><a href="https://doi.org/10.1038/s42949-021-00022-0" target="_blank" rel="noopener noreferrer">Residential housing segregation and urban tree canopy in 37 US Cities</a></h3>
+  <p class="citation">Locke, D. H., Hall, B., Grove, J. M., Pickett, S. T. A., Ogden, L. A., Aoki, C., Boone, C. G., &amp; O’Neil-Dunne, J. P. M. (2021). <i>npj Urban Sustainability, 1</i>(1), 15. https://doi.org/10.1038/s42949-021-00022-0</p>
+  <p class="summary">Shows that formerly redlined neighborhoods have significantly lower tree canopy, quantifying the legacy of segregation on today’s environmental inequities.</p>
+</section>
+
+<section class="paper">
+  <h3><a href="https://doi.org/10.3141/2587-11" target="_blank" rel="noopener noreferrer">Revisiting the four types of cyclists: Findings from a national survey</a></h3>
+  <p class="citation">Dill, J., &amp; McNeil, N. (2016). <i>Transportation Research Record, 2587</i>(1), 90–99. https://doi.org/10.3141/2587-11</p>
+  <p class="summary">Establishes four cyclist typologies and demonstrates how protected bike lanes and greenery increase ridership among women and older adults, emphasizing inclusive design.</p>
+</section>
+
+<!-- INTEGRATED RESILIENCE -->
+<section class="paper">
+  <h3><a href="https://doi.org/10.1017/9781316563878" target="_blank" rel="noopener noreferrer">Climate Change and Cities: Second Assessment Report of the Urban Climate Change Research Network</a></h3>
+  <p class="citation">Rosenzweig, C., Solecki, W., Romero-Lankao, P., Mehrotra, S., Dhakal, S., &amp; Ali Ibrahim, S. (2018). <i>Cambridge University Press</i>. https://doi.org/10.1017/9781316563878</p>
+  <p class="summary">Provides a systems-based framework linking climate, health, infrastructure, and equity, positioning green complete streets as foundational resilience infrastructure.</p>
+</section>
+
+<section class="paper">
+  <h3><a href="https://doi.org/10.1016/j.envsci.2017.07.008" target="_blank" rel="noopener noreferrer">A framework for assessing and implementing the co-benefits of nature-based solutions in urban areas</a></h3>
+  <p class="citation">Raymond, C. M., Frantzeskaki, N., Kabisch, N., Berry, P., et al. (2017). <i>Environmental Science &amp; Policy, 77</i>, 15–24. https://doi.org/10.1016/j.envsci.2017.07.008</p>
+  <p class="summary">Outlines metrics for measuring and scaling co-benefits—cooling, flood control, air quality, and wellbeing—of nature-based solutions in cities.</p>
+</section>
+
+<footer class="page">
+  &copy; 2021–2025 Green Complete Streets · Built on GitHub Pages.
+</footer>
+
 </body>
 </html>
