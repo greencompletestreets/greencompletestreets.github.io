@@ -58,7 +58,10 @@
     h1{ margin:.05em 0 .35em; font-size:clamp(1.6rem,1.2rem + 1.2vw,2.2rem); line-height:1.2; }
     /* .subtitle{ color:var(--muted); max-width:70ch; } */
     .subtitle {
-        white-space: nowrap;
+        max-width: 70ch;   /* limits line length to ~70 characters for readability */
+        line-height: 1.5;
+        color: var(--muted);
+        margin-bottom: 1.5rem;
     }
 
     @media (max-width: 768px) {
