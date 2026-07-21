@@ -9133,3 +9133,86 @@ b,
   position: sticky;
   top: 5.5rem;
 }
+
+/* =========================
+   CORE IDEAS
+   ========================= */
+
+/*
+ * Uses the theme's existing .wrapper and .container classes.
+ * Add id="core-ideas" to the section and class="core-idea" to
+ * each individual idea block.
+ */
+
+#core-ideas.wrapper {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+  background: var(--gcs-bg);
+}
+
+#core-ideas > .container {
+  max-width: 920px;
+}
+
+/* Override the theme's large, centered .major heading treatment here only. */
+#core-ideas header.major {
+  margin: 0 0 2rem 0;
+  text-align: left;
+}
+
+#core-ideas header.major::after {
+  display: none;
+}
+
+#core-ideas header.major h2 {
+  margin-bottom: 0.45rem;
+}
+
+#core-ideas header.major p {
+  max-width: 48rem;
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+#core-ideas .core-idea {
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--gcs-line);
+}
+
+#core-ideas .core-idea:last-child {
+  border-bottom: 1px solid var(--gcs-line);
+}
+
+#core-ideas .core-idea h3 {
+  margin: 0 0 0.45rem 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+#core-ideas .core-idea p {
+  max-width: 52rem;
+  margin: 0;
+  line-height: 1.75;
+}
+
+@media screen and (max-width: 736px) {
+  #core-ideas.wrapper {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  #core-ideas header.major {
+    margin-bottom: 1.4rem;
+  }
+
+  #core-ideas .core-idea {
+    padding: 1.25rem 0;
+  }
+
+  #core-ideas .core-idea h3 {
+    font-size: 1.15rem;
+  }
+}
+
