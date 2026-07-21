@@ -153,12 +153,23 @@
 				</div>
 			</section>
 
-			<!-- Footer -->
-			<footer id="footer">
-				<ul class="copyright">
-					<li>&copy; 2026 April Webster · Green Complete Streets</li>
-				</ul>
-			</footer>
+<!-- Footer -->
+
+<footer id="footer">
+
+    <ul class="copyright">
+
+        <li>&copy; 2021–<span id="year"></span> April Webster · Green Complete Streets. All rights reserved.</li>
+
+    </ul>
+
+</footer>
+
+<script>
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+</script>
 
 		</div>
 	</body>

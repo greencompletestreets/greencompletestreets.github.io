@@ -338,6 +338,29 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* note about resources being dynamic and email address with fixes */
+  .resources-note {
+  width: 100%;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--res-line);
+  border-bottom: 1px solid var(--res-line);
+  background: rgba(248, 250, 247, 0.45);
+}
+
+.resources-note p {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--res-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.resources-note a {
+  font-weight: 600;
+}
+
+
   </style>
 </head>
 <body class="resources-page">
@@ -358,6 +381,7 @@
         </ul>
       </nav>
     </header>
+    
 
     <!-- Page hero -->
     <!-- <section class="resources-hero">
@@ -384,6 +408,25 @@
       </a>.
     </p>
   </div>
+</section>
+<section class="resources-note">
+
+  <div class="container">
+
+    <p>
+
+      This resource library is intentionally evolving and collaborative.
+
+      Public datasets, APIs, and mapping portals change frequently.
+
+      Notice a broken link or have a resource to suggest?
+
+      <a href="mailto:greencompletestreets@gmail.com">Email Green Complete Streets</a>.
+
+    </p>
+
+  </div>
+
 </section>
 
     <main class="container">
@@ -818,14 +861,27 @@
           </div>
         </div>
       </div>
+      
     </main>
+    
 
-    <footer id="footer">
-      <ul class="copyright">
-        <li>&copy; 2026 April Webster · Green Complete Streets</li>
-      </ul>
-    </footer>
-  </div>
+<!-- Footer -->
+
+<footer id="footer">
+
+    <ul class="copyright">
+
+        <li>&copy; 2021–<span id="year"></span> April Webster · Green Complete Streets. All rights reserved.</li>
+
+    </ul>
+
+</footer>
+
+<script>
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+</script>
 
   <a href="#top" class="to-top" aria-label="Back to top" title="Back to top">↑</a>
 
