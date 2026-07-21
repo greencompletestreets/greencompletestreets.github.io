@@ -173,9 +173,23 @@
   <p class="summary">Outlines metrics for measuring and scaling co-benefits—cooling, flood control, air quality, and wellbeing—of nature-based solutions in cities.</p>
 </section>
 
-<footer class="page">
-  &copy; 2021–2025 Green Complete Streets · Built on GitHub Pages.
+<!-- Footer -->
+
+<footer id="footer">
+
+    <ul class="copyright">
+
+        <li>&copy; 2021–<span id="year"></span> April Webster · Green Complete Streets. All rights reserved.</li>
+
+    </ul>
+
 </footer>
+
+<script>
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+</script>
 
 </body>
 </html>
