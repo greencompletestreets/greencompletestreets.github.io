@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Trees as Infrastructure · Green Complete Streets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A documented chronology of the development of April Webster's Trees as Infrastructure and Green Complete Streets framework." />
+  <link rel="stylesheet" href="assets/css/main.css" />
+
+  <style>
+    :root {
+      --tai-line: #d7ddd5;
+      --tai-card: #ffffff;
+      --tai-text: #1f2420;
+      --tai-muted: #556159;
+      --tai-accent: #2f8f67;
+      --tai-accent-dark: #236b4d;
+      --tai-soft: #edf5f0;
+      --tai-shadow: 0 6px 18px rgba(24, 32, 27, 0.06);
+      --tai-sidebar-w: 245px;
+    }
+
+    .tai-page {
+      background: transparent;
+    }
+
+    .tai-hero {
+      padding: 5.5rem 0 2.4rem;
+      border-bottom: 1px solid var(--gcs-line);
+      background: var(--gcs-bg);
+    }
+
+    .tai-hero .page-subtitle {
+      max-width: 76ch;
+    }
+
+    .tai-shell {
+      display: grid;
+      grid-template-columns: var(--tai-sidebar-w) minmax(0, 1fr);
+      gap: 2.25rem;
+      padding: 2.3rem 0 4rem;
+      align-items: start;
+    }
+
+    .tai-sidebar {
+      position: sticky;
+      top: 5.5rem;
+      background: #f8faf7;
+      border: 1px solid var(--tai-line);
+      border-radius: 14px;
+      padding: 0.7rem;
+    }
+
+    .tai-sidebar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tai-sidebar li {
+      margin: 0;
+    }
+
+    .tai-sidebar a {
+      display: block;
+      padding: 0.72rem 0.8rem;
+      border-radius: 10px;
+      border: none;
+      color: #334038;
+      font-size: 0.93rem;
+      font-weight: 500;
+      line-height: 1.3;
+      text-decoration: none;
+    }
+
+    .tai-sidebar a:hover,
+    .tai-sidebar a.active {
+      background: #e9f3ed;
+      color: var(--tai-accent-dark);
+    }
+
+    .tai-main {
+      min-width: 0;
+    }
+
+    .tai-block {
+      padding: 0 0 2.6rem;
+      margin-bottom: 2.6rem;
+      border-bottom: 1px solid var(--tai-line);
+      scroll-margin-top: 6rem;
+    }
+
+    .tai-block:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .tai-block > h2 {
+      color: var(--tai-text);
+      font-size: 1.75rem;
+      font-weight: 650;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .tai-lede {
+      color: var(--tai-muted);
+      max-width: 74ch;
+      font-size: 1.04rem;
+    }
+
+    .tai-callout {
+      background: var(--tai-soft);
+      border: 1px solid #cfe1d6;
+      border-radius: 16px;
+      padding: 1.35rem 1.4rem;
+      margin: 1.4rem 0 0;
+    }
+
+    .tai-callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tai-pullquote {
+      border-left: 4px solid var(--tai-accent);
+      margin: 1.5rem 0;
+      padding: 0.75rem 0 0.75rem 1.25rem;
+      color: #2d3a32;
+      font-size: 1.15rem;
+      font-style: normal;
+      line-height: 1.6;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.4rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 17px;
+      top: 1rem;
+      bottom: 1rem;
+      width: 2px;
+      background: #d7e8dd;
+    }
+
+    .timeline-entry {
+      position: relative;
+      background: var(--tai-card);
+      border: 1px solid var(--tai-line);
+      border-radius: 14px;
+      box-shadow: var(--tai-shadow);
+      padding: 1.25rem 1.25rem 1.25rem 3.6rem;
+    }
+
+    .timeline-entry::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 1.5rem;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--tai-accent);
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 1px var(--tai-accent);
+    }
+
+    .timeline-date {
+      color: var(--tai-accent-dark);
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-entry h3 {
+      color: var(--tai-text);
+      font-size: 1.22rem;
+      font-weight: 650;
+      margin-bottom: 0.55rem;
+    }
+
+    .timeline-entry blockquote {
+      margin: 0.9rem 0;
+      color: #3c4941;
+      border-left-color: #b8d3c3;
+      font-style: normal;
+      padding-left: 1rem;
+    }
+
+    .timeline-entry p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tai-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.3rem;
+    }
+
+    .tai-card {
+      background: var(--tai-card);
+      border: 1px solid var(--tai-line);
+      border-radius: 14px;
+      padding: 1.15rem;
+      box-shadow: var(--tai-shadow);
+    }
+
+    .tai-card h3 {
+      color: var(--tai-text);
+      font-size: 1.05rem;
+      font-weight: 650;
+      margin-bottom: 0.45rem;
+    }
+
+    .tai-card p {
+      color: var(--tai-muted);
+      margin-bottom: 0;
+      font-size: 0.96rem;
+    }
+
+    .record-note {
+      background: #f8faf7;
+      border: 1px solid var(--tai-line);
+      border-radius: 14px;
+      padding: 1.25rem;
+    }
+
+    .record-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media screen and (max-width: 980px) {
+      .tai-shell {
+        grid-template-columns: 1fr;
+      }
+      .tai-sidebar {
+        position: static;
+      }
+      .tai-sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+      }
+      .tai-sidebar a {
+        padding: 0.55rem 0.7rem;
+      }
+    }
+
+    @media screen and (max-width: 736px) {
+      .tai-hero {
+        padding: 4.5rem 0 1.7rem;
+      }
+      .tai-grid {
+        grid-template-columns: 1fr;
+      }
+      .timeline-entry {
+        padding-left: 3.25rem;
+      }
+    }
+  </style>
+</head>
+<body class="tai-page">
+  <div id="page-wrapper">
+
+    <header id="header">
+      <h1><a href="index.html">Green Complete Streets</a></h1>
+      <nav id="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <!-- <li><a href="insights.html">Insights</a></li> -->
+          <!-- <li><a href="case-studies.html">Case Studies</a></li> -->
+          <li class="active"><a href="resources.html">Resources</a></li>
+          <li><a href="presentations.html">Presentations</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="page-hero tai-hero">
+      <div class="container">
+        <div class="page-eyebrow">Green Complete Streets · Framework development</div>
+        <h1 class="page-title">Trees as Infrastructure</h1>
+        <p class="page-subtitle">
+          A documented chronology of the ideas, public comments, letters, and presentations through which
+          April Webster developed a systems-based approach to urban forestry, transportation, climate resilience,
+          and municipal asset management.
+        </p>
+      </div>
+    </section>
+
+    <main class="container">
+      <div class="tai-shell">
+
+        <aside class="tai-sidebar" aria-label="Page sections">
+          <nav>
+            <ul>
+              <li><a href="#idea">The central idea</a></li>
+              <li><a href="#timeline">Development timeline</a></li>
+              <li><a href="#framework">Framework principles</a></li>
+              <li><a href="#record">Documentary record</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <div class="tai-main">
+
+          <section id="idea" class="tai-block">
+            <h2>The central idea</h2>
+            <p class="tai-lede">
+              Urban trees are often treated as landscaping: desirable, but secondary to the “real”
+              infrastructure of streets, drainage, utilities, and buildings. This work develops a
+              different model.
+            </p>
+
+            <div class="tai-callout">
+              <p>
+                Trees perform public functions, interact with transportation and stormwater systems,
+                require long-term maintenance and replacement, and can be measured through outcomes
+                such as shade, canopy, thermal comfort, stormwater performance, and public use.
+              </p>
+            </div>
+
+            <blockquote class="tai-pullquote">
+              If trees consistently perform public functions, require lifecycle management, influence
+              other municipal systems, and need standards, funding, metrics, and performance tracking,
+              then they should be represented as municipal infrastructure assets.
+            </blockquote>
+          </section>
+
+          <section id="timeline" class="tai-block">
+            <h2>Development timeline</h2>
+            <p class="tai-lede">
+              The record shows a coherent progression from nature as civic infrastructure to a
+              performance-based, lifecycle, and asset-management framework.
+            </p>
+
+            <div class="timeline">
+              <article class="timeline-entry">
+                <div class="timeline-date">November 11, 2025</div>
+                <h3>Nature as Core Infrastructure</h3>
+                <blockquote>
+                  “Recognizing the urban forest as core civic infrastructure means managing and funding
+                  it on par with streets and stormwater systems.”
+                </blockquote>
+                <blockquote>
+                  “The City should formally classify trees and green infrastructure as capital assets
+                  within the CIP and asset-management systems.”
+                </blockquote>
+                <p>
+                  This letter established the core proposition: the urban forest should be funded,
+                  governed, inventoried, and maintained as civic infrastructure. It also called for
+                  soil-volume and condition tracking, recurring capital funding, lifecycle management,
+                  cross-department coordination, and integration with transportation and stormwater projects.
+                </p>
+              </article>
+
+              <article class="timeline-entry">
+                <div class="timeline-date">March 11, 2026</div>
+                <h3>Corridor trees as long-term public assets</h3>
+                <blockquote>
+                  “Corridor trees function as long-term public assets that provide shade, stormwater
+                  management, and heat mitigation.”
+                </blockquote>
+                <blockquote>
+                  “Many municipalities now treat urban trees as infrastructure assets within their
+                  asset management systems because they provide measurable environmental and public
+                  health benefits.”
+                </blockquote>
+                <p>
+                  The Foothill Expressway comments applied the framework to a transportation corridor.
+                  They asked that tree removal, replacement, establishment, and lifecycle impacts be
+                  included in project cost comparisons, and identified interactions among canopy,
+                  pavement deterioration, thermal comfort, and facility usability.
+                </p>
+              </article>
+
+              <article class="timeline-entry">
+                <div class="timeline-date">March 12, 2026</div>
+                <h3>Performance-based street design</h3>
+                <blockquote>
+                  “A bike lane that floods every winter isn't infrastructure. A sidewalk that bakes at
+                  110 degrees by noon isn't usable, and a street that only works for part of the day
+                  isn't really working.”
+                </blockquote>
+                <blockquote>
+                  “Treating shade, temperature exposure, and stormwater management as core performance
+                  metrics rather than nice-to-haves.”
+                </blockquote>
+                <p>
+                  This framing moved the argument from amenities to infrastructure performance. Shade,
+                  temperature, and stormwater were treated as operational characteristics that determine
+                  whether a walking or bicycling facility remains usable.
+                </p>
+              </article>
+
+              <article class="timeline-entry">
+                <div class="timeline-date">March 28, 2026</div>
+                <h3>Canopy as functional transportation infrastructure</h3>
+                <blockquote>
+                  “Canopy isn't just aesthetic—it really affects comfort, usability, and climate safety
+                  for people walking and biking, and can directly influence how many people actually use a facility.”
+                </blockquote>
+                <p>
+                  This email connected canopy directly to transportation performance and demand, and
+                  framed trees, walking, biking, and vehicle movement as coordinated uses of the same
+                  constrained public right-of-way.
+                </p>
+              </article>
+
+              <article class="timeline-entry">
+                <div class="timeline-date">March 29, 2026</div>
+                <h3>Embedding tree outcomes in municipal standards</h3>
+                <blockquote>
+                  “Objective Design Standards set the requirements … while Standard Details determine
+                  how things actually get built on the ground.”
+                </blockquote>
+                <p>
+                  The message called for objective requirements for preserving existing trees and
+                  providing sufficient soil volume, while emphasizing that municipal engineering
+                  details govern placement, spacing, soil systems, and ultimately what gets delivered.
+                </p>
+              </article>
+
+              <article class="timeline-entry">
+                <div class="timeline-date">April 13, 2026</div>
+                <h3>Default engineering templates shape canopy outcomes</h3>
+                <blockquote>
+                  “Standard Details are the default engineering templates used for street design …
+                  Because they're the starting point for most projects, they end up shaping outcomes
+                  like bike facilities, street trees, and small open space opportunities.”
+                </blockquote>
+                <p>
+                  This connected citywide outcomes to the rules and templates embedded in public works
+                  practice. Updating engineering defaults was identified as a direct way to align policy
+                  with implementation.
+                </p>
+              </article>
+
+              <article class="timeline-entry">
+                <div class="timeline-date">April 15, 2026</div>
+                <h3>The municipal systems gap</h3>
+                <blockquote>
+                  “We have well-defined metrics and dedicated programs for things like pavement condition
+                  (PCI), but we don't have equivalent, consistently tracked measures for tree canopy,
+                  biodiversity, active transportation, or parks.”
+                </blockquote>
+                <blockquote>
+                  “Some assets, like roadway infrastructure, are treated as core systems, with clear
+                  standards, dedicated funding, and regular performance tracking, while others—like tree
+                  canopy, active transportation infrastructure, biodiversity, and parks—aren't structured
+                  the same way.”
+                </blockquote>
+                <p>
+                  This is the clearest diagnosis of the information and governance problem: municipalities
+                  privilege assets represented through standards, funding programs, inventories, and
+                  performance measures. Other public systems remain easier to defer because they are not
+                  modeled or managed in the same way.
+                </p>
+              </article>
+
+              <article class="timeline-entry">
+                <div class="timeline-date">April 28, 2026</div>
+                <h3>From vision to measurable delivery</h3>
+                <blockquote>
+                  “Stronger implementation language helps translate adopted goals into measurable and
+                  consistent outcomes.”
+                </blockquote>
+                <p>
+                  The City Council presentation brought the framework together through implementation,
+                  accountability, annual reporting, standards, quantified canopy targets, and integration
+                  of green infrastructure into sidewalks, bikeways, and public-realm delivery.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section id="framework" class="tai-block">
+            <h2>Framework principles</h2>
+            <p class="tai-lede">
+              The chronology supports a model of the urban forest as a distributed infrastructure
+              system—not a collection of isolated landscape objects.
+            </p>
+
+            <div class="tai-grid">
+              <article class="tai-card">
+                <h3>Public function</h3>
+                <p>Trees provide shade, cooling, stormwater management, habitat, public-health protection, and more usable transportation facilities.</p>
+              </article>
+              <article class="tai-card">
+                <h3>Lifecycle management</h3>
+                <p>Trees require planning, establishment, irrigation, inspection, maintenance, renewal, and replacement over long time horizons.</p>
+              </article>
+              <article class="tai-card">
+                <h3>System interaction</h3>
+                <p>Trees influence pavement life, drainage, visibility, travel behavior, thermal comfort, biodiversity, and public-space quality.</p>
+              </article>
+              <article class="tai-card">
+                <h3>Standards and defaults</h3>
+                <p>Objective standards, engineering details, soil specifications, and right-of-way allocation determine whether canopy survives project delivery.</p>
+              </article>
+              <article class="tai-card">
+                <h3>Measurement and accountability</h3>
+                <p>Canopy, shade, condition, soil volume, establishment success, equity, and corridor performance can be tracked as municipal service outcomes.</p>
+              </article>
+              <article class="tai-card">
+                <h3>Funding and governance</h3>
+                <p>Durable outcomes require capital classification, recurring maintenance funding, clear ownership, public reporting, and cross-department coordination.</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="record" class="tai-block">
+            <h2>Documentary record</h2>
+            <div class="record-note">
+              <p>
+                This page documents the development of the framework through contemporaneous emails,
+                public letters, advocacy materials, and presentations produced between November 2025
+                and April 2026.
+              </p>
+              <p>
+                Several messages were sent directly to, copied to, or blind-copied to Jean-Paul Renaud
+                of Canopy, and he responded positively to the November 2025 letter. That establishes
+                prior authorship and access to the ideas. It does not, by itself, establish deliberate
+                copying or intent.
+              </p>
+              <p>
+                The purpose of this page is to preserve the chronology clearly, accurately, and in the
+                original author's own words.
+              </p>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer">
+
+    <ul class="copyright">
+
+        <li>&copy; 2021–<span id="year"></span> April Webster · Green Complete Streets. All rights reserved.</li>
+
+    </ul>
+
+</footer>
+
+<script>
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+</script>
+  </div>
+</body>
+</html>
