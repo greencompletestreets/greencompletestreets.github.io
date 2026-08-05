@@ -8431,9 +8431,12 @@ a:hover {
   margin-top: 1rem !important;
 }
 
-/* =========================
-   PAGE HERO (NON-HOMEPAGE)
-   ========================= */
+	.page-note {
+		margin: 1rem 0 1.5rem;
+		color: #2f3631 !important;
+		font-size: 1rem;
+		max-width: 42rem;
+	}
 
 .page-hero {
   padding: 3.75rem 0 1.5rem 0;
