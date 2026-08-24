@@ -10531,64 +10531,183 @@ b,
 	}
 }
 
-/* About the Caltrans SB 1 grant: a compact fact sheet (reusing the same
-   label/value visual language as .evidence-panel dl elsewhere on this
-   page), a sourced description, and the grant's noted connections --
-   evidence-buttons at the end reuse the sitewide pending-control pattern
-   with no fabricated hrefs. */
-.rengstorff-microsite .grant-facts {
+/* About the Caltrans SB 1 grant: the whole section lives in one white
+   reference-card panel, deliberately reusing .evidence-panel's exact
+   recipe (background/border/left accent/radius/shadow/padding/max-width)
+   rather than inventing a new container style -- this is what fixes the
+   "raw documentation on the green background" look the panel replaces.
+   max-width keeps paragraphs from stretching edge to edge. */
+.rengstorff-microsite .grant-about-panel {
+	background: #ffffff;
+	border: 1px solid #c5d6c6;
+	border-left: 5px solid #4e9a73;
+	border-radius: 5px;
+	box-shadow: 0 10px 24px rgba(35, 58, 43, 0.08);
+	max-width: 62rem;
+	padding: 1.8rem 2rem;
+}
+
+.rengstorff-microsite .grant-about-panel h2 {
+	margin-bottom: 0.7rem;
+}
+
+.rengstorff-microsite .grant-about-intro {
+	font-size: 1rem;
+	line-height: 1.55;
+	margin: 0 0 1.5rem;
+}
+
+/* Compact two-column metadata: each fact is its own small label/value
+   pair (not a full-width table row). Labels are small, muted green,
+   semibold; values read larger and darker so they're the thing a reader
+   actually scans. */
+.rengstorff-microsite .grant-facts-grid {
 	display: grid;
-	font-size: 0.9rem;
-	grid-template-columns: minmax(10rem, 0.4fr) minmax(0, 1fr);
-	margin: 1.5rem 0;
+	column-gap: 1.5rem;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin: 0;
+	row-gap: 1rem;
 }
 
-.rengstorff-microsite .grant-facts dt,
-.rengstorff-microsite .grant-facts dd {
-	border-top: 1px solid #e1e9e1;
-	padding: 0.55rem 0;
-}
-
-.rengstorff-microsite .grant-facts dt {
-	color: #5a6c60;
+.rengstorff-microsite .grant-facts-grid dt {
+	color: #4e745c;
+	font-size: 0.74rem;
 	font-weight: 700;
+	letter-spacing: 0.05em;
+	margin-bottom: 0.25rem;
+	text-transform: uppercase;
 }
 
-.rengstorff-microsite .grant-facts dd {
-	color: #24362b;
-	font-weight: 500;
+.rengstorff-microsite .grant-facts-grid dd {
+	color: #193c2b;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.4;
 	margin: 0;
 }
 
-.rengstorff-microsite .grant-about-summary {
-	line-height: 1.6;
-	margin: 0 0 0.8rem;
+/* Subtle light-green rule separating the panel's sections (facts / what
+   it funds / why Rengstorff qualified) -- deliberately thinner and
+   quieter than the Project Phases dividers, since this panel is meant to
+   read as a calm reference card, not a sequence of delivery steps. */
+.rengstorff-microsite .grant-divider {
+	background: #d3e5d6;
+	border: 0;
+	height: 1px;
+	margin: 1.6rem 0;
+	width: 100%;
 }
 
+/* Small-caps section label, matching .evidence-subheading's recipe
+   elsewhere on this page (its own copy rather than a shared class, same
+   convention already used throughout this file for this exact look).
+   Specificity/importance deliberately higher than
+   .section-block p:not(.eyebrow), which otherwise wins ties on
+   importance regardless of specificity. */
+.rengstorff-microsite .grant-about-section .grant-about-panel p.grant-about-subheading {
+	color: #4e745c !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	margin: 0 0 0.6rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .grant-about-body {
+	line-height: 1.6;
+	margin: 0;
+}
+
+/* Comfortable, un-dense presentation of the qualifying factors -- a
+   small green dot marker instead of the browser default bullet, and
+   enough line-height/margin between items that this reads as a short
+   list of points, not a compressed document list. */
 .rengstorff-microsite .grant-connections {
 	color: #304238 !important;
-	font-size: 0.92rem;
-	line-height: 1.6;
-	margin: 0 0 1.3rem;
-	padding-left: 1.2rem;
+	font-size: 0.95rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .rengstorff-microsite .grant-connections li {
-	margin-bottom: 0.3rem;
+	line-height: 1.55;
+	margin-bottom: 0.7rem;
+	padding-left: 1.15rem;
+	position: relative;
+}
+
+.rengstorff-microsite .grant-connections li:last-child {
+	margin-bottom: 0;
+}
+
+.rengstorff-microsite .grant-connections li::before {
+	background: #4e9a73;
+	border-radius: 50%;
+	content: '';
+	height: 0.4rem;
+	left: 0;
+	position: absolute;
+	top: 0.5em;
+	width: 0.4rem;
+}
+
+/* Sources & documents: each control is its own row (never concatenated
+   text) with a hairline separator between them. A real link reuses the
+   sitewide dotted-underline text-link treatment (see
+   .evidence-card .card-evidence-link above); until a URL exists, the
+   label renders as plain text with a muted "Source pending" line under
+   it instead of a fabricated href. */
+.rengstorff-microsite .grant-sources-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rengstorff-microsite .grant-sources-list li {
+	border-top: 1px solid #eef3ee;
+	padding: 0.7rem 0;
+}
+
+.rengstorff-microsite .grant-sources-list li:first-child {
+	border-top: 0;
+	padding-top: 0;
+}
+
+.rengstorff-microsite .grant-source-item {
+	color: #193c2b;
+	display: block;
+	font-size: 0.92rem;
+	font-weight: 600;
+}
+
+.rengstorff-microsite a.grant-source-item {
+	border-bottom: dotted 1px #16704d;
+	color: #16704d;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.rengstorff-microsite a.grant-source-item:hover {
+	border-bottom-color: transparent;
+}
+
+.rengstorff-microsite .grant-source-item__pending {
+	color: #8a9690;
+	display: block;
+	font-size: 0.82rem;
+	font-style: italic;
+	margin-top: 0.2rem;
 }
 
 @media screen and (max-width: 640px) {
-	.rengstorff-microsite .grant-facts {
-		display: block;
+	.rengstorff-microsite .grant-about-panel {
+		padding: 1.4rem;
 	}
 
-	.rengstorff-microsite .grant-facts dt {
-		border-bottom: 0;
-		padding-bottom: 0.1rem;
-	}
-
-	.rengstorff-microsite .grant-facts dd {
-		padding-top: 0.1rem;
+	.rengstorff-microsite .grant-facts-grid {
+		grid-template-columns: 1fr;
+		row-gap: 0.9rem;
 	}
 }
 
