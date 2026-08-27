@@ -825,12 +825,18 @@ input, select, textarea {
 
 	/* Lazy-loaded YouTube embed: the iframe itself is only ever created by
 	   JS after a click (see populateEvidenceModal()), never present in the
-	   page's initial markup. This just sizes the 16:9 container it drops
-	   into. */
+	   page's initial markup. Sized 9:16 and capped at 22rem wide (rather
+	   than stretching to the dialog's full width) because the only video
+	   this modal shows today is a portrait YouTube Short -- at the
+	   dialog's ~900px max-width a 16:9 box would be right, but a 9:16 box
+	   that wide would be awkwardly tall, so it's centered at a narrower,
+	   comfortable width instead. */
 	.evidence-modal__video {
-		aspect-ratio: 16 / 9;
+		aspect-ratio: 9 / 16;
 		background: #0f1a14;
 		border-radius: 4px;
+		margin: 0 auto;
+		max-width: 22rem;
 		overflow: hidden;
 		width: 100%;
 	}
@@ -10003,24 +10009,220 @@ b,
 	aspect-ratio: 16 / 10;
 }
 
-/* At-a-Glance alignment uses the same CSS subgrid technique as the
-   Project Phases cards, just without dividers and with a flat 4-row
-   structure (no nested subgrid needed, since the trailing metadata is
-   treated as a single "record" zone rather than individually aligned
-   rows): .evidence-cards defines 4 explicit row tracks -- question,
-   plain-English answer, explanation, technical/project-record -- and
-   each .evidence-card spans and re-shares them via
-   grid-template-rows: subgrid. Every card places the same four children
-   (h3, .card-headline, .card-body, .card-record) into that shared
-   structure, so each zone starts at the same vertical position on all
-   four cards regardless of how many lines the question or headline
-   wraps to -- no min-height guessing needed. As with Project Phases,
-   this only makes sense while all four cards sit in one row; once
-   .evidence-cards wraps to 2 or 1 columns (media queries below) subgrid
-   is turned off and cards fall back to plain block flow. */
+/* On this page: a lightweight in-page contents nav between the hero and
+   the first section-block. It's a full-bleed bar (background and rules
+   span the viewport) with its content clamped to the same 1120px width
+   as .rengstorff-shell/.rengstorff-hero, using the identical
+   max(1.5rem, calc((100vw - 1120px) / 2)) formula the hero already
+   uses -- so its links line up with the rest of the page's content
+   edges at every viewport width, not just >=1168px.
+
+   There's no sitewide site header on this page (this microsite's <main>
+   starts directly with .rengstorff-hero), so position: sticky; top: 0
+   needs no extra offset for a header that doesn't exist here.
+
+   z-index is kept comfortably below .evidence-modal's z-index: 100 (the
+   video/timeline modal used elsewhere on this page), so an opened modal
+   always layers above this nav rather than being tucked behind it.
+
+   The collapse breakpoint (1024px) is wider than this page's usual
+   900px tier: five relatively long labels ("What Council programmed")
+   plus generous inter-link spacing need more room than a typical 2-3
+   item row, and 900px left too little headroom before the row would
+   wrap awkwardly onto a second line while still nominally "desktop." */
+.rengstorff-microsite .onpage-nav {
+	align-items: center;
+	background: #f1f4ef;
+	border-bottom: 1px solid #d4ded4;
+	border-top: 1px solid #d4ded4;
+	display: flex;
+	gap: 1.5rem;
+	padding: 0.85rem max(1.5rem, calc((100vw - 1120px) / 2));
+	position: sticky;
+	top: 0;
+	z-index: 40;
+}
+
+.rengstorff-microsite .onpage-nav__label {
+	color: #1a1a1a;
+	flex: 0 0 auto;
+	font-size: 1.08rem;
+	font-weight: 800;
+}
+
+/* Column-gap tightened from 2rem to 1.5rem, and the label/list gap
+   above from 1.75rem to 1.5rem, to make room for the larger link text
+   below without the five-item row wrapping earlier than the 1024px
+   collapse breakpoint -- the same "generous horizontal spacing"
+   character is kept, just slightly tighter than before the size bump. */
+.rengstorff-microsite .onpage-nav__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1.5rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rengstorff-microsite .onpage-nav__link {
+	border-bottom: 3px solid transparent;
+	color: #16704d;
+	display: inline-block;
+	font-size: 1.08rem;
+	font-weight: 600;
+	line-height: 1.5;
+	padding: 0.15rem 0;
+	text-decoration: none;
+}
+
+.rengstorff-microsite .onpage-nav__link:hover {
+	text-decoration: underline;
+}
+
+/* The second, non-color cue for "current section" -- a 3px underline --
+   is added on top of the same resting green rather than a different
+   color, so colorblind readers aren't relying on a color shift alone. */
+.rengstorff-microsite .onpage-nav__link.is-active {
+	border-bottom-color: #16704d;
+	font-weight: 700;
+}
+
+/* Hidden on desktop -- the full link row above is always visible there
+   regardless of the list's [hidden] state (see the media query below). */
+.rengstorff-microsite .onpage-nav__trigger {
+	display: none;
+}
+
+@media screen and (max-width: 1024px) {
+	.rengstorff-microsite .onpage-nav {
+		padding: 0.7rem max(1.1rem, calc((100vw - 1120px) / 2));
+	}
+
+	.rengstorff-microsite .onpage-nav__label {
+		display: none;
+	}
+
+	/* A real <button>, not a link or a styled <div> -- native keyboard
+	   and screen-reader button semantics come for free, and its own
+	   aria-expanded/aria-controls state (set in the HTML/JS) describes
+	   the collapsed menu it controls. A caret, not a hamburger: this is
+	   a contents menu for the current page, not the site's primary nav,
+	   and the caret is the conventional "this expands below" affordance
+	   for that kind of control. */
+	.rengstorff-microsite .onpage-nav__trigger {
+		align-items: center;
+		background: none;
+		border: 0;
+		color: #1a1a1a;
+		cursor: pointer;
+		display: flex;
+		font: inherit;
+		font-size: 0.95rem;
+		font-weight: 800;
+		gap: 0.4rem;
+		padding: 0.3rem 0;
+	}
+
+	.rengstorff-microsite .onpage-nav__chevron {
+		color: #16704d;
+		font-size: 0.7rem;
+		transition: transform 0.2s ease;
+	}
+
+	.rengstorff-microsite .onpage-nav__trigger[aria-expanded="true"] .onpage-nav__chevron {
+		transform: rotate(180deg);
+	}
+
+	/* Collapsed by default ([hidden], set in the HTML); JS toggles the
+	   attribute open/closed. .onpage-nav has position: sticky, which
+	   (like relative/absolute/fixed) establishes the containing block
+	   this absolute positioning resolves against, so no extra
+	   position: relative wrapper is needed. */
+	.rengstorff-microsite .onpage-nav__list {
+		background: #f1f4ef;
+		border-bottom: 1px solid #d4ded4;
+		display: none;
+		flex-direction: column;
+		gap: 0;
+		left: 0;
+		padding: 0.25rem max(1.1rem, calc((100vw - 1120px) / 2)) 0.75rem;
+		position: absolute;
+		right: 0;
+		top: 100%;
+	}
+
+	.rengstorff-microsite .onpage-nav__list:not([hidden]) {
+		display: flex;
+	}
+
+	.rengstorff-microsite .onpage-nav__link {
+		border-bottom: 0;
+		border-left: 3px solid transparent;
+		padding: 0.6rem 0 0.6rem 0.75rem;
+	}
+
+	.rengstorff-microsite .onpage-nav__link.is-active {
+		border-bottom: 0;
+		border-left-color: #16704d;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.rengstorff-microsite .onpage-nav__chevron {
+		transition: none;
+	}
+}
+
+/* Lands each anchored heading below the sticky nav instead of tucked
+   underneath it -- both for native no-JS anchor jumps and for the JS
+   smooth-scroll enhancement, which targets the same offset. ~72px
+   comfortably clears the nav's own rendered height (~47-52px depending
+   on breakpoint) with a little breathing room to spare. */
+.rengstorff-microsite #glance-title,
+.rengstorff-microsite #scope-title,
+.rengstorff-microsite #phases-title,
+.rengstorff-microsite #timeline-title,
+.rengstorff-microsite #grant-title {
+	scroll-margin-top: 4.5rem;
+}
+
+/* At-a-Glance: four static cards in a single horizontal row on desktop
+   (no flip, no interaction, no JS) using stretchy 1fr columns so the row
+   fills the full .rengstorff-shell content width -- there's no wider
+   container anywhere else on this page; 1120px/1072px-inside-padding is
+   the uniform cap every section, including this one, already uses.
+
+   Each card has five stacked content zones in a fixed order: label,
+   plain-language takeaway, body explanation, technical/project detail,
+   compact provenance/source line -- the earlier per-card link out to
+   other on-page sections (removed once the sitewide "On this page" nav
+   made that in-card navigation redundant) is not the same thing as this
+   provenance line: that one pointed elsewhere on this page, this one
+   points to the external official record a card's facts came from, so
+   it earns its own zone back rather than reviving the old one. Cross-
+   card alignment uses CSS subgrid (the same technique .phase-card uses
+   below): .evidence-cards defines 5 explicit row tracks, each
+   .evidence-card spans all 5 and re-shares those exact tracks via
+   grid-template-rows: subgrid. Because every card places the same five
+   children in the same order into that shared row structure, each zone
+   starts at the same vertical position on all four cards, and because
+   all four cards span the same shared tracks, their total height is
+   always identical -- no fixed height needed, and a longer technical-
+   detail line (e.g. Card 3's two-line funding breakdown) grows that one
+   shared row for all four cards rather than making just its own card
+   taller.
+
+   This row-sharing only makes sense while all four cards sit in a
+   single row; once .evidence-cards drops to 2 or 1 columns (see the
+   media queries below) the cards wrap onto separate row-bands, subgrid
+   is turned off, and .evidence-card reverts to plain block flow -- the
+   per-zone margins still produce the same spacing there, just per-card
+   instead of shared. */
 .rengstorff-microsite .evidence-cards {
-	column-gap: 1rem;
-	grid-template-rows: repeat(4, auto);
+	column-gap: 1.75rem;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	grid-template-rows: repeat(5, auto);
 	row-gap: 0;
 }
 
@@ -10029,90 +10231,173 @@ b,
 	grid-row: 1 / -1;
 	grid-template-columns: minmax(0, 1fr);
 	grid-template-rows: subgrid;
-	padding: 1rem 1.25rem;
+	padding: 1.5rem;
 }
 
-.rengstorff-microsite .evidence-card .card-label {
-	display: none;
-}
-
-/* At-a-glance card typography hierarchy: compact, editorial informational
-   cards, not presentation panels -- every size below is close to body
-   scale. The h3 is a short label ("Council approval", "Project scope"...)
-   rather than a full question now, so it's always one line at these
-   widths -- no wrapping-induced empty space to guard against. It's still
-   the strongest text (bold, dark charcoal) but reads as a heading, not
-   display type; the plain-English headline (.card-headline) is a step
-   down in size, weight, and the lighter green already established, so it
-   clearly answers "at a glance" without competing with the label above
-   it. Body copy (.card-body)
-   reads at normal paragraph size; CIP/project/funding identifiers
-   (.card-value, .card-meta) are the smallest, visually secondary layer
-   -- a reader shouldn't need Project 27-xx or CIP 25-39 to understand
-   the card. Tight, consistent margins between the four zones (question
-   -> headline -> body -> metadata) keep the cards compact without
-   dividers. These cards are plain-English orientation only -- no
-   evidence/source controls -- so there's no bottom-pinned button row to
-   align; source evidence lives entirely in the timeline's expanded
-   evidence panels. */
-.rengstorff-microsite .evidence-card h3 {
-	color: #1a1a1a;
-	font-size: 1.3rem;
-	font-weight: 800;
-	line-height: 1.2;
-	margin: 0 0 0.875rem;
-}
-
-/* card-headline/card-value/card-meta colors are !important to beat
-   .section-block p:not(.eyebrow) below, which otherwise flattens every
-   paragraph in the section to the same dark green regardless of
-   specificity (that rule carries !important too, and wins ties on
-   importance before specificity is even considered). */
-.rengstorff-microsite .evidence-card .card-headline {
-	color: #3a8862 !important;
-	font-size: 1.1rem;
-	font-weight: 600;
-	line-height: 1.3;
-	margin-bottom: 1.125rem;
-}
-
-.rengstorff-microsite .evidence-card .card-body {
-	color: #304238;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.5;
-	margin-top: 0;
-	margin-bottom: 1.25rem;
-}
-
-/* Secondary metadata: CIP/project identifiers, funding, fiscal years --
-   deliberately smaller than the body copy above so they read as
-   supporting reference detail, not the headline of the card. */
-.rengstorff-microsite .evidence-card .card-value,
-.rengstorff-microsite .evidence-card .card-meta {
-	color: #5a6c60 !important;
-	font-size: 0.95rem;
-	font-weight: 600;
-	line-height: 1.4;
-	margin-bottom: 0.25rem;
-}
-
-/* Below the 4-column breakpoint, cards wrap onto multiple row-bands, so
-   sharing one flat set of 4 row tracks across all four no longer makes
-   sense. Turn subgrid off and let each card size itself from its own
-   content in normal block flow; the per-element margins above still
-   produce the same spacing, just per-card instead of shared. Same
-   pattern as the Project Phases cards' responsive fallback. */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1100px) {
 	.rengstorff-microsite .evidence-cards {
+		column-gap: 1.5rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		grid-template-rows: none;
-		row-gap: 1rem;
+		row-gap: 1.5rem;
 	}
 
 	.rengstorff-microsite .evidence-card {
 		display: block;
 		grid-row: auto;
 	}
+}
+
+@media screen and (max-width: 640px) {
+	.rengstorff-microsite .evidence-cards {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+/* Zone 1 -- card label: the strongest text on the card (bold, dark
+   charcoal). h3, not a <p>, so it's untouched by the sitewide
+   .section-block p:not(.eyebrow) color rule. */
+.rengstorff-microsite .evidence-card h3 {
+	color: #1a1a1a;
+	font-size: 1.2rem;
+	font-weight: 800;
+	line-height: 1.25;
+	margin: 0;
+}
+
+/* Zone 2 -- plain-language takeaway: medium green, a step down in size
+   from the label but still clearly prominent. A <span> (not a <p>) for
+   the same reason as the label -- it dodges the sitewide paragraph
+   color rule instead of needing !important to beat it. */
+.rengstorff-microsite .evidence-card .card-headline {
+	color: #3a8862;
+	display: block;
+	font-size: 1.05rem;
+	font-weight: 600;
+	line-height: 1.35;
+	margin: 0.6rem 0 0;
+}
+
+/* Zone 3 -- body explanation: regular weight, normal reading size. */
+.rengstorff-microsite .evidence-card .card-body {
+	color: #304238;
+	display: block;
+	font-size: 0.94rem;
+	font-weight: 400;
+	line-height: 1.55;
+	margin: 0.6rem 0 0;
+}
+
+/* Zone 4 -- key facts: concise project facts, semibold, slightly smaller
+   than the body copy but still fully readable. A small uppercase "Key
+   facts" label -- muted, reusing the same micro-label treatment as
+   .phase-step/.phase-scope-label elsewhere on the page rather than
+   inventing a new one -- introduces the zone and stays visually
+   secondary to the facts themselves. Wrapped in one container per card
+   (.glance-tech) so the whole zone (label plus however many fact lines
+   a given card has, 2-3 depending on the card) occupies exactly one
+   shared subgrid row; the row grows to fit the densest card, and that
+   same taller row height applies to all four cards, which is what keeps
+   the zones above and below it aligned across the whole row. */
+.rengstorff-microsite .evidence-card .glance-tech {
+	margin: 0.6rem 0 0;
+}
+
+.rengstorff-microsite .evidence-card .glance-tech-label,
+.rengstorff-microsite .evidence-card .glance-source-label {
+	color: #4e745c;
+	display: block;
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.07em;
+	margin: 0 0 0.35rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .evidence-card .glance-tech-line {
+	color: #193c2b;
+	display: block;
+	font-size: 0.86rem;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.rengstorff-microsite .evidence-card .glance-tech-line + .glance-tech-line {
+	margin-top: 0.3rem;
+}
+
+/* Zone 5 -- source: provenance/evidence, a distinct second layer below
+   key facts rather than a repeat of them -- the project identifier
+   already shown in Zone 4 is deliberately not repeated here (see the
+   HTML). The same uppercase micro-label style introduces it ("Source"),
+   then one of two shapes:
+
+   - established source with a real link (Cards 1-3): the source
+     name/date is itself the link (.glance-provenance), in Card 3's case
+     preceded by a plain non-link .glance-source-line ("Council action ·
+     Sept. 10, 2024") and followed by a second, visually lighter
+     secondary document link (.glance-provenance--secondary).
+   - established source with no real link yet (Card 4): the source name
+     ("Adopted 2025 CIP") renders as plain, confident, non-muted text via
+     .glance-source-line -- specifically NOT styled as pending, because
+     the CIP adoption itself isn't in question -- followed by a separate,
+     visibly muted .glance-provenance--pending note ("Document link
+     pending") stating only that the link is what's missing. Merging
+     those two into one "X -- pending" line (the previous treatment) was
+     misleading: it read as if the source/action itself were pending,
+     not just its citation link.
+
+   Kept deliberately quieter than Zone 4's facts above it (smaller,
+   muted green rather than dark green, no arrow glyph, no button/pill
+   chrome) so this whole zone reads as a citation, not another fact or a
+   call to action -- full evidence buttons/documents stay in the
+   detailed sections below, this is provenance only. */
+.rengstorff-microsite .evidence-card .glance-source {
+	margin: 0.6rem 0 0;
+}
+
+.rengstorff-microsite .evidence-card .glance-source-line,
+.rengstorff-microsite .evidence-card .glance-provenance {
+	color: #4e745c;
+	display: block;
+	font-size: 0.87rem;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.rengstorff-microsite .evidence-card a.glance-provenance:hover,
+.rengstorff-microsite .evidence-card a.glance-provenance:focus-visible {
+	color: #16704d;
+	text-decoration: underline;
+}
+
+/* Spacing between however many lines a given card's Source zone holds
+   (established-source line, then one or two document links) -- the
+   label's own margin-bottom already spaces the first line from "Source"
+   above it, so this only needs to separate line 2+ from whatever
+   precedes it. */
+.rengstorff-microsite .evidence-card .glance-source-line + .glance-provenance,
+.rengstorff-microsite .evidence-card .glance-provenance + .glance-provenance {
+	margin-top: 0.3rem;
+}
+
+/* A second, less prominent document link alongside a card's primary
+   source link (currently only Card 3's "Council report (PDF)" beside
+   its primary "...Various Actions" record) -- smaller, so the two don't
+   compete for the same visual weight. */
+.rengstorff-microsite .evidence-card .glance-provenance--secondary {
+	font-size: 0.82rem;
+}
+
+/* No real source URL exists yet -- muted to the same gray-green the
+   sitewide .pending convention uses, but without that class's
+   dashed-border treatment, which would read as the button/pill chrome
+   this zone is explicitly not supposed to have. Used only on the
+   separate "Document link pending" note, never on the established
+   source name/date itself (see the comment above). */
+.rengstorff-microsite .evidence-card .glance-provenance--pending {
+	color: #65736a;
+	cursor: default;
 }
 
 .rengstorff-microsite .scope-icon {
@@ -10129,14 +10414,50 @@ b,
 	width: 1.9rem;
 }
 
-/* flex-start (not center) because a tile's details can now expand to a
-   multi-line definition below the summary; center would re-center the
-   icon against the taller open state instead of keeping it pinned to the
-   first line, where it reads correctly in both the open and closed
-   states. */
+/* One full-width column of rows (overrides the shared .scope-grid,
+   .study-list base rule's 2-column tile layout for this page only) --
+   each row is now substantial enough to visually balance the portrait
+   video card beside it, rather than a compact 2-up tile grid.
+
+   grid-template-rows: repeat(7, minmax(4.25rem, 1fr)) is what lets the
+   seven rows grow to fill whatever height .scope-grid itself ends up
+   with (see align-self: stretch on .scope-section > .scope-grid below)
+   rather than staying pinned to their 4.25rem floor with leftover space
+   dumped below row 7 -- the 1fr share on every track means any extra
+   height gets split evenly across all seven rows, not just parked in
+   the gaps between them. minmax's 4.25rem floor still guarantees a
+   comfortable minimum if .scope-grid is ever the taller/defining item
+   instead (e.g. very narrow desktop widths), so rows never collapse
+   below their original readable size. */
+.rengstorff-microsite .scope-grid {
+	gap: 0.75rem;
+	grid-template-columns: minmax(0, 1fr);
+	grid-template-rows: repeat(7, minmax(4.25rem, 1fr));
+}
+
+/* Rows are full-width and taller now, so they get more generous padding
+   than the shared base recipe's 0.8rem/1rem tile padding, plus a
+   guaranteed comfortable minimum height (min-height, not height, so an
+   open <details> can still grow past it) and bolder, slightly larger
+   text to match. Centered by default so a single-line closed row (or a
+   plain row with no toggle at all) reads as vertically balanced rather
+   than pinned to the top of empty space; :has() switches a row back to
+   top-alignment only once its own definition is open, so the icon stays
+   pinned to the first summary line instead of re-centering against the
+   taller open state -- browsers without :has() support simply keep
+   every row top-aligned, which was this section's original appearance
+   either way. */
 .rengstorff-microsite .scope-grid li {
-	align-items: flex-start;
+	align-items: center;
 	display: flex;
+	font-size: 1.05rem;
+	font-weight: 700;
+	min-height: 4.25rem;
+	padding: 1rem 1.5rem;
+}
+
+.rengstorff-microsite .scope-grid li:has(details[open]) {
+	align-items: flex-start;
 }
 
 /* Per-tile "what does this mean?" definitions, prepared for all seven
@@ -10192,47 +10513,255 @@ b,
 	margin: 0.5rem 0 0;
 }
 
-/* Small illustrative video example, below the seven tiles. Deliberately
-   narrow (not full width) and visually quieter than the tiles above it --
+/* Small illustrative video example: a compact white card (portrait
+   media + a little text) sitting on the section's pale-sage background
+   -- visually quieter than the seven-item grid it sits beside, since
    this is explanatory material, not adopted/programmed scope and not
-   Rengstorff evidence, so it reads as a secondary aside, not a peer of
-   the seven-item grid it sits under. */
-.rengstorff-microsite .scope-example {
-	border-top: 1px solid #d4ded4;
-	grid-column: 1 / -1;
-	margin-top: 1.75rem;
-	max-width: 26rem;
-	padding-top: 1.5rem;
+   Rengstorff evidence. The source video is a portrait (~9:16) YouTube
+   Short, so the media keeps that aspect ratio rather than cropping it
+   into square/landscape.
+
+   Layout: the intro spans the full section width on its own row; the
+   example card and the seven-tile grid then share the row below it as
+   two columns, in that visual order (example left, tiles right) -- even
+   though the tiles come first in the DOM/reading order (a deliberate
+   choice: keyboard/screen-reader order stays "programmed elements, then
+   illustrative example," and it's also what makes the narrower ≤900px
+   single-column stack come out in the requested order --
+   intro -> tiles -> example -- with no extra CSS needed for that case). */
+/* Every participant gets an explicit grid-column AND grid-row -- no
+   auto-placement involved for any of the three -- so there's no
+   ambiguity about where anything lands: row 1 is the intro (full
+   width); row 2 is example (col 1, 42%) beside the tiles (col 2, 58%).
+   No absolute positioning, no floats, no margin used to fake the
+   position -- placement is entirely grid-column/grid-row. */
+/* 45/55 (was 42/58) and a tighter 2.25rem (36px, was 2.5rem/40px) gap --
+   both nudge relative weight toward the video column. The bigger fix for
+   "rows read as long horizontal banners" is the max-width added to
+   .scope-section > .scope-grid below: even at 55%, this track is ~570px
+   wide within the shell's ~1072px content width, far more than a single
+   short label plus icon and plus-control need, which is what was
+   actually producing the empty-space-inside-each-row look. */
+.rengstorff-microsite .scope-section {
+	column-gap: 2.25rem;
+	grid-template-columns: minmax(0, 45%) minmax(0, 55%);
+	grid-template-rows: auto auto;
 }
 
+.rengstorff-microsite .scope-section > .section-intro {
+	grid-column: 1 / -1;
+	grid-row: 1;
+}
+
+/* align-self: stretch (only on the tile grid, not on .scope-example --
+   .scope-section itself is left at its inherited align-items: start)
+   is what lets the seven-row stack track the video card's height: the
+   shared row 2 track auto-sizes to whichever of the two items is
+   naturally taller, and stretch makes the *shorter* one grow to fill
+   that row -- the taller item is already at that height, so it's
+   unaffected either way. Since .scope-example is untouched here, if it
+   happens to be the shorter item on some viewport it simply stays its
+   own natural height rather than being stretched to match the tiles --
+   this rule only ever grows the accordion column, never the video card,
+   which is what "do not change the Richards Street card" requires.
+   align-self and justify-self are independent axes (vertical vs.
+   horizontal), so the height-matching stretch above and the width cap
+   below don't interact.
+
+   max-width caps the rendered column at 27rem (432px) -- comfortably
+   wide enough for the longest labels ("Green stormwater infrastructure",
+   "Native pollinator landscaping") plus the numbered circle and the
+   plus control, without stretching to fill the full 55% track (~570px
+   within the shell's ~1072px content width), which is what was making
+   short single-line rows read as empty horizontal banners. justify-self:
+   start (rather than the grid default of stretch) is what keeps the
+   now-narrower column pinned to the left edge of its track, right next
+   to the gap after the video, instead of centering or being pulled
+   toward the track's own right edge. */
+.rengstorff-microsite .scope-section > .scope-grid {
+	align-self: stretch;
+	grid-column: 2;
+	grid-row: 2;
+	justify-self: start;
+	max-width: 27rem;
+}
+
+/* flex-direction: column is the same stacked media-over-text treatment
+   already used below 640px (align-items: center is unchanged from
+   before) -- reused here because the card's own available width in this
+   42% column is too narrow for the original side-by-side layout, not
+   because the card itself is being redesigned. It gets that side-by-side
+   layout back once .scope-section itself drops to one column (see the
+   media queries below) and the card has the section's full width to
+   work with again. */
+.rengstorff-microsite .scope-example {
+	align-items: center;
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 8px;
+	box-shadow: 0 6px 18px rgba(35, 58, 43, 0.06);
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	grid-column: 1;
+	grid-row: 2;
+	max-width: 38rem;
+	padding: 1.5rem;
+}
+
+/* .scope-section collapses to one column at <=900px (existing sitewide
+   rule); once that happens the explicit grid-column/grid-row values
+   above no longer correspond to real tracks, so reset all three back to
+   auto and let them stack in DOM order (intro, tiles, example -- exactly
+   the requested mobile order), and give the example card back the top
+   margin it needs now that it's not sharing a row with the tiles.
+
+   The desktop-only max-width/justify-self on .scope-grid (added to keep
+   the accordion from stretching to a wide two-column track) also gets
+   reset here -- once the section is a single full-width column, the
+   tiles should go back to being the full-width stack this breakpoint
+   was already designed around, not a narrow 27rem block stranded on the
+   left with empty space beside it. */
+@media screen and (max-width: 900px) {
+	.rengstorff-microsite .scope-section > .section-intro,
+	.rengstorff-microsite .scope-section > .scope-grid,
+	.rengstorff-microsite .scope-example {
+		grid-column: auto;
+		grid-row: auto;
+	}
+
+	.rengstorff-microsite .scope-section > .scope-grid {
+		justify-self: stretch;
+		max-width: none;
+	}
+
+	.rengstorff-microsite .scope-example {
+		margin-top: 1.75rem;
+	}
+}
+
+/* Between 641px and 900px, .scope-section is already single-column, so
+   the example card has the section's full width again -- comfortably
+   wide enough for its original side-by-side media+text layout, same as
+   it had before this section was rearranged.
+
+   The card now has three top-level children in DOM order (header, media,
+   content) rather than the original two (media, content), since the
+   eyebrow/location moved above the video -- a plain flex-direction: row
+   would lay all three out side by side instead of "video beside text,"
+   so this switches to a small explicit grid instead: media spans both
+   rows on the left, header stacks above content on the right, which is
+   the same "media beside text" composition as before, just built to
+   accommodate the extra block. */
+@media screen and (min-width: 641px) and (max-width: 900px) {
+	.rengstorff-microsite .scope-example {
+		align-items: start;
+		display: grid;
+		gap: 0.35rem 1.5rem;
+		grid-template-areas: "media header" "media content";
+		grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+	}
+
+	.rengstorff-microsite .scope-example__header {
+		grid-area: header;
+	}
+
+	.rengstorff-microsite .scope-example__media {
+		grid-area: media;
+	}
+
+	.rengstorff-microsite .scope-example__content {
+		grid-area: content;
+	}
+}
+
+.rengstorff-microsite .scope-example__media {
+	flex: 0 0 auto;
+	max-width: 16rem;
+	width: 100%;
+}
+
+.rengstorff-microsite .scope-example__content {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+/* Header block (eyebrow + location) now sits above the video instead of
+   below it, establishing "this is a video, and here's what/where it is"
+   before the reader even reaches the thumbnail. No margin/gap rule
+   needed on .scope-example__header itself -- it's a plain block wrapper,
+   and the 1.5rem gap on the outer .scope-example flex column already
+   spaces it from the media below.
+
+   font-size bumped again, from 0.92rem to 1.05rem, and the color moved
+   from the muted #4e745c used for quieter eyebrows elsewhere on the page
+   up to the stronger #16704d brand green: at the smaller size/muted
+   color this still read as "minor metadata" rather than the label
+   telling the reader what the card is. It's still deliberately smaller
+   than .section-intro h2 (2rem) -- prominent, not competing with the
+   section heading. */
 .rengstorff-microsite .scope-section .scope-example p.scope-example__eyebrow {
-	color: #4e745c !important;
-	font-size: 0.72rem;
+	color: #16704d !important;
+	font-size: 1.05rem;
 	font-weight: 700;
-	letter-spacing: 0.08em;
+	letter-spacing: 0.05em;
+	line-height: 1.3;
 	margin: 0 0 0.35rem;
 	text-transform: uppercase;
 }
 
+/* Now a confirmed, real location (Richards Street, Vancouver, BC) rather
+   than a "still waiting on this" placeholder, so it reads as a plain
+   confident caption line -- no more italic/muted pending treatment.
+   margin-bottom dropped to 0: this is now the last element in
+   .scope-example__header, so the outer flex gap (not this margin) is
+   what spaces it from the video below. font-size nudged up slightly
+   (0.88rem -> 0.94rem) to stay legibly "second-tier" now that the
+   eyebrow above it is noticeably bigger, rather than reading as
+   disproportionately small by comparison. */
+.rengstorff-microsite .scope-section .scope-example p.scope-example__location {
+	color: #16704d !important;
+	font-size: 0.94rem;
+	font-weight: 700;
+	margin: 0;
+}
+
+/* Repositioned below the video (was the card's opening title before);
+   now reads as "what you just saw" rather than "what you're about to
+   see," so the copy changed to name the two things visible in the clip
+   rather than a generic "what this can look like" framing. */
 .rengstorff-microsite .scope-example__title {
 	color: #193c2b;
 	font-size: 1.05rem;
 	font-weight: 700;
 	line-height: 1.3;
-	margin: 0 0 0.8rem;
+	margin: 0 0 0.5rem;
 }
 
-/* The thumbnail button itself caps at ~26rem (416px, within the
-   requested 350-450px desktop range) but is width:100% under that, so on
-   narrow viewports it shrinks to whatever width is available rather than
-   overflowing or staying a fixed size. */
+.rengstorff-microsite .scope-section .scope-example p.scope-example__description {
+	color: #304238 !important;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	margin: 0 0 0.7rem;
+}
+
+.rengstorff-microsite .scope-section .scope-example p.scope-example__caption {
+	color: #7a887f !important;
+	font-size: 0.82rem;
+	font-style: italic;
+	line-height: 1.4;
+	margin: 0;
+}
+
+/* Portrait (9:16) thumbnail/poster button, capped at 16rem (256px --
+   within the requested 240-280px desktop range) but width:100% under
+   that, so it shrinks on anything narrower than its own column. */
 .rengstorff-microsite .scope-example__thumb {
 	background: none;
 	border: 1px solid #c5d6c6;
-	border-radius: 5px;
+	border-radius: 6px;
 	cursor: pointer;
 	display: block;
-	max-width: 26rem;
 	overflow: hidden;
 	padding: 0;
 	position: relative;
@@ -10244,54 +10773,81 @@ b,
 	border-color: #4e9a73;
 }
 
+/* A slight brightness dip on the still frame (rather than a full dark
+   scrim layer, which would need an extra stacking element between the
+   img and the play button) is what lets the now much bigger, fully
+   opaque play button below read as clearly foregrounded against the
+   photo rather than blending into it -- and it brightens back toward
+   normal on hover/focus as a secondary "this is interactive" cue. */
 .rengstorff-microsite .scope-example__thumb img {
-	aspect-ratio: 16 / 9;
+	aspect-ratio: 9 / 16;
 	display: block;
+	filter: brightness(0.86);
 	height: auto;
 	object-fit: cover;
+	transition: filter 0.15s ease;
 	width: 100%;
 }
 
+.rengstorff-microsite .scope-example__thumb:hover img,
+.rengstorff-microsite .scope-example__thumb:focus-visible img {
+	filter: brightness(0.95);
+}
+
+/* Substantially bigger than before (3rem -> 4.5rem) and switched from a
+   semi-transparent dark circle to a solid, fully opaque white one with
+   a dark-green triangle -- the classic high-contrast play-button
+   treatment, so the thumbnail reads unmistakably as a playable video
+   rather than a static photo at a glance, not just on close inspection.
+   The drop shadow keeps it legible even over a light patch of sky or
+   pavement in the underlying photo. */
 .rengstorff-microsite .scope-example__play {
 	align-items: center;
-	background: rgba(15, 30, 20, 0.55);
+	background: #ffffff;
 	border-radius: 50%;
+	box-shadow: 0 4px 14px rgba(15, 30, 20, 0.4);
 	display: flex;
-	height: 3rem;
+	height: 4.5rem;
 	justify-content: center;
 	left: 50%;
 	position: absolute;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	transition: background 0.15s ease;
-	width: 3rem;
+	transition: box-shadow 0.15s ease, transform 0.15s ease;
+	width: 4.5rem;
 }
 
 .rengstorff-microsite .scope-example__thumb:hover .scope-example__play,
 .rengstorff-microsite .scope-example__thumb:focus-visible .scope-example__play {
-	background: rgba(15, 30, 20, 0.75);
+	box-shadow: 0 6px 20px rgba(15, 30, 20, 0.5);
+	transform: translate(-50%, -50%) scale(1.06);
 }
 
+/* Triangle scaled up to match the 4.5rem circle (was sized for the old
+   3rem one) and switched to the same dark green used for links/headings
+   sitewide, so it reads clearly against the new solid white circle. */
 .rengstorff-microsite .scope-example__play::after {
-	border-color: transparent transparent transparent #ffffff;
+	border-color: transparent transparent transparent #16704d;
 	border-style: solid;
-	border-width: 0.55rem 0 0.55rem 0.95rem;
+	border-width: 0.85rem 0 0.85rem 1.45rem;
 	content: '';
-	margin-left: 0.2rem;
+	margin-left: 0.3rem;
 }
 
-.rengstorff-microsite .scope-section .scope-example p.scope-example__caption {
-	color: #526258 !important;
-	font-size: 0.86rem;
-	line-height: 1.45;
-	margin: 0.6rem 0 0;
-}
+/* Below the tiles' own 2-column breakpoint, stack media above text and
+   let the portrait video use more of the available card width (per the
+   brief: "let the video become wider... while maintaining its original
+   portrait aspect ratio") -- the card's own padding and max-width still
+   keep it from touching the screen edges or dominating the page. */
+@media screen and (max-width: 640px) {
+	.rengstorff-microsite .scope-example {
+		flex-direction: column;
+		padding: 1.25rem;
+	}
 
-.rengstorff-microsite .scope-section .scope-example p.scope-example__location {
-	color: #8a9690 !important;
-	font-size: 0.8rem;
-	font-style: italic;
-	margin: 0.3rem 0 0;
+	.rengstorff-microsite .scope-example__media {
+		max-width: 20rem;
+	}
 }
 
 /* Project phases: a plain orientation to feasibility -> design ->
@@ -10301,12 +10857,12 @@ b,
    differ from one step to the next.
 
    Cross-card alignment uses CSS subgrid rather than min-height guesses:
-   .phase-grid defines 12 explicit row tracks (one per zone -- step,
-   title, subtitle, one-line summary, status badge, divider, the three
+   .phase-grid defines 13 explicit row tracks (one per zone -- step,
+   title, subtitle, one-line summary, status badge, divider, the four
    metadata rows, divider, SCOPE heading, scope list); each .phase-card
-   spans all 12 and re-shares those exact tracks via
+   spans all 13 and re-shares those exact tracks via
    grid-template-rows: subgrid, and .phase-facts (the dl) nests a second
-   subgrid across the 3 metadata tracks it spans. Because every card
+   subgrid across the 4 metadata tracks it spans. Because every card
    places the same ten children in the same order into that shared row
    structure, each zone is guaranteed to start at the same vertical
    position on all three cards -- and if one card's content in a given
@@ -10325,7 +10881,7 @@ b,
 	column-gap: 1.25rem;
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
-	grid-template-rows: repeat(12, auto);
+	grid-template-rows: repeat(13, auto);
 	margin-top: 0.5rem;
 	row-gap: 0;
 }
@@ -10437,18 +10993,19 @@ b,
 	width: 100%;
 }
 
-/* Nested subgrid: spans 3 of .phase-card's shared row tracks (Identifier
-   / Corridor / Funding-Status) and re-shares those exact 3 with the
-   other cards' .phase-facts, so each individual metadata row -- not just
-   the block of three as a whole -- lines up across all three cards. The
-   label/value column widths are declared locally (not subgridded) but
-   identical in all three cards, which combined with the cards' equal
-   widths is what puts the value column at the same x-position everywhere. */
+/* Nested subgrid: spans 4 of .phase-card's shared row tracks (Identifier
+   / Council-CIP action / Corridor / Funding-Status) and re-shares those
+   exact 4 with the other cards' .phase-facts, so each individual
+   metadata row -- not just the block of four as a whole -- lines up
+   across all three cards. The label/value column widths are declared
+   locally (not subgridded) but identical in all three cards, which
+   combined with the cards' equal widths is what puts the value column
+   at the same x-position everywhere. */
 .rengstorff-microsite .phase-card .phase-facts {
 	column-gap: 0.75rem;
 	display: grid;
 	font-size: 0.82rem;
-	grid-row: span 3;
+	grid-row: span 4;
 	grid-template-columns: minmax(6.5rem, 0.4fr) minmax(0, 1fr);
 	grid-template-rows: subgrid;
 	margin: 0;
@@ -10468,6 +11025,20 @@ b,
 	font-weight: 500;
 	line-height: 1.4;
 	margin: 0;
+}
+
+/* Council/CIP action is provenance -- when and where this phase was
+   created/programmed/identified -- not another piece of primary project
+   data like Identifier or Funding, so its value is deliberately a touch
+   smaller and a softer green (reusing the same muted green already used
+   for .phase-step/.phase-scope-label elsewhere in this card, rather than
+   inventing a new color) than the dark, larger .phase-facts dd default.
+   No italics and no footnote-style treatment (smaller-than-caption size,
+   muted-to-gray color) -- it should still read as a normal metadata
+   value, just quieter than the identifier/funding figures around it. */
+.rengstorff-microsite .phase-card .phase-facts dd.phase-facts__provenance {
+	color: #4e745c;
+	font-size: 0.92rem;
 }
 
 .rengstorff-microsite .phase-card .phase-scope-label {
@@ -10531,71 +11102,123 @@ b,
 	}
 }
 
-/* About the Caltrans SB 1 grant: the whole section lives in one white
-   reference-card panel, deliberately reusing .evidence-panel's exact
-   recipe (background/border/left accent/radius/shadow/padding/max-width)
-   rather than inventing a new container style -- this is what fixes the
-   "raw documentation on the green background" look the panel replaces.
-   max-width keeps paragraphs from stretching edge to edge. */
-.rengstorff-microsite .grant-about-panel {
-	background: #ffffff;
-	border: 1px solid #c5d6c6;
-	border-left: 5px solid #4e9a73;
-	border-radius: 5px;
-	box-shadow: 0 10px 24px rgba(35, 58, 43, 0.08);
-	max-width: 62rem;
-	padding: 1.8rem 2rem;
+/* .stat-card span (the "Caltrans grant" / "City contribution" / "Total
+   study funding" / "Study corridor" labels) is a shared/sitewide rule,
+   so this scopes the size bump to just its use in Funding rather than
+   touching every .stat-card anywhere else. The large numbers above these
+   labels (.stat-card strong) are untouched. */
+.rengstorff-microsite .grant-section .stat-card span {
+	font-size: 0.96rem;
+	font-weight: 500;
+	line-height: 1.4;
+	margin-top: 0.4rem;
 }
 
-.rengstorff-microsite .grant-about-panel h2 {
-	margin-bottom: 0.7rem;
+/* The Caltrans grant: an editorial two-column composition rather than a
+   card or a document. Left column is compact typographic metadata (~38%);
+   right column is a pale-green feature panel plus a 2x2 grid of
+   qualifying-factor tiles (~62%). White is used selectively -- the
+   feature panel's tiles and the comparison cards further down -- rather
+   than one long white/sage block, which is what gives this the same kind
+   of layered composition as "What Council programmed" above it without
+   reusing that section's own layout. No extra max-width here: this uses
+   the full section-block width, same container as every other section on
+   the page. */
+/* .small-note is a shared/sitewide class (not scoped to this page), so
+   this scopes the size bump to just its one use in Funding rather than
+   touching every .small-note anywhere else. */
+.rengstorff-microsite .grant-section .small-note {
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+.rengstorff-microsite .grant-columns {
+	display: grid;
+	gap: 2.5rem;
+	grid-template-columns: minmax(0, 0.38fr) minmax(0, 0.62fr);
+	margin-top: 2.5rem;
+}
+
+/* An h3, not an h2 -- this is a subsection of Funding, and the page's
+   single H2 for this whole area is the "Funding" heading above the stat
+   cards. Sized well below .section-intro h2's 2rem so it can't compete
+   with it. */
+.rengstorff-microsite .grant-column--meta h3 {
+	font-size: 1.3rem;
+	margin: 0 0 0.5rem;
 }
 
 .rengstorff-microsite .grant-about-intro {
 	font-size: 1rem;
-	line-height: 1.55;
+	line-height: 1.5;
 	margin: 0 0 1.5rem;
 }
 
-/* Compact two-column metadata: each fact is its own small label/value
-   pair (not a full-width table row). Labels are small, muted green,
-   semibold; values read larger and darker so they're the thing a reader
-   actually scans. */
-.rengstorff-microsite .grant-facts-grid {
-	display: grid;
-	column-gap: 1.5rem;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
+/* Typographic metadata treatment (not a table): each item is a small
+   uppercase muted-green label over a larger, stronger value, stacked
+   with generous vertical space between items -- the "editorial" feel
+   the brief asks for, in contrast to the denser 2-column grid this used
+   before. */
+.rengstorff-microsite .grant-meta-list {
 	margin: 0;
-	row-gap: 1rem;
 }
 
-.rengstorff-microsite .grant-facts-grid dt {
+.rengstorff-microsite .grant-meta-item {
+	margin-bottom: 1.4rem;
+}
+
+.rengstorff-microsite .grant-meta-item:last-child {
+	margin-bottom: 0;
+}
+
+.rengstorff-microsite .grant-meta-item dt {
 	color: #4e745c;
-	font-size: 0.74rem;
+	font-size: 0.88rem;
 	font-weight: 700;
-	letter-spacing: 0.05em;
-	margin-bottom: 0.25rem;
+	letter-spacing: 0.06em;
+	margin-bottom: 0.35rem;
 	text-transform: uppercase;
 }
 
-.rengstorff-microsite .grant-facts-grid dd {
+.rengstorff-microsite .grant-meta-item dd {
 	color: #193c2b;
-	font-size: 1rem;
+	font-size: 1.05rem;
 	font-weight: 600;
 	line-height: 1.4;
 	margin: 0;
 }
 
-/* Subtle light-green rule separating the panel's sections (facts / what
-   it funds / why Rengstorff qualified) -- deliberately thinner and
-   quieter than the Project Phases dividers, since this panel is meant to
-   read as a calm reference card, not a sequence of delivery steps. */
-.rengstorff-microsite .grant-divider {
-	background: #d3e5d6;
-	border: 0;
-	height: 1px;
-	margin: 1.6rem 0;
-	width: 100%;
+/* "Project type" renders as two subtle tags instead of a long slash-
+   separated string -- one of the small varied visual forms the brief
+   asks for, using the same pill/tag language as the phase-status badges
+   elsewhere on the page, just quieter (no bold caps, no heavy fill). */
+.rengstorff-microsite .grant-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.rengstorff-microsite .grant-tag {
+	background: #e8f1e9;
+	border: 1px solid #cfe0d0;
+	border-radius: 999px;
+	color: #2f5c42;
+	font-size: 0.96rem;
+	font-weight: 700;
+	line-height: 1.4;
+	padding: 0.35rem 0.85rem;
+}
+
+/* The feature panel: pale-green fill + a green left rule, the same
+   restrained "highlighted box" vocabulary as .evidence-callout and the
+   evidence-panel's own left accent elsewhere on the page, not a new
+   treatment. This is the visual anchor of the right column. */
+.rengstorff-microsite .grant-feature-panel {
+	background: #e8f1e9;
+	border-left: 4px solid #4e9a73;
+	border-radius: 6px;
+	padding: 1.25rem 1.5rem;
 }
 
 /* Small-caps section label, matching .evidence-subheading's recipe
@@ -10604,80 +11227,140 @@ b,
    Specificity/importance deliberately higher than
    .section-block p:not(.eyebrow), which otherwise wins ties on
    importance regardless of specificity. */
-.rengstorff-microsite .grant-about-section .grant-about-panel p.grant-about-subheading {
+.rengstorff-microsite .grant-about-section p.grant-about-subheading {
 	color: #4e745c !important;
-	font-size: 0.72rem;
+	font-size: 0.9rem;
 	font-weight: 700;
 	letter-spacing: 0.08em;
-	margin: 0 0 0.6rem;
+	margin: 0 0 0.5rem;
 	text-transform: uppercase;
 }
 
 .rengstorff-microsite .grant-about-body {
-	line-height: 1.6;
-	margin: 0;
-}
-
-/* Comfortable, un-dense presentation of the qualifying factors -- a
-   small green dot marker instead of the browser default bullet, and
-   enough line-height/margin between items that this reads as a short
-   list of points, not a compressed document list. */
-.rengstorff-microsite .grant-connections {
-	color: #304238 !important;
-	font-size: 0.95rem;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.rengstorff-microsite .grant-connections li {
+	font-size: 1rem;
 	line-height: 1.55;
-	margin-bottom: 0.7rem;
-	padding-left: 1.15rem;
-	position: relative;
+	margin: 0;
 }
 
-.rengstorff-microsite .grant-connections li:last-child {
-	margin-bottom: 0;
+/* ~32px of separation from the feature panel above it. This selector has
+   to out-specify .grant-about-section p.grant-about-subheading (which
+   sets the margin shorthand, margin-top included, at higher specificity
+   than a lone .grant-qualifiers-label class) or its margin-top gets
+   silently overridden back to that rule's 0 -- which is what was
+   actually happening before, despite an earlier margin-top rule existing
+   here. */
+.rengstorff-microsite .grant-about-section p.grant-about-subheading.grant-qualifiers-label {
+	margin-top: 2rem;
 }
 
-.rengstorff-microsite .grant-connections li::before {
-	background: #4e9a73;
-	border-radius: 50%;
-	content: '';
-	height: 0.4rem;
-	left: 0;
-	position: absolute;
-	top: 0.5em;
-	width: 0.4rem;
-}
-
-/* Sources & documents: each control is its own row (never concatenated
-   text) with a hairline separator between them. A real link reuses the
-   sitewide dotted-underline text-link treatment (see
-   .evidence-card .card-evidence-link above); until a URL exists, the
-   label renders as plain text with a muted "Source pending" line under
-   it instead of a fabricated href. */
-.rengstorff-microsite .grant-sources-list {
+/* 2x2 grid of compact qualifying-factor tiles -- borrows the numbered-
+   circle vocabulary from .scope-icon in "What Council programmed" above,
+   but deliberately lighter: an outlined (not solid-filled) circle, a
+   smaller white/near-white tile instead of a colored block, so these
+   read as related but clearly less prominent than the seven adopted
+   project-scope elements. */
+.rengstorff-microsite .grant-qualifiers {
+	display: grid;
+	gap: 0.75rem;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-.rengstorff-microsite .grant-sources-list li {
-	border-top: 1px solid #eef3ee;
-	padding: 0.7rem 0;
+.rengstorff-microsite .grant-qualifiers li {
+	align-items: center;
+	background: #fbfdfb;
+	border: 1px solid #dbe8dc;
+	border-radius: 5px;
+	display: flex;
+	gap: 0.65rem;
+	padding: 0.65rem 0.8rem;
 }
 
-.rengstorff-microsite .grant-sources-list li:first-child {
-	border-top: 0;
-	padding-top: 0;
+.rengstorff-microsite .grant-qualifier-number {
+	align-items: center;
+	border: 1.5px solid #4e9a73;
+	border-radius: 50%;
+	color: #2f6b4a;
+	display: inline-flex;
+	flex: 0 0 1.6rem;
+	font-size: 0.62rem;
+	font-weight: 700;
+	height: 1.6rem;
+	justify-content: center;
+	width: 1.6rem;
 }
 
+.rengstorff-microsite .grant-qualifier-text {
+	color: #304238;
+	font-size: 0.96rem;
+	line-height: 1.4;
+}
+
+/* Grant requirements and City commitments: a clearly separated full-width
+   subsection below the two-column area -- the top border/padding is the
+   "clear separation" the brief asks for, matching the same divider color
+   .section-block itself already uses between sections. Two equal-width
+   white cards read as an intentional comparison pair, not nested in
+   another card or colored container. Card recipe matches the sitewide
+   one (.evidence-card / .stat-card / .criteria-list article). */
+.rengstorff-microsite .grant-comparison {
+	border-top: 1px solid #d4ded4;
+	margin-top: 2.5rem;
+	padding-top: 2rem;
+}
+
+.rengstorff-microsite .grant-requirements-grid {
+	display: grid;
+	gap: 1.25rem;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin-top: 0.75rem;
+}
+
+.rengstorff-microsite .grant-requirement-card {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 5px;
+	box-shadow: 0 6px 18px rgba(35, 58, 43, 0.05);
+	padding: 1.1rem 1.25rem;
+}
+
+/* Specificity/importance deliberately higher than
+   .rengstorff-microsite .section-block p:not(.eyebrow) (which otherwise
+   flattens every paragraph in the section to the same dark green
+   regardless of specificity, since that rule is !important too). */
+.rengstorff-microsite .grant-about-section .grant-requirement-card p.grant-requirement-card__title {
+	color: #193c2b !important;
+	font-size: 1.1rem;
+	font-weight: 700;
+	margin: 0 0 0.4rem;
+}
+
+.rengstorff-microsite .grant-about-section .grant-requirement-card p.grant-requirement-card__placeholder {
+	color: #7a887f !important;
+	font-size: 1rem;
+	font-style: italic;
+	line-height: 1.5;
+	margin: 0 0 0.6rem;
+}
+
+/* .grant-source-item / .grant-source-item__pending: quieter and more
+   compact than the main content -- smaller type, a real link reuses the
+   sitewide dotted-underline text-link treatment (see .evidence-card
+   .card-evidence-link above), and until a URL exists the label renders
+   as plain text with a muted "Source pending" line under it instead of
+   a fabricated href. Still used inline within the two
+   .grant-requirement-card placeholders above (grant guidelines / grant
+   application) -- the standalone "Sources & documents" list that used
+   to sit below them (.grant-sources/.grant-sources-list, a public-facing
+   list of missing-source placeholders) was removed; that list's
+   outstanding research items now live in research/rengstorff-sources.md
+   instead of on the public page. */
 .rengstorff-microsite .grant-source-item {
 	color: #193c2b;
 	display: block;
-	font-size: 0.92rem;
+	font-size: 1rem;
 	font-weight: 600;
 }
 
@@ -10692,41 +11375,32 @@ b,
 	border-bottom-color: transparent;
 }
 
+/* #5a6c60 (rather than a paler muted tone) because this sits directly on
+   the sage page background here -- checked at 5:1+ against both #f1f4ef
+   and #ffffff. */
 .rengstorff-microsite .grant-source-item__pending {
-	color: #8a9690;
+	color: #5a6c60;
 	display: block;
-	font-size: 0.82rem;
+	font-size: 0.9rem;
 	font-style: italic;
-	margin-top: 0.2rem;
+	margin-top: 0.15rem;
+}
+
+@media screen and (max-width: 900px) {
+	.rengstorff-microsite .grant-columns {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
 }
 
 @media screen and (max-width: 640px) {
-	.rengstorff-microsite .grant-about-panel {
-		padding: 1.4rem;
-	}
-
-	.rengstorff-microsite .grant-facts-grid {
+	.rengstorff-microsite .grant-qualifiers {
 		grid-template-columns: 1fr;
-		row-gap: 0.9rem;
 	}
-}
 
-/* "What the Caltrans grant required" / "What Mountain View committed to":
-   a single honest placeholder line in place of invented grant-guide
-   categories, styled with the same dashed-border "not real yet" language
-   as the sitewide .pending controls elsewhere on this page. Selector
-   specificity/importance is deliberately higher than
-   .rengstorff-microsite .section-block p:not(.eyebrow) (which otherwise
-   flattens every paragraph in the section to the same dark green
-   regardless of specificity, since that rule is !important too). */
-.rengstorff-microsite .section-block.two-column p.criteria-placeholder {
-	border: 1px dashed #a9c9ad;
-	border-radius: 4px;
-	color: #65736a !important;
-	font-size: 0.9rem;
-	font-style: italic;
-	line-height: 1.5;
-	padding: 1rem 1.2rem;
+	.rengstorff-microsite .grant-requirements-grid {
+		grid-template-columns: 1fr;
+	}
 }
 
 .rengstorff-microsite .timeline-section .section-intro {
