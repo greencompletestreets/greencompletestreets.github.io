@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>History + Documents | Rengstorff Avenue Green Complete Street | Green Complete Streets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../../../assets/css/main.css" />
+  <!-- Experimental prototype page (see the comment near the top of this
+       file's <body> for scope/status). Styles only the new project-nav
+       row and year-section headings this page adds; everything else
+       reuses existing main.css classes as-is. Delete this <link> along
+       with assets/css/rengstorff-history-page.css to remove those two
+       additions with no effect on any other page. -->
+  <link rel="stylesheet" href="../../../../assets/css/rengstorff-history-page.css" />
+</head>
+<body class="rengstorff-microsite">
+  <!--
+    EXPERIMENTAL PROTOTYPE PAGE -- "History + Documents"
+
+    Purpose: a first-pass test page that reproduces the FULL project
+    history/evidence record already on the Overview page (index.html one
+    directory up), organized into chronological year sections with a
+    stable anchor id per milestone, instead of behind a click-to-expand
+    single panel. Nothing has been removed, moved, or altered on the
+    Overview page to build this -- it keeps its own timeline/evidence
+    implementation (V1 milestone cards + the V2 vertical-timeline
+    prototype) completely unchanged.
+
+    Data status: the `events` and `evidenceRecords` data below is a
+    DUPLICATE of the same-named data in
+    cities/mountain-view-ca/rengstorff-green-complete-streets/index.html
+    (copied, not extracted into a shared file) -- see that page's own
+    inline script block for the source of truth this was copied from.
+    Duplicating was a deliberate choice for this first pass rather than
+    a shared-data-file refactor, which would have required changing the
+    Overview page and risked its already-working implementation. If this
+    prototype is kept, extracting both into one shared
+    assets/js/rengstorff-data.js file (loaded by both pages) is the
+    natural next step -- flagged here so the duplication doesn't go
+    unnoticed.
+
+    First-pass goal: preserve every milestone, source, screenshot, quote,
+    callout, and piece of metadata from the current implementation --
+    not to redesign or simplify how it's presented. Visual hierarchy and
+    formatting are expected to change in a later pass.
+  -->
+  <main>
+    <div class="rengstorff-shell">
+
+      <section class="section-block">
+        <nav class="study-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><span>Cities</span></li>
+            <li><a href="../../../../cities/mountainview-ca/index.html">Mountain View, CA</a></li>
+            <li><a href="../">Rengstorff Avenue</a></li>
+            <li><span aria-current="page">History + Documents</span></li>
+          </ol>
+        </nav>
+
+        <nav class="rengstorff-project-nav" aria-label="Rengstorff Avenue project pages">
+          <a class="rengstorff-project-nav__link" href="../">Overview</a>
+          <a class="rengstorff-project-nav__link" href="../feasibility-study/">Alternatives</a>
+          <span class="rengstorff-project-nav__link rengstorff-project-nav__link--placeholder" aria-disabled="true">Funding + Grant</span>
+          <span class="rengstorff-project-nav__link" aria-current="page">History + Documents</span>
+        </nav>
+
+        <div class="section-intro">
+          <p class="eyebrow">Rengstorff Avenue Green Complete Street &middot; Project record</p>
+          <h1 id="page-title">History + Documents</h1>
+          <p>Follow the documented history of the Rengstorff Avenue Green Complete Street project through Council direction, Capital Improvement Program decisions, Caltrans grant funding, feasibility study, preliminary design, and future construction.</p>
+          <p>This page brings together the project&#39;s major milestones, Council actions, source documents, adopted project language, funding records, and supporting evidence.</p>
+        </div>
+
+        <p class="notice">Experimental first-pass page: this reproduces the full evidence record from the Overview page&#39;s project-history timeline, organized by year with a stable link for each milestone, so nothing is lost while its layout and formatting are refined in a later pass. The Overview page and its own timeline are unchanged.</p>
+      </section>
+
+      <div id="history-documents-content"></div>
+
+    </div>
+  </main>
+
+  <div id="evidence-modal" class="evidence-modal" hidden>
+    <div class="evidence-modal__backdrop" data-modal-close></div>
+    <div class="evidence-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="evidence-modal-caption" tabindex="-1">
+      <button type="button" class="evidence-modal__close" data-modal-close aria-label="Close">&times;</button>
+      <img class="evidence-modal__image" src="" alt="" />
+      <div class="evidence-modal__video" hidden></div>
+      <p id="evidence-modal-caption" class="evidence-modal__caption"></p>
+      <a class="evidence-modal__source-link" href="#" target="_blank" rel="noopener noreferrer" hidden></a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    // ============================================================
+    // Data: duplicated from the Overview page's inline <script>
+    // (cities/mountain-view-ca/rengstorff-green-complete-streets/
+    // index.html), verbatim, as of this page's creation. See the
+    // duplication note in this page's opening HTML comment.
+    // ============================================================
+    const scopeElements2023 = 'Class IV protected bikeways, lane narrowing, intersection improvements, crossing improvements, green stormwater infrastructure, street trees, and native pollinator landscaping';
+    const scopeElements2025 = 'Class IV protected bikeways, lane narrowing, intersection improvements, crossing improvements, green stormwater infrastructure, street trees, and native pollinator landscaping';
+
+    const evidenceRecords = {
+      'cip-2023': {
+        image: '../../../../images/FY2023-CIP.jpeg',
+        alt: 'Scanned page from the adopted Mountain View Capital Improvement Program listing Project 27-xx, Rengstorff Avenue Green Complete Street Improvements, Study and Preliminary Design, with $1 million programmed in FY 2026-27.',
+        caption: 'Adopted FY 2023-24 through FY 2027-28 CIP — Project 27-xx. Mountain View programmed $1 million in FY 2026-27 for Rengstorff Avenue Green Complete Street Improvements, Study and Preliminary Design.',
+        sourceHref: 'https://mountainview.legistar.com/LegislationDetail.aspx?GUID=44C19218-D2B1-45BC-BB7E-F470FB5C854E&ID=6269434',
+        sourceLabel: 'Official Council record'
+      },
+      'cip-2025-step2': {
+        image: '../../../../images/FY2025CIP_28-xx_Rengstorff-GCS-Preliminary-Design.jpeg',
+        alt: 'Scanned page from the adopted FY 2025-26 Mountain View Capital Improvement Program listing Project 28-xx, Rengstorff Avenue Green Complete Street Improvements, Preliminary Design, with $2 million programmed in FY 2027-28.',
+        caption: 'Adopted FY 2025-26 CIP — Project 28-xx. Rengstorff Avenue Green Complete Street Improvements, Preliminary Design. $2 million programmed in FY 2027-28.',
+        sourceHref: 'https://mountainview.legistar.com/View.ashx?GUID=7B370370-AB1A-4AB3-9EAE-37E750005F2C&ID=14306857&M=F',
+        sourceLabel: 'Adopted FY 2025-26 CIP'
+      },
+      'cip-2025-step3': {
+        image: '../../../../images/FY2025CIP_US-13_Rengstorff-GCS-Construction.jpeg',
+        alt: 'Scanned page from the adopted FY 2025-26 Mountain View Capital Improvement Program listing Unscheduled Proposed Project US-13, Rengstorff Avenue Green Complete Street Improvements, Construction, not yet programmed into a funded fiscal year.',
+        caption: 'Adopted FY 2025-26 CIP — Unscheduled Proposed Project US-13. Rengstorff Avenue Green Complete Street Improvements, Construction.',
+        sourceHref: 'https://mountainview.legistar.com/View.ashx?GUID=7B370370-AB1A-4AB3-9EAE-37E750005F2C&ID=14306857&M=F',
+        sourceLabel: 'Adopted FY 2025-26 CIP'
+      }
+    };
+
+    const events = [
+      {
+        date: '2021', eventType: 'CIP · PROPOSED PROJECT 29',
+        shortTitle: 'Project first proposed', keyFact: 'Feasibility, design + construction',
+        yearGroup: '2021', marker: 'PROJECT PROPOSED', nodeStyle: 'outline',
+        v2Summary: 'Project first proposed in the CIP as Proposed Project 29.',
+        formalTitle: 'Rengstorff Streetscape and Bikeway Improvements, Feasibility Study, Design and Construction',
+        identifier: 'Unscheduled Proposed Project 29', action: 'Adopted five-year CIP — Unscheduled Proposed Project',
+        description: 'The adopted five-year CIP included this project on the Unscheduled Proposed Projects list, proposing pedestrian and bicycle improvements between El Camino Real and Leghorn Street.',
+        elements: 'Class IV protected bikeways, buffered Class II bicycle lanes, protected intersections, intersection bulbouts, and high-visibility pedestrian crossings',
+        origin: 'Vision Zero, AccessMV',
+        callouts: [{ label: 'Why it matters', text: 'This establishes that Rengstorff had already been identified for substantial walking and bicycling improvements before the Green Complete Streets project was created. In 2023, Council elevated this existing unscheduled project into the five-year CIP and expanded/reframed it as Rengstorff Avenue Green Complete Street Improvements.' }],
+        officialSources: [{ label: '2021 CIP', pending: true }],
+        evidenceImage: { label: 'CIP entry image', pending: true }
+      },
+      {
+        date: 'APR. 3, 2023', eventType: 'COUNCIL · STUDY SESSION 7.1',
+        shortTitle: 'Council advances Rengstorff project', keyFact: 'Consensus direction into 5-year CIP',
+        yearGroup: '2023', marker: 'PROJECT ADVANCES', nodeStyle: 'filled',
+        v2Summary: 'Council reaches consensus to move Rengstorff into the five-year CIP.',
+        formalTitle: 'Rengstorff Avenue Green Complete Streets Improvements — Council direction',
+        agenda: 'Council Study Session, Item 7.1', action: 'Council consensus direction',
+        description: 'By consensus, Council directed staff to elevate Rengstorff Avenue Green Complete Streets Improvements from the CIP unscheduled list into the five-year planned CIP.',
+        quote: '“Elevating Rengstorff Avenue green complete streets improvements from unscheduled list into the 5-year planned CIP.”',
+        callouts: [{ label: 'Why it matters', text: 'This is the Council direction that started moving Rengstorff from an unscheduled CIP listing toward a funded, five-year-planned project — completed by the June 27, 2023 CIP adoption below.' }],
+        officialSources: [{ label: 'Council minutes', pending: true }]
+      },
+      {
+        date: 'JUN. 27, 2023', eventType: 'CIP · ADOPTED · ITEM 4.3',
+        shortTitle: 'Council adopts CIP funding for Rengstorff', keyFact: '$1M · FY 2026-27',
+        yearGroup: '2023', marker: 'PROJECT FUNDED', nodeStyle: 'filled',
+        v2Summary: 'Council adopts $1M, programmed for FY 2026–27.',
+        v2Meta: 'Council Adoption, Item 4.3',
+        formalTitle: 'Rengstorff Avenue Green Complete Street Improvements, Study and Preliminary Design',
+        identifier: 'Project 27-xx', funding: '$1 million', year: 'FY 2026-27',
+        elements: scopeElements2023,
+        callouts: [{ label: 'Why it matters', text: 'This is the adopted CIP entry establishing both the funding and the combined transportation + green-infrastructure scope.' }],
+        subMilestones: [
+          {
+            date: 'May 9, 2023', agenda: 'Council Study Session, Item 3.1',
+            description: 'Staff returned with the recommended five-year CIP implementing Council’s April direction: Rengstorff Avenue Green Complete Street Improvements, Study and Preliminary Design — $1 million · Year 4.',
+            officialSources: [{ label: 'Recommended CIP', pending: true }]
+          },
+          {
+            date: 'Jun. 27, 2023', agenda: 'Council Adoption, Item 4.3',
+            description: 'Council adopted Project 27-xx: Rengstorff Avenue Green Complete Street Improvements, Study and Preliminary Design — $1 million · FY 2026-27.',
+            quote: '“Undertake Streetscape Plan, Feasibility Study and Pilot design for Class IV protected bikeways and green street improvements on Rengstorff Avenue between El Camino Real and US 101.”',
+            officialSources: [{ label: 'Adopted 2023 CIP', href: 'https://mountainview.legistar.com/LegislationDetail.aspx?GUID=44C19218-D2B1-45BC-BB7E-F470FB5C854E&ID=6269434' }],
+            evidenceImage: { label: 'CIP entry image', id: 'cip-2023' }
+          }
+        ]
+      },
+      {
+        date: 'JAN. 18, 2024', eventType: 'STPG · GRANT APPLICATION',
+        shortTitle: 'City submits Caltrans grant application', keyFact: '$352,000 requested',
+        yearGroup: '2024', marker: 'GRANT APPLICATION', nodeStyle: 'outline',
+        v2Summary: 'City submits Caltrans grant application for $352,000.',
+        formalTitle: 'Rengstorff Avenue Complete Streets Study',
+        action: 'Staff grant application',
+        description: 'Mountain View submitted an application for the Caltrans Sustainable Transportation Planning Grant (STPG), Sustainable Communities Competitive category — funded through SB 1 — to study Complete Streets improvements along approximately 1.7 miles of Rengstorff Avenue between El Camino Real and Leghorn Street. The City categorized the project as Complete Streets — Multimodal and Safety — Vision Zero / Safe Routes to Schools.',
+        elements: 'Class IV protected bikeways, high-visibility crosswalks, intersection improvements, pedestrian hybrid beacons, lane narrowing, repurposing parking or travel lanes, green stormwater infrastructure, street trees, and biodiversity-based planting.',
+        processNote: 'No separate pre-application Council, BPAC, or CTC action has been identified in the public record reviewed so far.',
+        callouts: [
+          { label: 'Why it matters', text: 'The application establishes that the study was conceived as a broad Complete Streets, safety, multimodal, equity, and sustainability project — not primarily a vehicle-operations project — and that reallocating roadway space (repurposing and narrowing travel lanes) was contemplated from the beginning.' }
+        ],
+        officialSources: [{ label: 'Grant application', href: '../../../../documents/rengstorff/rengstorff-stpg-2024-25-grant-application.pdf' }]
+      },
+      {
+        date: 'JUL. 9, 2024', eventType: 'STPG · GRANT AWARD',
+        shortTitle: 'Caltrans awards Rengstorff grant', keyFact: '$352,000 awarded',
+        yearGroup: '2024', marker: 'GRANT AWARDED', nodeStyle: 'filled',
+        v2Summary: 'Caltrans awards $352,000.',
+        formalTitle: 'Rengstorff Avenue Complete Streets Study',
+        action: 'Caltrans grant award',
+        description: 'Caltrans announced FY 2024–25 Sustainable Transportation Planning Grant (STPG) awards on July 9, 2024, selecting Mountain View’s Rengstorff Avenue Complete Streets Study through the Sustainable Communities Competitive category (District 4, SB 1 funded). Caltrans described the project as considering ways to enhance safety, incorporate green street elements, and improve multimodal access along the approximately 1.7-mile corridor from El Camino Real to Leghorn Street. The approved Scope of Work governs the grant-funded tasks, activities, and deliverables — distinct from the application above, which documents what the City proposed.',
+        elements: 'Crossing improvements (bulbouts, high-visibility crosswalks, median crossing islands, RRFBs, pedestrian hybrid beacons), intersection improvements (lighting, pedestrian refuges, reduced turn radii, protected left-turn phases), speed management (road diets, lane narrowing, center medians, reduced posted speed limits), Class IV bikeway facilities and protected intersections, and other treatments including sidewalk extensions, bus-stop treatments, green stormwater infrastructure, street trees, native pollinator landscaping, and driveway-access management.',
+        alsoIdentifiedWith: 'Complete Streets / multimodal improvements, safety / Vision Zero, the City’s high-injury network, and AccessMV',
+        processNote: 'The exact Caltrans approval date for the Scope of Work has not been confirmed from the source material reviewed so far.',
+        callouts: [
+          { label: 'Why it matters', text: 'Caltrans funded a study that explicitly retained green-street and multimodal objectives.' },
+          { label: 'Scope of work', text: 'The approved Scope of Work establishes the alternatives-development process (initial concepts, fatal-flaw screening, up to three alternatives, detailed comparison, preferred alternative) and the original 10 evaluation criteria used to screen them.' }
+        ],
+        officialSources: [
+          { label: 'Caltrans grant award announcement', href: 'https://dot.ca.gov/news-releases/news-release-2024-025' },
+          { label: 'Caltrans FY 2024-25 STPG awards list', href: 'https://dot.ca.gov/-/media/dot-media/programs/transportation-planning/documents/division-transportation-planning/regional-and-community-planning/sustainable-transportation-planning-grants/fy-2024-25-awards-final-a11y.pdf' },
+          { label: 'Scope of work', href: '../../../../documents/rengstorff/rengstorff-stpg-2024-25-scope-of-work.pdf' }
+        ]
+      },
+      {
+        date: 'SEP. 10, 2024', eventType: 'CIP · 25-39 · COUNCIL ITEM 4.4',
+        shortTitle: 'Council creates grant-funded study', keyFact: '$352K Caltrans + $71.6K City',
+        yearGroup: '2024', marker: 'STUDY ESTABLISHED', nodeStyle: 'filled',
+        v2Summary: 'Council creates the grant-funded feasibility study using $352K Caltrans + $71.6K City.',
+        formalTitle: 'Rengstorff Avenue Complete Streets Study — Various Actions',
+        identifier: 'CIP 25-39', agenda: 'Consent Calendar, Item 4.4', action: 'Council accepts grant and creates CIP project', category: 'STEP 1 · FEASIBILITY STUDY',
+        funding: '$352,000 — Caltrans Sustainable Transportation Planning Grant (STPG), Sustainable Communities Competitive, SB 1-funded; $71,600 — City Transportation Reserve Fund', year: 'Study area: El Camino Real to Leghorn Street',
+        elements: 'Bicycle-facility upgrades, crossing and intersection improvements, green street elements, speed-management strategies, pedestrian improvements, and driveway-access-management opportunities',
+        description: 'Council authorized the required Caltrans grant agreements, created the midyear Rengstorff Avenue Complete Streets Study as CIP 25-39, appropriated $71,600 from the Transportation Reserve Fund, and accepted and appropriated the $352,000 Caltrans grant.',
+        callouts: [{ label: 'Role in project delivery', text: 'Step 1 — feasibility and alternatives study. This leads into the separately programmed Step 2 — Preliminary Design, Project 28-xx.' }],
+        officialSources: [
+          { label: 'Council meeting item', href: 'https://mountainview.legistar.com/LegislationDetail.aspx?GUID=A17E425A-D6F9-4A13-ACB4-9232B148D33B&ID=6852939&Options=&Search=' },
+          { label: 'Council report', href: '../../../../documents/rengstorff/2024-09-10-council-staff-report/' }
+        ]
+      },
+      {
+        date: 'JUN. 24, 2025', eventType: 'CONSULTANT CONTRACT · ITEM 4.14',
+        shortTitle: 'Council authorizes study consultant', keyFact: 'Kimley-Horn · up to $352,000',
+        yearGroup: '2025', marker: 'STUDY BEGINS', nodeStyle: 'outline',
+        v2Summary: 'Council authorizes Kimley-Horn consultant contract, up to $352,000.',
+        formalTitle: 'Rengstorff Avenue Complete Streets Study — Professional Services Agreement',
+        identifier: 'CIP 25-39', agenda: 'Consent Calendar, Item 4.14', action: 'Council authorizes professional services agreement',
+        funding: 'Up to $352,000 · Kimley-Horn and Associates, Inc.',
+        description: 'Council authorized the City Manager (or designee) to execute a professional services agreement with Kimley-Horn and Associates, Inc. for CIP 25-39, the Rengstorff Avenue Complete Streets Study, in an amount not to exceed $352,000.',
+        callouts: [{ label: 'Why it matters', text: 'This agreement retained the consultant team that carries out the feasibility and alternatives study — development and screening of Alternatives A, B, and C — funded by the Sept. 10, 2024 grant acceptance above.' }],
+        officialSources: [
+          { label: 'Council meeting item', href: 'https://mountainview.legistar.com/LegislationDetail.aspx?GUID=4A9E0C6C-AA9F-475D-B5F8-C11EDEBCEF8C&ID=7443267&Options=&Search=' },
+          { label: 'Council meeting', href: 'https://mountainview.legistar.com/MeetingDetail.aspx?GUID=5693DE19-AAAB-4188-9483-B5FEF45B0611&ID=1249679&Options=' },
+          { label: 'Council report', href: 'https://mountainview.legistar.com/View.ashx?M=F&ID=14306863&GUID=CC1E254E-1D68-4849-911B-72EA7A92F799' }
+        ]
+      },
+      {
+        date: '2025', eventType: 'CIP · PRELIMINARY DESIGN',
+        shortTitle: 'Preliminary design funding increases to $2M', keyFact: 'FY 2027-28',
+        yearGroup: '2025', marker: 'DESIGN FUNDING EXPANDED', nodeStyle: 'filled',
+        v2Summary: 'Preliminary-design funding increases to $2M for FY 2027–28.',
+        formalTitle: 'Rengstorff Avenue Green Complete Street Improvements, Preliminary Design',
+        identifier: 'Project 28-xx', agenda: 'FY 2025-26 adopted CIP', action: 'Adopted CIP',
+        funding: '$2 million', year: 'FY 2027-28',
+        elements: scopeElements2025,
+        description: 'The FY 2025-26 adopted Capital Improvement Program carried the Green Complete Street project forward and increased programmed preliminary-design funding to $2 million in FY 2027-28.',
+        callouts: [{ label: 'Why it matters', text: 'The Green Complete Street project remained in the five-year CIP and programmed preliminary-design funding increased to $2 million.' }],
+        officialSources: [{ label: 'Adopted FY 2025-26 CIP', href: 'https://mountainview.legistar.com/View.ashx?GUID=7B370370-AB1A-4AB3-9EAE-37E750005F2C&ID=14306857&M=F' }],
+        evidenceImage: { label: 'Preliminary design entry', id: 'cip-2025-step2' }
+      },
+      {
+        date: 'AUG. 18, 2026', eventType: 'BPAC · FEASIBILITY STUDY',
+        shortTitle: 'Alternatives A–C presented to BPAC', keyFact: 'Bicycle/Pedestrian Advisory Committee review',
+        yearGroup: '2026', marker: 'ALTERNATIVES REVIEW', nodeStyle: 'outline',
+        v2Summary: 'Alternatives A–C presented to the Bicycle/Pedestrian Advisory Committee.',
+        formalTitle: 'Rengstorff Complete Streets Study, Project 25-39',
+        agenda: 'BPAC, Item 6.1', action: 'BPAC reviews feasibility-study alternatives',
+        description: 'The Bicycle/Pedestrian Advisory Committee reviewed the feasibility study’s draft concept alternatives — Alternatives A, B, and C — for the Rengstorff Avenue corridor.',
+        officialSources: [{ label: 'BPAC meeting agenda', href: 'https://mountainview.legistar.com/MeetingDetail.aspx?ID=1378436&GUID=CA13F978-062B-4C26-A933-839190223AD3&Options=info|&Search=' }]
+      },
+      {
+        date: 'AUG. 24, 2026', eventType: 'COMMUNITY WORKSHOP · FEASIBILITY STUDY',
+        shortTitle: 'Community reviews project alternatives', keyFact: 'Final community workshop',
+        yearGroup: '2026', marker: 'COMMUNITY REVIEW', nodeStyle: 'outline',
+        v2Summary: 'Final community workshop on the feasibility study’s draft alternatives.',
+        formalTitle: 'Rengstorff Avenue Complete Streets Study — Community Workshop',
+        action: 'Community workshop',
+        description: 'The City hosted a community workshop on the feasibility study’s draft concept alternatives at the Mountain View Community Center, alongside an online survey open for public input.',
+        officialSources: [
+          { label: 'City announcement', href: 'https://content.govdelivery.com/accounts/CAMOUNTAINVIEW/bulletins/406eb29' },
+          { label: 'Community survey', href: 'https://web.cvent.com/survey/93a6421c-3963-4c80-923d-13246b4715fc/welcome' }
+        ]
+      },
+      {
+        date: 'AUG. 31, 2026', eventType: 'CTC · FEASIBILITY STUDY',
+        shortTitle: 'Scheduled review of Alternatives A–C', keyFact: 'Council Transportation Committee',
+        yearGroup: '2026', marker: 'CURRENT DECISION POINT', nodeStyle: 'open', future: true, emphasis: true,
+        v2Summary: 'Scheduled Council Transportation Committee review of Alternatives A–C.',
+        formalTitle: 'Rengstorff Complete Streets Study, Project 25-39',
+        agenda: 'Council Transportation Committee, Item 5.1', action: 'Scheduled review of Alternatives A–C',
+        description: 'The Council Transportation Committee has a scheduled review of the feasibility study’s Alternatives A, B, and C on its Aug. 31, 2026 agenda. As of publication this meeting has not yet occurred, so no outcome is reported here.',
+        officialSources: [{ label: 'CTC meeting agenda', href: 'https://mountainview.legistar.com/MeetingDetail.aspx?ID=1422169&GUID=4FCB4722-F96C-403F-B4FE-0C21E6DA5BEF&Options=info|&Search=' }]
+      },
+      {
+        date: 'FUTURE', eventType: 'PRELIMINARY DESIGN',
+        shortTitle: 'Preliminary design', keyFact: '$2M programmed',
+        yearGroup: 'NEXT', marker: 'PRELIMINARY DESIGN', nodeStyle: 'open', future: true,
+        v2Summary: 'Preliminary design is programmed but has not yet started.',
+        formalTitle: 'Rengstorff Avenue Green Complete Street Improvements, Preliminary Design',
+        identifier: 'Project 28-xx', category: 'STEP 2 · PRELIMINARY DESIGN',
+        funding: '$2 million · FY 2027-28', year: 'El Camino Real to US 101',
+        elements: scopeElements2025,
+        callouts: [
+          { label: 'Role in project delivery', text: 'Step 2 — preliminary design. This phase follows the Step 1 feasibility/alternatives study and advances the preferred concept into preliminary engineering and design.' },
+          { label: 'Status', text: 'Programmed but not yet started; funded through the FY 2025-26 adopted CIP (see the 2025 CIP milestone above).' }
+        ],
+        officialSources: [{ label: 'Adopted FY 2025-26 CIP', href: 'https://mountainview.legistar.com/View.ashx?GUID=7B370370-AB1A-4AB3-9EAE-37E750005F2C&ID=14306857&M=F' }]
+      },
+      {
+        date: 'FUTURE', eventType: 'CONSTRUCTION',
+        shortTitle: 'Construction', keyFact: 'Not yet programmed',
+        yearGroup: 'NEXT', marker: 'CONSTRUCTION', nodeStyle: 'open', future: true,
+        v2Summary: 'Construction is identified as a future phase but is not yet programmed into a fiscal year.',
+        formalTitle: 'Rengstorff Avenue Green Complete Street Improvements, Construction',
+        identifier: 'Unscheduled Proposed Project US-13', category: 'STEP 3 · CONSTRUCTION',
+        year: 'El Camino Real to US 101',
+        elements: scopeElements2025,
+        callouts: [
+          { label: 'Role in project delivery', text: 'Step 3 — construction. This is the final delivery phase, following preliminary design, once construction funding is identified and programmed.' },
+          { label: 'Status', text: 'US-13 is an Unscheduled Proposed Project, not a currently funded project programmed into a fiscal year.' }
+        ],
+        officialSources: [{ label: 'Adopted FY 2025-26 CIP', href: 'https://mountainview.legistar.com/View.ashx?GUID=7B370370-AB1A-4AB3-9EAE-37E750005F2C&ID=14306857&M=F' }],
+        evidenceImage: { label: 'Construction entry', id: 'cip-2025-step3' }
+      }
+    ];
+
+    // ============================================================
+    // Rendering: appendOfficialSources / appendEvidenceImage /
+    // appendEmbeddedImage / highlightQuote are reused verbatim from the
+    // Overview page's inline <script>. renderFullEvidence() is that same
+    // page's renderEvidence() adapted to write into a fresh per-event
+    // container instead of clearing and reusing one shared #evidence-panel
+    // on click -- every event renders inline, all at once, rather than
+    // one-at-a-time behind a click. The eight-part structure and the
+    // logic inside each part (including the subMilestones mini-timeline
+    // and the embedded-image/duplicate-source-link suppression) is
+    // otherwise unchanged.
+    // ============================================================
+
+    function highlightQuote(quote) {
+      return quote.replace('green complete streets improvements', '<mark>green complete streets improvements</mark>');
+    }
+
+    function appendOfficialSources(container, specs) {
+      (specs || []).forEach(spec => {
+        if (spec.pending) {
+          container.append('span').attr('class', 'evidence-button evidence-button--official pending').text(`${spec.label} — pending`);
+        } else {
+          const opensNewTab = spec.href.startsWith('http') || /\.pdf($|[?#])/i.test(spec.href);
+          container.append('a').attr('class', 'evidence-button evidence-button--official').attr('href', spec.href).attr('target', opensNewTab ? '_blank' : null).attr('rel', opensNewTab ? 'noopener noreferrer' : null).text(spec.label);
+        }
+      });
+    }
+
+    function appendEvidenceImage(container, spec) {
+      if (!spec) return;
+      if (spec.pending) {
+        container.append('span').attr('class', 'evidence-button evidence-button--image pending').text(`${spec.label} — pending`);
+      } else {
+        container.append('button').attr('type', 'button').attr('class', 'evidence-button evidence-button--image').attr('data-evidence-id', spec.id).text(spec.label);
+      }
+    }
+
+    function appendEmbeddedImage(container, id, record) {
+      const figure = container.append('figure').attr('class', 'evidence-source-figure');
+      const trigger = figure.append('button').attr('type', 'button').attr('class', 'evidence-source-figure__trigger').attr('data-evidence-id', id);
+      trigger.append('img').attr('src', record.image).attr('alt', record.alt).attr('loading', 'lazy');
+      const caption = figure.append('figcaption');
+      caption.append('span').attr('class', 'evidence-source-figure__caption').text(record.caption);
+      if (record.sourceHref) {
+        caption.append('a').attr('class', 'evidence-source-figure__link').attr('href', record.sourceHref).attr('target', '_blank').attr('rel', 'noopener noreferrer').text(record.sourceLabel || 'Official record');
+      }
+    }
+
+    function renderFullEvidence(container, event) {
+      // 1. Date/program eyebrow
+      if (event.category) { container.append('p').attr('class', 'evidence-category').text(event.category); }
+      const dateLine = event.agenda ? `${event.date} / ${event.agenda}` : event.date;
+      container.append('p').attr('class', 'timeline-agenda').text(event.eventType ? `${event.eventType} · ${dateLine}` : dateLine);
+
+      // 2. Official/formal project title
+      container.append('h3').text(event.formalTitle || event.shortTitle);
+
+      // 3. Action/status
+      if (event.action) { container.append('p').attr('class', 'evidence-action').html(`<strong>Action:</strong> ${event.action}`); }
+
+      // 4. Summary facts block
+      const roleCallout = (event.callouts || []).find(callout => callout.label === 'Role in project delivery');
+      const factRows = [];
+      if (event.identifier) { factRows.push(['Identifier', event.identifier]); }
+      if (event.funding) { factRows.push(['Funding / status', event.funding]); }
+      if (event.year) { factRows.push(['Fiscal year / study area', event.year]); }
+      if (event.origin) { factRows.push(['Origin', event.origin]); }
+      if (event.elements) { factRows.push(['Project elements', event.elements]); }
+      if (roleCallout) { factRows.push(['Role in delivery', roleCallout.text]); }
+      if (factRows.length) {
+        const facts = container.append('dl');
+        factRows.forEach(([term, value]) => { facts.append('dt').text(term); facts.append('dd').text(value); });
+      }
+
+      // 5. Milestone-specific history/details
+      if (event.subMilestones) {
+        const list = container.append('ol').attr('class', 'evidence-mini-timeline');
+        event.subMilestones.forEach(sub => {
+          const item = list.append('li').attr('class', 'evidence-mini-timeline__item');
+          item.append('p').attr('class', 'evidence-mini-timeline__date').text(sub.agenda ? `${sub.date} — ${sub.agenda}` : sub.date);
+          if (sub.description) { item.append('p').text(sub.description); }
+          if (sub.quote) { item.append('blockquote').html(highlightQuote(sub.quote)); }
+
+          const subSources = [...(sub.officialSources || [])];
+          let subImage = sub.evidenceImage || null;
+          let embeddedHref = null;
+          if (subImage && !subImage.pending) {
+            const record = evidenceRecords[subImage.id];
+            if (record) {
+              appendEmbeddedImage(item, subImage.id, record);
+              embeddedHref = record.sourceHref || null;
+              subImage = null;
+            }
+          }
+          const remainingSubSources = embeddedHref ? subSources.filter(source => source.href !== embeddedHref) : subSources;
+          if (remainingSubSources.length || subImage) {
+            const buttons = item.append('div').attr('class', 'evidence-buttons');
+            appendEvidenceImage(buttons, subImage);
+            appendOfficialSources(buttons, remainingSubSources);
+          }
+        });
+      } else {
+        const detailRows = [];
+        if (event.description) { detailRows.push(['Description', event.description]); }
+        if (event.alsoIdentifiedWith) { detailRows.push(['Also identified with', event.alsoIdentifiedWith]); }
+        if (event.processNote) { detailRows.push(['Public-process note', event.processNote]); }
+        if (detailRows.length) {
+          const details = container.append('dl');
+          detailRows.forEach(([term, value]) => { details.append('dt').text(term); details.append('dd').text(value); });
+        }
+      }
+
+      // 6. Exact quotes / adopted language belonging to the event as a whole
+      const quotes = [];
+      if (event.quote) { quotes.push({ text: event.quote, context: dateLine }); }
+      if (quotes.length) {
+        container.append('p').attr('class', 'evidence-subheading').text('Council direction and adopted language');
+        quotes.forEach(quote => {
+          container.append('p').attr('class', 'evidence-quote-context').text(quote.context);
+          container.append('blockquote').html(highlightQuote(quote.text));
+        });
+      }
+
+      // 7. Evidence belonging to the event as a whole
+      const sources = [...(event.officialSources || [])];
+      const images = event.evidenceImage ? [event.evidenceImage] : [];
+
+      const embeddedHrefs = new Set();
+      const remainingImages = [];
+      images.forEach(image => {
+        const record = !image.pending && evidenceRecords[image.id];
+        if (record) {
+          appendEmbeddedImage(container, image.id, record);
+          if (record.sourceHref) { embeddedHrefs.add(record.sourceHref); }
+        } else {
+          remainingImages.push(image);
+        }
+      });
+
+      const remainingSources = sources.filter(source => !source.href || !embeddedHrefs.has(source.href));
+      if (remainingSources.length || remainingImages.length) {
+        const buttons = container.append('div').attr('class', 'evidence-buttons');
+        remainingImages.forEach(image => appendEvidenceImage(buttons, image));
+        appendOfficialSources(buttons, remainingSources);
+      }
+
+      // 8. Why it matters (and any other closing callouts)
+      (event.callouts || []).filter(callout => callout.label !== 'Role in project delivery').forEach(callout => {
+        container.append('p').attr('class', 'evidence-callout').html(`<strong>${callout.label}:</strong> ${callout.text}`);
+      });
+    }
+
+    // Stable anchor id per milestone, derived from its existing `marker`
+    // + `yearGroup` fields (both already part of the shared data, added
+    // during the V2 timeline-prototype pass) rather than hand-typed --
+    // e.g. marker "PROJECT PROPOSED" + yearGroup "2021" ->
+    // "project-proposed-2021"; a "NEXT"-group marker gets no year suffix
+    // (e.g. "preliminary-design", "construction").
+    function slugify(text) {
+      return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    }
+    function anchorId(event) {
+      const base = slugify(event.marker || event.shortTitle);
+      return (event.yearGroup && event.yearGroup !== 'NEXT') ? `${base}-${event.yearGroup}` : base;
+    }
+
+    // Group by yearGroup, preserving chronological order (the `events`
+    // array is already in order; yearOrder just controls section order).
+    const yearOrder = ['2021', '2023', '2024', '2025', '2026', 'NEXT'];
+    const yearLabels = { NEXT: 'Next' };
+    const root = d3.select('#history-documents-content');
+
+    yearOrder.forEach(yearKey => {
+      const yearEvents = events.filter(event => event.yearGroup === yearKey);
+      if (!yearEvents.length) { return; }
+
+      const section = root.append('section').attr('class', 'section-block history-year-section').attr('aria-labelledby', `year-${yearKey}-title`);
+      section.append('h2').attr('class', 'history-year').attr('id', `year-${yearKey}-title`).text(yearLabels[yearKey] || yearKey);
+
+      yearEvents.forEach(event => {
+        const id = anchorId(event);
+        const article = section.append('article').attr('class', 'evidence-panel').attr('id', id);
+        article.append('p').attr('class', 'history-anchor-hint').text(`#${id}`);
+        renderFullEvidence(article, event);
+      });
+    });
+  </script>
+  <script>
+    // ============================================================
+    // Image/video lightbox modal: reused VERBATIM from the Overview
+    // page's inline <script> (same evidenceRecords object above, same
+    // #evidence-modal markup above, same data-evidence-id click
+    // delegation -- so the "View" buttons/screenshot thumbnails this
+    // page renders via appendEvidenceImage()/appendEmbeddedImage() above
+    // open the identical lightbox).
+    // ============================================================
+    (function () {
+      let activeModal = null;
+      let lastTrigger = null;
+
+      function getFocusable(container) {
+        return Array.from(container.querySelectorAll(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+        )).filter(function (el) { return el.offsetParent !== null; });
+      }
+
+      function onKeydown(e) {
+        if (!activeModal) return;
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeModal();
+          return;
+        }
+        if (e.key === 'Tab') {
+          const dialog = activeModal.querySelector('.evidence-modal__dialog');
+          const focusable = getFocusable(dialog);
+          if (!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+
+      function populateEvidenceModal(modal, record) {
+        const img = modal.querySelector('.evidence-modal__image');
+        const video = modal.querySelector('.evidence-modal__video');
+        const caption = modal.querySelector('.evidence-modal__caption');
+        const sourceLink = modal.querySelector('.evidence-modal__source-link');
+
+        if (record.type === 'video') {
+          img.hidden = true;
+          img.removeAttribute('src');
+          img.alt = '';
+          video.hidden = false;
+          video.innerHTML = '';
+          const iframe = document.createElement('iframe');
+          iframe.src = `https://www.youtube-nocookie.com/embed/${record.videoId}?autoplay=1&rel=0`;
+          iframe.title = record.title;
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          video.appendChild(iframe);
+          caption.textContent = [record.locationCaption, record.caption].filter(Boolean).join(' ');
+          sourceLink.hidden = true;
+          sourceLink.removeAttribute('href');
+          sourceLink.textContent = '';
+          return;
+        }
+
+        video.hidden = true;
+        video.innerHTML = '';
+        img.hidden = false;
+        img.src = record.image;
+        img.alt = record.alt;
+        caption.textContent = record.caption;
+        if (record.sourceHref) {
+          sourceLink.href = record.sourceHref;
+          sourceLink.textContent = record.sourceLabel;
+          sourceLink.hidden = false;
+        } else {
+          sourceLink.hidden = true;
+          sourceLink.removeAttribute('href');
+          sourceLink.textContent = '';
+        }
+      }
+
+      function openModal(modal, trigger) {
+        activeModal = modal;
+        lastTrigger = trigger;
+        modal.hidden = false;
+        document.body.classList.add('modal-open');
+        const dialog = modal.querySelector('.evidence-modal__dialog');
+        const focusable = getFocusable(dialog);
+        (focusable[0] || dialog).focus();
+        document.addEventListener('keydown', onKeydown, true);
+      }
+
+      function closeModal() {
+        if (!activeModal) return;
+        const modal = activeModal;
+        activeModal = null;
+        modal.hidden = true;
+        document.body.classList.remove('modal-open');
+        document.removeEventListener('keydown', onKeydown, true);
+        const video = modal.querySelector('.evidence-modal__video');
+        if (video) { video.innerHTML = ''; video.hidden = true; }
+        if (lastTrigger) { lastTrigger.focus(); }
+        lastTrigger = null;
+      }
+
+      document.addEventListener('click', function (e) {
+        const opener = e.target.closest('[data-evidence-id]');
+        if (opener) {
+          const record = evidenceRecords[opener.getAttribute('data-evidence-id')];
+          if (record) {
+            const modal = document.getElementById('evidence-modal');
+            populateEvidenceModal(modal, record);
+            openModal(modal, opener);
+          }
+          return;
+        }
+        const closer = e.target.closest('[data-modal-close]');
+        if (closer && closer.closest('.evidence-modal')) {
+          closeModal();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

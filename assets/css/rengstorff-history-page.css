@@ -1,0 +1,88 @@
+/* ============================================================
+   Rengstorff Avenue "History + Documents" page -- experimental prototype
+   ============================================================
+   Styles ONLY the new project-level nav row (.rengstorff-project-nav) and
+   the year-section headings (.history-year) on the new History + Documents
+   page (cities/mountain-view-ca/rengstorff-green-complete-streets/
+   history-documents/index.html). Everything else on that page reuses
+   existing, already-shared classes from main.css as-is (.rengstorff-hero,
+   .section-block, .section-intro, .study-breadcrumb, .evidence-panel and
+   everything inside it, .evidence-modal, etc.) -- deliberately, so the
+   detailed evidence content looks identical to how it already renders on
+   the Overview page, with no new CSS needed for it.
+
+   Scoped under its own two classes (never touches an existing selector),
+   loaded only by this one experimental page, so it can be deleted --
+   this file plus its <link> tag -- with zero effect on any other page,
+   including the Overview page it was copied from.
+
+   Palette matches the rest of the Green Complete Streets system (see
+   main.css's .rengstorff-microsite rules) -- no new colors introduced. */
+
+.rengstorff-project-nav {
+	border-bottom: 1px solid #d4ded4;
+	column-gap: 1.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 0 2rem;
+	padding-bottom: 0.9rem;
+	row-gap: 0.4rem;
+}
+
+.rengstorff-project-nav__link {
+	border-bottom: 2px solid transparent;
+	color: #4e745c;
+	font-size: 0.92rem;
+	font-weight: 700;
+	padding-bottom: 0.4rem;
+	text-decoration: none;
+}
+
+a.rengstorff-project-nav__link:hover,
+a.rengstorff-project-nav__link:focus-visible {
+	color: #16704d;
+}
+
+.rengstorff-project-nav__link[aria-current="page"] {
+	border-bottom-color: #193c2b;
+	color: #193c2b;
+}
+
+/* A page that doesn't exist yet (e.g. Funding + Grant): shown so the
+   full intended project nav is visible, but as plain muted text, not a
+   link -- never a href that would 404. */
+.rengstorff-project-nav__link--placeholder {
+	color: #9aa79d;
+	cursor: default;
+}
+
+/* Year section headings ("2021", "2023", ... "Next") -- a plain, large
+   label, not a card or a compact "temporal marker" treatment (that's the
+   Overview page's V2 timeline prototype's job, not this page's, per "do
+   not redesign the evidence content yet"). */
+.history-year {
+	color: #193c2b;
+	font-size: 1.7rem;
+	font-weight: 800;
+	margin: 0;
+}
+
+.history-year-section {
+	margin-top: 3rem;
+}
+
+.history-year-section:first-of-type {
+	margin-top: 0;
+}
+
+/* A short, muted anchor-id hint shown next to each evidence panel's
+   heading eyebrow, so the stable id used for future deep-linking from
+   the Overview page is visible/verifiable on the page itself during this
+   first-pass review -- easy to delete later along with the rest of this
+   file. */
+.history-anchor-hint {
+	color: #9aa79d;
+	font-size: 0.72rem;
+	font-weight: 600;
+	margin: 0 0 0.3rem;
+}

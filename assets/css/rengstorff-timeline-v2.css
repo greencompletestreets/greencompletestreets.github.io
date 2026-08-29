@@ -72,64 +72,140 @@
 /* ---- Timeline root -------------------------------------------------- */
 
 /* Light, editorial background (the page's own pale sage/cream, not a
-   white dashboard panel) and a comfortably readable measure -- this is
-   meant to read like a chronology/article, not a data table. */
+   white dashboard panel). Widened from an earlier 46rem "article measure"
+   to 58rem so the content column actually uses the space available in
+   the page's ~67rem shell, rather than leaving a large empty band on the
+   right of a short 1-2 sentence summary + link row. */
 .tlv2 {
 	color: #25332b;
 	font-family: "Avenir Next", "Helvetica Neue", sans-serif;
 	margin-top: 1.5rem;
-	max-width: 46rem;
+	max-width: 58rem;
 }
 
-/* ---- Year groups ------------------------------------------------------
-   Narrow left column for the year, a wider right column for that year's
-   events -- the outer "year" layer of the two-level hierarchy (year,
-   then date+marker per event). A thin top rule plus generous margin is
-   the "subtle horizontal separation between years," not a heavy card
-   boundary. */
-.tlv2-group {
-	border-top: 1px solid #d4ded4;
-	column-gap: 1.25rem;
+/* ---- Continuous event stream -------------------------------------------
+   Not nested per-year containers: every year marker and every event is a
+   direct sibling in normal flow here, so there's no group boundary for
+   the spine to visually restart at. The spine itself is now ONE pair of
+   elements (.tlv2-spine / .tlv2-spine--future, see further down) sized
+   and positioned by JS (assets/js/rengstorff-timeline-v2.js's
+   layoutSpine()) to run from the first milestone node to the last,
+   behind every row and every year transition -- not drawn per-row -- so
+   there is exactly one seam-free line regardless of how tall any given
+   row's content is. position: relative here is what makes this
+   container the positioning reference (getBoundingClientRect() math in
+   JS) and the stacking context the spine paints behind (see
+   .tlv2-event/.tlv2-year-marker's position: relative below, which is
+   what keeps every row's own content/border painting in front of it). */
+.tlv2-events {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+/* The global spine itself: absolutely positioned by JS (top/height/left
+   set inline after layout), not drawn by any row. Sits behind row
+   content (z-index: 0, plus DOM order -- both spine elements are
+   inserted as the first children of .tlv2-events, before any row) so
+   node circles, year-marker labels, and the horizontal year-boundary
+   rules all paint on top of it, per "the line should run behind/through
+   the year transitions." Starts hidden (via [hidden]) until JS has
+   real measurements to size it with, so there's never a flash of a
+   wrongly-sized line at 0,0 before layout runs. */
+.tlv2-spine {
+	background: #8dbb91;
+	position: absolute;
+	width: 2px;
+	z-index: 0;
+}
+
+.tlv2-spine[hidden] {
+	display: none;
+}
+
+/* The future-facing continuation (from the Aug. 31, 2026 milestone
+   onward): dashed instead of solid, positioned as its own separate
+   element directly beneath/continuing from .tlv2-spine -- JS sizes it
+   to start exactly where the solid spine ends, so the two read as one
+   line that changes style partway through rather than two separately
+   aligned pieces. */
+.tlv2-spine--future {
+	background: none;
+	border-left: 2px dashed #8dbb91;
+	width: 0;
+}
+
+/* Year marker: a compact temporal marker inline in the spine, not a
+   separate section heading -- no card, no node/dot of its own, just the
+   (now global, see .tlv2-spine) spine passing behind its rail column and
+   a label sitting close above its year's first event. padding-top
+   carries the "between years" gap; the small padding-bottom is what
+   keeps the label close to its first event rather than reading as a
+   separate section. */
+.tlv2-year-marker {
+	column-gap: 0.9rem;
 	display: grid;
-	grid-template-columns: 4.25rem 1fr;
-	margin-top: 2.75rem;
-	padding-top: 2.25rem;
+	grid-template-columns: 3.75rem 1.5rem 1fr;
+	padding-bottom: 0.65rem;
+	padding-top: 3.25rem;
+	/* Keeps this row's own content/border painting above the global
+	   spine (see .tlv2-events above) -- position: relative alone is
+	   enough to enter the same stacking level as the spine, where DOM
+	   order (spine first) then puts this row on top. */
+	position: relative;
 }
 
-.tlv2-group:first-child {
-	border-top: 0;
-	margin-top: 0;
+.tlv2-year-marker--first {
 	padding-top: 0;
 }
 
-.tlv2-group__year {
-	color: #193c2b;
-	font-size: 1.35rem;
-	font-weight: 800;
+/* Subtle horizontal rule marking the year boundary -- flush with the top
+   of the (now much shorter) gap rather than centered in it, so it reads
+   as "previous year's content ends here" without widening the band
+   itself. Skipped on the very first marker (2021), which has no
+   preceding year to separate from. */
+.tlv2-year-marker:not(.tlv2-year-marker--first) {
+	border-top: 1px solid #d4ded4;
+}
+
+.tlv2-year-marker__date {
 	grid-column: 1;
-	line-height: 1.2;
-	margin: 0;
 }
 
-.tlv2-group--next .tlv2-group__year {
-	color: #4e745c;
-}
-
-.tlv2-group__events {
+/* No line is drawn here any more (see .tlv2-spine on .tlv2-events
+   above) -- this column exists purely so the year marker shares the
+   same 3-column grid as .tlv2-event and nothing sits in the way of the
+   global spine passing behind it. */
+.tlv2-year-marker__rail {
 	grid-column: 2;
 }
 
+.tlv2-year-marker__label {
+	color: #193c2b;
+	font-size: 1.35rem;
+	font-weight: 800;
+	grid-column: 3;
+	line-height: 1.2;
+	padding-top: 0.05rem;
+}
+
+.tlv2-year-marker--next .tlv2-year-marker__label {
+	color: #4e745c;
+}
+
 /* ---- Events ----------------------------------------------------------
-   Each event is its own [date | spine+node | content] grid row. The
-   spine is drawn per-row (not one absolutely-positioned line for the
-   whole group) so it needs no JS/measurement to stay aligned -- see
-   .tlv2-event__rail below for how consecutive rows still read as one
-   continuous line. */
+   Each event is its own [date | spine+node | content] grid row -- same
+   grid-template-columns as .tlv2-year-marker above, so the rail column
+   (and the node in it) lines up exactly between the two row types,
+   which is what the global spine's single fixed x-position depends on.
+   position: relative (like .tlv2-year-marker above) keeps this row's
+   own content painting above the spine, which sits behind it. */
 .tlv2-event {
 	column-gap: 0.9rem;
 	display: grid;
 	grid-template-columns: 3.75rem 1.5rem 1fr;
 	padding-bottom: 2rem;
+	position: relative;
 }
 
 .tlv2-event:last-child {
@@ -145,38 +221,11 @@
 	text-align: right;
 }
 
+/* Anchors .tlv2-event__node's position: absolute -- no line is drawn
+   here any more (see .tlv2-spine on .tlv2-events above). */
 .tlv2-event__rail {
 	grid-column: 2;
 	position: relative;
-}
-
-/* The connecting line: spans the row's full height, padding-bottom
-   included, so it runs straight into the next row's line with no gap --
-   consecutive solid segments read as one continuous spine without any
-   absolute positioning across the whole list. Only the last event in a
-   group shortens it so nothing trails past the final node. */
-.tlv2-event__rail::before {
-	background: #8dbb91;
-	bottom: 0;
-	content: "";
-	left: 50%;
-	position: absolute;
-	top: 0;
-	transform: translateX(-50%);
-	width: 2px;
-}
-
-.tlv2-event:last-child .tlv2-event__rail::before {
-	bottom: auto;
-	height: 1.3rem;
-}
-
-/* Future milestones (including the current-decision-point event, which
-   is still upcoming) get a dashed continuation line instead of solid. */
-.tlv2-event--future .tlv2-event__rail::before {
-	background: none;
-	border-left: 2px dashed #8dbb91;
-	width: 0;
 }
 
 .tlv2-event__node {
@@ -205,8 +254,8 @@
    here has happened yet. The node's own border stays solid rather than
    dashed: a dashed stroke on a circle this small (~14px) renders as a
    messy pinwheel of short dashes rather than a clean ring, so "not yet
-   happened" is instead carried by the dashed connecting line below (see
-   .tlv2-event--future .tlv2-event__rail::before), which reads clearly at
+   happened" is instead carried by the dashed .tlv2-spine--future segment
+   of the global spine (see .tlv2-events above), which reads clearly at
    any size. */
 .tlv2-event--open .tlv2-event__node {
 	background: #f1f4ef;
@@ -304,32 +353,25 @@
 }
 
 /* ---- Responsive --------------------------------------------------------
-   Desktop (above 720px): narrow year column beside a wide events column;
-   within each event, a narrow date column, the spine, then wide content.
-   Below 720px: the year collapses to a full-width heading above its
-   events (a persistent side-by-side year rail has no room on a phone),
-   while each event keeps its own compact date-beside-spine-beside-content
-   row so the chronology stays a single left-aligned column with no
-   horizontal scrolling. */
+   Below 720px, both row types (year marker and event) narrow their date
+   and spine columns in step so they keep lining up with each other --
+   the chronology stays a single left-aligned column, spine on the left,
+   with no horizontal scrolling. The year marker keeps the same "inline
+   temporal marker" shape it has on desktop (date column empty, spine
+   passing through, label in the content column) rather than switching to
+   a different mobile-only treatment. */
 @media screen and (max-width: 720px) {
-	.tlv2-group {
-		column-gap: 0;
-		grid-template-columns: 1fr;
-		margin-top: 2.25rem;
-		padding-top: 1.75rem;
-	}
-
-	.tlv2-group__year {
-		margin-bottom: 1.1rem;
-	}
-
-	.tlv2-group__events {
-		grid-column: 1;
-	}
-
+	.tlv2-year-marker,
 	.tlv2-event {
 		column-gap: 0.7rem;
 		grid-template-columns: 3rem 1.35rem 1fr;
+	}
+
+	.tlv2-year-marker {
+		padding-top: 2.25rem;
+	}
+
+	.tlv2-event {
 		padding-bottom: 1.6rem;
 	}
 

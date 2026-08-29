@@ -26,17 +26,151 @@
 
   var events = window.rengstorffTimelineEvents || [];
   var container = document.getElementById('timeline-v2');
+  var spineEventsEl = null; // set by renderTimelineV2(); read by layoutSpine()
 
   if (container && events.length) {
     renderTimelineV2(container, events);
   }
 
+  // Renders one flat, continuous stream of rows (year markers and events
+  // interleaved in chronological order) rather than separate per-year
+  // containers -- see assets/css/rengstorff-timeline-v2.css's
+  // .tlv2-events/.tlv2-year-marker/.tlv2-event rules. The rows themselves
+  // no longer draw the spine (no per-row line -- see layoutSpine() below
+  // for the single global spine that replaces that), but staying flat
+  // (not nested per year) is still what lets a year transition sit in
+  // the middle of the list with nothing else needed to keep the rows
+  // themselves, and the spine passing behind them, reading as one
+  // unbroken sequence.
   function renderTimelineV2(root, events) {
     var groups = groupByYear(events);
+    var eventsEl = el('div', 'tlv2-events');
 
-    groups.forEach(function (group) {
-      root.appendChild(buildGroup(group));
+    // The spine itself: two elements (solid, then its dashed future
+    // continuation) inserted before any row so they sit lowest in paint
+    // order within .tlv2-events (see .tlv2-spine's z-index: 0 and
+    // .tlv2-event/.tlv2-year-marker's position: relative in the CSS,
+    // which is what keeps every row's own content and the horizontal
+    // year-boundary rules painting in front of it). Both start [hidden]
+    // -- layoutSpine() below sizes and un-hides them once real
+    // milestone-node positions are known.
+    var spineEl = el('div', 'tlv2-spine');
+    spineEl.hidden = true;
+    spineEl.setAttribute('aria-hidden', 'true');
+    var spineFutureEl = el('div', 'tlv2-spine tlv2-spine--future');
+    spineFutureEl.hidden = true;
+    spineFutureEl.setAttribute('aria-hidden', 'true');
+    eventsEl.appendChild(spineEl);
+    eventsEl.appendChild(spineFutureEl);
+
+    groups.forEach(function (group, groupIndex) {
+      var isNext = group.key === 'NEXT';
+      var label = isNext ? 'Next' : group.key;
+      var isFirst = groupIndex === 0;
+
+      eventsEl.appendChild(buildYearMarker(label, { isFirst: isFirst, isNext: isNext }));
+
+      group.events.forEach(function (event) {
+        eventsEl.appendChild(buildEvent(event));
+      });
     });
+
+    root.appendChild(eventsEl);
+    spineEventsEl = eventsEl;
+
+    // Deferred a frame so layout (including web-font metrics, if any)
+    // has settled before the first real measurement -- see layoutSpine().
+    // (If a stored V1/V2 preference is about to hide #timeline-v2-wrap,
+    // applyVersion() re-runs this itself once V2 becomes visible again --
+    // see below.)
+    window.requestAnimationFrame(layoutSpine);
+  }
+
+  // Sizes and positions the single global spine (.tlv2-spine, plus its
+  // dashed .tlv2-spine--future continuation) from the FIRST milestone
+  // node to the LAST, split at the first `future` milestone (currently
+  // the Aug. 31, 2026 review) -- measured with getBoundingClientRect()
+  // rather than assumed from CSS box math, so it's exactly right
+  // regardless of how tall any event's text happens to wrap, and stays
+  // right if that changes (a resize listener below re-runs this). This
+  // is what replaces the old approach of every row drawing its own
+  // line segment -- there is now exactly one (two-part) line element,
+  // not thirteen, so there is nowhere for a per-row seam to appear.
+  function layoutSpine() {
+    // v2Wrap (declared further down, with the rest of the V1/V2 toggle)
+    // is what actually gets hidden/shown -- #timeline-v2 itself never
+    // has its own [hidden] attribute set. getBoundingClientRect() on
+    // anything inside a hidden ancestor returns all-zero rects, so bail
+    // out rather than sizing the spine from bogus zeros; applyVersion()
+    // re-calls this once V2 becomes visible again.
+    if (!spineEventsEl || (v2Wrap && v2Wrap.hidden)) { return; }
+
+    var nodes = spineEventsEl.querySelectorAll('.tlv2-event__node');
+    if (!nodes.length) { return; }
+
+    var spineEl = spineEventsEl.querySelector('.tlv2-spine:not(.tlv2-spine--future)');
+    var spineFutureEl = spineEventsEl.querySelector('.tlv2-spine--future');
+    if (!spineEl || !spineFutureEl) { return; }
+
+    var containerRect = spineEventsEl.getBoundingClientRect();
+    var firstRect = nodes[0].getBoundingClientRect();
+    var lastRect = nodes[nodes.length - 1].getBoundingClientRect();
+    var centerX = Math.round((firstRect.left + firstRect.right) / 2 - containerRect.left);
+    var firstCenterY = (firstRect.top + firstRect.bottom) / 2 - containerRect.top;
+    var lastCenterY = (lastRect.top + lastRect.bottom) / 2 - containerRect.top;
+
+    var firstFutureNode = spineEventsEl.querySelector('.tlv2-event--future .tlv2-event__node');
+    var splitCenterY = lastCenterY;
+    if (firstFutureNode) {
+      var splitRect = firstFutureNode.getBoundingClientRect();
+      splitCenterY = (splitRect.top + splitRect.bottom) / 2 - containerRect.top;
+    }
+
+    spineEl.style.left = centerX + 'px';
+    spineEl.style.top = firstCenterY + 'px';
+    spineEl.style.height = Math.max(0, splitCenterY - firstCenterY) + 'px';
+    spineEl.hidden = false;
+
+    if (firstFutureNode && splitCenterY < lastCenterY) {
+      spineFutureEl.style.left = centerX + 'px';
+      spineFutureEl.style.top = splitCenterY + 'px';
+      spineFutureEl.style.height = (lastCenterY - splitCenterY) + 'px';
+      spineFutureEl.hidden = false;
+    } else {
+      spineFutureEl.hidden = true;
+    }
+  }
+
+  // Row heights reflow at the 720px mobile breakpoint (and whenever text
+  // rewraps at any width), so the spine's measured pixel positions need
+  // to be recomputed after a resize, not just once at load.
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(layoutSpine, 150);
+  });
+
+  function buildYearMarker(label, options) {
+    var classes = ['tlv2-year-marker'];
+    if (options.isFirst) { classes.push('tlv2-year-marker--first'); }
+    if (options.isNext) { classes.push('tlv2-year-marker--next'); }
+    var marker = el('div', classes.join(' '));
+
+    // Empty date-column cell, purely so this row shares the same grid
+    // tracks as .tlv2-event and its rail column lines up with theirs --
+    // that shared column position is what the global spine (see
+    // layoutSpine()) measures its x-position from.
+    marker.appendChild(el('div', 'tlv2-year-marker__date'));
+
+    var railEl = el('div', 'tlv2-year-marker__rail');
+    railEl.setAttribute('aria-hidden', 'true');
+    marker.appendChild(railEl);
+
+    var labelEl = el('div', 'tlv2-year-marker__label');
+    labelEl.textContent = label;
+    marker.appendChild(labelEl);
+
+    return marker;
   }
 
   // Groups events by their yearGroup field, preserving the order groups
@@ -54,23 +188,6 @@
       groups[indexByKey[key]].events.push(event);
     });
     return groups;
-  }
-
-  function buildGroup(group) {
-    var isNext = group.key === 'NEXT';
-    var groupEl = el('div', 'tlv2-group' + (isNext ? ' tlv2-group--next' : ''));
-
-    var yearEl = el('h3', 'tlv2-group__year');
-    yearEl.textContent = isNext ? 'Next' : group.key;
-    groupEl.appendChild(yearEl);
-
-    var eventsEl = el('div', 'tlv2-group__events');
-    group.events.forEach(function (event) {
-      eventsEl.appendChild(buildEvent(event));
-    });
-    groupEl.appendChild(eventsEl);
-
-    return groupEl;
   }
 
   function buildEvent(event) {
@@ -207,11 +324,19 @@
 
   function applyVersion(version) {
     var v = version === 'v1' ? 'v1' : 'v2';
+    var v2WasHidden = v2Wrap && v2Wrap.hidden;
     if (v1Wrap) { v1Wrap.hidden = v !== 'v1'; }
     if (v2Wrap) { v2Wrap.hidden = v !== 'v2'; }
     for (var i = 0; i < toggleButtons.length; i++) {
       var btn = toggleButtons[i];
       btn.setAttribute('aria-pressed', String(btn.getAttribute('data-timeline-view') === v));
+    }
+    // V2 just became visible (either just now, or a stored preference
+    // hid it before the very first layoutSpine() call in
+    // renderTimelineV2() ever got a chance to measure anything real) --
+    // re-measure now that its rows actually have real, on-screen sizes.
+    if (v === 'v2' && v2WasHidden) {
+      window.requestAnimationFrame(layoutSpine);
     }
   }
 
