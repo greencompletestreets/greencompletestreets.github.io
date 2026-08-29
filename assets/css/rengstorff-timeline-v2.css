@@ -1,0 +1,347 @@
+/* ============================================================
+   Rengstorff Avenue project timeline -- prototype V2
+   ============================================================
+   A reversible redesign of the timeline/history section only, reviewed
+   side by side with the existing milestone-card timeline ("V1", styled
+   in main.css under .evidence-timeline / .timeline-node / .evidence-panel
+   -- untouched by this file). Everything here is scoped under .tlv2 so it
+   can never leak onto or clash with the rest of the page's styles.
+
+   To remove this prototype: delete this file and its <link> in
+   cities/mountain-view-ca/rengstorff-green-complete-streets/index.html's
+   <head>, plus the matching <script src=".../rengstorff-timeline-v2.js">
+   and the .tlv2-toggle / #timeline-v2-wrap markup. V1's own CSS in
+   main.css is entirely separate and needs no changes either way.
+
+   Palette reused from the page's existing Green Complete Streets system
+   (see main.css's .rengstorff-microsite rules) -- no new colors:
+     forest green (headings/major nodes) #193c2b
+     brand green  (links/markers/accents) #16704d
+     sage         (routine nodes/lines)   #4e9a73 / #8dbb91
+     pale sage    (borders)               #c5d6c6
+     page bg      (open-node fill)        #f1f4ef
+     pale sage bg (pill/emphasis fill)    #e8f1e9
+     muted text                           #5a6c60
+============================================================ */
+
+/* ---- Temporary review toggle -------------------------------------- */
+
+.tlv2-toggle {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	margin: 1.75rem 0 -0.5rem;
+}
+
+.tlv2-toggle__label {
+	color: #5a6c60;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.tlv2-toggle__button {
+	background: #ffffff;
+	border: 1px solid #c5d6c6;
+	border-radius: 999px;
+	color: #33483a;
+	cursor: pointer;
+	font: inherit;
+	font-size: 0.82rem;
+	font-weight: 600;
+	padding: 0.35rem 0.85rem;
+}
+
+.tlv2-toggle__button:hover {
+	border-color: #4e9a73;
+}
+
+.tlv2-toggle__button:focus-visible {
+	outline: 3px solid rgba(22, 112, 77, 0.45);
+	outline-offset: 2px;
+}
+
+.tlv2-toggle__button[aria-pressed="true"] {
+	background: #193c2b;
+	border-color: #193c2b;
+	color: #ffffff;
+}
+
+/* ---- Timeline root -------------------------------------------------- */
+
+/* Light, editorial background (the page's own pale sage/cream, not a
+   white dashboard panel) and a comfortably readable measure -- this is
+   meant to read like a chronology/article, not a data table. */
+.tlv2 {
+	color: #25332b;
+	font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+	margin-top: 1.5rem;
+	max-width: 46rem;
+}
+
+/* ---- Year groups ------------------------------------------------------
+   Narrow left column for the year, a wider right column for that year's
+   events -- the outer "year" layer of the two-level hierarchy (year,
+   then date+marker per event). A thin top rule plus generous margin is
+   the "subtle horizontal separation between years," not a heavy card
+   boundary. */
+.tlv2-group {
+	border-top: 1px solid #d4ded4;
+	column-gap: 1.25rem;
+	display: grid;
+	grid-template-columns: 4.25rem 1fr;
+	margin-top: 2.75rem;
+	padding-top: 2.25rem;
+}
+
+.tlv2-group:first-child {
+	border-top: 0;
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.tlv2-group__year {
+	color: #193c2b;
+	font-size: 1.35rem;
+	font-weight: 800;
+	grid-column: 1;
+	line-height: 1.2;
+	margin: 0;
+}
+
+.tlv2-group--next .tlv2-group__year {
+	color: #4e745c;
+}
+
+.tlv2-group__events {
+	grid-column: 2;
+}
+
+/* ---- Events ----------------------------------------------------------
+   Each event is its own [date | spine+node | content] grid row. The
+   spine is drawn per-row (not one absolutely-positioned line for the
+   whole group) so it needs no JS/measurement to stay aligned -- see
+   .tlv2-event__rail below for how consecutive rows still read as one
+   continuous line. */
+.tlv2-event {
+	column-gap: 0.9rem;
+	display: grid;
+	grid-template-columns: 3.75rem 1.5rem 1fr;
+	padding-bottom: 2rem;
+}
+
+.tlv2-event:last-child {
+	padding-bottom: 0;
+}
+
+.tlv2-event__date {
+	color: #4e745c;
+	font-size: 0.82rem;
+	font-weight: 700;
+	grid-column: 1;
+	padding-top: 0.2rem;
+	text-align: right;
+}
+
+.tlv2-event__rail {
+	grid-column: 2;
+	position: relative;
+}
+
+/* The connecting line: spans the row's full height, padding-bottom
+   included, so it runs straight into the next row's line with no gap --
+   consecutive solid segments read as one continuous spine without any
+   absolute positioning across the whole list. Only the last event in a
+   group shortens it so nothing trails past the final node. */
+.tlv2-event__rail::before {
+	background: #8dbb91;
+	bottom: 0;
+	content: "";
+	left: 50%;
+	position: absolute;
+	top: 0;
+	transform: translateX(-50%);
+	width: 2px;
+}
+
+.tlv2-event:last-child .tlv2-event__rail::before {
+	bottom: auto;
+	height: 1.3rem;
+}
+
+/* Future milestones (including the current-decision-point event, which
+   is still upcoming) get a dashed continuation line instead of solid. */
+.tlv2-event--future .tlv2-event__rail::before {
+	background: none;
+	border-left: 2px dashed #8dbb91;
+	width: 0;
+}
+
+.tlv2-event__node {
+	background: #193c2b;
+	border: 2px solid #193c2b;
+	border-radius: 50%;
+	box-sizing: border-box;
+	height: 0.85rem;
+	left: 50%;
+	position: absolute;
+	top: 0.2rem;
+	transform: translateX(-50%);
+	width: 0.85rem;
+	z-index: 1;
+}
+
+/* Routine milestones: an outlined (not solid-filled) node -- same green,
+   lighter weight, per "major decisions filled / routine outlined." */
+.tlv2-event--outline .tlv2-event__node {
+	background: #f1f4ef;
+}
+
+/* Future milestones: an open node in the lighter sage tone (rather than
+   the outline state's dark-green border), distinct from both the filled
+   (major/decided) and plain-outline (routine/decided) states -- nothing
+   here has happened yet. The node's own border stays solid rather than
+   dashed: a dashed stroke on a circle this small (~14px) renders as a
+   messy pinwheel of short dashes rather than a clean ring, so "not yet
+   happened" is instead carried by the dashed connecting line below (see
+   .tlv2-event--future .tlv2-event__rail::before), which reads clearly at
+   any size. */
+.tlv2-event--open .tlv2-event__node {
+	background: #f1f4ef;
+	border-color: #8dbb91;
+}
+
+/* ---- Current decision point (Aug. 31, 2026) --------------------------
+   Visually emphasized without a heavy card: a brighter accent ring around
+   its (still open/dashed, since it hasn't happened) node, and a small
+   "Upcoming decision" pill beside its marker -- no background box, no
+   shadow, no color outside the page's existing green palette. */
+.tlv2-event--emphasis .tlv2-event__node {
+	border-color: #16704d;
+	box-shadow: 0 0 0 4px rgba(22, 112, 77, 0.18);
+}
+
+.tlv2-event__tag {
+	background: #e8f1e9;
+	border: 1px solid #cfe0d0;
+	border-radius: 999px;
+	color: #16704d;
+	display: inline-block;
+	font-size: 0.68rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	margin-left: 0.6rem;
+	padding: 0.15rem 0.55rem;
+	text-transform: uppercase;
+	vertical-align: middle;
+}
+
+/* ---- Event content ---------------------------------------------------- */
+
+.tlv2-event__body {
+	grid-column: 3;
+	min-width: 0;
+	padding-top: 0.05rem;
+}
+
+/* SEMANTIC PROJECT MARKER -- the primary scanning element of this
+   design, same small-caps treatment as the page's existing
+   .evidence-category/.timeline-agenda labels, just a size up since it
+   carries more weight here. */
+.tlv2-event__marker {
+	color: #16704d;
+	font-size: 0.92rem;
+	font-weight: 800;
+	letter-spacing: 0.03em;
+	line-height: 1.3;
+	margin: 0 0 0.3rem;
+	text-transform: uppercase;
+}
+
+.tlv2-event__summary {
+	color: #25332b;
+	font-size: 0.98rem;
+	line-height: 1.55;
+	margin: 0 0 0.5rem;
+}
+
+.tlv2-event__meta {
+	color: #5a6c60;
+	font-size: 0.82rem;
+	margin: 0 0 0.4rem;
+}
+
+.tlv2-event__sources {
+	column-gap: 1.1rem;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	row-gap: 0.3rem;
+}
+
+/* Same dotted-underline text-link convention used sitewide (see
+   .card-evidence-link, .grant-source-item in main.css) -- not a filled
+   button, not an arrow glyph. */
+.tlv2-event__source {
+	border-bottom: dotted 1px #16704d;
+	color: #16704d;
+	font-size: 0.84rem;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.tlv2-event__source:hover,
+.tlv2-event__source:focus-visible {
+	border-bottom-color: transparent;
+}
+
+.tlv2-event__source--pending {
+	border-bottom-style: dashed;
+	color: #65736a;
+	cursor: default;
+}
+
+/* ---- Responsive --------------------------------------------------------
+   Desktop (above 720px): narrow year column beside a wide events column;
+   within each event, a narrow date column, the spine, then wide content.
+   Below 720px: the year collapses to a full-width heading above its
+   events (a persistent side-by-side year rail has no room on a phone),
+   while each event keeps its own compact date-beside-spine-beside-content
+   row so the chronology stays a single left-aligned column with no
+   horizontal scrolling. */
+@media screen and (max-width: 720px) {
+	.tlv2-group {
+		column-gap: 0;
+		grid-template-columns: 1fr;
+		margin-top: 2.25rem;
+		padding-top: 1.75rem;
+	}
+
+	.tlv2-group__year {
+		margin-bottom: 1.1rem;
+	}
+
+	.tlv2-group__events {
+		grid-column: 1;
+	}
+
+	.tlv2-event {
+		column-gap: 0.7rem;
+		grid-template-columns: 3rem 1.35rem 1fr;
+		padding-bottom: 1.6rem;
+	}
+
+	.tlv2-event__date {
+		font-size: 0.76rem;
+	}
+
+	.tlv2-event__marker {
+		font-size: 0.86rem;
+	}
+
+	.tlv2-event__summary {
+		font-size: 0.94rem;
+	}
+}
