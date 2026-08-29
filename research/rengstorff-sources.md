@@ -6,8 +6,8 @@ Street project pages without exposing "still looking for this"
 placeholders to readers.
 
 **Project URL structure (as of the feasibility-study child page):**
-- Parent project page: `cities/mountain-view-ca/rengstorff-green-complete-streets/`
-- Feasibility & Alternatives Study (child page): `cities/mountain-view-ca/rengstorff-green-complete-streets/feasibility-study/`
+- Parent project page: `cities/mountainview-ca/rengstorff-green-complete-streets/`
+- Feasibility & Alternatives Study (child page): `cities/mountainview-ca/rengstorff-green-complete-streets/feasibility-study/`
 - Future sibling child pages: `.../preliminary-design/`, `.../construction/`
 - The old URL, `cities/mountainview-ca/rengstorff-green-complete-streets-project.html`,
   is kept in place as a redirect stub (meta refresh + `location.replace()` +

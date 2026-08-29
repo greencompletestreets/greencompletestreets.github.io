@@ -3,7 +3,7 @@
  *
  * This is a REVERSIBLE PROTOTYPE, reviewed side by side with the existing
  * milestone-card timeline ("V1", built by the inline <script> earlier in
- * cities/mountain-view-ca/rengstorff-green-complete-streets/index.html,
+ * cities/mountainview-ca/rengstorff-green-complete-streets/index.html,
  * around the `events` array / d3.select('#evidence-timeline') code).
  *
  * - Renders from window.rengstorffTimelineEvents, the SAME `events` array

@@ -8,7 +8,7 @@
    can never leak onto or clash with the rest of the page's styles.
 
    To remove this prototype: delete this file and its <link> in
-   cities/mountain-view-ca/rengstorff-green-complete-streets/index.html's
+   cities/mountainview-ca/rengstorff-green-complete-streets/index.html's
    <head>, plus the matching <script src=".../rengstorff-timeline-v2.js">
    and the .tlv2-toggle / #timeline-v2-wrap markup. V1's own CSS in
    main.css is entirely separate and needs no changes either way.
