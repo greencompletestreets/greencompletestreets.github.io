@@ -8,9 +8,16 @@
 </head>
 <body class="rengstorff-microsite">
   <main>
-    <div class="rengstorff-shell">
-
-      <section class="section-block">
+    <!-- Breadcrumb gets its own small shell just for the side padding
+         .study-breadcrumb relies on; the hero and on-page nav below it
+         are deliberately OUTSIDE any shell (full-bleed, with their own
+         internal padding formula) to match the identical pattern
+         already established on the parent Overview page -- nesting
+         them inside .rengstorff-shell would double up the side
+         padding and stop the hero's background from reaching the
+         viewport edges. -->
+    <div class="rengstorff-shell rengstorff-shell--breadcrumb">
+      <section class="section-block study-top">
         <nav class="study-breadcrumb" aria-label="Breadcrumb">
           <ol>
             <li><span>Cities</span></li>
@@ -19,25 +26,310 @@
             <li><span aria-current="page">Feasibility Study</span></li>
           </ol>
         </nav>
+      </section>
+    </div>
 
-        <div class="section-intro">
-          <p class="eyebrow">Rengstorff Avenue Green Complete Street &middot; Project phase</p>
-          <h1 id="page-title">Rengstorff Avenue Feasibility &amp; Alternatives Study</h1>
-          <p>The current planning study for the Rengstorff Avenue Green Complete Street project.</p>
+    <!-- Hero: reuses the exact .rengstorff-hero / .rengstorff-hero__copy /
+         .rengstorff-lead-photo / .eyebrow / .hero-subtitle components
+         already built for the parent Overview page (dark green,
+         copy left / photo right, responsive stack <=900px) rather than
+         a new hero pattern. .rengstorff-hero__callout is the one new
+         class -- same border-left/padding/paragraph treatment as the
+         existing .hero-summary callout, but confined to the copy
+         column (not spanning under the photo), since that's the
+         layout this page needs. -->
+    <section class="rengstorff-hero" aria-labelledby="page-title">
+      <div class="rengstorff-hero__copy">
+        <p class="eyebrow">Rengstorff Avenue</p>
+        <h1 id="page-title">Feasibility &amp; Alternatives Study</h1>
+        <p class="hero-subtitle">Exploring how Rengstorff could become safer, greener, and more comfortable for everyday trips.</p>
+        <div class="rengstorff-hero__callout">
+          <p>A feasibility study is an early step in designing a project. <strong>Nothing here is a final design.</strong> This is the stage for testing ideas, understanding what can fit, exploring trade-offs, and imagining what Rengstorff could become.</p>
+        </div>
+      </div>
+      <figure class="rengstorff-lead-photo">
+        <img src="../../../../images/cities/mountainview-ca/rengstorff/rengstorff-feasibility-hero-generated.jpg" alt="Illustrative concept visualization of a tree-lined complete street with a protected bikeway, planted buffers, and people walking and biking." />
+        <figcaption>Concept visualization: an illustrative example of a greener, more comfortable complete street. Not a proposed or existing design for Rengstorff Avenue.</figcaption>
+      </figure>
+    </section>
+
+    <!-- On-page nav: identical markup/JS to the parent Overview page's
+         nav (added near the closing body tag below), just with this page's own five section ids. -->
+    <nav class="onpage-nav" aria-label="On this page">
+      <span class="onpage-nav__label" aria-hidden="true">On this page</span>
+      <button type="button" class="onpage-nav__trigger" aria-expanded="false" aria-controls="onpage-nav-list">
+        <span>On this page</span>
+        <span class="onpage-nav__chevron" aria-hidden="true">&#9662;</span>
+      </button>
+      <ul class="onpage-nav__list" id="onpage-nav-list">
+        <li><a class="onpage-nav__link" href="#overview">Overview</a></li>
+        <li><a class="onpage-nav__link" href="#design-concepts">Design concepts</a></li>
+        <li><a class="onpage-nav__link" href="#real-choice">The real choice</a></li>
+        <li><a class="onpage-nav__link" href="#at-a-glance">Study at a glance</a></li>
+      </ul>
+    </nav>
+
+    <div class="rengstorff-shell">
+
+      <!-- OVERVIEW: new section. Two-column layout -- main narrative
+           (left) + a sidebar carrying the local heat/shade evidence
+           (right), stacking to one column <=900px. -->
+      <section class="section-block overview-section">
+        <div class="overview-layout">
+          <div class="overview-main">
+            <span class="category-tag category-tag--record">Overview</span>
+            <div class="section-intro">
+              <h2 id="overview">What could Rengstorff become?</h2>
+              <p>This is a chance to rethink how the street works for the community today &mdash; a little like spring cleaning and redesigning a room in your home to better fit how you live now.</p>
+            </div>
+
+            <h3 class="overview-subhead"><span class="fas fa-traffic-light overview-subhead__icon" aria-hidden="true"></span>Who is it working for today?</h3>
+            <p>Right now, Rengstorff doesn&#8217;t work especially well for anyone. People driving deal with congestion, dangerous speeds, and stressful intersections. People walking and bicycling can face a street that feels exposed, hostile, unsafe, uncomfortable, and designed primarily around moving cars through the neighborhood.</p>
+
+            <div class="overview-cards">
+              <div class="overview-card">
+                <span class="fas fa-traffic-light overview-card__icon" aria-hidden="true"></span>
+                <p class="overview-card__title">Getting around</p>
+                <p class="overview-card__question">Ever sat through two or three lights at Central while trains pass?</p>
+                <p class="overview-card__body">Congestion and difficult intersections affect people driving, too.</p>
+              </div>
+              <div class="overview-card">
+                <span class="fas fa-bicycle overview-card__icon" aria-hidden="true"></span>
+                <p class="overview-card__title">Feeling safe</p>
+                <p class="overview-card__question">Would you feel comfortable letting a child bike here?</p>
+                <p class="overview-card__body">A street shouldn&#8217;t depend on every person making the perfect decision every time. Better design can reduce speeds, improve visibility, and make ordinary mistakes less dangerous.</p>
+              </div>
+              <div class="overview-card">
+                <span class="fas fa-tree overview-card__icon" aria-hidden="true"></span>
+                <p class="overview-card__title">Being outside</p>
+                <p class="overview-card__question">Where do you look for shade on an 80&deg;F afternoon?</p>
+                <p class="overview-card__body">Exposed pavement and direct sun can make walking and bicycling dramatically less comfortable. Trees, planting, and shade can change the thermal experience of the street.</p>
+              </div>
+            </div>
+
+            <h3 class="overview-subhead"><span class="fas fa-leaf overview-subhead__icon" aria-hidden="true"></span>Where do we actually choose to spend time?</h3>
+            <p>We naturally spend time where it feels good to be &mdash; places with shade, greenery, and people. Rethinking Rengstorff can help create more of these places along the corridor.</p>
+          </div>
+
+          <aside class="overview-sidebar">
+            <p class="overview-sidebar__label">And then there&#8217;s the heat</p>
+            <p class="overview-sidebar__intro">When we don&#8217;t have enough shade, heat builds up on the street, sidewalks, and at stops.</p>
+
+            <figure class="overview-sidebar__figure">
+              <img src="../../../../images/cities/mountainview-ca/rengstorff/mountainview-ca-moffett-waiting-for-bus.jpeg" alt="A person waiting for the bus under a personal umbrella for shade on Moffett Boulevard in Mountain View." />
+              <figcaption>Waiting for the bus in limited shade on Moffett Boulevard, Mountain View, California. Photo: April Webster.</figcaption>
+            </figure>
+
+            <div class="overview-callout">
+              <p class="overview-callout__label"><span class="fas fa-sun" aria-hidden="true"></span> Why shade matters</p>
+              <p>More shade lowers mean radiant temperature (MRT) &mdash; the heat our bodies actually feel from sun and hot surfaces.</p>
+              <p>Research shows that improving shade and greenery can reduce MRT by up to 15&ndash;20&deg;F, making outdoor spaces much more comfortable and safer.</p>
+              <a class="overview-callout__link" href="../../../../why-green-complete-streets.html">Learn more about MRT &rarr;</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- THE OPPORTUNITY: new section. Opening narrative + the
+           Vancouver precedent photo (primary real-world precedent, so
+           it gets more visual prominence than the Santa Cruz photo
+           below), then the "Imagine a Rengstorff with..." panel with
+           the smaller Santa Cruz detail photo beside it. -->
+      <section class="section-block opportunity-section">
+        <div class="opportunity-layout">
+          <div class="opportunity-main">
+            <span class="category-tag category-tag--record">The opportunity</span>
+            <div class="section-intro">
+              <h2 id="opportunity-title">What if more everyday trips felt easy?</h2>
+            </div>
+            <p class="opportunity-lead">Walk to the park. Bike to school. Meet a neighbor. Pick something up nearby.</p>
+            <p>Not every trip has to require getting into a car.</p>
+            <p>Making short walking and bicycling trips safer and more comfortable gives people another choice &mdash; one that can be less expensive, active, social, and enjoyable.</p>
+            <p>And redesigning the street isn&#8217;t only about transportation. Adding trees and nature can create shade, reduce radiant heat, support stormwater management, and make the street itself a more pleasant place to be.</p>
+          </div>
+
+          <figure class="opportunity-precedent">
+            <p class="opportunity-precedent__label">Real-world precedent</p>
+            <img src="../../../../images/cities/mountainview-ca/rengstorff/green-street-vancouver-bc-smithe-street.jpeg" alt="A protected bikeway with planted buffers and mature tree canopy on Smithe Street in Vancouver, British Columbia, with people biking and walking." />
+            <figcaption>Protected bikeway, planting, and mature tree canopy on Smithe Street in Vancouver, British Columbia. Photo: April Webster.</figcaption>
+          </figure>
         </div>
 
-        <div class="study-parent-banner">
-          <span>This page covers one phase &mdash; the feasibility and alternatives study &mdash; of the larger Council-programmed project.</span>
-          <a href="../">View the full Rengstorff Avenue Green Complete Street project &rarr;</a>
+        <div class="imagine-panel">
+          <div class="imagine-panel__content">
+            <h3 class="imagine-panel__heading">Imagine a Rengstorff with&hellip;</h3>
+            <div class="imagine-panel__grid">
+              <div class="imagine-item">
+                <span class="fas fa-shield-alt imagine-item__icon" aria-hidden="true"></span>
+                <p class="imagine-item__title">Safety</p>
+                <p class="imagine-item__body">Streets designed for people, not just cars.</p>
+              </div>
+              <div class="imagine-item">
+                <span class="fas fa-walking imagine-item__icon" aria-hidden="true"></span>
+                <p class="imagine-item__title">Comfort</p>
+                <p class="imagine-item__body">Easy to walk and bike, all year round.</p>
+              </div>
+              <div class="imagine-item">
+                <span class="fas fa-sun imagine-item__icon" aria-hidden="true"></span>
+                <p class="imagine-item__title">Shade &amp; heat relief</p>
+                <p class="imagine-item__body">Cooler, more comfortable places to travel and spend time outside.</p>
+              </div>
+              <div class="imagine-item">
+                <span class="fas fa-leaf imagine-item__icon" aria-hidden="true"></span>
+                <p class="imagine-item__title">Nature</p>
+                <p class="imagine-item__body">Trees, planting, and green infrastructure that support our environment.</p>
+              </div>
+              <div class="imagine-item">
+                <span class="fas fa-users imagine-item__icon" aria-hidden="true"></span>
+                <p class="imagine-item__title">Community</p>
+                <p class="imagine-item__body">More opportunities to see neighbors, connect, and belong.</p>
+              </div>
+            </div>
+          </div>
+
+          <figure class="opportunity-detail">
+            <img src="../../../../images/cities/mountainview-ca/rengstorff/santacruz-ca-union-st-street-garden.jpeg.png" alt="Street-side planting with flowering plants along a sidewalk on Union Street in Santa Cruz, California." />
+            <figcaption>Street-side planting on Union Street in Santa Cruz, California. Photo: April Webster.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Design concepts: the existing B/C image, now presented as its
+           own section using the same category-tag + .section-intro
+           (h2 + supporting paragraph) pattern as "Study at a glance"
+           and "Where we are in the study process", so it picks up the
+           same border-top + padding section rhythm as those sections
+           rather than sitting flush against the intro card. -->
+      <section class="section-block">
+        <span class="category-tag category-tag--record">Design concepts</span>
+        <div class="section-intro">
+          <h2 id="design-concepts">What could Rengstorff look like?</h2>
+          <p>The City is considering three draft concepts. All include targeted intersection and crossing improvements; the larger concepts explore different ways to use additional street space.</p>
+        </div>
+
+        <figure class="alt-decision-figure">
+          <img src="../../../../images/rengstorff%20-%20alternatives.jpeg" alt="Alternative B, more space for bicycling: Class IV protected bike lanes from Central to Leghorn, about 60% of on-street parking removed. Alternative C, more space for green infrastructure: trees, landscaping and bioretention, about 48% of on-street parking removed." />
+        </figure>
+      </section>
+
+      <!-- Design alternatives / "What's the real choice?" + the B/C
+           comparison table -- unchanged internally, just now its own
+           section (same border-top + padding rhythm as the sections
+           above and below it) instead of sharing a section with the
+           image. -->
+      <section class="section-block">
+        <!-- Concise interpretation, immediately below the image and
+             before the detailed comparison -- editorial paragraph, not
+             a callout box or second hero. -->
+        <div class="alt-choice">
+          <span class="category-tag category-tag--record">Design alternatives</span>
+          <div class="section-intro">
+            <h2 id="real-choice">What&#8217;s the real choice?</h2>
+          </div>
+          <p class="alt-choice__body">Alternative A is the common safety foundation. Alternatives B and C include those improvements, then reallocate additional right-of-way toward different priorities: <strong class="alt-choice__emphasis alt-choice__emphasis--b">safer bicycling infrastructure</strong> versus <strong class="alt-choice__emphasis alt-choice__emphasis--c">green infrastructure</strong>.</p>
+        </div>
+
+        <!-- Production comparison: two self-contained columns, full
+             section width, so the seam between them lines up with the
+             image's own B/C seam above. No A column -- Alternative A
+             is covered by the legend below and the fuller D2 section
+             further down the page.
+
+             Three-tier hierarchy per column, ordered and sized so the
+             page reads as a decision graphic rather than a spreadsheet:
+             primary outcome (dominant) -> secondary street changes
+             (medium) -> space/tradeoffs (smallest). Tier boundaries are
+             whitespace + a hairline rule, not a rule between every
+             row. -->
+        <!-- Single shared grid: grid-auto-flow:column places B's 5
+             cells down column 1 and C's 5 cells down column 2 (in that
+             DOM order), so row N of B and row N of C are the same grid
+             row and therefore always the same height -- if one side's
+             content is taller, CSS Grid pads the other side's cell to
+             match, and the next row starts at the same Y for both.
+             Row-gap (not per-column borders) is the divider: the grid
+             container's own near-white background shows through that
+             gap, reading as a thick thick white rule spanning both
+             columns rather than two independent hairlines. -->
+        <div class="alt-split-compare">
+          <div class="alt-split-compare__cell alt-split-compare__cell--b alt-split-compare__cell--primary">
+            <p class="alt-split-compare__primary-value">Protected bike lanes (A+B)<span class="alt-split-compare__primary-value-line2">Central &rarr; Leghorn &middot; Class IV</span></p>
+            <p class="alt-split-compare__qualifier">*Not continuous &mdash; includes gaps in physical protection</p>
+          </div>
+          <div class="alt-split-compare__cell alt-split-compare__cell--b alt-split-compare__cell--icon">
+            <span class="alt-split-compare__icon-badge alt-split-compare__icon-badge--b"><span class="fas fa-walking" aria-hidden="true"></span></span>
+            <p class="alt-split-compare__label">Sidewalks</p>
+            <p class="alt-split-compare__value alt-split-compare__value--secondary">No change</p>
+          </div>
+          <div class="alt-split-compare__cell alt-split-compare__cell--b alt-split-compare__cell--icon">
+            <span class="alt-split-compare__icon-badge alt-split-compare__icon-badge--b">
+              <svg class="alt-split-compare__icon-svg" viewBox="0 0 36 36" aria-hidden="true">
+                <circle cx="19" cy="6" r="2.6" fill="currentColor" stroke="none"/>
+                <path d="M19 10 L19 18 M19 12 L14 16 M19 12 L25 15 M19 18 L14 27 M19 18 L23 28" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="3" y1="32" x2="9" y2="32" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+                <line x1="13" y1="32" x2="19" y2="32" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+                <line x1="23" y1="32" x2="29" y2="32" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+                <line x1="33" y1="32" x2="34" y2="32" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <p class="alt-split-compare__label">Midblock crossings</p>
+            <p class="alt-split-compare__value alt-split-compare__value--tertiary">4*</p>
+            <p class="alt-split-compare__lanes-note">Wyandotte &middot; Junction &middot; Waldorf School &middot; <strong>Rengstorff Park</strong></p>
+          </div>
+          <div class="alt-split-compare__cell alt-split-compare__cell--b alt-split-compare__cell--icon">
+            <span class="alt-split-compare__icon-badge alt-split-compare__icon-badge--b"><span class="fas fa-car" aria-hidden="true"></span></span>
+            <p class="alt-split-compare__label">Vehicle travel lanes</p>
+            <p class="alt-split-compare__lanes"><span class="lane-width">11&#8217;</span><span class="lane-divider">|</span><span class="lane-width">11&#8217;</span><span class="lane-divider lane-divider--center">&#8214;</span><span class="lane-width">11&#8217;</span><span class="lane-divider">|</span><span class="lane-width">11&#8217;</span></p>
+          </div>
+          <div class="alt-split-compare__cell alt-split-compare__cell--b alt-split-compare__cell--icon">
+            <span class="alt-split-compare__icon-badge alt-split-compare__icon-badge--b alt-split-compare__icon-badge--text" aria-hidden="true">P</span>
+            <p class="alt-split-compare__label">Parking removed</p>
+            <p class="alt-split-compare__value alt-split-compare__value--parking">~60%</p>
+          </div>
+
+          <div class="alt-split-compare__cell alt-split-compare__cell--c alt-split-compare__cell--primary">
+            <p class="alt-split-compare__primary-value">Trees + GSI (A+C)<span class="alt-split-compare__primary-value-line2">Trees &middot; landscaping &middot; bioretention</span></p>
+            <p class="alt-split-compare__support">Green stormwater infrastructure (bioretention)</p>
+          </div>
+          <div class="alt-split-compare__cell alt-split-compare__cell--c alt-split-compare__cell--icon">
+            <span class="alt-split-compare__icon-badge alt-split-compare__icon-badge--c"><span class="fas fa-walking" aria-hidden="true"></span></span>
+            <p class="alt-split-compare__label">Sidewalks</p>
+            <p class="alt-split-compare__value alt-split-compare__value--secondary">4&ndash;6&prime; existing &rarr; consistent 6&prime;</p>
+          </div>
+          <div class="alt-split-compare__cell alt-split-compare__cell--c alt-split-compare__cell--icon">
+            <span class="alt-split-compare__icon-badge alt-split-compare__icon-badge--c">
+              <svg class="alt-split-compare__icon-svg" viewBox="0 0 36 36" aria-hidden="true">
+                <circle cx="19" cy="6" r="2.6" fill="currentColor" stroke="none"/>
+                <path d="M19 10 L19 18 M19 12 L14 16 M19 12 L25 15 M19 18 L14 27 M19 18 L23 28" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="3" y1="32" x2="9" y2="32" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+                <line x1="13" y1="32" x2="19" y2="32" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+                <line x1="23" y1="32" x2="29" y2="32" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+                <line x1="33" y1="32" x2="34" y2="32" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <p class="alt-split-compare__label">Midblock crossings</p>
+            <p class="alt-split-compare__value alt-split-compare__value--tertiary">3</p>
+            <p class="alt-split-compare__lanes-note">Wyandotte &middot; Junction &middot; Waldorf School</p>
+          </div>
+          <div class="alt-split-compare__cell alt-split-compare__cell--c alt-split-compare__cell--icon">
+            <span class="alt-split-compare__icon-badge alt-split-compare__icon-badge--c"><span class="fas fa-car" aria-hidden="true"></span></span>
+            <p class="alt-split-compare__label">Vehicle travel lanes</p>
+            <p class="alt-split-compare__lanes"><span class="lane-width">11&#8217;</span><span class="lane-divider">|</span><span class="lane-width lane-width--narrow">10.5&#8217;</span><span class="lane-divider lane-divider--center">&#8214;</span><span class="lane-width lane-width--narrow">10.5&#8217;</span><span class="lane-divider">|</span><span class="lane-width">11&#8217;</span></p>
+          </div>
+          <div class="alt-split-compare__cell alt-split-compare__cell--c alt-split-compare__cell--icon">
+            <span class="alt-split-compare__icon-badge alt-split-compare__icon-badge--c alt-split-compare__icon-badge--text" aria-hidden="true">P</span>
+            <p class="alt-split-compare__label">Parking removed</p>
+            <p class="alt-split-compare__value alt-split-compare__value--parking">~48%</p>
+          </div>
         </div>
       </section>
 
       <!-- A. Study at a glance -->
-      <section class="section-block" aria-labelledby="glance-title">
+      <section class="section-block" aria-labelledby="at-a-glance">
         <span class="category-tag category-tag--record">Project record</span>
         <div class="section-intro">
           <p class="eyebrow">Study overview</p>
-          <h2 id="glance-title">Study at a glance</h2>
+          <h2 id="at-a-glance">Study at a glance</h2>
         </div>
         <dl class="study-meta">
           <div><dt>Phase</dt><dd>Feasibility &amp; Alternatives Study</dd></div>
@@ -52,158 +344,129 @@
         </dl>
       </section>
 
-      <!-- B. What the study is evaluating -->
-      <section class="section-block" aria-labelledby="scope-title">
-        <span class="category-tag category-tag--record">Project record</span>
-        <div class="section-intro">
-          <p class="eyebrow">Programmed study scope</p>
-          <h2 id="scope-title">What the study is evaluating</h2>
-        </div>
-        <div class="scope-tile-grid">
-          <div class="scope-tile"><span class="scope-tile__icon" aria-hidden="true">1</span><span class="scope-tile__label">Protected bikeways / bicycle-facility upgrades</span></div>
-          <div class="scope-tile"><span class="scope-tile__icon" aria-hidden="true">2</span><span class="scope-tile__label">Safer crossings &amp; intersections</span></div>
-          <div class="scope-tile"><span class="scope-tile__icon" aria-hidden="true">3</span><span class="scope-tile__label">Green street elements</span></div>
-          <div class="scope-tile"><span class="scope-tile__icon" aria-hidden="true">4</span><span class="scope-tile__label">Speed management</span></div>
-          <div class="scope-tile"><span class="scope-tile__icon" aria-hidden="true">5</span><span class="scope-tile__label">Pedestrian improvements</span></div>
-          <div class="scope-tile"><span class="scope-tile__icon" aria-hidden="true">6</span><span class="scope-tile__label">Driveway / access management</span></div>
-        </div>
-      </section>
-
-      <!-- C. Where we are in the study process -->
-      <section class="section-block" aria-labelledby="process-title">
-        <span class="category-tag category-tag--record">Project record</span>
-        <div class="section-intro">
-          <p class="eyebrow">Delivery sequence</p>
-          <h2 id="process-title">Where we are in the study process</h2>
-        </div>
-        <div class="process-stepper">
-          <div class="process-step process-step--done"><span class="process-step__label">Grant + Scope</span></div>
-          <div class="process-step process-step--done"><span class="process-step__label">Existing Conditions</span></div>
-          <div class="process-step process-step--done"><span class="process-step__label">Alternatives Screening</span></div>
-          <div class="process-step process-step--current"><span class="process-step__label">Three Draft Alternatives</span></div>
-          <div class="process-step"><span class="process-step__label">Community Review</span></div>
-          <div class="process-step"><span class="process-step__label">Preferred Alternative</span></div>
-          <div class="process-step"><span class="process-step__label">Preliminary Design</span></div>
-        </div>
-      </section>
-
-      <!-- D. Current alternatives -->
-      <section class="section-block" aria-labelledby="alternatives-title">
-        <span class="category-tag category-tag--record">Project record</span>
-        <div class="section-intro">
-          <p class="eyebrow">Design alternatives</p>
-          <h2 id="alternatives-title">Current alternatives</h2>
-          <p>All three current alternatives retain the existing four travel lanes &mdash; see <a href="screening/">Alternatives Screening</a> for how that came about. Alternative-by-alternative design details below are not yet documented from a verified source.</p>
-        </div>
-        <div class="alt-grid">
-          <div class="alt-card">
-            <div class="alt-card__image">Cross-section / schematic not yet available</div>
-            <div class="alt-card__body">
-              <p class="alt-card__title">Alternative A</p>
-              <dl class="alt-card__fields">
-                <div><dt>Bicycle facility</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Crossings</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Trees / GSI</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Parking</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Distinguishing feature</dt><dd class="is-pending">Not yet documented</dd></div>
-              </dl>
-            </div>
-          </div>
-          <div class="alt-card">
-            <div class="alt-card__image">Cross-section / schematic not yet available</div>
-            <div class="alt-card__body">
-              <p class="alt-card__title">Alternative B</p>
-              <dl class="alt-card__fields">
-                <div><dt>Bicycle facility</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Crossings</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Trees / GSI</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Parking</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Distinguishing feature</dt><dd class="is-pending">Not yet documented</dd></div>
-              </dl>
-            </div>
-          </div>
-          <div class="alt-card">
-            <div class="alt-card__image">Cross-section / schematic not yet available</div>
-            <div class="alt-card__body">
-              <p class="alt-card__title">Alternative C</p>
-              <dl class="alt-card__fields">
-                <div><dt>Bicycle facility</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Crossings</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Trees / GSI</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Parking</dt><dd class="is-pending">Not yet documented</dd></div>
-                <div><dt>Distinguishing feature</dt><dd class="is-pending">Not yet documented</dd></div>
-              </dl>
-            </div>
-          </div>
-        </div>
-        <a class="alt-compare-link" href="screening/#alternatives-outcome">Compare all alternatives &rarr;</a>
-      </section>
-
-      <!-- E. What happened before the three alternatives? -->
-      <section class="section-block" aria-labelledby="before-title">
-        <span class="category-tag category-tag--record">Project record</span>
-        <div class="section-intro">
-          <p class="eyebrow">How we got here</p>
-          <h2 id="before-title">What happened before the three alternatives?</h2>
-        </div>
-
-        <div class="flow-diagram flow-diagram--compact">
-          <div class="flow-step">
-            <span class="flow-step__label">Original study framework</span>
-            <p class="flow-step__title">The approved grant/SOW contemplated:</p>
-            <p class="flow-step__detail">Road diets &middot; lane narrowing &middot; repurposing travel lanes &middot; Class IV protected bikeways &middot; protected intersections &middot; pedestrian improvements &middot; speed management &middot; green stormwater infrastructure &middot; street trees</p>
-          </div>
-          <div class="flow-arrow" aria-hidden="true">&darr;</div>
-          <div class="flow-step">
-            <span class="flow-step__label">Road diet analyzed</span>
-            <p class="flow-step__detail">Old Middlefield Way: LOS D &rarr; LOS F<br />Montecito Avenue: LOS C &rarr; LOS E<br />Vehicle travel times increased</p>
-          </div>
-          <div class="flow-arrow" aria-hidden="true">&darr;</div>
-          <div class="flow-step">
-            <span class="flow-step__label">Community feedback cited</span>
-            <p class="flow-step__detail">64% of Round 1 respondents identified traffic congestion as a major safety challenge/problem</p>
-          </div>
-          <div class="flow-arrow" aria-hidden="true">&darr;</div>
-          <div class="flow-step">
-            <span class="flow-step__label">Result</span>
-            <p class="flow-step__detail">Road-diet concept was not advanced<br />All three current alternatives retain the existing number of travel lanes</p>
-            <p class="flow-step__title">&ldquo;to preserve vehicle capacity and corridor throughput.&rdquo;</p>
-          </div>
-        </div>
-
-        <p class="study-note">The available staff report describes the traffic findings and resulting alternatives, but several underlying alternatives-screening records have not yet been reviewed.</p>
-        <a class="alt-compare-link" href="screening/">Explore the alternatives-screening record &rarr;</a>
-      </section>
-
-      <!-- F. Research / evidence links -->
-      <section class="section-block" aria-labelledby="evidence-links-title">
-        <div class="section-intro">
-          <p class="eyebrow">Go deeper</p>
-          <h2 id="evidence-links-title">Research &amp; evidence links</h2>
-        </div>
-        <div class="evidence-nav-grid">
-          <a class="evidence-nav-card" href="screening/">
-            <span class="evidence-nav-card__title">Alternatives Screening <span aria-hidden="true">&rarr;</span></span>
-            <span class="evidence-nav-card__desc">How the original concepts were screened, and what happened to the road-diet concept.</span>
-          </a>
-          <a class="evidence-nav-card" href="analysis/">
-            <span class="evidence-nav-card__title">Analysis <span aria-hidden="true">&rarr;</span></span>
-            <span class="evidence-nav-card__desc">Technical feasibility, operational tradeoffs, and policy questions.</span>
-          </a>
-          <a class="evidence-nav-card" href="screening/#documents">
-            <span class="evidence-nav-card__title">Documents &amp; Sources <span aria-hidden="true">&rarr;</span></span>
-            <span class="evidence-nav-card__desc">Original grant, Scope of Work, staff reports, and technical records.</span>
-          </a>
-          <a class="evidence-nav-card" href="screening/#community">
-            <span class="evidence-nav-card__title">Community Input <span aria-hidden="true">&rarr;</span></span>
-            <span class="evidence-nav-card__desc">Letters, comments, and testimony submitted about the study.</span>
-          </a>
-        </div>
-      </section>
-
       <p class="study-back-link"><a href="../">&larr; Back to Rengstorff Avenue Green Complete Street</a></p>
 
     </div>
   </main>
+  <script>
+    // On this page: everything here is progressive enhancement over
+    // plain working anchor links -- scroll-margin-top in the CSS already
+    // makes native href="#id" jumps land below the sticky nav with no
+    // JS at all, and .onpage-nav__list ships visible in the HTML (no
+    // "hidden" attribute), so a no-JS mobile reader gets a plain,
+    // functional vertical list of links rather than a menu a dead
+    // trigger button can never open.
+    (function () {
+      const nav = document.querySelector('.onpage-nav');
+      if (!nav) { return; }
+
+      const trigger = nav.querySelector('.onpage-nav__trigger');
+      const list = nav.querySelector('.onpage-nav__list');
+      const links = Array.prototype.slice.call(nav.querySelectorAll('.onpage-nav__link'));
+      const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      // Only collapse the list once JS confirms it can actually drive
+      // the trigger -- starting it hidden in the HTML itself would trap
+      // no-JS mobile readers behind a button that does nothing.
+      if (trigger && list) {
+        list.hidden = true;
+
+        trigger.addEventListener('click', function () {
+          const open = trigger.getAttribute('aria-expanded') === 'true';
+          trigger.setAttribute('aria-expanded', String(!open));
+          list.hidden = open;
+        });
+
+        // CSS already forces the list visible on wide screens regardless
+        // of [hidden], but if the menu was left open on a narrow screen
+        // and the viewport is then resized past the collapse breakpoint,
+        // reset the trigger's own state so it doesn't reopen already
+        // "expanded" if the reader resizes back down again later.
+        const mobileQuery = window.matchMedia('(max-width: 1024px)');
+        const resetIfDesktop = function () {
+          if (!mobileQuery.matches) {
+            trigger.setAttribute('aria-expanded', 'false');
+            list.hidden = true;
+          }
+        };
+        if (mobileQuery.addEventListener) {
+          mobileQuery.addEventListener('change', resetIfDesktop);
+        }
+      }
+
+      // Offset-aware smooth scroll + focus management. scroll-margin-top
+      // in the CSS handles the landing position even if this handler
+      // never runs; this only adds smooth motion (skipped under
+      // prefers-reduced-motion), closes the mobile menu, and moves
+      // keyboard/screen-reader focus to the section heading.
+      links.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          const id = link.getAttribute('href').slice(1);
+          const target = document.getElementById(id);
+          if (!target) { return; }
+
+          event.preventDefault();
+
+          const navHeight = nav.getBoundingClientRect().height;
+          const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+          const scrollTarget = Math.max(0, targetTop - navHeight - 16);
+
+          window.scrollTo({
+            top: scrollTarget,
+            behavior: reduceMotionQuery.matches ? 'auto' : 'smooth'
+          });
+
+          if (trigger && list && !list.hidden) {
+            trigger.setAttribute('aria-expanded', 'false');
+            list.hidden = true;
+          }
+
+          target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+          if (window.history && window.history.pushState) {
+            window.history.pushState(null, '', '#' + id);
+          }
+        });
+      });
+
+      // Active-section tracking via IntersectionObserver, not a scroll
+      // listener -- this only recomputes when a tracked heading actually
+      // crosses the observed band near the top of the viewport, not on
+      // every scroll pixel.
+      const targets = links
+        .map(function (link) {
+          const id = link.getAttribute('href').slice(1);
+          const section = document.getElementById(id);
+          return section ? { link: link, section: section } : null;
+        })
+        .filter(Boolean);
+
+      if (targets.length && 'IntersectionObserver' in window) {
+        const setActive = function (activeSection) {
+          targets.forEach(function (entry) {
+            entry.link.classList.toggle('is-active', entry.section === activeSection);
+          });
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+          const visible = entries.filter(function (entry) { return entry.isIntersecting; });
+          if (!visible.length) { return; }
+
+          // Several of this page's sections are long enough that more
+          // than one heading can be intersecting the observed band at
+          // once; the one closest to the top of that band is the
+          // reader's current section.
+          visible.sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+          const match = targets.filter(function (entry) { return entry.section === visible[0].target; })[0];
+          if (match) { setActive(match.section); }
+        }, {
+          rootMargin: '-90px 0px -70% 0px',
+          threshold: 0
+        });
+
+        targets.forEach(function (entry) { observer.observe(entry.section); });
+      }
+    })();
+  </script>
 </body>
 </html>

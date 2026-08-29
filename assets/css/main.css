@@ -10178,11 +10178,11 @@ b,
    smooth-scroll enhancement, which targets the same offset. ~72px
    comfortably clears the nav's own rendered height (~47-52px depending
    on breakpoint) with a little breathing room to spare. */
-.rengstorff-microsite #glance-title,
-.rengstorff-microsite #scope-title,
-.rengstorff-microsite #phases-title,
-.rengstorff-microsite #timeline-title,
-.rengstorff-microsite #grant-title {
+.rengstorff-microsite #at-a-glance,
+.rengstorff-microsite #project-scope,
+.rengstorff-microsite #project-phases,
+.rengstorff-microsite #history,
+.rengstorff-microsite #funding {
 	scroll-margin-top: 4.5rem;
 }
 
@@ -12145,6 +12145,373 @@ b,
 	color: #5a6c60;
 }
 
+/* Editorial-brief top block on the Feasibility & Alternatives Study
+   page only -- scoped to .study-top rather than editing
+   .study-breadcrumb's base rules above, since that shared component is
+   also used by the Screening, Analysis, and History+Documents pages,
+   which keep the smaller/subtler breadcrumb. */
+.rengstorff-microsite .study-top .study-breadcrumb {
+	margin-bottom: 1.5rem;
+}
+
+.rengstorff-microsite .study-top .study-breadcrumb ol {
+	color: #304238;
+	font-size: 1rem;
+}
+
+.rengstorff-microsite .study-top .study-breadcrumb li:not(:last-child)::after {
+	color: #5a6c60;
+	content: '>';
+	font-weight: 700;
+}
+
+.rengstorff-microsite .study-top .study-breadcrumb a {
+	color: #16704d;
+	font-weight: 600;
+}
+
+.rengstorff-microsite .study-top .study-breadcrumb a:hover,
+.rengstorff-microsite .study-top .study-breadcrumb a:focus-visible {
+	color: #0b5c3a;
+	text-decoration: underline;
+}
+
+.rengstorff-microsite .study-top .study-breadcrumb [aria-current="page"] {
+	color: #304238;
+	font-weight: 600;
+}
+
+/* Breadcrumb's own tiny shell: same left/right gutter as the main
+   .rengstorff-shell, but a small top padding and none at the bottom,
+   so the breadcrumb sits close to both the viewport top and the hero
+   directly below it (the hero supplies its own generous padding). */
+.rengstorff-microsite .rengstorff-shell--breadcrumb {
+	padding-bottom: 0;
+	padding-top: 1.5rem;
+}
+
+/* Hero callout ("Nothing here is a final design..."): same
+   border-left/padding/paragraph treatment as the existing
+   .hero-summary callout used on the parent Overview page, but
+   confined to the copy column (no grid-column: 1/-1 span), since this
+   page's callout sits only beside the title/subtitle, not stretched
+   under the photo too. */
+.rengstorff-microsite .rengstorff-hero__callout {
+	border-left: 3px solid #79b781;
+	margin-top: 1.5rem;
+	max-width: 34rem;
+	padding-left: 1.1rem;
+}
+
+.rengstorff-microsite .rengstorff-hero__callout p {
+	color: #e5efe5 !important;
+	font-size: 0.96rem;
+	line-height: 1.6;
+	margin: 0;
+}
+
+.rengstorff-microsite .rengstorff-hero__callout strong {
+	/* !important needed to beat the sitewide "FIX: WHITE BOLD TEXT"
+	   strong/b rule (also !important), which assumes a light
+	   background -- this callout sits on the dark hero instead. */
+	color: #d8ead9 !important;
+}
+
+/* Lands each of this page's on-page-nav targets below the sticky nav
+   instead of tucked underneath it, same treatment as #at-a-glance /
+   #project-scope / etc. on the parent Overview page above. */
+.rengstorff-microsite #overview,
+.rengstorff-microsite #design-concepts,
+.rengstorff-microsite #real-choice,
+.rengstorff-microsite #at-a-glance,
+.rengstorff-microsite #process-title {
+	scroll-margin-top: 4.5rem;
+}
+
+/* OVERVIEW section: main narrative (left) + heat/shade sidebar
+   (right), stacking to one column <=900px like every other two-column
+   layout on this page. */
+.rengstorff-microsite .overview-layout {
+	display: grid;
+	gap: 3rem;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+.rengstorff-microsite .overview-subhead {
+	align-items: center;
+	color: #193c2b;
+	display: flex;
+	font-size: 1.2rem;
+	gap: 0.65rem;
+	margin: 2rem 0 0.75rem;
+}
+
+.rengstorff-microsite .overview-subhead__icon {
+	color: #16704d;
+	font-size: 1.05rem;
+}
+
+.rengstorff-microsite .overview-cards {
+	display: grid;
+	gap: 1.25rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin: 1.5rem 0;
+}
+
+.rengstorff-microsite .overview-card {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	padding: 1.25rem 1.4rem;
+}
+
+.rengstorff-microsite .overview-card__icon {
+	background: #e4eee4;
+	border-radius: 50%;
+	color: #16704d;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.1rem;
+	height: 2.5rem;
+	margin-bottom: 0.85rem;
+	width: 2.5rem;
+}
+
+.rengstorff-microsite .overview-card__title {
+	color: #193c2b !important;
+	font-size: 1.02rem;
+	font-weight: 700;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .overview-card__question {
+	color: #16704d !important;
+	font-size: 0.94rem;
+	font-weight: 600;
+	line-height: 1.4;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .overview-card__body {
+	color: #5a6c60 !important;
+	font-size: 0.9rem;
+	line-height: 1.55;
+	margin: 0;
+}
+
+.rengstorff-microsite .overview-sidebar__label {
+	color: #4e745c !important;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.07em;
+	margin: 0 0 0.6rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .overview-sidebar__intro {
+	color: #304238 !important;
+	font-size: 1rem;
+	line-height: 1.55;
+	margin: 0 0 1.25rem;
+}
+
+.rengstorff-microsite .overview-sidebar__figure {
+	margin: 0 0 1.5rem;
+}
+
+.rengstorff-microsite .overview-sidebar__figure img {
+	border-radius: 8px;
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+.rengstorff-microsite .overview-sidebar__figure figcaption {
+	color: #5a6c60 !important;
+	font-size: 0.82rem;
+	line-height: 1.45;
+	margin-top: 0.5rem;
+}
+
+.rengstorff-microsite .overview-callout {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	padding: 1.25rem 1.4rem;
+}
+
+.rengstorff-microsite .overview-callout p {
+	color: #304238 !important;
+	font-size: 0.9rem;
+	line-height: 1.55;
+	margin: 0 0 0.75rem;
+}
+
+.rengstorff-microsite .overview-callout p:last-of-type {
+	margin-bottom: 0.9rem;
+}
+
+.rengstorff-microsite .overview-callout__label {
+	color: #193c2b !important;
+	font-size: 0.98rem;
+	font-weight: 700;
+	margin: 0 0 0.6rem;
+}
+
+.rengstorff-microsite .overview-callout__label .fas {
+	color: #d9a441;
+	margin-right: 0.3rem;
+}
+
+.rengstorff-microsite .overview-callout__link {
+	font-size: 0.9rem;
+	font-weight: 600;
+}
+
+@media screen and (max-width: 900px) {
+	.rengstorff-microsite .overview-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.rengstorff-microsite .overview-cards {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* THE OPPORTUNITY section: narrative (left) + the Vancouver precedent
+   photo (right) -- the primary real-world precedent on the page, so
+   it's given more width/prominence than the smaller Santa Cruz detail
+   photo further down. Neither photo is forced to a matching aspect
+   ratio; each keeps its own natural proportions. */
+.rengstorff-microsite .opportunity-layout {
+	align-items: start;
+	display: grid;
+	gap: 3rem;
+	grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+	margin-bottom: 2.5rem;
+}
+
+.rengstorff-microsite .opportunity-lead {
+	color: #193c2b !important;
+	font-size: 1.15rem;
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+.rengstorff-microsite .opportunity-precedent {
+	margin: 0;
+}
+
+.rengstorff-microsite .opportunity-precedent__label {
+	color: #4e745c !important;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.07em;
+	margin: 0 0 0.6rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .opportunity-precedent img {
+	border-radius: 8px;
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+.rengstorff-microsite .opportunity-precedent figcaption {
+	color: #5a6c60 !important;
+	font-size: 0.85rem;
+	line-height: 1.5;
+	margin-top: 0.65rem;
+}
+
+/* "Imagine a Rengstorff with..." panel: five plain icon items (no
+   card borders, no pills) beside the smaller Santa Cruz detail photo
+   -- the human-scale counterpart to the larger Vancouver corridor
+   photo above. */
+.rengstorff-microsite .imagine-panel {
+	align-items: center;
+	background: #f4f8f4;
+	border-radius: 8px;
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+	padding: 2rem 2.25rem;
+}
+
+.rengstorff-microsite .imagine-panel__heading {
+	color: #193c2b;
+	font-size: 1.3rem;
+	margin: 0 0 1.5rem;
+	text-align: center;
+}
+
+.rengstorff-microsite .imagine-panel__grid {
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.rengstorff-microsite .imagine-item {
+	text-align: center;
+}
+
+.rengstorff-microsite .imagine-item__icon {
+	color: #16704d;
+	display: block;
+	font-size: 1.4rem;
+	margin-bottom: 0.6rem;
+}
+
+.rengstorff-microsite .imagine-item__title {
+	color: #193c2b !important;
+	font-size: 0.82rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	margin: 0 0 0.35rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .imagine-item__body {
+	color: #5a6c60 !important;
+	font-size: 0.82rem;
+	line-height: 1.4;
+	margin: 0;
+}
+
+.rengstorff-microsite .opportunity-detail {
+	margin: 0;
+}
+
+.rengstorff-microsite .opportunity-detail img {
+	border-radius: 8px;
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+.rengstorff-microsite .opportunity-detail figcaption {
+	color: #5a6c60 !important;
+	font-size: 0.82rem;
+	line-height: 1.45;
+	margin-top: 0.6rem;
+}
+
+@media screen and (max-width: 900px) {
+	.rengstorff-microsite .opportunity-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.rengstorff-microsite .imagine-panel {
+		grid-template-columns: 1fr;
+	}
+
+	.rengstorff-microsite .imagine-panel__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
 /* Sits directly under the page header: states plainly that this page is
    one phase of the larger Council-programmed project (not the project
    itself), with an obvious link back to it -- the two things instruction
@@ -13170,6 +13537,400 @@ b,
 
 @media screen and (max-width: 900px) {
 	.rengstorff-microsite .alt-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* "What's the real choice?" -- a concise editorial interpretation
+   between the image and the detailed comparison, not a callout box or
+   second hero. The heading area now reuses the exact same
+   .category-tag + .section-intro > h2 pattern as "Study at a glance"
+   below (font size/weight, eyebrow style/spacing, left alignment, and
+   spacing above/below all come from those shared rules, not a custom
+   .alt-choice__heading class), so the two sections share one section
+   rhythm. Only the body paragraph keeps its own comfortable reading
+   max-width -- the heading/pill above it span the full section width
+   like every other section's heading does. */
+.rengstorff-microsite .alt-choice {
+	margin: 0;
+}
+
+.rengstorff-microsite .alt-choice__body {
+	color: #304238 !important;
+	font-size: 1.05rem;
+	line-height: 1.6;
+	margin: 0;
+	max-width: 46rem;
+}
+
+.rengstorff-microsite .alt-choice__emphasis--b {
+	color: #2b4587;
+}
+
+.rengstorff-microsite .alt-choice__emphasis--c {
+	color: #0b5c3a;
+}
+
+/* Accuracy disclaimer: "base safety improvements" is this page's own
+   framing, not official City language -- kept close to the image since
+   that's the first place a reader encounters the framing now. */
+.rengstorff-microsite .alt-framing-disclaimer {
+	color: #8a978c !important;
+	font-size: 0.8rem;
+	font-style: italic;
+	margin: 0.75rem 0 0;
+}
+
+/* Base-improvements fact list (D2) -- reuses .alt-card__fields' dt/dd
+   recipe from the old A/B/C cards without the surrounding .alt-card
+   box, since this is plain scannable text, not a card. */
+.rengstorff-microsite .alt-base-facts {
+	margin-top: 1rem;
+}
+
+/* Visually prominent transition line closing D2 -- same green-accent
+   callout language as .evidence-panel .evidence-callout elsewhere on
+   the site (light green fill, bold), scoped here since this is outside
+   the evidence panel. !important beats .section-block p:not(.eyebrow)
+   the same way .timeline-agenda and .scope-decision-dates already do. */
+.rengstorff-microsite .alt-transition {
+	background: #e4eee4;
+	border-left: 4px solid #16704d;
+	border-radius: 4px;
+	color: #193c2b !important;
+	font-size: 0.98rem;
+	font-weight: 700;
+	line-height: 1.5;
+	margin: 1.5rem 0 0;
+	padding: 0.9rem 1.2rem;
+}
+
+/* D0. The saved B/C comparison graphic -- full content width, same as
+   the intro card, "What's the real choice?", and the comparison table,
+   so all their edges align. No max-width here at all (previously 78%)
+   -- the shared .rengstorff-shell container is what actually sets the
+   content width for every section on this page, so the image just
+   needs to not fight it. height:auto on the img (below) preserves the
+   aspect ratio at any width. */
+.rengstorff-microsite .alt-decision-figure {
+	margin: 1.75rem 0 0;
+}
+
+.rengstorff-microsite .alt-decision-figure img {
+	border-radius: 8px;
+	display: block;
+	height: auto;
+	max-width: 100%;
+	width: 100%;
+}
+
+/* Production B/C comparison: ONE shared grid, not two independent
+   columns. grid-auto-flow:column places B's 5 cells (in DOM order)
+   down column 1 and C's 5 cells down column 2, so row N is the same
+   grid row for both sides and therefore always the same height --
+   CSS Grid pads the shorter cell automatically, so the next row
+   starts at an identical Y for B and C with no manual sizing.
+   Row-gap AND column-gap are both real gaps now (not just row-gap),
+   so a visible white rule runs down the B/C center split too, not
+   just between rows; padding on the grid itself (rather than a
+   separate wrapper element) gives the same white treatment as a
+   thick outer border/frame around the whole thing, all from the
+   grid's own white background showing through. Full page-section
+   width (no max-width) so this aligns with "Study at a glance" and
+   the other full-width sections below, rather than the image's own
+   78%-width treatment above it. */
+.rengstorff-microsite .alt-split-compare {
+	background: #ffffff;
+	border-radius: 10px;
+	column-gap: 8px;
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-columns: 1fr 1fr;
+	/* No min-height floor on the four supporting rows -- each is sized
+	   by its own (now compact) content, so "Midblock crossings" ends up
+	   only as much taller than the others as its one extra locations
+	   line actually needs, not padded out to match a large fixed floor. */
+	grid-template-rows: auto repeat(4, auto);
+	margin: 18px 0 0;
+	overflow: hidden;
+	padding: 10px;
+	row-gap: 6px;
+}
+
+.rengstorff-microsite .alt-split-compare__cell {
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0.9rem 1.25rem;
+	position: relative;
+	text-align: center;
+}
+
+.rengstorff-microsite .alt-split-compare__cell--b {
+	background: #eef1f8;
+}
+
+.rengstorff-microsite .alt-split-compare__cell--c {
+	background: #eef5f0;
+}
+
+/* Primary outcome gets more padding than the supporting rows so it
+   still reads as the dominant row, but compact -- the row's own
+   larger content (value + line2 + qualifier) does most of the work of
+   keeping it visually the largest, not the padding around it. */
+.rengstorff-microsite .alt-split-compare__cell--primary {
+	padding-bottom: 1rem;
+	padding-top: 1rem;
+}
+
+/* Row-category icons: a circular badge in a narrow gutter at the far
+   left of EACH cell in a supporting row -- one per column now (B gets
+   a blue-tinted badge, C its own green-tinted badge at the start of
+   its own half, right after the center divider), matching the
+   reference. The badge is positioned absolutely so it doesn't
+   participate in layout -- the cell's label/value stay centered
+   exactly as before, with the badge simply floating over the cell's
+   own left edge rather than pushing the text into a left-aligned
+   icon+text row. */
+.rengstorff-microsite .alt-split-compare__cell--icon {
+	padding-left: 2.75rem;
+}
+
+.rengstorff-microsite .alt-split-compare__icon-badge {
+	align-items: center;
+	border-radius: 50%;
+	display: flex;
+	height: 2.25rem;
+	justify-content: center;
+	left: 0.65rem;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 2.25rem;
+}
+
+.rengstorff-microsite .alt-split-compare__icon-badge--b {
+	background: #e0e6f5;
+	color: #3d5a99;
+}
+
+.rengstorff-microsite .alt-split-compare__icon-badge--c {
+	background: #dcece0;
+	color: #2f6b45;
+}
+
+.rengstorff-microsite .alt-split-compare__icon-badge .fas {
+	font-size: 1.1rem;
+}
+
+.rengstorff-microsite .alt-split-compare__icon-badge--text {
+	font-size: 1.15rem;
+	font-weight: 800;
+}
+
+.rengstorff-microsite .alt-split-compare__icon-svg {
+	height: 1.3rem;
+	width: 1.3rem;
+}
+
+/* Column heading -- kept slightly larger than the (now-smaller)
+   primary value below it, but no longer oversized relative to it. */
+.rengstorff-microsite .alt-split-compare__heading {
+	font-size: clamp(1.35rem, 1.8vw, 1.5rem);
+	font-weight: 800;
+	line-height: 1.15;
+	margin: 0 0 0.6rem;
+}
+
+.rengstorff-microsite .alt-split-compare__cell--b .alt-split-compare__heading {
+	color: #2b4587 !important;
+}
+
+.rengstorff-microsite .alt-split-compare__cell--c .alt-split-compare__heading {
+	color: #0b5c3a !important;
+}
+
+/* Tier 1 -- primary outcome: the dominant element in the column.
+   Explicit tight line-heights throughout this component (most of
+   these had none, so they were inheriting the sitewide body
+   line-height of 1.65 -- generous for paragraphs, excessive for a
+   short heading/value/label at this scale) do a lot of the row-height
+   reduction here without touching any font-size. */
+.rengstorff-microsite .alt-split-compare__primary-value {
+	color: #193c2b !important;
+	font-size: clamp(1.375rem, 1.7vw, 1.5rem);
+	font-weight: 800;
+	line-height: 1.15;
+	margin: 0;
+}
+
+.rengstorff-microsite .alt-split-compare__primary-value-line2 {
+	color: #304238;
+	display: block;
+	font-size: clamp(1rem, 1.3vw, 1.125rem);
+	font-weight: 700;
+	line-height: 1.15;
+	margin-top: 0.2rem;
+}
+
+.rengstorff-microsite .alt-split-compare__qualifier {
+	color: #5a6c60 !important;
+	font-size: 0.72rem;
+	line-height: 1.3;
+	margin: 0.4rem 0 0;
+}
+
+/* C's primary-outcome supporting line only -- a separate class from
+   .alt-split-compare__qualifier (B's "Partial corridor coverage") so
+   italicizing this one doesn't affect B. Same top margin as the
+   qualifier now (both are compact) -- kept as its own class only for
+   the italics, not for extra spacing. */
+.rengstorff-microsite .alt-split-compare__support {
+	color: #5a6c60 !important;
+	font-size: 0.72rem;
+	font-style: italic;
+	line-height: 1.3;
+	margin: 0.4rem 0 0;
+}
+
+.rengstorff-microsite .alt-split-compare__label {
+	color: #5a6c60 !important;
+	font-size: 0.72rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	line-height: 1.2;
+	margin: 0 0 0.25rem;
+}
+
+/* Tier 2/3 supporting-row values: one shared size across Sidewalks,
+   Vehicle travel lanes, Parking removed, and Midblock crossings, so
+   they all read as the same information level -- roughly half the
+   primary value's visual size, well below it but still comfortably
+   readable. */
+.rengstorff-microsite .alt-split-compare__value--secondary {
+	color: #193c2b !important;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1.2;
+	margin: 0;
+}
+
+.rengstorff-microsite .alt-split-compare__lanes {
+	color: #193c2b !important;
+	font-size: 1rem;
+	line-height: 1.2;
+	margin: 0;
+}
+
+.rengstorff-microsite .alt-split-compare__lanes-note {
+	color: #8a978c !important;
+	font-size: 0.68rem;
+	line-height: 1.2;
+	margin: 0.15rem 0 0;
+}
+
+.rengstorff-microsite .alt-split-compare__value--tertiary {
+	color: #193c2b !important;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.2;
+	margin: 0;
+}
+
+/* Parking-removed figures only -- deliberately muted/regular weight
+   (not bold, not the dark ink color the other values use) so parking
+   impact reads as visually subordinate to the actual design changes
+   above it, per the reference. */
+.rengstorff-microsite .alt-split-compare__value--parking {
+	color: #8a978c !important;
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.2;
+	margin: 0;
+}
+
+@media screen and (max-width: 700px) {
+	.rengstorff-microsite .alt-split-compare {
+		grid-auto-flow: row;
+		grid-template-columns: 1fr;
+		grid-template-rows: none;
+	}
+
+	.rengstorff-microsite .alt-split-compare__cell {
+		padding: 1rem 1.5rem;
+	}
+
+	.rengstorff-microsite .alt-split-compare__cell--icon {
+		padding-left: 2.75rem;
+	}
+}
+
+/* Vehicle-travel-lanes row: lane-width numbers stay muted so the
+   divider glyphs (bold, dark) are what the eye catches first -- that's
+   what actually shows the four-lane structure. Only the narrower 10.5'
+   inner lanes (present in C, not B) get the C-green accent, at regular
+   weight -- color marks "which alternative narrows the inner lanes,"
+   not emphasis/importance, so it deliberately isn't bold. */
+.rengstorff-microsite .lane-width {
+	color: #8a978c;
+	font-weight: 400;
+}
+
+.rengstorff-microsite .lane-width--narrow {
+	background: #d7ecdc;
+	border-radius: 4px;
+	color: #0b5c3a;
+	padding: 0.05em 0.3em;
+}
+
+.rengstorff-microsite .lane-divider {
+	color: #304238;
+	font-weight: 700;
+	padding: 0 0.15rem;
+}
+
+.rengstorff-microsite .lane-divider--center {
+	padding: 0 0.3rem;
+}
+
+/* D5. Cross-section placeholders -- intentionally neutral, not the
+   sand/amber .flow-step--gap "missing evidence" treatment, since this
+   isn't a documentation gap: the diagrams are deferred future design
+   work, not evidence that should already exist. */
+.rengstorff-microsite .alt-framing-question {
+	color: #193c2b !important;
+	font-size: 0.98rem;
+	font-style: italic;
+	font-weight: 700;
+	margin: 0.9rem 0 0;
+}
+
+.rengstorff-microsite .alt-cross-section-grid {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin: 0.9rem 0 1.75rem;
+}
+
+.rengstorff-microsite .alt-cross-section-placeholder {
+	align-items: center;
+	background: #eef2ee;
+	border: 1px dashed #c5d6c6;
+	border-radius: 6px;
+	color: #8a978c;
+	display: flex;
+	font-size: 0.82rem;
+	font-weight: 700;
+	height: 6rem;
+	justify-content: center;
+	letter-spacing: 0.04em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+@media screen and (max-width: 700px) {
+	.rengstorff-microsite .alt-cross-section-grid {
 		grid-template-columns: 1fr;
 	}
 }
