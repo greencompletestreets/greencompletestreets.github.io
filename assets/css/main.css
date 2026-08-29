@@ -10524,6 +10524,21 @@ b,
 	display: block;
 }
 
+/* Council decision dates, sitting between the "What Council programmed"
+   heading and the existing intro sentence -- a small, secondary
+   eyebrow-style line (same recipe as .evidence-panel p.timeline-agenda's
+   green/bold/compact date-label treatment elsewhere on this page), kept
+   visually subordinate to the h2 above it but still clearly readable.
+   !important is needed to beat .section-block p:not(.eyebrow) (this is a
+   plain <p>, not .eyebrow -- which is itself display:none in this
+   section already), the same reason .timeline-agenda needs it. */
+.rengstorff-microsite .scope-section p.scope-decision-dates {
+	color: #4e9a73 !important;
+	font-size: 0.84rem;
+	font-weight: 700;
+	margin: 0 0 0.6rem;
+}
+
 /* Illustrative video example, in its own block below all seven
    programmed elements -- explanatory material, not adopted/programmed
    scope and not Rengstorff evidence, so it's deliberately narrower than

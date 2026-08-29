@@ -235,9 +235,10 @@
 
   // Derives a compact "Mon. D" label from the existing `date` field
   // (e.g. "APR. 3, 2023" -> "Apr. 3") instead of adding a separate
-  // short-date field to the shared data. Year-only CIP entries and the
-  // "FUTURE" placeholder entries fall back to short, non-redundant labels
-  // since their year is already shown by the enclosing group heading.
+  // short-date field to the shared data. A year-only date (e.g. "2025")
+  // and the "FUTURE" placeholder both leave the left-side date column
+  // blank rather than showing a label -- their year is already shown by
+  // the enclosing group heading, and no other short label applies.
   function shortDate(event) {
     var raw = event.date || '';
     var m = raw.match(/^([A-Z]{3})\.\s(\d+),\s\d{4}$/);
@@ -246,7 +247,7 @@
       return month + '. ' + m[2];
     }
     if (raw === 'FUTURE') { return ''; }
-    if (/^\d{4}$/.test(raw)) { return 'CIP'; }
+    if (/^\d{4}$/.test(raw)) { return ''; }
     return raw;
   }
 
@@ -275,7 +276,11 @@
   // never a fabricated href.
   function buildSources(event) {
     var wrap = el('p', 'tlv2-event__sources');
-    var sources = (event.officialSources || []).filter(function (s) { return !s.pending; });
+    // v2Sources is a small, explicit V2-only override (same pattern as
+    // v2Meta) for an event whose own top-level officialSources is left
+    // unset on purpose, because V1 would otherwise render that same
+    // link a second time via a subMilestone that already shows it.
+    var sources = (event.v2Sources || event.officialSources || []).filter(function (s) { return !s.pending; });
 
     if (!sources.length) {
       var pending = el('span', 'tlv2-event__source tlv2-event__source--pending');

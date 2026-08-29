@@ -28,7 +28,7 @@
       </figure>
       <div class="hero-summary">
         <p>Rengstorff Green Complete Streets entered Mountain View&#39;s five-year CIP through Council consensus in 2023. The adopted project combines protected bikeways and safety improvements with green stormwater infrastructure, street trees, and native pollinator landscaping.</p>
-        <p>A Caltrans SB-1 grant-funded study now evaluates the corridor, with preliminary design retained and increased to $2 million in the FY 2025-26 CIP.</p>
+        <p>A Caltrans SB 1 Sustainable Transportation Planning Grant (STPG)-funded study now evaluates the corridor, with preliminary design retained and increased to $2 million in the FY 2025-26 CIP.</p>
       </div>
     </section>
 
@@ -111,7 +111,7 @@
         </article>
       </div></section>
 
-      <section class="section-block scope-section" aria-labelledby="scope-title"><div class="section-intro"><p class="eyebrow">Adopted / programmed</p><h2 id="scope-title">What Council programmed</h2><p>The adopted Green Complete Street scope combines transportation safety and green infrastructure.</p></div><ul class="scope-grid">
+      <section class="section-block scope-section" aria-labelledby="scope-title"><div class="section-intro"><p class="eyebrow">Adopted / programmed</p><h2 id="scope-title">What Council programmed</h2><p class="scope-decision-dates">APR. 3, 2023 &middot; JUN. 27, 2023 &middot; JUN. 24, 2025</p><p>The adopted Green Complete Street scope combines transportation safety and green infrastructure.</p></div><ul class="scope-grid">
         <li><span class="scope-icon" aria-hidden="true">01</span><details class="scope-definition-toggle"><summary>Class IV protected bikeways</summary><p class="scope-definition">A bikeway that is physically separated from motor-vehicle traffic, rather than marked with paint alone. Separation can be provided by features such as curbs, posts, on-street parking, or a landscaped buffer.</p></details></li>
         <li><span class="scope-icon" aria-hidden="true">02</span><details class="scope-definition-toggle"><summary>Lane narrowing</summary><p class="scope-definition">Reducing the width of vehicle travel lanes, typically to help manage traffic speeds and free up street width for bikeways, wider sidewalks, or landscaping.</p></details></li>
         <li><span class="scope-icon" aria-hidden="true">03</span>Intersection improvements</li>
@@ -135,10 +135,10 @@
              RENGSTORFF_TIMELINE_VERSION constant, and the V2 script/stylesheet
              once the review is done and a version is chosen -- neither V1's
              markup below nor the shared `events` data is affected either way. -->
-        <div class="tlv2-toggle" role="group" aria-label="Timeline prototype view">
-          <span class="tlv2-toggle__label">Prototype review:</span>
-          <button type="button" class="tlv2-toggle__button" data-timeline-view="v2">Timeline (V2)</button>
-          <button type="button" class="tlv2-toggle__button" data-timeline-view="v1">Milestone cards (V1)</button>
+        <div class="tlv2-toggle" role="group" aria-label="Timeline view">
+          <span class="tlv2-toggle__label">View as:</span>
+          <button type="button" class="tlv2-toggle__button" data-timeline-view="v2">Timeline</button>
+          <button type="button" class="tlv2-toggle__button" data-timeline-view="v1">Milestone cards</button>
         </div>
         <div id="timeline-v1-wrap" hidden><div id="evidence-timeline" class="evidence-timeline" aria-label="Rengstorff Green Complete Streets evidence timeline"></div><div id="evidence-panel" class="evidence-panel" aria-live="polite"></div><noscript><p class="notice">Enable JavaScript to view the interactive evidence panel. The project record is also summarized below.</p></noscript></div>
         <div id="timeline-v2-wrap"><div id="timeline-v2" class="tlv2" aria-label="Rengstorff Green Complete Streets project history timeline"></div></div>
@@ -214,6 +214,11 @@
     const sourceArticle = 'https://www.mv-voice.com/transportation/2025/06/20/mountain-view-plans-for-major-road-upgrades-on-rengstorff-avenue';
     const scopeElements2023 = 'Class IV protected bikeways, lane narrowing, intersection improvements, crossing improvements, green stormwater infrastructure, street trees, and native pollinator landscaping';
     const scopeElements2025 = 'Class IV protected bikeways, lane narrowing, intersection improvements, crossing improvements, green stormwater infrastructure, street trees, and native pollinator landscaping';
+    // Shared so the Jun. 27, 2023 event's own top-level officialSources
+    // (read by the V2 timeline) and its Jun. 27 subMilestone (read by V1)
+    // cite the exact same verified URL from one place, instead of two
+    // independently maintained copies of the same string.
+    const cip2023AdoptedUrl = 'https://mountainview.legistar.com/LegislationDetail.aspx?GUID=44C19218-D2B1-45BC-BB7E-F470FB5C854E&ID=6269434';
 
     // Locally stored source screenshots, keyed by the id evidenceImage
     // specs reference. Declared here (rather than down in the modal
@@ -259,21 +264,21 @@
     // { label, pending: true }.
     const events = [
       {
-        date: '2021', eventType: 'CIP · PROPOSED PROJECT 29',
+        date: 'JUN. 22, 2021', eventType: 'CIP · PROPOSED PROJECT 29',
         shortTitle: 'Project first proposed', keyFact: 'Feasibility, design + construction',
         // V2-only fields (additive, read by the timeline-v2 prototype
         // renderer only -- see assets/js/rengstorff-timeline-v2.js). V1
         // above never reads these, so they're safe to add without
         // touching anything V1 depends on.
         yearGroup: '2021', marker: 'PROJECT PROPOSED', nodeStyle: 'outline',
-        v2Summary: 'Project first proposed in the CIP as Proposed Project 29.',
+        v2Summary: 'Project first appears in the adopted CIP as Unscheduled Proposed Project 29.',
         formalTitle: 'Rengstorff Streetscape and Bikeway Improvements, Feasibility Study, Design and Construction',
         identifier: 'Unscheduled Proposed Project 29', action: 'Adopted five-year CIP — Unscheduled Proposed Project',
-        description: 'The adopted five-year CIP included this project on the Unscheduled Proposed Projects list, proposing pedestrian and bicycle improvements between El Camino Real and Leghorn Street.',
+        description: 'Project first appears in the adopted CIP as Unscheduled Proposed Project 29.',
         elements: 'Class IV protected bikeways, buffered Class II bicycle lanes, protected intersections, intersection bulbouts, and high-visibility pedestrian crossings',
         origin: 'Vision Zero, AccessMV',
         callouts: [{ label: 'Why it matters', text: 'This establishes that Rengstorff had already been identified for substantial walking and bicycling improvements before the Green Complete Streets project was created. In 2023, Council elevated this existing unscheduled project into the five-year CIP and expanded/reframed it as Rengstorff Avenue Green Complete Street Improvements.' }],
-        officialSources: [{ label: '2021 CIP', pending: true }],
+        officialSources: [{ label: 'Adopted 2021 CIP', href: 'https://laserfiche.mountainview.gov/WebLink/DocView.aspx?id=292500&dbid=0&repo=CityDocuments' }],
         evidenceImage: { label: 'CIP entry image', pending: true }
       },
       {
@@ -286,7 +291,10 @@
         description: 'By consensus, Council directed staff to elevate Rengstorff Avenue Green Complete Streets Improvements from the CIP unscheduled list into the five-year planned CIP.',
         quote: '“Elevating Rengstorff Avenue green complete streets improvements from unscheduled list into the 5-year planned CIP.”',
         callouts: [{ label: 'Why it matters', text: 'This is the Council direction that started moving Rengstorff from an unscheduled CIP listing toward a funded, five-year-planned project — completed by the June 27, 2023 CIP adoption below.' }],
-        officialSources: [{ label: 'Council minutes', pending: true }]
+        officialSources: [
+          { label: 'Council meeting', href: 'https://mountainview.legistar.com/MeetingDetail.aspx?GUID=801F7303-2F50-49D6-B4F0-032B8F78BAD1&ID=1091219&Options=&Search=' },
+          { label: 'Council minutes', href: 'https://mountainview.legistar.com/View.ashx?M=M&ID=1091219&GUID=801F7303-2F50-49D6-B4F0-032B8F78BAD1' }
+        ]
       },
       {
         date: 'JUN. 27, 2023', eventType: 'CIP · ADOPTED · ITEM 4.3',
@@ -303,6 +311,14 @@
         identifier: 'Project 27-xx', funding: '$1 million', year: 'FY 2026-27',
         elements: scopeElements2023,
         callouts: [{ label: 'Why it matters', text: 'This is the adopted CIP entry establishing both the funding and the combined transportation + green-infrastructure scope.' }],
+        // V2-only, same reasoning as v2Meta above: this event's own
+        // top-level officialSources is intentionally left unset (not
+        // just empty) because V1's renderEvidence() would otherwise
+        // render it a second time in the panel's general evidence-
+        // buttons row, in addition to the identical link V1 already
+        // shows inline in the Jun. 27 subMilestone below. V2 has no
+        // subMilestone concept, so it reads v2Sources directly instead.
+        v2Sources: [{ label: 'Adopted 2023 CIP', href: cip2023AdoptedUrl }],
         subMilestones: [
           {
             date: 'May 9, 2023', agenda: 'Council Study Session, Item 3.1',
@@ -313,7 +329,7 @@
             date: 'Jun. 27, 2023', agenda: 'Council Adoption, Item 4.3',
             description: 'Council adopted Project 27-xx: Rengstorff Avenue Green Complete Street Improvements, Study and Preliminary Design — $1 million · FY 2026-27.',
             quote: '“Undertake Streetscape Plan, Feasibility Study and Pilot design for Class IV protected bikeways and green street improvements on Rengstorff Avenue between El Camino Real and US 101.”',
-            officialSources: [{ label: 'Adopted 2023 CIP', href: 'https://mountainview.legistar.com/LegislationDetail.aspx?GUID=44C19218-D2B1-45BC-BB7E-F470FB5C854E&ID=6269434' }],
+            officialSources: [{ label: 'Adopted 2023 CIP', href: cip2023AdoptedUrl }],
             evidenceImage: { label: 'CIP entry image', id: 'cip-2023' }
           }
         ]
@@ -392,7 +408,7 @@
         ]
       },
       {
-        date: '2025', eventType: 'CIP · PRELIMINARY DESIGN',
+        date: 'JUN. 24, 2025', eventType: 'CIP · PRELIMINARY DESIGN',
         shortTitle: 'Preliminary design funding increases to $2M', keyFact: 'FY 2027-28',
         yearGroup: '2025', marker: 'DESIGN FUNDING EXPANDED', nodeStyle: 'filled',
         v2Summary: 'Preliminary-design funding increases to $2M for FY 2027–28.',
