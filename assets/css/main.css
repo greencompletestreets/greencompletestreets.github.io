@@ -13653,8 +13653,8 @@ b,
 	grid-template-rows: auto repeat(4, auto);
 	margin: 18px 0 0;
 	overflow: hidden;
-	padding: 10px;
-	row-gap: 6px;
+	padding: 12px;
+	row-gap: 8px;
 }
 
 .rengstorff-microsite .alt-split-compare__cell {
@@ -13662,7 +13662,9 @@ b,
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 0.9rem 1.25rem;
+	/* Bumped slightly from 0.9rem/1.25rem so the enlarged type (below)
+	   gets breathing room -- still compact, not a redesign of the card. */
+	padding: 1.15rem 1.5rem;
 	position: relative;
 	text-align: center;
 }
@@ -13694,7 +13696,7 @@ b,
    own left edge rather than pushing the text into a left-aligned
    icon+text row. */
 .rengstorff-microsite .alt-split-compare__cell--icon {
-	padding-left: 2.75rem;
+	padding-left: 3.25rem;
 }
 
 .rengstorff-microsite .alt-split-compare__icon-badge {
@@ -13759,7 +13761,7 @@ b,
    reduction here without touching any font-size. */
 .rengstorff-microsite .alt-split-compare__primary-value {
 	color: #193c2b !important;
-	font-size: clamp(1.375rem, 1.7vw, 1.5rem);
+	font-size: clamp(1.5rem, 2.2vw, 2rem);
 	font-weight: 800;
 	line-height: 1.15;
 	margin: 0;
@@ -13768,16 +13770,16 @@ b,
 .rengstorff-microsite .alt-split-compare__primary-value-line2 {
 	color: #304238;
 	display: block;
-	font-size: clamp(1rem, 1.3vw, 1.125rem);
+	font-size: clamp(1.125rem, 1.3vw, 1.375rem);
 	font-weight: 700;
-	line-height: 1.15;
-	margin-top: 0.2rem;
+	line-height: 1.2;
+	margin-top: 0.25rem;
 }
 
 .rengstorff-microsite .alt-split-compare__qualifier {
 	color: #5a6c60 !important;
-	font-size: 0.72rem;
-	line-height: 1.3;
+	font-size: clamp(0.95rem, 1vw, 1.0625rem);
+	line-height: 1.35;
 	margin: 0.4rem 0 0;
 }
 
@@ -13788,19 +13790,19 @@ b,
    the italics, not for extra spacing. */
 .rengstorff-microsite .alt-split-compare__support {
 	color: #5a6c60 !important;
-	font-size: 0.72rem;
+	font-size: clamp(0.95rem, 1vw, 1.0625rem);
 	font-style: italic;
-	line-height: 1.3;
+	line-height: 1.35;
 	margin: 0.4rem 0 0;
 }
 
 .rengstorff-microsite .alt-split-compare__label {
 	color: #5a6c60 !important;
-	font-size: 0.72rem;
+	font-size: clamp(1.0625rem, 1.1vw, 1.125rem);
 	font-weight: 600;
 	letter-spacing: 0.02em;
-	line-height: 1.2;
-	margin: 0 0 0.25rem;
+	line-height: 1.25;
+	margin: 0 0 0.3rem;
 }
 
 /* Tier 2/3 supporting-row values: one shared size across Sidewalks,
@@ -13810,43 +13812,44 @@ b,
    readable. */
 .rengstorff-microsite .alt-split-compare__value--secondary {
 	color: #193c2b !important;
-	font-size: 1rem;
+	font-size: clamp(1.4375rem, 1.9vw, 1.625rem);
 	font-weight: 700;
-	line-height: 1.2;
+	line-height: 1.15;
 	margin: 0;
 }
 
 .rengstorff-microsite .alt-split-compare__lanes {
 	color: #193c2b !important;
-	font-size: 1rem;
+	font-size: clamp(1.375rem, 1.7vw, 1.5rem);
 	line-height: 1.2;
 	margin: 0;
 }
 
 .rengstorff-microsite .alt-split-compare__lanes-note {
 	color: #8a978c !important;
-	font-size: 0.68rem;
-	line-height: 1.2;
-	margin: 0.15rem 0 0;
+	font-size: clamp(0.9375rem, 1vw, 1rem);
+	line-height: 1.3;
+	margin: 0.2rem 0 0;
 }
 
 .rengstorff-microsite .alt-split-compare__value--tertiary {
 	color: #193c2b !important;
-	font-size: 1rem;
-	font-weight: 600;
-	line-height: 1.2;
+	font-size: clamp(1.4375rem, 1.9vw, 1.625rem);
+	font-weight: 700;
+	line-height: 1.15;
 	margin: 0;
 }
 
 /* Parking-removed figures only -- deliberately muted/regular weight
    (not bold, not the dark ink color the other values use) so parking
    impact reads as visually subordinate to the actual design changes
-   above it, per the reference. */
+   above it, per the reference. Size still scales up with the rest of
+   the row values -- only weight/color stay intentionally subdued. */
 .rengstorff-microsite .alt-split-compare__value--parking {
 	color: #8a978c !important;
-	font-size: 1rem;
+	font-size: clamp(1.4375rem, 1.9vw, 1.625rem);
 	font-weight: 500;
-	line-height: 1.2;
+	line-height: 1.15;
 	margin: 0;
 }
 
@@ -13858,11 +13861,11 @@ b,
 	}
 
 	.rengstorff-microsite .alt-split-compare__cell {
-		padding: 1rem 1.5rem;
+		padding: 1.15rem 1.5rem;
 	}
 
 	.rengstorff-microsite .alt-split-compare__cell--icon {
-		padding-left: 2.75rem;
+		padding-left: 3.25rem;
 	}
 }
 
