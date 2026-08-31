@@ -12222,7 +12222,9 @@ b,
    #project-scope / etc. on the parent Overview page above. */
 .rengstorff-microsite #overview,
 .rengstorff-microsite #design-concepts,
-.rengstorff-microsite #real-choice,
+.rengstorff-microsite #compare-designs,
+.rengstorff-microsite #what-it-means,
+.rengstorff-microsite #get-involved,
 .rengstorff-microsite #at-a-glance,
 .rengstorff-microsite #process-title {
 	scroll-margin-top: 4.5rem;
@@ -12523,6 +12525,570 @@ b,
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }
+
+/* BEGIN EVERYDAY STORIES TEST */
+/* One consolidated Everyday Stories section (previously overlapping
+   with a separate Building Stronger Community section, since merged
+   away). Large, editorial photo + text per story rather than a rigid
+   grid of equal cards -- stories carry different amounts of content,
+   so they aren't forced into identical boxes. */
+.rengstorff-microsite .everyday-stories-story {
+	margin: 2.5rem 0 0;
+}
+
+.rengstorff-microsite .everyday-stories-story--photo {
+	align-items: flex-start;
+	display: flex;
+	gap: 2.5rem;
+}
+
+.rengstorff-microsite .everyday-stories-story__media {
+	flex: 0 0 48%;
+	margin: 0;
+}
+
+.rengstorff-microsite .everyday-stories-story__media img {
+	aspect-ratio: 3 / 2;
+	border-radius: 4px;
+	display: block;
+	height: auto;
+	object-fit: cover;
+	width: 100%;
+}
+
+.rengstorff-microsite .everyday-stories-story__content {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+/* Small and muted on purpose -- present, not competing with the
+   prompt/photo for attention. */
+.rengstorff-microsite .everyday-stories-story__label {
+	color: #8a978c !important;
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.4rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .everyday-stories-story__prompt {
+	color: #16704d !important;
+	font-size: 1.2rem;
+	font-weight: 700;
+	line-height: 1.4;
+	margin: 0 0 0.65rem;
+}
+
+.rengstorff-microsite .everyday-stories-story__text {
+	color: #5a6c60 !important;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	margin: 0 0 0.75rem;
+}
+
+/* "Shade can determine when..." -- the one sentence that gets visual
+   emphasis without any copy change: darker ink, semibold. */
+.rengstorff-microsite .everyday-stories-story__text--emphasis {
+	color: #193c2b !important;
+	font-weight: 600;
+}
+
+.rengstorff-microsite .everyday-stories-story__meta {
+	color: #8a978c !important;
+	font-size: 0.75rem;
+	line-height: 1.4;
+	margin: 0.75rem 0 0;
+}
+
+/* Small, visually subordinate credit line -- its own line under the
+   location text, not competing with it. */
+.rengstorff-microsite .everyday-stories-credit {
+	display: block;
+	margin-top: 0.1rem;
+}
+
+/* Heat + accessibility story: main column (photo, pullout, full
+   explanation) beside "Trees are natural misters" as a smaller inset,
+   not a fourth equal-weight story. */
+.rengstorff-microsite .everyday-stories-story--heat {
+	align-items: start;
+	display: grid;
+	gap: 2.5rem;
+	grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+}
+
+.rengstorff-microsite .everyday-stories-story--heat .everyday-stories-story__media {
+	margin: 0 0 1rem;
+}
+
+.rengstorff-microsite .everyday-stories-pullout {
+	background: #eef3ee;
+	border-radius: 6px;
+	margin: 0.75rem 0 1rem;
+	padding: 0.85rem 1rem;
+}
+
+.rengstorff-microsite .everyday-stories-pullout__line {
+	color: #304238 !important;
+	font-size: 0.92rem;
+	font-weight: 600;
+	line-height: 1.5;
+	margin: 0 0 0.2rem;
+}
+
+.rengstorff-microsite .everyday-stories-pullout__line:last-child {
+	margin-bottom: 0;
+}
+
+.rengstorff-microsite .everyday-stories-pullout__line--emphasis {
+	color: #16704d !important;
+	font-weight: 800;
+}
+
+/* Smaller inset explainer -- its own compact off-white box, clearly
+   subordinate to the main heat story beside it. */
+.rengstorff-microsite .everyday-stories-inset {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	padding: 1.1rem 1.25rem;
+}
+
+.rengstorff-microsite .everyday-stories-inset__heading {
+	color: #193c2b !important;
+	font-size: 0.98rem;
+	font-weight: 700;
+	line-height: 1.4;
+	margin: 0 0 0.55rem;
+}
+
+.rengstorff-microsite .everyday-stories-inset__text {
+	color: #5a6c60 !important;
+	font-size: 0.86rem;
+	line-height: 1.55;
+	margin: 0 0 0.65rem;
+}
+
+.rengstorff-microsite .everyday-stories-inset__text:last-of-type {
+	margin-bottom: 0;
+}
+
+.rengstorff-microsite .everyday-stories-video {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.85rem;
+	margin-top: 0.9rem;
+}
+
+.rengstorff-microsite .everyday-stories-video__thumb {
+	border-radius: 4px;
+	display: block;
+	flex: 0 0 auto;
+	overflow: hidden;
+	position: relative;
+	width: 120px;
+}
+
+.rengstorff-microsite .everyday-stories-video__thumb img {
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+.rengstorff-microsite .everyday-stories-video__play {
+	align-items: center;
+	background: rgba(25, 60, 43, 0.75);
+	border-radius: 50%;
+	color: #ffffff;
+	display: flex;
+	font-size: 0.65rem;
+	height: 1.9rem;
+	justify-content: center;
+	left: 50%;
+	padding-left: 0.15rem;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 1.9rem;
+}
+
+.rengstorff-microsite .everyday-stories-video__caption {
+	color: #5a6c60 !important;
+	flex: 1 1 140px;
+	font-size: 0.78rem;
+	line-height: 1.5;
+	margin: 0;
+}
+
+.rengstorff-microsite .everyday-stories-video__caption a {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+/* Closing thought -- quiet, no card box, hairline top rule, so it
+   reads as an editorial coda rather than another story. */
+.rengstorff-microsite .everyday-stories-closing {
+	border-top: 1px solid #d4ded4;
+	margin-top: 2.5rem;
+	max-width: 44rem;
+	padding-top: 1.75rem;
+}
+
+.rengstorff-microsite .everyday-stories-closing__heading {
+	color: #193c2b !important;
+	font-size: 1.15rem;
+	font-weight: 700;
+	line-height: 1.4;
+	margin: 0 0 0.6rem;
+}
+
+.rengstorff-microsite .everyday-stories-closing__text {
+	color: #5a6c60 !important;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	margin: 0;
+}
+
+/* Precedent transition -- unchanged from the former Building Stronger
+   Community section: clear breathing room above, then a balanced
+   two-column comparison (equal widths/heights via shared aspect-ratio
+   + object-fit: cover). */
+.rengstorff-microsite .community-stories-precedent {
+	border-top: 1px solid #d4ded4;
+	margin-top: 3.5rem;
+	padding-top: 2.5rem;
+}
+
+.rengstorff-microsite .community-stories-precedent__heading {
+	color: #193c2b;
+	font-size: 1.15rem;
+	margin: 0 0 0.4rem;
+}
+
+.rengstorff-microsite .community-stories-precedent__intro {
+	color: #5a6c60 !important;
+	font-size: 0.92rem;
+	margin: 0 0 1.25rem;
+}
+
+.rengstorff-microsite .community-stories-precedent__grid {
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rengstorff-microsite .community-stories-precedent__item {
+	margin: 0;
+}
+
+.rengstorff-microsite .community-stories-precedent__item img {
+	aspect-ratio: 4 / 3;
+	border-radius: 4px;
+	display: block;
+	height: auto;
+	object-fit: cover;
+	width: 100%;
+}
+
+.rengstorff-microsite .community-stories-precedent__title {
+	color: #304238 !important;
+	font-size: 0.88rem;
+	font-weight: 700;
+	margin: 0.6rem 0 0.25rem;
+}
+
+.rengstorff-microsite .community-stories-precedent__caption {
+	color: #8a978c !important;
+	font-size: 0.78rem;
+	line-height: 1.4;
+	margin: 0;
+}
+
+@media screen and (max-width: 900px) {
+	.rengstorff-microsite .everyday-stories-story--heat {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Photo story stays side-by-side down through tablet widths -- only
+   stacks (photo above text) once a single column no longer leaves
+   comfortable room for both. */
+@media screen and (max-width: 640px) {
+	.rengstorff-microsite .everyday-stories-story--photo {
+		flex-direction: column;
+	}
+
+	.rengstorff-microsite .everyday-stories-story--photo .everyday-stories-story__media {
+		flex-basis: auto;
+	}
+
+	.rengstorff-microsite .community-stories-precedent__grid {
+		grid-template-columns: 1fr;
+	}
+}
+/* END EVERYDAY STORIES TEST */
+
+/* BEGIN DECISION POINT TEST */
+/* Bridging strip between "What's the real choice?" and the full
+   Decision Point section -- reuses the site's established
+   green-left-border callout language (see .hero-summary /
+   .rengstorff-hero__callout) rather than inventing a new treatment. */
+.rengstorff-microsite .decision-point-bridge {
+	border-left: 3px solid #79b781;
+	margin: 2rem 0;
+	padding: 0.1rem 0 0.1rem 1.1rem;
+}
+
+.rengstorff-microsite .decision-point-bridge p {
+	color: #193c2b !important;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.6;
+	margin: 0;
+	max-width: 42rem;
+}
+
+.rengstorff-microsite .decision-point-note {
+	color: #5a6c60 !important;
+	font-size: 0.98rem;
+	line-height: 1.65;
+	margin: 1.5rem 0 0;
+}
+
+/* Narrow reading column for the intro (eyebrow through the compact
+   "examples, not fixed packages" statement) -- everything after this
+   wrapper switches to the section's normal full content width. */
+.rengstorff-microsite .decision-point-intro {
+	max-width: 42rem;
+}
+
+/* "Round 2 community input" -- a small eyebrow-style label above the
+   existing "The decision point" tag, so this whole area reads as the
+   CURRENT engagement window rather than the page's permanent
+   identity. Deliberately its own class rather than reusing the
+   sitewide .eyebrow: the shared .section-block > div > .eyebrow rule
+   hides .eyebrow in exactly this DOM position (direct child of a div
+   that's a direct child of .section-block), so a same-named class
+   here would just silently disappear. This replicates .eyebrow's
+   visual language without touching that shared rule. */
+.rengstorff-microsite .decision-point-round-label {
+	color: #4e9a73;
+	font-size: 0.84rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	margin: 0 0 0.7rem;
+	text-transform: uppercase;
+}
+
+/* Full content width from "What elements are important to you?"
+   onward -- no max-width, so it naturally fills the same width as
+   every other full-bleed element on the page (e.g. the alternatives
+   comparison table above it), rather than being constrained. Spacing
+   above it comes from .decision-point-elements-intro's own top
+   margin (its first child), not from this wrapper, to avoid doubling
+   the gap. */
+.rengstorff-microsite .decision-point-wide {
+	margin-top: 0;
+}
+
+.rengstorff-microsite .decision-point-note--small {
+	font-size: 0.88rem;
+	margin-top: 0.75rem;
+}
+
+/* Inline emphasis inside running copy -- "not simply A, B, or C" so a
+   skimming reader catches the core message without reading every word. */
+.rengstorff-microsite .decision-point-emphasis {
+	color: #16704d !important;
+	font-weight: 800;
+}
+
+/* Short highlighted line -- same green-left-border callout language as
+   the bridge strip above: the one compact statement replacing the
+   former explanatory paragraph + separate callout + vision box. */
+.rengstorff-microsite .decision-point-callout {
+	border-left: 3px solid #79b781;
+	color: #193c2b !important;
+	font-size: 1.05rem;
+	font-weight: 700;
+	line-height: 1.5;
+	margin: 1.25rem 0 0;
+	max-width: 42rem;
+	padding: 0.1rem 0 0.1rem 1.1rem;
+}
+
+/* The dominant message in the section -- "You can choose all of
+   them." -- large, tinted, centered, impossible to skim past. */
+.rengstorff-microsite .decision-point-highlight {
+	background: #eef3ee;
+	border-radius: 6px;
+	color: #0b5c3a !important;
+	font-size: clamp(2rem, 4.5vw, 3rem);
+	font-weight: 800;
+	line-height: 1.2;
+	margin: 1.75rem 0 0;
+	padding: 1.5rem;
+	text-align: center;
+}
+
+.rengstorff-microsite .decision-point-elements-intro {
+	margin: 2.5rem 0 0;
+}
+
+.rengstorff-microsite .decision-point-elements-intro__heading {
+	color: #193c2b;
+	font-size: 1.4rem;
+	margin: 0;
+}
+
+/* Four element cards -- same warm off-white card language used
+   elsewhere on the page (background, subtle border, small radius),
+   photo flush at the top. 4 across desktop, 2x2 tablet, 1 mobile. */
+.rengstorff-microsite .decision-point-cards {
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	margin: 1.75rem 0 0;
+}
+
+.rengstorff-microsite .decision-point-card {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+/* Slight emphasis only -- a stronger accent border, not a larger card. */
+.rengstorff-microsite .decision-point-card--combo {
+	border-color: #79b781;
+	border-width: 2px;
+}
+
+.rengstorff-microsite .decision-point-card__media {
+	margin: 0;
+}
+
+.rengstorff-microsite .decision-point-card__media img {
+	aspect-ratio: 1 / 1;
+	display: block;
+	height: auto;
+	object-fit: cover;
+	width: 100%;
+}
+
+/* Neutral placeholder for the one card with no existing suitable
+   photo -- flat muted panel, no invented imagery. */
+.rengstorff-microsite .decision-point-card__media--placeholder {
+	align-items: center;
+	aspect-ratio: 1 / 1;
+	background: #e4eee4;
+	display: flex;
+	justify-content: center;
+}
+
+.rengstorff-microsite .decision-point-card__placeholder-text {
+	color: #8a978c;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .decision-point-card__body {
+	padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.rengstorff-microsite .decision-point-card__heading {
+	color: #193c2b !important;
+	font-size: 1rem;
+	margin: 0 0 0.5rem;
+}
+
+/* "ALL OF THEM" -- the one card heading that gets a louder treatment
+   (uppercase, tighter tracking) so the fourth card reads as the
+   combined sum of the first three, not just another item in the row. */
+.rengstorff-microsite .decision-point-card--combo .decision-point-card__heading {
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .decision-point-card__text {
+	color: #5a6c60 !important;
+	font-size: 0.86rem;
+	line-height: 1.55;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .decision-point-card__text:last-child {
+	margin-bottom: 0;
+}
+
+/* "The whole kit and caboodle." -- smaller/muted secondary line under
+   the combo card's primary "+" sentence, not equal emphasis. */
+.rengstorff-microsite .decision-point-card__text--secondary {
+	color: #8a978c !important;
+	font-size: 0.78rem;
+	font-style: italic;
+}
+
+.rengstorff-microsite .decision-point-cta {
+	border-top: 1px solid #d4ded4;
+	margin-top: 3rem;
+	padding-top: 2.25rem;
+}
+
+.rengstorff-microsite .decision-point-cta__heading {
+	color: #193c2b;
+	font-size: 1.15rem;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .decision-point-actions {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+.rengstorff-microsite .decision-point-action {
+	font-size: 0.92rem;
+}
+
+.rengstorff-microsite .decision-point-action--missing {
+	background: #eef1ee;
+	border: 1px dashed #c5d2c6;
+	border-radius: 6px;
+	color: #8a978c;
+	display: inline-flex;
+	flex-direction: column;
+	font-weight: 600;
+	line-height: 1.3;
+	padding: 0.75rem 1.25rem;
+}
+
+.rengstorff-microsite .decision-point-action__note {
+	color: #a3aea5;
+	font-size: 0.72rem;
+	font-style: italic;
+	font-weight: 400;
+	margin-top: 0.15rem;
+}
+
+@media screen and (max-width: 1024px) {
+	.rengstorff-microsite .decision-point-cards {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.rengstorff-microsite .decision-point-cards {
+		grid-template-columns: 1fr;
+	}
+}
+/* END DECISION POINT TEST */
 
 /* Sits directly under the page header: states plainly that this page is
    one phase of the larger Council-programmed project (not the project
@@ -14671,6 +15237,748 @@ b,
 	.rengstorff-microsite .corridor-summary-card dt,
 	.rengstorff-microsite .corridor-summary-card dd {
 		font-size: 0.82rem;
+	}
+}
+
+/* ==================================================================
+   BIODIVERSITY & URBAN FOREST PLAN PAGE
+   cities/mountainview-ca/plans/bufp/index.html
+   Page-specific styles for the new BUFP page. Reuses existing
+   .rengstorff-microsite components (breadcrumb, onpage-nav,
+   category-tag, section-intro, evidence-modal, evidence-nav-grid)
+   as-is; the classes below are only the pieces that page didn't
+   already have a component for (the straw-poll video card, the
+   straw-poll/Actions comparison table, and a few small source/note
+   treatments). ================================================== */
+
+.rengstorff-microsite #overview,
+.rengstorff-microsite #council-direction,
+.rengstorff-microsite #council-straw-poll,
+.rengstorff-microsite #council-vs-actions,
+.rengstorff-microsite #community-recommendations,
+.rengstorff-microsite #implementation-watch,
+.rengstorff-microsite #documents-correspondence {
+	scroll-margin-top: 4.5rem;
+}
+
+/* Council-direction compact 4-item summary -- orientation only, kept
+   deliberately quiet so it doesn't compete with the straw-poll/Actions
+   comparison further down the page. */
+.rengstorff-microsite .bufp-direction-grid {
+	display: grid;
+	gap: 1.25rem;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	margin: 1.75rem 0 0;
+}
+
+.rengstorff-microsite .bufp-direction-item {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	padding: 1.1rem 1.25rem;
+}
+
+.rengstorff-microsite .bufp-direction-item__label {
+	color: #4e745c !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.5rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .bufp-direction-item__body {
+	color: #304238 !important;
+	font-size: 0.88rem;
+	line-height: 1.5;
+	margin: 0;
+}
+
+/* Straw-poll video card -- the primary visual/source element on this
+   page, so it's sized generously (not a small thumbnail). Large
+   16:9 YouTube thumbnail + centered play button; the iframe itself is
+   only ever created on click (see the page's own evidence-modal
+   script), never embedded on initial load. */
+.rengstorff-microsite .bufp-video {
+	margin: 1.75rem 0 0;
+	max-width: 44rem;
+}
+
+.rengstorff-microsite .bufp-video__thumb {
+	background: #0f1a14;
+	border-radius: 8px;
+	display: block;
+	overflow: hidden;
+	position: relative;
+}
+
+.rengstorff-microsite .bufp-video__thumb img {
+	aspect-ratio: 16 / 9;
+	display: block;
+	height: auto;
+	object-fit: cover;
+	width: 100%;
+}
+
+.rengstorff-microsite .bufp-video__play {
+	align-items: center;
+	background: rgba(25, 60, 43, 0.82);
+	border-radius: 50%;
+	color: #ffffff;
+	display: flex;
+	font-size: 1.5rem;
+	height: 4.5rem;
+	justify-content: center;
+	left: 50%;
+	padding-left: 0.3rem;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transition: background-color 0.15s ease;
+	width: 4.5rem;
+}
+
+.rengstorff-microsite .bufp-video__thumb:hover .bufp-video__play,
+.rengstorff-microsite .bufp-video__thumb:focus-visible .bufp-video__play {
+	background: rgba(22, 112, 77, 0.92);
+}
+
+.rengstorff-microsite .bufp-video__caption {
+	margin-top: 0.85rem;
+}
+
+.rengstorff-microsite .bufp-video__title {
+	color: #193c2b !important;
+	font-size: 1.05rem;
+	font-weight: 700;
+	line-height: 1.4;
+	margin: 0;
+}
+
+.rengstorff-microsite .bufp-video__date {
+	color: #5a6c60 !important;
+	font-size: 0.85rem;
+	margin: 0.25rem 0 0;
+}
+
+/* Compact source note under the video, and the general small "view
+   source" link style reused for several source callouts below. */
+.rengstorff-microsite .bufp-source-note {
+	border-left: 3px solid #79b781;
+	margin: 1.25rem 0 0;
+	max-width: 44rem;
+	padding: 0.1rem 0 0.1rem 1.1rem;
+}
+
+.rengstorff-microsite .bufp-source-note p {
+	color: #304238 !important;
+	font-size: 0.92rem;
+	line-height: 1.55;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .bufp-source-note p:last-of-type {
+	margin-bottom: 0;
+}
+
+.rengstorff-microsite .bufp-source-note__timestamp {
+	background: #eef3ee;
+	border-radius: 4px;
+	color: #16704d;
+	font-weight: 700;
+	padding: 0.1em 0.4em;
+}
+
+.rengstorff-microsite .bufp-source-link {
+	color: #16704d !important;
+	display: inline-block;
+	font-size: 0.9rem;
+	font-weight: 700;
+	margin-top: 0.75rem;
+}
+
+.rengstorff-microsite .bufp-source-link:hover {
+	text-decoration: underline;
+}
+
+.rengstorff-microsite .bufp-transcription-note {
+	color: #5a6c60 !important;
+	font-size: 0.86rem;
+	font-style: italic;
+	line-height: 1.5;
+	margin: 1.25rem 0 0;
+	max-width: 48rem;
+}
+
+/* Straw-poll / Actions memorandum comparison table -- the most
+   important element on the page, so it gets real width and generous
+   row padding on desktop. On mobile the table is converted to
+   stacked cards (thead hidden, each td gets a data-label
+   pseudo-heading) rather than left to force horizontal scrolling. */
+.rengstorff-microsite .bufp-compare-wrap {
+	margin: 1.5rem 0 0;
+	overflow-x: auto;
+}
+
+.rengstorff-microsite .bufp-compare {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-collapse: collapse;
+	border-radius: 8px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.rengstorff-microsite .bufp-compare th,
+.rengstorff-microsite .bufp-compare td {
+	border-bottom: 1px solid #d4ded4;
+	padding: 1rem 1.25rem;
+	text-align: left;
+	vertical-align: top;
+}
+
+.rengstorff-microsite .bufp-compare tbody tr:last-child th,
+.rengstorff-microsite .bufp-compare tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.rengstorff-microsite .bufp-compare thead th {
+	background: #f4f8f4;
+	color: #193c2b !important;
+	font-size: 0.82rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .bufp-compare td {
+	color: #304238 !important;
+	font-size: 0.92rem;
+	line-height: 1.55;
+}
+
+.rengstorff-microsite .bufp-compare__num-col {
+	color: #8a978c !important;
+	font-weight: 700;
+	text-align: center;
+	width: 3rem;
+}
+
+@media screen and (max-width: 900px) {
+	.rengstorff-microsite .bufp-compare,
+	.rengstorff-microsite .bufp-compare tbody,
+	.rengstorff-microsite .bufp-compare tr,
+	.rengstorff-microsite .bufp-compare td {
+		display: block;
+		width: 100%;
+	}
+
+	.rengstorff-microsite .bufp-compare thead {
+		display: none;
+	}
+
+	.rengstorff-microsite .bufp-compare tr {
+		border-bottom: 4px solid #eef3ee;
+		padding: 1.1rem 0;
+	}
+
+	.rengstorff-microsite .bufp-compare tbody tr:last-child {
+		border-bottom: 0;
+	}
+
+	.rengstorff-microsite .bufp-compare td {
+		border-bottom: 0;
+		padding: 0.6rem 0 0;
+	}
+
+	.rengstorff-microsite .bufp-compare td:first-child {
+		padding-top: 0;
+	}
+
+	.rengstorff-microsite .bufp-compare__num-col {
+		text-align: left;
+		width: auto;
+	}
+
+	.rengstorff-microsite .bufp-compare td[data-label]::before {
+		color: #4e745c;
+		content: attr(data-label);
+		display: block;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		margin-bottom: 0.3rem;
+		text-transform: uppercase;
+	}
+}
+
+/* Standalone source card (City Actions memorandum) -- a featured
+   single card, not part of a grid. */
+.rengstorff-microsite .bufp-source-card {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 8px;
+	margin: 1.75rem 0 0;
+	max-width: 30rem;
+	padding: 1.5rem 1.75rem;
+}
+
+.rengstorff-microsite .bufp-source-card__title {
+	color: #193c2b !important;
+	font-size: 1.05rem;
+	font-weight: 700;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .bufp-source-card__meta {
+	color: #5a6c60 !important;
+	font-size: 0.85rem;
+	line-height: 1.5;
+	margin: 0;
+}
+
+.rengstorff-microsite .bufp-source-card .bufp-source-link {
+	margin-top: 1rem;
+}
+
+/* Cards with two actions (e.g. archived copy + original City PDF)
+   lay them out in a row with their own gap, rather than each link's
+   own margin-top stacking them vertically. */
+.rengstorff-microsite .bufp-source-card__actions {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1.25rem;
+	margin-top: 1rem;
+}
+
+.rengstorff-microsite .bufp-source-card__actions .bufp-source-link {
+	margin-top: 0;
+}
+
+.rengstorff-microsite .bufp-source-card__note {
+	color: #8a978c !important;
+	font-size: 0.8rem;
+	font-style: italic;
+	line-height: 1.5;
+	margin: 0.85rem 0 0;
+}
+
+/* Verbatim Council-consensus quote -- set apart typographically so
+   it's unmistakably a direct quotation, not paraphrase. */
+.rengstorff-microsite .bufp-quote-block {
+	margin: 2rem 0 0;
+	max-width: 48rem;
+}
+
+.rengstorff-microsite .bufp-quote-block__label {
+	color: #5a6c60 !important;
+	font-size: 0.88rem;
+	margin: 0 0 0.6rem;
+}
+
+.rengstorff-microsite .bufp-quote-block__quote {
+	border-left: 3px solid #16704d;
+	color: #193c2b !important;
+	font-size: 1.05rem;
+	font-style: italic;
+	line-height: 1.6;
+	margin: 0;
+	padding: 0.1rem 0 0.1rem 1.25rem;
+}
+
+/* "Details that matter for implementation" -- restrained observation
+   list, deliberately understated (no warning colors) since it's a
+   comparison, not an accusation. */
+.rengstorff-microsite .bufp-detail-section {
+	border-top: 1px solid #d4ded4;
+	margin-top: 2.5rem;
+	padding-top: 2rem;
+}
+
+.rengstorff-microsite .bufp-detail-section__heading {
+	color: #193c2b;
+	font-size: 1.15rem;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .bufp-detail-section__intro {
+	color: #5a6c60 !important;
+	font-size: 0.92rem;
+	margin: 0 0 1.25rem;
+	max-width: 44rem;
+}
+
+.rengstorff-microsite .bufp-detail-list {
+	display: grid;
+	gap: 1rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rengstorff-microsite .bufp-detail-item {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	padding: 1rem 1.25rem;
+}
+
+.rengstorff-microsite .bufp-detail-item__num {
+	color: #4e745c !important;
+	display: block;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin-bottom: 0.4rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .bufp-detail-item__text {
+	color: #304238 !important;
+	font-size: 0.9rem;
+	line-height: 1.55;
+	margin: 0;
+}
+
+/* Community-recommendations Action cards -- informational, not links. */
+.rengstorff-microsite .bufp-action-grid {
+	display: grid;
+	gap: 1.25rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin: 1.75rem 0 0;
+}
+
+.rengstorff-microsite .bufp-action-card {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	padding: 1.1rem 1.25rem;
+}
+
+.rengstorff-microsite .bufp-action-card__num {
+	color: #16704d !important;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	margin: 0 0 0.4rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .bufp-action-card__title {
+	color: #193c2b !important;
+	font-size: 0.94rem;
+	font-weight: 600;
+	line-height: 1.4;
+	margin: 0;
+}
+
+.rengstorff-microsite .bufp-action-grid__note {
+	color: #5a6c60 !important;
+	font-size: 0.85rem;
+	margin: 0.85rem 0 0;
+}
+
+/* Document card -- used for the community letter (both the compact
+   card under Community recommendations and reused visually by the
+   Documents & correspondence grid entry). */
+.rengstorff-microsite .bufp-doc-card {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	display: block;
+	margin: 1.5rem 0 0;
+	max-width: 26rem;
+	padding: 1.25rem 1.4rem;
+	text-decoration: none;
+}
+
+.rengstorff-microsite .bufp-doc-card:hover,
+.rengstorff-microsite .bufp-doc-card:focus-visible {
+	border-color: #4e9a73;
+}
+
+.rengstorff-microsite .bufp-doc-card__org {
+	color: #4e745c !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.35rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .bufp-doc-card__title {
+	color: #193c2b !important;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1.4;
+	margin: 0 0 0.4rem;
+}
+
+.rengstorff-microsite .bufp-doc-card__meta {
+	color: #5a6c60 !important;
+	font-size: 0.84rem;
+	margin: 0 0 0.75rem;
+}
+
+.rengstorff-microsite .bufp-doc-card__action {
+	color: #16704d !important;
+	font-size: 0.88rem;
+	font-weight: 700;
+}
+
+/* Implementation checklist. */
+.rengstorff-microsite .bufp-watch-list {
+	display: grid;
+	gap: 0.65rem;
+	list-style: none;
+	margin: 1.75rem 0 0;
+	max-width: 44rem;
+	padding: 0;
+}
+
+.rengstorff-microsite .bufp-watch-list li {
+	color: #304238 !important;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	padding-left: 1.5rem;
+	position: relative;
+}
+
+.rengstorff-microsite .bufp-watch-list li::before {
+	color: #16704d;
+	content: "\f00c";
+	font-family: "Font Awesome 5 Free";
+	font-size: 0.8rem;
+	font-weight: 900;
+	left: 0;
+	position: absolute;
+	top: 0.2rem;
+}
+
+/* Small group heading between clusters of source cards in the
+   Documents & correspondence section. */
+.rengstorff-microsite .bufp-doc-group__heading {
+	color: #193c2b;
+	font-size: 1rem;
+	margin: 2rem 0 0;
+}
+
+.rengstorff-microsite .bufp-doc-group__heading:first-of-type {
+	margin-top: 1.5rem;
+}
+
+/* Missing-attachment note -- borrows the sitewide "documentation gap"
+   sand/amber palette already established for .flow-step--gap
+   elsewhere on the site, as a standalone note rather than a
+   flow-diagram step, so the visual language for "noted, unresolved"
+   stays consistent without depending on that component's layout. */
+.rengstorff-microsite .bufp-missing-note {
+	background: #f9f3e6;
+	border: 1px dashed #c9a86a;
+	border-radius: 6px;
+	margin: 1.5rem 0;
+	padding: 1.1rem 1.4rem;
+}
+
+.rengstorff-microsite .bufp-missing-note__label {
+	color: #8a6d2f !important;
+	font-size: 0.9rem;
+	font-weight: 700;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .bufp-missing-note__body {
+	color: #6b5423 !important;
+	font-size: 0.88rem;
+	font-style: italic;
+	line-height: 1.55;
+	margin: 0;
+}
+
+/* Small eyebrow inline before "The final adopted BUFP states:" on the
+   restrained near-top callout, and a footnote line under the quote
+   connecting it back to Council Straw Poll Item 1. */
+.rengstorff-microsite .bufp-quote-block--callout {
+	background: #f4f8f4;
+	border-radius: 6px;
+	padding: 1.25rem 1.5rem;
+}
+
+.rengstorff-microsite .bufp-quote-block--callout .bufp-quote-block__quote {
+	margin-top: 0.5rem;
+}
+
+.rengstorff-microsite .bufp-quote-block__eyebrow {
+	color: #4e745c !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin-right: 0.5rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .bufp-quote-block__footnote {
+	color: #5a6c60 !important;
+	font-size: 0.82rem;
+	line-height: 1.5;
+	margin: 0.75rem 0 0;
+}
+
+/* Expanded per-Action detail blocks (Action 1 / 17 / 26) -- what the
+   community proposed vs. what appears in the final Plan. Plain
+   stacked prose (not a card), so long verbatim quotes and multi-
+   paragraph explanations stay readable rather than cramped into a
+   grid column. */
+.rengstorff-microsite .bufp-action-detail {
+	border-top: 1px solid #d4ded4;
+	margin-top: 2.5rem;
+	max-width: 46rem;
+	padding-top: 2rem;
+}
+
+.rengstorff-microsite .bufp-action-detail__eyebrow {
+	color: #4e745c !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.4rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .bufp-action-detail__title {
+	color: #193c2b;
+	font-size: 1.25rem;
+	margin: 0 0 0.85rem;
+}
+
+.rengstorff-microsite .bufp-action-detail__recommendation {
+	color: #304238 !important;
+	font-size: 0.94rem;
+	line-height: 1.6;
+	margin: 0 0 1.5rem;
+}
+
+.rengstorff-microsite .bufp-action-detail__recommendation strong {
+	color: #193c2b !important;
+}
+
+.rengstorff-microsite .bufp-action-detail__heading {
+	color: #16704d !important;
+	font-size: 1rem;
+	font-weight: 700;
+	margin: 0 0 0.65rem;
+}
+
+.rengstorff-microsite .bufp-action-detail__subheading {
+	color: #193c2b;
+	font-size: 1rem;
+	margin: 1.5rem 0 0.6rem;
+}
+
+.rengstorff-microsite .bufp-action-detail__text {
+	color: #304238 !important;
+	font-size: 0.92rem;
+	line-height: 1.6;
+	margin: 0 0 0.9rem;
+}
+
+.rengstorff-microsite .bufp-action-detail__meta {
+	color: #5a6c60 !important;
+	font-size: 0.82rem;
+	margin: 1.5rem 0 0;
+}
+
+/* Small bold uppercase label used to break Action 17's four pulled-out
+   elements (active transportation, equity, multiple benefits,
+   planting conditions) without full heading weight. */
+.rengstorff-microsite .bufp-subheading {
+	color: #4e745c !important;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 1.5rem 0 0.5rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .bufp-inline-list {
+	color: #304238 !important;
+	font-size: 0.92rem;
+	line-height: 1.6;
+	margin: 0 0 0.9rem;
+	padding-left: 1.25rem;
+}
+
+.rengstorff-microsite .bufp-inline-list li {
+	margin-bottom: 0.25rem;
+}
+
+/* Prominent final-Plan quote callout -- pale sage box (visually
+   "added/positive" language), distinct from .bufp-detail-item's
+   identical pale box reused elsewhere for "not included" notes so the
+   two read consistently as the same restrained visual family. */
+.rengstorff-microsite .bufp-callout {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	margin: 0 0 1.25rem;
+	padding: 1.1rem 1.4rem;
+}
+
+.rengstorff-microsite .bufp-callout__label {
+	color: #4e745c !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.6rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .bufp-callout__quote {
+	color: #193c2b !important;
+	font-size: 0.98rem;
+	font-style: italic;
+	line-height: 1.55;
+	margin: 0 0 0.65rem;
+}
+
+.rengstorff-microsite .bufp-callout__quote:last-child {
+	margin-bottom: 0;
+}
+
+.rengstorff-microsite .bufp-callout__text {
+	color: #5a6c60 !important;
+	font-size: 0.86rem;
+	line-height: 1.55;
+	margin: 0;
+}
+
+/* Compact 3-row "recommendation -> final Plan" summary table below the
+   detailed Action sections -- reuses the .bufp-compare component
+   (already responsive: real table desktop, stacked cards mobile). */
+.rengstorff-microsite .bufp-action-summary {
+	margin-top: 2.5rem;
+}
+
+.rengstorff-microsite .bufp-action-summary__heading {
+	color: #193c2b;
+	font-size: 1.15rem;
+	margin: 0 0 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+	.rengstorff-microsite .bufp-direction-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.rengstorff-microsite .bufp-action-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.rengstorff-microsite .bufp-direction-grid {
+		grid-template-columns: 1fr;
 	}
 }
 
