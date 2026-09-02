@@ -80,10 +80,10 @@ check('no "Mayor Ramos" or invented response boxes', !/Mayor Ramos|I agree/.test
 check('"Question 6" appears', html.includes('Question 6'));
 check('"Objective Design Standards" appears', html.includes('Objective Design Standards'));
 check('"April 14, 2026" appears', html.includes('April 14, 2026'));
-check('quote attribution cites Question 6 by name (not the old generic attribution)', html.includes('Council Questions, Question 6, April 14, 2026'));
+check('quote attribution cites Question 6 by name (not the old generic attribution)', /Council Questions, Question 6<\/a>, April 14, 2026/.test(html));
 check('generic "staff response, April 2026" attribution no longer used', !html.includes('City of Mountain View staff response, April 2026'));
-check('"View Question 6 and staff response" link text present', html.includes('View Question 6 and staff response'));
-check('Question 6 links to the official Council Questions attachment (a7f8d019 GUID)', /View Question 6 and staff response<\/a>/.test(html) && html.includes('mountainview.legistar.com/View.ashx?GUID=a7f8d019'));
+check('"Council Questions, Question 6" is itself the clickable link (inline-link practice, not a separate action line)', /<a href="[^"]*a7f8d019[^"]*"[^>]*>Council Questions, Question 6<\/a>/.test(html));
+check('no separate "View Question 6..." action line beneath the review-process quote (sd-review-quote__link removed)', !html.includes('sd-review-quote__link'));
 
 // 4c. April 14, 2026 City Council meeting is linked separately from
 //     Question 6 (a distinct source: the meeting record vs. the
@@ -105,6 +105,23 @@ check('B/PAC work plan link appears in the hero', html.includes(bpacUrlEncoded))
 check('B/PAC work plan link appears at least 3 times (hero status + hero line + review/sources)', (html.match(new RegExp(bpacUrlEncoded.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length >= 3);
 check('"View B/PAC work plan" or "View official B/PAC work plan" link text present', /View (official )?B\/PAC work plan/.test(html));
 check('hero Public Review field links "B/PAC · Q2 2027" to the work plan', /B\/PAC &middot; Q2 2027<\/a>/.test(html));
+
+// 5b. Inline-link cleanup pass: when a source is already named in the
+// surrounding text, the source name itself is the link -- no separate
+// "View ..." action line duplicating a link that's right above it. The
+// Sources & Original Documents section is exempt (it's a bibliography).
+const sourcesStart = html.indexOf('id="sources"');
+const beforeSources = html.slice(0, sourcesStart);
+check('hero B/PAC line links "B/PAC&#8217;s FY 2026-27 work plan" inline, no separate "View B/PAC work plan" line', /per <a[^>]*>B\/PAC&#8217;s FY 2026&ndash;27 work plan<\/a> \(a work-plan/.test(html));
+check('B/PAC work-plan milestone callout links the work plan name inline, not a separate action line', /<a[^>]*>B\/PAC&#8217;s FY 2026&ndash;27 Work Plan<\/a> lists/.test(html));
+check('no "sd-callout__link" / "sd-review-quote__link" / "sd-provision__link" action-line classes remain (all converted to inline links)', !html.includes('sd-callout__link') && !html.includes('sd-review-quote__link') && !html.includes('sd-provision__link'));
+check('no "View ..." action-line link text appears before the Sources section', !/>View [^<]+<\/a>/.test(beforeSources));
+check('Existing rules provision titles are the only links needed (redundant "View official source" lines removed)', !beforeSources.includes('View official source'));
+check('timeline links ATP Existing Conditions / Code Review inline', /<a[^>]*>ATP Existing Conditions \/ Code Review<\/a> identifies issues/.test(html));
+check('timeline links Vision Zero Action Plan inline', /<a[^>]*>Vision Zero Action Plan<\/a> includes SR-9/.test(html));
+check('timeline links Council CIP Study Session and Council Questions Question 6 inline', /<a[^>]*>Council CIP Study Session<\/a> and <a[^>]*>Council Questions Question 6<\/a> provide/.test(html));
+check('timeline links CIP Project 27-27 inline', /<a[^>]*>CIP Project 27-27<\/a> &mdash; Mountain View Standards Update/.test(html));
+check('public-review intro links "April 14, 2026 City Council CIP Study Session" inline', /<a[^>]*>April 14, 2026 City Council CIP Study Session<\/a>/.test(html));
 
 // 5b. CTC links to an official City page.
 check('CTC links to the official City Council Transportation Committee page', />CTC<\/a>/.test(html) && html.includes('mountainview.gov/our-city/city-council/councilmembers/council-subcommittees/transportation-subcommittee'));
