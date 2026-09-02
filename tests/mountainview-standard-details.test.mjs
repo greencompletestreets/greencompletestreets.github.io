@@ -20,6 +20,7 @@ import { dirname, join } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
 const PAGE_PATH = join(REPO_ROOT, 'cities/mountainview-ca/policies/standard-details/index.html');
+const CSS_PATH = join(REPO_ROOT, 'assets/css/main.css');
 
 let failures = 0;
 let passes = 0;
@@ -188,22 +189,24 @@ check('the all-ages-and-abilities finding appears, attributed to the 2023 ATP re
 check('A-1 through A-9 are described as the ATP’s starting-point cross-sections', html.includes('Standard Details A-1 through A-9 as the typical street cross-sections'));
 
 // 9e. "Existing rules that shape walking + bicycling" -- its own standalone
-//     section (not nested under Policy connections), with thematic groups
-//     of quoted/excerpted provisions, source-type badges, and a corrected
-//     Municipal Code bicycle-parking citation.
+//     section (not nested under Policy connections), organized as
+//     continuous reference sections (not a card grid) with thematic
+//     groups of quoted/excerpted provisions, source-type badges, and a
+//     corrected Municipal Code bicycle-parking citation.
 check('the old "Related standards + code" mini-list has been removed', !html.includes('Related standards + code'));
 check('"sd-related" component classes are no longer used', !html.includes('sd-related__'));
+check('the old card-grid classes (sd-rules-group, sd-provision) are no longer used', !html.includes('sd-rules-group') && !html.includes('sd-provision'));
 check('"Existing rules that shape walking + bicycling" heading present', html.includes('Existing rules that shape walking + bicycling'));
 check('#existing-rules section exists', /<section class="sd-block" id="existing-rules">/.test(html));
 check('the intro paragraph appears verbatim', html.includes("Standard Details are not the City&#8217;s only design rules."));
-check('at least 6 thematic sd-rules-group blocks present', (html.match(/class="sd-rules-group"/g) || []).length >= 6);
-check('at least 9 sd-provision cards present', (html.match(/class="sd-provision"/g) || []).length >= 9);
+check('at least 5 thematic sd-refgroup blocks present', (html.match(/class="sd-refgroup"/g) || []).length >= 5);
+check('at least 9 sd-ref reference blocks present', (html.match(/class="sd-ref"/g) || []).length >= 9);
+check('each thematic group is one continuous white reading surface (sd-refgroup__surface), not per-provision cards', (html.match(/sd-refgroup__surface/g) || []).length >= 5);
 check('"Sidewalks + frontage" group present', html.includes('Sidewalks + frontage'));
 check('"Driveways + crossings" group present', html.includes('Driveways + crossings'));
 check('"Bicycle access" group present', html.includes('Bicycle access'));
-check('"Street trees + landscape" group present', html.includes('Street trees + landscape'));
-check('"Visibility" group present', html.includes('>Visibility<'));
-check('"Street width / public improvements" group present', html.includes('Street width / public improvements'));
+check('"Visibility + landscaping" group present', html.includes('Visibility + landscaping'));
+check('"Street width + public improvements" group present', html.includes('Street width + public improvements'));
 
 // The incorrect §36.22.50 citation must be gone; the corrected §36.32.50 /
 // §36.32.85 pair must be present, with §36.32.50 visually subordinate.
@@ -212,17 +215,17 @@ check('corrected §36.32.85 (bicycle parking facilities) is cited', html.include
 check('corrected §36.32.50 (required number of parking spaces) is cited', html.includes('&sect;36.32.50'));
 check('the exact §36.32.85 quote (convenient access) appears', html.includes('Convenient access to bicycle parking facilities shall be provided.'));
 check('the exact §36.32.85 quote (curb ramps) appears', html.includes('curb ramps shall be installed where appropriate'));
-check('§36.32.50 is rendered as a visually subordinate sub-card', /sd-provision__subordinate[\s\S]{0,400}?&sect;36\.32\.50/.test(html));
+check('§36.32.50 is rendered as a visually subordinate block (not a card)', /sd-ref__subordinate[\s\S]{0,400}?&sect;36\.32\.50/.test(html));
 
 // Source-type badges distinguish current Code language from older/other
 // authority types (Standard Design Criteria, Standard Detail, project
 // condition, other City/state standards) -- source age and status must
 // not be visually conflated (task: "do not visually imply ... identical
 // status").
-check('Municipal Code source badge used', html.includes('sd-provision__source--code'));
-check('Standard Design Criteria source badge used', html.includes('sd-provision__source--sdc'));
-check('Standard Detail source badge used', html.includes('sd-provision__source--detail'));
-check('Project condition source badge used', html.includes('sd-provision__source--project'));
+check('Municipal Code source badge used', html.includes('sd-ref__source--code'));
+check('Standard Design Criteria source badge used', html.includes('sd-ref__source--sdc'));
+check('Standard Detail source badge used', html.includes('sd-ref__source--detail'));
+check('Project condition source badge used', html.includes('sd-ref__source--project'));
 check('"2002 Standard Design Criteria" is dated distinctly from current Code provisions', html.includes('2002 Standard Design Criteria') || html.includes('Standard Design Criteria (2002)'));
 check('Municipal Code badges are labeled "current"', (html.match(/Municipal Code &middot; current/g) || []).length >= 5);
 
@@ -232,11 +235,15 @@ check('§27.57 is cited', html.includes('27.57'));
 check('§27.60 is cited (operative "install the improvements" hook)', html.includes('&sect;27.60'));
 check('§27.60 exact quote appears', html.includes('to install the improvements required by this article'));
 check('§27.61 is cited', html.includes('27.61'));
-check('provision quote styling (sd-provision__quote) is used for verbatim language', html.includes('sd-provision__quote'));
+check('provision quote styling (sd-ref__quote, green rule + italic, not a nested card) is used for verbatim language', html.includes('sd-ref__quote'));
 
 // Compact "Key details" / "Key dimensions" structured lists pull
 // dimensions out of prose (task: not a 200-word block quote).
-check('sd-provision__details structured list is used', (html.match(/sd-provision__details/g) || []).length >= 2);
+check('sd-ref__details structured list is used', (html.match(/sd-ref__details/g) || []).length >= 2);
+
+// Thin full-width rules separate stacked provisions within one surface,
+// standing in for the removed per-provision card borders.
+check('sd-refgroup__rule dividers separate stacked provisions within a surface', (html.match(/sd-refgroup__rule/g) || []).length >= 5);
 
 // 2002 Standard Design Criteria §3.5 -- consolidated card with key
 // dimensions, honestly sourced to the ATP's characterization since the
@@ -276,9 +283,10 @@ check('no ↗ arrow icons inside the Existing rules section', (() => {
   return !html.slice(start, end).includes('&#8599;');
 })());
 
-// Single-card groups (Visibility + landscaping; Street width + improvements)
-// get the width-constraint modifier so they don't stretch across the grid.
-check('single-card rules groups use the --single grid modifier', (html.match(/sd-rules-group__grid sd-rules-group__grid--single/g) || []).length === 2);
+// Provision text itself keeps a comfortable reading measure (roughly
+// 65-75% of the wide surface), not a full-width block -- the surface
+// panel is the broad element, .sd-ref is the narrower reading column.
+check('provision text (sd-ref) is not full-width -- reading measure is a distinct, narrower element from the surface it sits in', html.includes('sd-refgroup__surface') && html.includes('class="sd-ref"'));
 
 // 10. Every referenced local image asset resolves on disk.
 const imageDir = join(REPO_ROOT, 'images/cities/mountainview-ca/standard-details');
@@ -359,6 +367,37 @@ for (const [href, label] of navItems) {
 //     present (two separate nav elements, CSS toggles which is visible).
 check('desktop sidebar nav markup present', html.includes('class="sd-sidebar"'));
 check('mobile collapsible nav markup present', html.includes('sd-onpage-nav-mobile'));
+
+// 15. Pale-green page background restored (a white-background version was
+//     tried and then explicitly reverted after review) -- no page-scoped
+//     override forcing the body white should remain in the stylesheet.
+if (existsSync(CSS_PATH)) {
+  const css = readFileSync(CSS_PATH, 'utf8');
+  check('no page-scoped white-body-background override remains (pale green restored)', !/body\.sd-page\.rengstorff-microsite\s*\{\s*background:\s*#ffffff/.test(css));
+  check('.sd-refgroup__surface (the one broad white surface per topic group) is styled', css.includes('.sd-page .sd-refgroup__surface'));
+  check('.sd-policy-ref (Policy connections, no bordered card) is styled', css.includes('.sd-page .sd-policy-ref'));
+} else {
+  check('main.css exists for CSS-level checks', false);
+}
+
+// 16. Policy connections (Vision Zero + ATP) no longer presented as two
+//     bordered/rounded callout cards -- plain stacked reference entries.
+const policyConnStart = html.indexOf('Policy connections');
+const policyConnEnd = html.indexOf('id="existing-rules"');
+const policyConnSlice = (policyConnStart !== -1 && policyConnEnd !== -1) ? html.slice(policyConnStart, policyConnEnd) : '';
+check('Policy connections no longer uses sd-callout--policy card markup', !policyConnSlice.includes('sd-callout--policy'));
+check('Policy connections uses the plain sd-policy-ref treatment instead', (policyConnSlice.match(/sd-policy-ref"/g) || []).length === 2);
+
+// 17. No "View ..." action-line links remain within the Existing Rules
+//     section specifically (re-verified after the card-to-reference
+//     rewrite, since that rewrite touched every link in the section).
+const existingRulesStart = html.indexOf('id="existing-rules"');
+const existingRulesEnd = html.indexOf('id="public-review"');
+const existingRulesSlice = (existingRulesStart !== -1 && existingRulesEnd !== -1) ? html.slice(existingRulesStart, existingRulesEnd) : '';
+check('no "View ..." action-line links remain inside Existing Rules', !/>View [^<]+<\/a>/.test(existingRulesSlice));
+check('§27.61 section number is itself the clickable link', /<a href="[^"]*code_of_ordinances[^"]*"[^>]*>&sect;27\.61<\/a>/.test(existingRulesSlice));
+check('§36.32.85 section number is itself the clickable link', /<a href="[^"]*code_of_ordinances[^"]*"[^>]*>&sect;36\.32\.85<\/a>/.test(existingRulesSlice));
+check('"Curb ramp standards" heading is itself the clickable link', /<a href="[^"]*dot\.ca\.gov[^"]*"[^>]*>Curb ramp standards<\/a>/.test(existingRulesSlice));
 
 console.log(`\n${passes} passed, ${failures} failed.`);
 process.exit(failures > 0 ? 1 : 0);

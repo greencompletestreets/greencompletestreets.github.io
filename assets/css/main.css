@@ -16070,21 +16070,17 @@ b,
    page on the site is affected. ================================================== */
 
 /* ------------------------------------------------------------------
-   LAYOUT-WIDTH PASS -- this page reads as a long reference document,
-   so white (not the sitewide pale-green .rengstorff-microsite body)
-   is the default reading surface below the hero. Pale green is kept
-   selectively where it already served as a grouping/metadata tint
-   (.sd-inset, .sd-matrix__item pills, gallery thumbnail mats, the
-   sticky .onpage-nav bar) -- just not as the page background itself.
-
-   The sitewide body background is set on the bare `body` element with
-   `!important` (see the "GCS custom theme" reset earlier in this
-   file), so beating it here needs matching specificity/importance;
-   three classes on the actual element comfortably out-specifies that
-   two-bare-element rule regardless of importance ties. */
-body.sd-page.rengstorff-microsite {
-	background: #ffffff !important;
-}
+   LAYOUT-WIDTH PASS -- wide content frame + reading measure (below).
+   An earlier version of this pass also switched the page background
+   to white; that was tried and then explicitly reverted after review
+   in context -- the sitewide pale-green body (the "GCS custom theme"
+   reset's #dfe5dd, applied on the bare `body` element with
+   `!important`) is kept after all, since it read as connective tissue
+   with the dark-green hero and made the white surfaces that DO exist
+   (WHY THIS MATTERS, the reference-section surfaces below, engineering
+   drawings) stand out rather than making the whole page feel like a
+   plain white document. No override needed here -- this comment is
+   just the "don't redo this" note for later passes. */
 
 /* WHY THIS MATTERS and the sidebar+main layout both sit in their own
    ".rengstorff-shell" instance (two separate elements, one per block)
@@ -16747,48 +16743,80 @@ body.sd-page.rengstorff-microsite {
 }
 
 /* ==================================================================
-   3. EXISTING RULES THAT SHAPE WALKING + BICYCLING -- thematic
-   groups of compact provision cards. Each card visually separates
-   the source badge, the linked section title, verbatim quotes (when
-   available) from plain-language paraphrase, and the "why it
-   matters" explanation, so a reader can tell at a glance which parts
-   are the City's own words and which are this page's explanation.
+   POLICY CONNECTIONS -- Vision Zero + ATP. Two plain stacked entries
+   (green left rule + small label), not bordered/rounded callout
+   cards -- this is connected explanatory reading, not two discrete
+   peer objects to compare, so it uses the same editorial language as
+   the Existing Rules section below rather than its own card style.
    ================================================================== */
-.sd-page .sd-rules-group {
-	margin-top: 2rem;
+.sd-page .sd-policy-ref {
+	border-left: 3px solid #16704d;
+	margin-top: 1.5rem;
+	max-width: 50rem;
+	padding-left: 1.1rem;
 }
 
-.sd-page .sd-rules-group__heading {
+.sd-page.rengstorff-microsite p.sd-policy-ref__label {
+	color: #0b5c3a !important;
+	font-size: 0.76rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.4rem !important;
+	text-transform: uppercase;
+}
+
+/* ==================================================================
+   3. EXISTING RULES THAT SHAPE WALKING + BICYCLING -- continuous
+   reference sections, not a card grid. This material is a connected
+   explanation (policy -> legal requirement -> engineering standard ->
+   project implementation), not a set of peer objects to compare, so
+   there's no per-provision card. Each topic group is ONE broad white
+   reading surface -- contrast against the page's pale-green
+   background, and a place for engineering-drawing cross-references to
+   stand out -- with its provisions stacked vertically inside and thin
+   full-width rules between them. Provision text itself (.sd-ref) is
+   capped at a comfortable reading measure well short of the surface's
+   full width, matching a real reference publication's column, not a
+   dashboard tile. Source badge, linked title, verbatim quote (green
+   rule + italic, not a nested card) vs. plain-language "why it
+   matters" stay visually distinct within that one flow. ================================================================== */
+.sd-page .sd-refgroup {
+	margin-top: 2.5rem;
+}
+
+.sd-page .sd-refgroup:first-of-type {
+	margin-top: 1.5rem;
+}
+
+.sd-page .sd-refgroup__heading {
 	color: #193c2b;
 	font-size: 1.05rem;
 	margin: 0 0 1rem;
 }
 
-.sd-page .sd-rules-group__grid {
-	display: grid;
-	gap: 1.25rem;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.sd-page .sd-provision {
+.sd-page .sd-refgroup__surface {
 	background: #ffffff;
 	border: 1px solid #d4ded4;
-	border-radius: 8px;
-	padding: 1.25rem 1.4rem;
+	border-radius: 10px;
+	padding: 2rem 2.5rem;
 }
 
-/* A lone card in a group (e.g. Visibility + landscaping, Street width
-   + improvements) should still read as a card, not stretch oddly --
-   cap its width rather than filling the full grid row. */
-.sd-page .sd-rules-group__grid--single {
-	grid-template-columns: minmax(0, 1fr);
+/* The full-width rule between stacked provisions -- deliberately NOT
+   scoped to .sd-ref's own (narrower) reading measure, so it reads as
+   a section break across the whole surface rather than an underline
+   on the paragraph above it. */
+.sd-page .sd-refgroup__rule {
+	border-top: 1px solid #e7ece7;
+	margin: 2rem 0;
 }
 
-.sd-page .sd-rules-group__grid--single .sd-provision {
-	max-width: 34rem;
+/* Reading measure for a single provision -- roughly 65-75% of the
+   surface's width on a wide desktop viewport, not a full-width block. */
+.sd-page .sd-ref {
+	max-width: 50rem;
 }
 
-.sd-page .sd-provision__source {
+.sd-page .sd-ref__source {
 	border-radius: 999px;
 	display: inline-block;
 	font-size: 0.7rem;
@@ -16799,27 +16827,27 @@ body.sd-page.rengstorff-microsite {
 	text-transform: uppercase;
 }
 
-.sd-page .sd-provision__source--code {
+.sd-page .sd-ref__source--code {
 	background: #cdead1;
 	color: #0b5c3a;
 }
 
-.sd-page .sd-provision__source--sdc {
+.sd-page .sd-ref__source--sdc {
 	background: #f3e2ad;
 	color: #6b5310;
 }
 
-.sd-page .sd-provision__source--other {
+.sd-page .sd-ref__source--other {
 	background: #e3e6e2;
 	color: #4b544e;
 }
 
-.sd-page .sd-provision__source--detail {
+.sd-page .sd-ref__source--detail {
 	background: #d7e6f5;
 	color: #1c4a75;
 }
 
-.sd-page .sd-provision__source--project {
+.sd-page .sd-ref__source--project {
 	background: #ece3f7;
 	color: #5b3a8a;
 }
@@ -16827,42 +16855,42 @@ body.sd-page.rengstorff-microsite {
 /* Compact "Key details" list -- pulls dimensions/requirements out of
    prose into scannable label/value rows, distinct from both the
    verbatim quote treatment and the plain-language "why" paragraphs. */
-.sd-page .sd-provision__details {
+.sd-page .sd-ref__details {
 	list-style: none;
-	margin: 0;
+	margin: 0.5rem 0 0;
 	padding: 0;
 }
 
-.sd-page .sd-provision__details li {
+.sd-page .sd-ref__details li {
 	border-top: 1px solid #e7ece7;
 	color: #304238;
-	font-size: 0.86rem;
-	line-height: 1.5;
-	padding: 0.45rem 0;
+	font-size: 0.9rem;
+	line-height: 1.55;
+	padding: 0.5rem 0;
 }
 
-.sd-page .sd-provision__details li:first-child {
+.sd-page .sd-ref__details li:first-child {
 	border-top: none;
 	padding-top: 0;
 }
 
-.sd-page .sd-provision__details strong {
+.sd-page .sd-ref__details strong {
 	color: #193c2b;
 }
 
-.sd-page.rengstorff-microsite p.sd-provision__title {
+.sd-page.rengstorff-microsite p.sd-ref__title {
 	color: #193c2b !important;
-	font-size: 1rem;
+	font-size: 1.05rem;
 	font-weight: 700;
 	margin: 0 0 0.75rem;
 }
 
-.sd-page .sd-provision__title a {
+.sd-page .sd-ref__title a {
 	text-decoration: underline;
 	text-underline-offset: 2px;
 }
 
-.sd-page.rengstorff-microsite p.sd-provision__label {
+.sd-page.rengstorff-microsite p.sd-ref__label {
 	color: #5a6c60 !important;
 	font-size: 0.68rem;
 	font-weight: 700;
@@ -16871,46 +16899,48 @@ body.sd-page.rengstorff-microsite {
 	text-transform: uppercase;
 }
 
-.sd-page .sd-provision__label:first-of-type {
+.sd-page .sd-ref__label:first-of-type {
 	margin-top: 0;
 }
 
-.sd-page .sd-provision__quote {
+/* Quotation: thin green rule + italic, sitting directly in the flow --
+   not nested inside another box. */
+.sd-page .sd-ref__quote {
 	border-left: 3px solid #16704d;
 	color: #193c2b;
-	font-size: 0.9rem;
+	font-size: 0.95rem;
 	font-style: italic;
-	line-height: 1.55;
+	line-height: 1.6;
 	margin: 0;
-	padding: 0.1rem 0 0.1rem 1rem;
+	padding: 0.1rem 0 0.1rem 1.1rem;
 }
 
-.sd-page.rengstorff-microsite p.sd-provision__why {
+.sd-page.rengstorff-microsite p.sd-ref__why {
 	color: #304238 !important;
-	font-size: 0.86rem;
-	line-height: 1.55;
+	font-size: 0.92rem;
+	line-height: 1.6;
 	margin: 0.3rem 0 0;
 }
 
-.sd-page .sd-provision__subordinate {
+.sd-page .sd-ref__subordinate {
 	border-top: 1px dashed #d4ded4;
-	margin-top: 1.1rem;
-	padding-top: 1rem;
+	margin-top: 1.25rem;
+	padding-top: 1.1rem;
 }
 
-.sd-page .sd-provision__source--small {
+.sd-page .sd-ref__source--small {
 	font-size: 0.62rem;
 	margin-bottom: 0.5rem;
 	padding: 0.15rem 0.5rem;
 }
 
-.sd-page.rengstorff-microsite p.sd-provision__title--small {
-	font-size: 0.88rem !important;
+.sd-page.rengstorff-microsite p.sd-ref__title--small {
+	font-size: 0.92rem !important;
 	margin-bottom: 0.4rem !important;
 }
 
-.sd-page.rengstorff-microsite p.sd-provision__why--small {
-	font-size: 0.82rem !important;
+.sd-page.rengstorff-microsite p.sd-ref__why--small {
+	font-size: 0.85rem !important;
 }
 
 /* The BPAC milestone callout sits between the review-process diagram
@@ -17467,13 +17497,16 @@ body.sd-page.rengstorff-microsite {
 	.sd-page .sd-feature__pair,
 	.sd-page .sd-split,
 	.sd-page .sd-source-grid,
-	.sd-page .sd-group__grid,
-	.sd-page .sd-rules-group__grid {
+	.sd-page .sd-group__grid {
 		grid-template-columns: 1fr;
 	}
 
 	.sd-page .sd-split {
 		gap: 1.25rem;
+	}
+
+	.sd-page .sd-refgroup__surface {
+		padding: 1.5rem 1.25rem;
 	}
 
 	.sd-page .sd-crosssection__zone {
