@@ -16849,11 +16849,17 @@ b,
 /* Vertical stack of individual provision blocks -- gap (not margin on
    each child) so the visible pale-green space between blocks is
    consistent and doesn't depend on remembering a margin on the right
-   element. 18px sits in the middle of the requested 12-20px range. */
+   element. 28px sits in the middle of the requested 24-32px range --
+   widened from an earlier 18px, which read as too tight (blocks
+   looked visually attached rather than clearly separate). Still
+   comfortably smaller than the 2.5rem (40px) gap .sd-refgroup itself
+   uses between one thematic group and the next, above, so the rhythm
+   stays: bigger gap between groups, smaller (but still clearly
+   visible) gap between provisions within one group. */
 .sd-page .sd-refgroup__list {
 	display: flex;
 	flex-direction: column;
-	gap: 1.125rem;
+	gap: 1.75rem;
 }
 
 /* Each provision is its OWN separate white block -- own background,

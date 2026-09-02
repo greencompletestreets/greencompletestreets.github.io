@@ -330,7 +330,9 @@ if (existsSync(CSS_PATH)) {
   const refBlockRule = css.match(/\.sd-page \.sd-ref \{[^}]*background:\s*(#[0-9a-f]+)/i);
   check('.sd-ref (each individual provision) has its own white background', !!refBlockRule && /^#f+$/i.test(refBlockRule[1]));
   const listRule = css.match(/\.sd-page \.sd-refgroup__list \{([^}]*)\}/);
-  check('.sd-refgroup__list uses a flex gap (12-20px range) to create visible green space between provisions, not shared borders', !!listRule && /gap:\s*1\.125rem/.test(listRule[1]));
+  check('.sd-refgroup__list uses a flex gap (24-32px range) to create visible green space between provisions, not shared borders', !!listRule && /gap:\s*1\.75rem/.test(listRule[1]));
+  const groupRule = css.match(/\.sd-page \.sd-refgroup \{([^}]*)\}/);
+  check('the gap between thematic groups (.sd-refgroup margin-top) is larger than the gap between provisions within a group', !!groupRule && /margin-top:\s*2\.5rem/.test(groupRule[1]));
 }
 
 // 10. Every referenced local image asset resolves on disk.
