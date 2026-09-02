@@ -152,7 +152,7 @@ check('Article V is linked inline', /Article V<\/a>/.test(html));
 check('Standard Details is linked inline in the relationship diagram', /Standard Details<\/a><\/p>\s*<p class="sd-flow__desc">Technical dimensions/.test(html));
 check('the relationship diagram carries secondary descriptive text per node (sd-flow__desc)', html.includes('sd-flow__desc'));
 check('the diagram does not overclaim exclusivity (says "one path")', html.includes('This shows one path through which street design gets regulated'));
-check('the page is honest that a stable §27.58 deep link could not be verified', html.includes('a stable deep link could not be verified'));
+check('the page is honest that a stable Municipal Code deep link could not be verified', html.includes('a stable per-section deep link could not be verified'));
 
 // 9c. Vision Zero connection: SR-9/SR-10, linked inline and in Sources.
 check('"Vision Zero Action Plan" is linked inline', /Vision Zero Action Plan<\/a>/.test(html));
@@ -178,9 +178,15 @@ check('the old "Related standards + code" mini-list has been removed', !html.inc
 check('"sd-related" component classes are no longer used', !html.includes('sd-related__'));
 check('"Existing rules that shape walking + bicycling" heading present', html.includes('Existing rules that shape walking + bicycling'));
 check('#existing-rules section exists', /<section class="sd-block" id="existing-rules">/.test(html));
-check('the intro paragraph appears verbatim', html.includes("Standard Details aren&#8217;t the City&#8217;s only design rules."));
-check('at least 5 thematic sd-rules-group blocks present', (html.match(/class="sd-rules-group"/g) || []).length >= 5);
-check('at least 6 sd-provision cards present', (html.match(/class="sd-provision"/g) || []).length >= 6);
+check('the intro paragraph appears verbatim', html.includes("Standard Details are not the City&#8217;s only design rules."));
+check('at least 6 thematic sd-rules-group blocks present', (html.match(/class="sd-rules-group"/g) || []).length >= 6);
+check('at least 9 sd-provision cards present', (html.match(/class="sd-provision"/g) || []).length >= 9);
+check('"Sidewalks + frontage" group present', html.includes('Sidewalks + frontage'));
+check('"Driveways + crossings" group present', html.includes('Driveways + crossings'));
+check('"Bicycle access" group present', html.includes('Bicycle access'));
+check('"Street trees + landscape" group present', html.includes('Street trees + landscape'));
+check('"Visibility" group present', html.includes('>Visibility<'));
+check('"Street width / public improvements" group present', html.includes('Street width / public improvements'));
 
 // The incorrect §36.22.50 citation must be gone; the corrected §36.32.50 /
 // §36.32.85 pair must be present, with §36.32.50 visually subordinate.
@@ -192,16 +198,60 @@ check('the exact §36.32.85 quote (curb ramps) appears', html.includes('curb ram
 check('§36.32.50 is rendered as a visually subordinate sub-card', /sd-provision__subordinate[\s\S]{0,400}?&sect;36\.32\.50/.test(html));
 
 // Source-type badges distinguish current Code language from older/other
-// authority types (Standard Design Criteria, other City standards).
+// authority types (Standard Design Criteria, Standard Detail, project
+// condition, other City/state standards) -- source age and status must
+// not be visually conflated (task: "do not visually imply ... identical
+// status").
 check('Municipal Code source badge used', html.includes('sd-provision__source--code'));
 check('Standard Design Criteria source badge used', html.includes('sd-provision__source--sdc'));
+check('Standard Detail source badge used', html.includes('sd-provision__source--detail'));
+check('Project condition source badge used', html.includes('sd-provision__source--project'));
 check('"2002 Standard Design Criteria" is dated distinctly from current Code provisions', html.includes('2002 Standard Design Criteria') || html.includes('Standard Design Criteria (2002)'));
+check('Municipal Code badges are labeled "current"', (html.match(/Municipal Code &middot; current/g) || []).length >= 5);
 
-// Verbatim City-language provisions (§27.57, §27.61) are present with the
-// exact quote treatment, not just paraphrase.
+// Verbatim City-language provisions (§27.57, §27.60, §27.61) are present
+// with the exact quote treatment, not just paraphrase.
 check('§27.57 is cited', html.includes('27.57'));
+check('§27.60 is cited (operative "install the improvements" hook)', html.includes('&sect;27.60'));
+check('§27.60 exact quote appears', html.includes('to install the improvements required by this article'));
 check('§27.61 is cited', html.includes('27.61'));
 check('provision quote styling (sd-provision__quote) is used for verbatim language', html.includes('sd-provision__quote'));
+
+// Compact "Key details" / "Key dimensions" structured lists pull
+// dimensions out of prose (task: not a 200-word block quote).
+check('sd-provision__details structured list is used', (html.match(/sd-provision__details/g) || []).length >= 2);
+
+// 2002 Standard Design Criteria §3.5 -- consolidated card with key
+// dimensions, honestly sourced to the ATP's characterization since the
+// original 2002 document could not be located.
+check('SDC §3.5 combined card present', /&sect;3\.5<\/a> &mdash; Curb, Gutters, Sidewalk and Driveways/.test(html));
+check('SDC key dimension: commercial driveway width up to 35 feet', html.includes('up to 35 feet'));
+check('SDC key dimension: curb-return radius minimum 30 feet', html.includes('minimum 30 feet'));
+check('SDC sourcing note discloses the original 2002 document could not be located', html.includes('could not be located online for this page'));
+
+// Caltrans curb ramp standards now link to the official, verified Caltrans
+// Standard Plans page (not left unlinked).
+const caltransUrl = 'https://dot.ca.gov/programs/design/2025-ccs-standard-plans-and-standard-specifications/2025-standard-plans-toc';
+check('Caltrans Standard Plans link present', html.includes(caltransUrl));
+
+// A-22 project-condition example: a real, verified condition of approval
+// citing Standard Detail A-22 by name, presented as one example of
+// application (not a universal rule).
+const a22ExampleUrl = 'https://mountainview.legistar.com/View.ashx?M=F&ID=9336853&GUID=BDC13B3B-FDB3-4B59-8F79-2875D0F6A33E';
+check('A-22 project-condition example URL present', html.includes(a22ExampleUrl.replace(/&/g, '&amp;')));
+check('A-22 exact condition-of-approval quote appears', html.includes('shall conform to City Standard Detail A-22'));
+check('A-22 example cites its source (PL-2020-184, 773 Cuesta Drive)', html.includes('PL-2020-184') && html.includes('773 Cuesta Drive'));
+check('A-22 example is framed as one example, not a universal rule', html.includes('not a claim that identical wording applies automatically to every project'));
+check('A-22 lightbox trigger present in the new example card', /data-evidence-id="sd-a22">Standard Detail A-22<\/button> &mdash; Side Street\/Driveway Triangle of Safety/.test(html));
+
+// Standard Detail F-1 (Tree Planting and Staking) -- a real extracted
+// asset with an evidence-modal entry and the exact spacing quote from
+// the drawing's own notes.
+check('F-1 asset resolves on disk', existsSync(join(REPO_ROOT, 'images/cities/mountainview-ca/standard-details/mv-standard-detail-f1-tree-planting.png')));
+check('F-1 evidenceRecords entry present', /'sd-f1':\s*\{/.test(html));
+check('F-1 lightbox trigger present', html.includes('data-evidence-id="sd-f1"'));
+check('F-1 exact spacing quote appears (10 ft from sanitary sewer laterals, 5 ft from water services and driveways)', html.includes('10&#8217; from sanitary sewer laterals and 5&#8217; from water services and driveways'));
+check('F-1 does not overclaim an "approved tree list" / arborist sign-off process not in the source', html.includes('do not describe a separate published tree list or arborist sign-off step'));
 check('no ↗ arrow icons inside the Existing rules section', (() => {
   const start = html.indexOf('id="existing-rules"');
   const end = html.indexOf('id="public-review"');

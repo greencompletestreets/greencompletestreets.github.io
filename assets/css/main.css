@@ -16749,6 +16749,42 @@ b,
 	color: #4b544e;
 }
 
+.sd-page .sd-provision__source--detail {
+	background: #d7e6f5;
+	color: #1c4a75;
+}
+
+.sd-page .sd-provision__source--project {
+	background: #ece3f7;
+	color: #5b3a8a;
+}
+
+/* Compact "Key details" list -- pulls dimensions/requirements out of
+   prose into scannable label/value rows, distinct from both the
+   verbatim quote treatment and the plain-language "why" paragraphs. */
+.sd-page .sd-provision__details {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.sd-page .sd-provision__details li {
+	border-top: 1px solid #e7ece7;
+	color: #304238;
+	font-size: 0.86rem;
+	line-height: 1.5;
+	padding: 0.45rem 0;
+}
+
+.sd-page .sd-provision__details li:first-child {
+	border-top: none;
+	padding-top: 0;
+}
+
+.sd-page .sd-provision__details strong {
+	color: #193c2b;
+}
+
 .sd-page.rengstorff-microsite p.sd-provision__title {
 	color: #193c2b !important;
 	font-size: 1rem;
@@ -17386,7 +17422,8 @@ b,
 	.sd-page .sd-feature__pair,
 	.sd-page .sd-split,
 	.sd-page .sd-source-grid,
-	.sd-page .sd-group__grid {
+	.sd-page .sd-group__grid,
+	.sd-page .sd-rules-group__grid {
 		grid-template-columns: 1fr;
 	}
 
