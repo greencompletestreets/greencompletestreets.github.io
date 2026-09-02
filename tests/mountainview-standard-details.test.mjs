@@ -64,8 +64,10 @@ check('"Q2 2027" appears', html.includes('Q2 2027'));
 check('"Q2 2027" is described as expected, not confirmed (near "expected" and "not a confirmed" wording)', /Q2 2027[^.]*expected/.test(html) || /expected review period, not a confirmed hearing date/.test(html));
 check('"Parks & Recreation Commission" (or "Parks and Recreation Commission") appears', /Parks (&amp;|and) Recreation Commission/.test(html));
 check('"Bicycle/Pedestrian Advisory Committee" appears (peer body, spelled out)', html.includes('Bicycle/Pedestrian Advisory Committee'));
-check('"BPAC" appears', html.includes('BPAC'));
+check('"B/PAC" appears (compact form used in hero/metadata)', html.includes('B/PAC'));
+check('bare "BPAC" (no slash) no longer used', !html.includes('BPAC'));
 check('"Council Transportation Committee" appears', html.includes('Council Transportation Committee'));
+check('"CTC" appears (compact form)', html.includes('>CTC<'));
 check('the three review bodies are grouped as peers (sd-flow__peers)', html.includes('sd-flow__peers'));
 check('the "shown as peers / no chronological order" meta-commentary has been removed', !html.includes('the City doesn&#8217;t establish a chronological order'));
 check('Municipal Code section sign "27.58" appears', html.includes('27.58'));
@@ -94,12 +96,18 @@ check('"View April 14 Council meeting" link text present (timeline and/or source
 // 4d. No decorative external-link arrows remain anywhere on the page.
 check('no ↗ (&#8599;) arrow icons remain anywhere on the page', !html.includes('&#8599;'));
 
-// 5. BPAC work-plan source link resolves/renders correctly.
+// 5. B/PAC work-plan source link resolves/renders correctly, and is
+//    reachable from multiple points on the page (hero, review section,
+//    sources) without the reader needing to scroll to find it.
 const bpacUrl = 'https://mountainview.legistar.com/View.ashx?GUID=B8C379FF-FC61-4130-AD2E-95B203668125&ID=1378443&M=PA';
 const bpacUrlEncoded = bpacUrl.replace(/&/g, '&amp;');
-check('BPAC work plan link appears (hero)', html.includes(bpacUrlEncoded));
-check('BPAC work plan link appears at least twice (hero + review section, or sources)', (html.match(new RegExp(bpacUrlEncoded.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length >= 2);
-check('"View BPAC work plan" or "View official BPAC work plan" link text present', /View (official )?BPAC work plan/.test(html));
+check('B/PAC work plan link appears in the hero', html.includes(bpacUrlEncoded));
+check('B/PAC work plan link appears at least 3 times (hero status + hero line + review/sources)', (html.match(new RegExp(bpacUrlEncoded.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length >= 3);
+check('"View B/PAC work plan" or "View official B/PAC work plan" link text present', /View (official )?B\/PAC work plan/.test(html));
+check('hero Public Review field links "B/PAC · Q2 2027" to the work plan', /B\/PAC &middot; Q2 2027<\/a>/.test(html));
+
+// 5b. CTC links to an official City page.
+check('CTC links to the official City Council Transportation Committee page', />CTC<\/a>/.test(html) && html.includes('mountainview.gov/our-city/city-council/councilmembers/council-subcommittees/transportation-subcommittee'));
 
 // 6. Hero engineering image (A-22) resolves and is a real asset, not
 //    a placeholder/AI image.
@@ -131,6 +139,42 @@ check('ATP project page link present', html.includes('collaborate.mountainview.g
 
 // 9. BUFP cross-link resolves to the real sibling page.
 check('links to the BUFP page at ../../plans/bufp/', html.includes('href="../../plans/bufp/"'));
+
+// 9b. Municipal Code section: plain-language definition, and contextual
+//     links for the Code landing page, §27.58, Article V, and Standard
+//     Details -- not just a single link buried in Sources.
+check('"What is the Municipal Code?" plain-language definition present', html.includes('What is the Municipal Code?'));
+check('Mountain View Municipal Code links to the official Code landing page', /Mountain View Municipal Code<\/a>/.test(html));
+const municodeUrl = 'https://library.municode.com/ca/mountain_view/codes/code_of_ordinances';
+check('Municipal Code links use the verified working landing-page URL', html.includes(municodeUrl));
+check('§27.58 is linked inline (not just cited as plain text)', /Municipal Code &sect;27\.58<\/a>/.test(html));
+check('Article V is linked inline', /Article V<\/a>/.test(html));
+check('Standard Details is linked inline in the relationship diagram', /Standard Details<\/a><\/p>\s*<p class="sd-flow__desc">Technical dimensions/.test(html));
+check('the relationship diagram carries secondary descriptive text per node (sd-flow__desc)', html.includes('sd-flow__desc'));
+check('the diagram does not overclaim exclusivity (says "one path")', html.includes('This shows one path through which street design gets regulated'));
+check('the page is honest that a stable §27.58 deep link could not be verified', html.includes('a stable deep link could not be verified'));
+
+// 9c. Vision Zero connection: SR-9/SR-10, linked inline and in Sources.
+check('"Vision Zero Action Plan" is linked inline', /Vision Zero Action Plan<\/a>/.test(html));
+check('SR-9 is cited', html.includes('SR-9'));
+check('SR-10 is cited', html.includes('SR-10'));
+check('SR-10 quote about updating City standard details appears', html.includes('Update City standard details to reflect Vision Zero best practices'));
+check('SR-9 quote about NACTO/PROWAG guidance appears', html.includes('adopt NACTO, PROWAG and/or other best practice guidance to inform engineering judgment'));
+check('Vision Zero Action Plan appears in Sources', /Vision Zero Action Plan[^<]*<\/p>[\s\S]{0,400}?View Vision Zero Action Plan/.test(html));
+const visionZeroUrl = 'https://mountainview.legistar.com/View.ashx?M=F&ID=13283293&GUID=79E9CBB3-E8AA-421A-BC4E-B1A04A1F35B6';
+check('Vision Zero Action Plan URL is the verified PDF (not an unverified general page)', html.includes(visionZeroUrl.replace(/&/g, '&amp;')));
+
+// 9d. ATP Existing Conditions connection: the all-ages-and-abilities
+//     finding, attributed and linked inline.
+check('"ATP Existing Conditions and Needs Summary" is linked inline', /ATP Existing Conditions and Needs Summary<\/a>/.test(html));
+check('the all-ages-and-abilities finding appears, attributed to the 2023 ATP report', html.includes('the current standards do not reflect streets that support active transportation for all ages and abilities'));
+check('A-1 through A-9 are described as the ATP’s starting-point cross-sections', html.includes('Standard Details A-1 through A-9 as the typical street cross-sections'));
+
+// 9e. Compact "Related standards + code" list -- 3-5 verified items.
+check('"Related standards + code" section present', html.includes('Related standards + code'));
+const relatedItemCount = (html.match(/sd-related__title/g) || []).length;
+check('Related standards + code has between 3 and 5 items', relatedItemCount >= 3 && relatedItemCount <= 5);
+check('Related standards + code cites its source (ATP Code Review Table 9)', html.includes('Table 9'));
 
 // 10. Every referenced local image asset resolves on disk.
 const imageDir = join(REPO_ROOT, 'images/cities/mountainview-ca/standard-details');
