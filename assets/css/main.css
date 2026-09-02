@@ -16069,6 +16069,62 @@ b,
    override -- never a change to the shared rule itself, so no other
    page on the site is affected. ================================================== */
 
+/* ------------------------------------------------------------------
+   LAYOUT-WIDTH PASS -- this page reads as a long reference document,
+   so white (not the sitewide pale-green .rengstorff-microsite body)
+   is the default reading surface below the hero. Pale green is kept
+   selectively where it already served as a grouping/metadata tint
+   (.sd-inset, .sd-matrix__item pills, gallery thumbnail mats, the
+   sticky .onpage-nav bar) -- just not as the page background itself.
+
+   The sitewide body background is set on the bare `body` element with
+   `!important` (see the "GCS custom theme" reset earlier in this
+   file), so beating it here needs matching specificity/importance;
+   three classes on the actual element comfortably out-specifies that
+   two-bare-element rule regardless of importance ties. */
+body.sd-page.rengstorff-microsite {
+	background: #ffffff !important;
+}
+
+/* WHY THIS MATTERS and the sidebar+main layout both sit in their own
+   ".rengstorff-shell" instance (two separate elements, one per block)
+   -- each one auto-centers independently, so giving them different
+   max-widths only lines up their edges at one specific viewport (do
+   the algebra: two independently-centered, differently-capped boxes
+   converge at exactly one width, and for the ~250px the sidebar+gap
+   reserves here that convergence point is ~1630px -- well past the
+   1440-1600px "typical desktop" range this pass targets). Both get
+   this same modifier instead, so their outer edges (and WHY's left
+   edge vs. the sidebar's) match exactly at every viewport, not just
+   one. .sd-main then sits indented from that shared edge by the
+   sidebar's own width -- a consistent, expected offset for a page
+   with a persistent left nav rail, not the arbitrary "different left
+   margins" this pass is otherwise fixing.
+
+   Follows the existing modifier pattern already used for this shell
+   class (see .rengstorff-shell--breadcrumb) rather than a one-off
+   width; scoped to .sd-page so it can't affect the shell elsewhere on
+   the site. The hero above WHY intentionally keeps its own existing
+   1120px-based width formula unchanged (out of scope -- "do not
+   redesign the hero"), so it no longer matches WHY/.sd-main below it;
+   that's an accepted tradeoff of leaving the hero untouched, not an
+   oversight. */
+.sd-page .rengstorff-shell--wide {
+	max-width: 1400px;
+}
+
+/* Comfortable reading measure (~70-90 characters) for ordinary body
+   prose, even though the section frame around it is now wide.
+   Deliberately scoped to direct-child paragraphs of a section/feature
+   block only -- everything already living inside its own narrower
+   component (cards, callouts, split-column text, diagrams, pill rows,
+   galleries, timeline items) is left alone so it can use the section's
+   full width instead of being squeezed to this same narrow measure. */
+.sd-page .sd-block > p,
+.sd-page .sd-feature > p {
+	max-width: 46rem;
+}
+
 .sd-page.rengstorff-microsite .section-block p:not(.eyebrow),
 .sd-page.rengstorff-microsite p.sd-prose,
 .sd-page.rengstorff-microsite .sd-block p:not(.eyebrow) {
@@ -16076,11 +16132,10 @@ b,
 	line-height: 1.68;
 }
 
-/* Normal explanatory body text against the pale green section
-   background, darkened to the site's own base text color (the
-   .rengstorff-microsite default, #25332b) rather than the lighter
-   #304238 the shared section-block rule applies -- stronger contrast
-   without touching the background or the shared rule itself.
+/* Normal explanatory body text darkened to the site's own base text
+   color (the .rengstorff-microsite default, #25332b) rather than the
+   lighter #304238 the shared section-block rule applies -- stronger
+   contrast without touching the background or the shared rule itself.
    Deliberately scoped to bare ".sd-prose" paragraphs only (not the
    broader ".section-block p" / ".sd-block p" patterns every specific-
    color label on this page also matches -- sd-flow__label,
@@ -16391,9 +16446,13 @@ b,
 	margin-bottom: 0;
 }
 
-/* Section numbers + spacing. */
+/* Section numbers + spacing. Bottom margin widened from 3rem to 4rem
+   in the layout-width pass: with white as the page's default surface
+   now (rather than sections floating on a pale-green field), a little
+   more vertical air helps section numbers + heading hierarchy do the
+   separation work on their own, without new borders/cards. */
 .sd-page .sd-block {
-	margin-bottom: 3rem;
+	margin-bottom: 4rem;
 	padding-top: 0.5rem;
 	scroll-margin-top: 4.5rem;
 }
@@ -16646,12 +16705,18 @@ b,
 	padding: 0.38rem 0.75rem;
 }
 
+/* max-width widened from 46rem in the layout-width pass: inside the
+   old ~816px .sd-main that was already most of the column, but in the
+   wider frame ("Nothing has been selected yet" was the flagged
+   example) it read as a narrow floating island. Kept visibly narrower
+   than the full section width, though, so callouts still read as a
+   distinct, bounded box rather than blending into the page. */
 .sd-page .sd-callout {
 	background: #ffffff;
 	border-left: 4px solid #16704d;
 	border-radius: 6px;
 	margin: 1.5rem 0 0;
-	max-width: 46rem;
+	max-width: 60rem;
 	padding: 1.25rem 1.5rem;
 }
 
@@ -17145,12 +17210,14 @@ b,
 /* ==================================================================
    OPEN PROCESS QUESTION.
    ================================================================== */
+/* max-width widened from 48rem alongside .sd-callout, above, for the
+   same reason -- see the layout-width pass comment there. */
 .sd-page .sd-open-question {
 	background: #ffffff;
 	border: 2px solid #16704d;
 	border-radius: 8px;
 	margin: 1.5rem 0 0;
-	max-width: 48rem;
+	max-width: 60rem;
 	padding: 1.5rem 1.75rem;
 }
 
