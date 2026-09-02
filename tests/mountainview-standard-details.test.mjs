@@ -399,5 +399,28 @@ check('§27.61 section number is itself the clickable link', /<a href="[^"]*code
 check('§36.32.85 section number is itself the clickable link', /<a href="[^"]*code_of_ordinances[^"]*"[^>]*>&sect;36\.32\.85<\/a>/.test(existingRulesSlice));
 check('"Curb ramp standards" heading is itself the clickable link', /<a href="[^"]*dot\.ca\.gov[^"]*"[^>]*>Curb ramp standards<\/a>/.test(existingRulesSlice));
 
+// 18. Section introduction bands -- every one of the page's 11 primary
+//     numbered sections gets a white intro band (number + H2 + any lead
+//     paragraph(s)); subsection headings (h3) inside them do not.
+check('exactly 11 sd-intro-band elements (one per primary numbered section)', (html.match(/class="sd-intro-band"/g) || []).length === 11);
+for (let n = 1; n <= 11; n++) {
+  check(`section ${n}'s number sits inside its intro band`, new RegExp(`<div class="sd-intro-band">\\s*<p class="sd-section-num">${n}</p>`).test(html));
+}
+check('Section 5\'s full example intro (both paragraphs) sits inside its band, gallery starts after', /<div class="sd-intro-band">\s*<p class="sd-section-num">5<\/p>\s*<h2>What the current standards look like<\/h2>\s*<p>The City.*?<\/p>\s*<p class="sd-prose sd-tight sd-footnote">The August 2026 revision[^<]*<\/p>\s*<\/div>\s*<div class="sd-group">/.test(html));
+check('h3 subsection headings ("Policy connections", "Sidewalks + frontage", etc.) are NOT wrapped in sd-intro-band', !/<div class="sd-intro-band">\s*<h3/.test(html));
+if (existsSync(CSS_PATH)) {
+  const css = readFileSync(CSS_PATH, 'utf8');
+  const bandRuleMatch = css.match(/\.sd-page \.sd-intro-band \{([^}]*)\}/);
+  check('.sd-intro-band is styled', !!bandRuleMatch);
+  if (bandRuleMatch) {
+    const rule = bandRuleMatch[1];
+    check('.sd-intro-band has a white background', /background:\s*#ffffff/i.test(rule));
+    check('.sd-intro-band has generous padding (not a thin strip)', /padding:\s*2/.test(rule));
+    check('.sd-intro-band has NO border (not a card)', !/\bborder:/.test(rule) && !/border-\w+:/.test(rule));
+    check('.sd-intro-band has NO box-shadow (not a floating card)', !/box-shadow/.test(rule));
+    check('.sd-intro-band has NO border-radius, or at most an extremely subtle one', !/border-radius/.test(rule) || /border-radius:\s*[0-4]px/.test(rule));
+  }
+}
+
 console.log(`\n${passes} passed, ${failures} failed.`);
 process.exit(failures > 0 ? 1 : 0);

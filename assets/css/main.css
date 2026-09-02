@@ -16443,10 +16443,9 @@ b,
 }
 
 /* Section numbers + spacing. Bottom margin widened from 3rem to 4rem
-   in the layout-width pass: with white as the page's default surface
-   now (rather than sections floating on a pale-green field), a little
-   more vertical air helps section numbers + heading hierarchy do the
-   separation work on their own, without new borders/cards. */
+   in the layout-width pass -- generous vertical air lets section
+   numbers + heading hierarchy (and, below, the intro bands) do the
+   separation work on a long page, without new borders/cards. */
 .sd-page .sd-block {
 	margin-bottom: 4rem;
 	padding-top: 0.5rem;
@@ -16463,6 +16462,35 @@ b,
 
 .sd-page .sd-block h2 {
 	color: #16371f;
+}
+
+/* SECTION INTRODUCTION BANDS -- a full-width white band carrying just
+   a primary numbered section's own number + H2 + lead paragraph(s),
+   so a long page reads as clearly scannable at each major section
+   start. Deliberately NOT a card: no border, no radius, no shadow --
+   plain white, the same content width as the rest of the page (WHY
+   THIS MATTERS included), with the pale-green page background
+   resuming immediately below it and again between sections. Only the
+   page's primary numbered sections get one; subsection headings
+   inside them (h3, e.g. "Sidewalks + frontage", "Policy connections")
+   don't -- those stay ordinary headings on the pale-green field. */
+.sd-page .sd-intro-band {
+	background: #ffffff;
+	margin: 0 0 2.5rem;
+	padding: 2.75rem 2.5rem;
+}
+
+/* Some primary sections have no lead paragraph at all (Timeline,
+   Sources, Visibility, Sidewalks and driveways, Municipal Code -- the
+   first thing after their H2 is already a diagram/list/callout, not
+   plain prose), so their band is just the number + H2 -- the uniform
+   padding above still gives those a consistent band height. Where a
+   lead paragraph IS present, keep it at the sitewide reading measure
+   even though the band itself is full width (child combinator: only
+   a paragraph living directly in the band, not one nested deeper in
+   some other component that happens to sit inside it). */
+.sd-page .sd-intro-band > p {
+	max-width: 46rem;
 }
 
 .sd-page .sd-subhead {
@@ -17507,6 +17535,10 @@ b,
 
 	.sd-page .sd-refgroup__surface {
 		padding: 1.5rem 1.25rem;
+	}
+
+	.sd-page .sd-intro-band {
+		padding: 1.75rem 1.25rem;
 	}
 
 	.sd-page .sd-crosssection__zone {
