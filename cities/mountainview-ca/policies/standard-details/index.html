@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mountain View Standard Details Update | Green Complete Streets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../../../assets/css/main.css" />
+</head>
+<!-- "sd-page" is an extra, page-scoped class alongside the shared
+     "rengstorff-microsite" skin -- every override below targets
+     ".sd-page ..." so it can never leak onto the BUFP or Rengstorff
+     pages, which share the same base classes/components. No sitewide
+     header/nav bar is added here: the rengstorff-microsite pages
+     (BUFP, Rengstorff feasibility) deliberately don't render one
+     (see the on-page-nav CSS comment sitewide), and building a new
+     one would be a site-wide redesign this task is explicitly out of
+     scope for -- see the delivery note for this call. -->
+<body class="rengstorff-microsite sd-page">
+  <main>
+
+    <!-- ==================================================
+         HERO -- dark forest-green, reusing the shared
+         .rengstorff-hero two-column component (already used on the
+         Rengstorff feasibility page) rather than inventing a new dark
+         hero from scratch. Breadcrumb now lives inside the hero
+         (light-on-dark variant, scoped to .sd-hero only). The right
+         column holds a real Standard Detail sheet (A-22) instead of a
+         photo, treated with CSS filter + blend-mode only -- the PNG
+         asset itself is untouched and still used unaltered everywhere
+         else on the page. -->
+    <section class="rengstorff-hero sd-hero">
+      <div class="rengstorff-hero__copy sd-hero__copy">
+        <nav class="study-breadcrumb sd-hero__breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../../index.html">Mountain View</a></li>
+            <li><a href="../">Policies</a></li>
+            <li><span aria-current="page">Standard Details Update</span></li>
+          </ol>
+        </nav>
+        <h1 id="page-title">Mountain View Standard Details Update</h1>
+        <p class="hero-subtitle">Mountain View is updating the engineering standards that help determine how streets, sidewalks, bicycle facilities, landscaping, and other public improvements are designed.</p>
+      </div>
+
+      <figure class="sd-hero__image" aria-hidden="true">
+        <img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a22-visibility-triangle.png" alt="" loading="lazy" />
+      </figure>
+
+      <div class="sd-hero__status">
+        <dl class="sd-status-grid">
+          <div class="sd-status-item">
+            <dt>CIP</dt>
+            <dd>Project 27-27 &mdash; Mountain View Standards Update</dd>
+          </div>
+          <div class="sd-status-item">
+            <dt>Status</dt>
+            <dd><span class="sd-status-pill">In progress</span></dd>
+          </div>
+          <div class="sd-status-item">
+            <dt>Public review</dt>
+            <dd>Parks &amp; Recreation Commission<br />BPAC<br />Council Transportation Committee</dd>
+          </div>
+          <div class="sd-status-item">
+            <dt>Funding</dt>
+            <dd>$54,000 &middot; Conveyance Tax</dd>
+          </div>
+          <div class="sd-status-item">
+            <dt>Target</dt>
+            <dd><span class="sd-status-pill sd-status-pill--target">Early 2028</span></dd>
+          </div>
+        </dl>
+        <p class="sd-hero__bpac-line"><span class="sd-hero__bpac-strong">Expected BPAC review:</span> Q2 2027 &mdash; per BPAC&#8217;s FY 2026&ndash;27 work plan (a work-plan milestone, not a confirmed hearing date). <a href="https://mountainview.legistar.com/View.ashx?GUID=B8C379FF-FC61-4130-AD2E-95B203668125&amp;ID=1378443&amp;M=PA" target="_blank" rel="noopener noreferrer">View BPAC work plan</a></p>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         WHY THIS MATTERS -- pale cream information panel, directly
+         below the hero (reuses the same cream tone as the sitewide
+         .bufp-missing-note component, #f9f3e6, rather than inventing
+         a new color). Folds in the former "why this connects to
+         current City policy" material -- same facts, not a separate
+         stop on the page. -->
+    <div class="rengstorff-shell">
+      <div class="sd-why" id="overview">
+        <span class="sd-why__icon" aria-hidden="true">i</span>
+        <div class="sd-why__body">
+          <p class="sd-why__label">Why this matters</p>
+          <p>Plans and policies establish goals. Standard Details help translate those goals into dimensions and designs that can actually be built.</p>
+          <p>Some of Mountain View&#8217;s existing Standard Details establish street cross-sections, sidewalk configurations, driveway geometry, visibility requirements, and other elements that affect how public right-of-way is allocated.</p>
+          <p class="sd-why__policy">This update is also one mechanism for translating current City policy &mdash; the <a href="../../plans/bufp/">Biodiversity and Urban Forest Plan</a>, the Active Transportation Plan, Vision Zero, accessibility, and Complete Streets &mdash; into repeatable engineering practice. (The Biodiversity and Urban Forest Plan doesn&#8217;t dictate specific street cross-sections; Council&#8217;s direction was that its concepts be considered in City projects going forward, and this update is one place that could show up.)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- On-page nav: the shared horizontal collapsible component,
+         kept for mobile/tablet (below the sidebar's breakpoint) and
+         as a working no-JS fallback. Same markup/behavior as the
+         BUFP and Rengstorff pages. -->
+    <nav class="onpage-nav sd-onpage-nav-mobile" aria-label="On this page">
+      <span class="onpage-nav__label" aria-hidden="true">On this page</span>
+      <button type="button" class="onpage-nav__trigger" aria-expanded="false" aria-controls="onpage-nav-list">
+        <span>On this page</span>
+        <span class="onpage-nav__chevron" aria-hidden="true">&#9662;</span>
+      </button>
+      <ul class="onpage-nav__list" id="onpage-nav-list">
+        <li><a class="onpage-nav__link" href="#what-is-updated">What is being updated</a></li>
+        <li><a class="onpage-nav__link" href="#public-review">Public review</a></li>
+        <li><a class="onpage-nav__link" href="#current-standards">Current standards</a></li>
+        <li><a class="onpage-nav__link" href="#sidewalks-driveways">Sidewalks &amp; driveways</a></li>
+        <li><a class="onpage-nav__link" href="#visibility">Visibility</a></li>
+        <li><a class="onpage-nav__link" href="#what-to-watch">What to watch</a></li>
+        <li><a class="onpage-nav__link" href="#municipal-code">Municipal Code</a></li>
+        <li><a class="onpage-nav__link" href="#timeline">Timeline</a></li>
+        <li><a class="onpage-nav__link" href="#sources">Sources</a></li>
+      </ul>
+    </nav>
+
+    <div class="rengstorff-shell">
+      <div class="sd-layout">
+
+        <!-- Sidebar nav: desktop-only sticky column, same link set as
+             the mobile bar above (kept as two small pieces of markup
+             rather than one component that repositions itself, since
+             the sticky-sidebar and collapsible-bar behaviors are
+             different enough that sharing one DOM node would need
+             more JS branching than it's worth here). -->
+        <aside class="sd-sidebar" aria-label="On this page">
+          <p class="sd-sidebar__label">On this page</p>
+          <ul class="sd-sidebar__list">
+            <li><a href="#what-is-updated">What is being updated</a></li>
+            <li><a href="#public-review">Public review</a></li>
+            <li><a href="#current-standards">Current standards</a></li>
+            <li><a href="#sidewalks-driveways">Sidewalks &amp; driveways</a></li>
+            <li><a href="#visibility">Visibility</a></li>
+            <li><a href="#what-to-watch">What to watch</a></li>
+            <li><a href="#municipal-code">Municipal Code</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#sources">Sources</a></li>
+          </ul>
+        </aside>
+
+        <div class="sd-main">
+
+          <!-- ==================================================
+               1. WHAT ARE STANDARD DETAILS + adjacent "From policy
+               to pavement" diagram, then 2. THE UPDATE -- CIP 27-27.
+               A two-column layout at desktop (main text+matrix on the
+               left, the compact flow diagram on the right, sitting
+               beside it rather than full-width below it); stacks in
+               reading order on mobile. -->
+          <section class="sd-block" id="what-is-updated">
+            <div class="sd-split-2col">
+              <div>
+                <p class="sd-section-num">1</p>
+                <h2>What are Standard Details?</h2>
+                <p>Standard Details are technical drawings and specifications the City uses when public improvements are designed and constructed.</p>
+
+                <div class="sd-compare">
+                  <div class="sd-compare__col">
+                    <p class="sd-compare__heading">Routine construction details</p>
+                    <ul>
+                      <li>Pipes</li>
+                      <li>Utility connections</li>
+                      <li>Concrete construction</li>
+                      <li>Other technical specifications</li>
+                    </ul>
+                  </div>
+                  <div class="sd-compare__col sd-compare__col--highlight">
+                    <p class="sd-compare__heading">Streetscape / geometry details</p>
+                    <ul>
+                      <li>Streets &amp; travel lanes</li>
+                      <li>Bicycle facilities</li>
+                      <li>Sidewalks</li>
+                      <li>Landscape strips</li>
+                      <li>Medians</li>
+                      <li>Curbs &amp; gutters</li>
+                      <li>Driveways</li>
+                      <li>Visibility areas</li>
+                    </ul>
+                  </div>
+                </div>
+                <p class="sd-tight"><a href="#current-standards">Learn how standards connect policy to what gets built &darr;</a></p>
+              </div>
+
+              <div class="sd-inset">
+                <p class="sd-inset__label">From policy to pavement</p>
+                <div class="sd-flow">
+                  <div class="sd-flow__step">
+                    <p class="sd-flow__label">City plans + policies</p>
+                  </div>
+                  <div class="sd-flow__step">
+                    <p class="sd-flow__label">Street design standards</p>
+                  </div>
+                  <div class="sd-flow__step">
+                    <p class="sd-flow__label">Project design</p>
+                  </div>
+                  <div class="sd-flow__step sd-flow__step--final">
+                    <p class="sd-flow__label">What gets built</p>
+                  </div>
+                </div>
+                <p class="sd-inset__note">Standard Details are one important part of the rules and guidance that shape projects, not the only design authority.</p>
+              </div>
+            </div>
+
+            <div class="sd-divider"></div>
+
+            <p class="sd-section-num">2</p>
+            <h2>The update: CIP Project 27-27</h2>
+            <p>City staff has said the streetscape portion of the update will address:</p>
+            <ul class="sd-matrix">
+              <li class="sd-matrix__item">Vehicle lane widths</li>
+              <li class="sd-matrix__item">Bicycle lane widths</li>
+              <li class="sd-matrix__item">Sidewalk dimensions</li>
+              <li class="sd-matrix__item">Landscape-strip dimensions</li>
+              <li class="sd-matrix__item">Visibility / sightlines</li>
+              <li class="sd-matrix__item">Green stormwater infrastructure</li>
+              <li class="sd-matrix__item">Duck-outs / related treatments</li>
+            </ul>
+            <p class="sd-tight">In some cases &mdash; green stormwater infrastructure, duck-outs &mdash; the update is expected to create new details rather than revise existing ones, since the current Standard Details don&#8217;t address those elements at all.</p>
+
+            <p class="sd-tight">Staff has identified guidance it expects to draw on:</p>
+            <div class="sd-pill-row">
+              <span class="sd-pill" title="National Association of City Transportation Officials">NACTO</span>
+              <span class="sd-pill" title="American Association of State Highway and Transportation Officials">AASHTO</span>
+              <span class="sd-pill" title="California Department of Transportation">Caltrans</span>
+              <span class="sd-pill" title="Valley Transportation Authority">VTA</span>
+              <span class="sd-pill" title="Public Right-of-Way Accessibility Guidelines">PROWAG</span>
+            </div>
+
+            <div class="sd-callout sd-callout--note">
+              <p class="sd-callout__label">Nothing has been selected yet</p>
+              <p>These items describe what the update is expected to address &mdash; not what the revised standards will say. Over the past ten years, several adopted Precise Plans have already set their own streetscape standards that override the Standard Details for those areas; the update is focused on streets and areas not already covered by a Precise Plan.</p>
+            </div>
+
+            <p class="sd-prose sd-tight sd-footnote">$54,000 in Conveyance Tax funding is programmed for CIP 27-27 in the City&#8217;s FY 2026&ndash;27 Capital Improvement Program. (A separate $175,000 Council Work Plan item for &#8220;objective design standards,&#8221; carried by the Community Development Department, is a different project.)</p>
+          </section>
+
+          <!-- ==================================================
+               3. PUBLIC REVIEW PROCESS -- quote card on the left,
+               process diagram on the right at desktop. -->
+          <section class="sd-block" id="public-review">
+            <p class="sd-section-num">3</p>
+            <h2>How the review will work</h2>
+            <p class="sd-prose">In response to Question 6 of the Council Questions for the April 14, 2026 City Council CIP Study Session, staff described how this update differs from the City&#8217;s past practice for revising standard details.</p>
+
+            <div class="sd-review-grid">
+              <blockquote class="sd-review-quote">
+                <p>&#8220;Staff&#8217;s past practice for updating standard details has been to revise and publish details as needed, using their expertise. Recognizing that some standard details identify important streetscape elements and that stakeholders and the community are interested in these details, staff will conduct outreach on the standard details related to streetscape.&#8221;</p>
+                <cite>&mdash; City of Mountain View, Council Questions, Question 6, April 14, 2026</cite>
+                <p class="sd-review-quote__link"><a class="bufp-source-link" href="https://mountainview.legistar.com/View.ashx?GUID=a7f8d019-265f-4ae7-a116-3ba8242479b3&amp;ID=175592&amp;M=AO&amp;N=Q291bmNpbCBRdWVzdGlvbnM%3D" target="_blank" rel="noopener noreferrer">View Question 6 and staff response</a></p>
+              </blockquote>
+
+              <div class="sd-flow sd-flow--vertical">
+                <div class="sd-flow__step">
+                  <p class="sd-flow__label">Technical work</p>
+                </div>
+                <div class="sd-flow__step sd-flow__step--sub">
+                  <p class="sd-flow__label">Public / advisory review</p>
+                  <div class="sd-flow__peers">
+                    <p class="sd-flow__peer">Parks &amp; Recreation Commission</p>
+                    <p class="sd-flow__peer">Bicycle/Pedestrian Advisory Committee</p>
+                    <p class="sd-flow__peer">Council Transportation Committee</p>
+                  </div>
+                </div>
+                <div class="sd-flow__step">
+                  <p class="sd-flow__label">Staff reviews feedback</p>
+                </div>
+                <div class="sd-flow__step">
+                  <p class="sd-flow__label">Revisions / new details</p>
+                </div>
+                <div class="sd-flow__step sd-flow__step--final">
+                  <p class="sd-flow__label">Publish updated details</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sd-callout sd-callout--bpac">
+              <p class="sd-callout__label">BPAC work plan milestone</p>
+              <p>BPAC&#8217;s FY 2026&ndash;27 Work Plan lists &#8220;Updated City Standard Details&#8221; with a target of <strong>Q2 2027</strong> &mdash; an expected review period, not a confirmed hearing date.</p>
+              <p class="sd-callout__link"><a class="bufp-source-link" href="https://mountainview.legistar.com/View.ashx?GUID=B8C379FF-FC61-4130-AD2E-95B203668125&amp;ID=1378443&amp;M=PA" target="_blank" rel="noopener noreferrer">View official BPAC work plan</a></p>
+            </div>
+
+            <p class="sd-prose">The public will be able to provide feedback at these meetings. Staff has said it will work with stakeholders and the City&#8217;s Communications Department to provide notice. Because this is a more robust process than the City&#8217;s past practice, staff expects completion in <strong>early 2028</strong>.</p>
+          </section>
+
+          <!-- ==================================================
+               4. WHAT THE CURRENT STANDARDS LOOK LIKE -->
+          <section class="sd-block" id="current-standards">
+            <p class="sd-section-num">4</p>
+            <h2>What the current standards look like</h2>
+            <p>The City&#8217;s Standard Provisions and Standard Details (revised August 2026) include many details that shape how our streets are built. Browse the gallery below &mdash; click or tap any sheet to open a larger version.</p>
+            <p class="sd-prose sd-tight sd-footnote">The August 2026 revision updated the utility sections (B, C, D, RW); the streetscape sheets below are the pre-27-27 baseline this project will revise.</p>
+
+            <div class="sd-group">
+              <h3 class="sd-group__heading">Street geometry</h3>
+              <div class="sd-group__grid">
+                <button type="button" class="sd-multiple" data-evidence-id="sd-a2">
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a2-60-foot-street.png" alt="City of Mountain View Standard Detail A-2, Geometric Section, 60-Foot Street." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-2</span>
+                  <span class="sd-multiple__title">Geometric Section, 60-Foot Street</span>
+                </button>
+                <button type="button" class="sd-multiple" data-evidence-id="sd-a3">
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a3-street-sections.png" alt="City of Mountain View Standard Detail A-3, Standard Geometric Street Sections, 55-Foot Frontage Road." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-3</span>
+                  <span class="sd-multiple__title">Street Sections, 55-Foot Frontage Road</span>
+                </button>
+                <button type="button" class="sd-multiple sd-multiple--feature" data-evidence-id="sd-a4">
+                  <span class="sd-multiple__star" aria-hidden="true">&#9733;</span>
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a4-four-lane-arterial.png" alt="City of Mountain View Standard Detail A-4, Standard Geometric Street Sections, 4-Lane Arterial." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-4</span>
+                  <span class="sd-multiple__title">Standard Geometric Street Sections &mdash; 4-Lane Arterial</span>
+                </button>
+                <button type="button" class="sd-multiple sd-multiple--feature" data-evidence-id="sd-a5">
+                  <span class="sd-multiple__star" aria-hidden="true">&#9733;</span>
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a5-six-lane-arterial.png" alt="City of Mountain View Standard Detail A-5, Standard Geometric Street Sections, 6-Lane Arterial." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-5</span>
+                  <span class="sd-multiple__title">Standard Geometric Street Sections &mdash; 6-Lane Arterial</span>
+                </button>
+                <button type="button" class="sd-multiple" data-evidence-id="sd-a6">
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a6-curb-gutter.png" alt="City of Mountain View Standard Detail A-6, Standard Curb and Gutter and Extruded Median Curb." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-6</span>
+                  <span class="sd-multiple__title">Curb &amp; Gutter, Extruded Median Curb</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="sd-group">
+              <h3 class="sd-group__heading">Sidewalks + driveways</h3>
+              <div class="sd-group__grid">
+                <button type="button" class="sd-multiple" data-evidence-id="sd-a1">
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a1-sidewalk.png" alt="City of Mountain View Standard Detail A-1, Standard Sidewalk Section." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-1</span>
+                  <span class="sd-multiple__title">Standard Sidewalk Section</span>
+                </button>
+                <button type="button" class="sd-multiple" data-evidence-id="sd-a7">
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a7-sidewalk-driveway.png" alt="City of Mountain View Standard Detail A-7, Standard Cross-Sections, Curb, Gutter, Sidewalk and Driveway Approach." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-7</span>
+                  <span class="sd-multiple__title">Curb, Gutter, Sidewalk &amp; Driveway Approach</span>
+                </button>
+                <button type="button" class="sd-multiple" data-evidence-id="sd-a7a">
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a7a-level-sidewalk.png" alt="City of Mountain View Standard Detail A7-A, Modified Driveway Approach, Level Sidewalk Cross-Section." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-7A</span>
+                  <span class="sd-multiple__title">Level Sidewalk Cross-Section</span>
+                </button>
+                <button type="button" class="sd-multiple" data-evidence-id="sd-a8">
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a8-detached-sidewalk.png" alt="City of Mountain View Standard Detail A-8, Driveway Detail for Detached Sidewalk, Planter Strip 4.5 Feet or Greater." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-8</span>
+                  <span class="sd-multiple__title">Detached Sidewalk, Planter &ge; 4.5&#8217;</span>
+                </button>
+                <button type="button" class="sd-multiple" data-evidence-id="sd-a8a">
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a8a-detached-sidewalk.png" alt="City of Mountain View Standard Detail A-8A, Driveway Detail for Detached Sidewalk, Planter Strip Less Than 4.5 Feet." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-8A</span>
+                  <span class="sd-multiple__title">Detached Sidewalk, Planter &lt; 4.5&#8217;</span>
+                </button>
+                <button type="button" class="sd-multiple" data-evidence-id="sd-a9">
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a9-driveway-conform.png" alt="City of Mountain View Standard Detail A-9, Driveway and AC Conform Details." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-9</span>
+                  <span class="sd-multiple__title">Driveway &amp; AC Conform Details</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="sd-group">
+              <h3 class="sd-group__heading">Visibility</h3>
+              <div class="sd-group__grid">
+                <button type="button" class="sd-multiple sd-multiple--feature" data-evidence-id="sd-a22">
+                  <span class="sd-multiple__star" aria-hidden="true">&#9733;</span>
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a22-visibility-triangle.png" alt="City of Mountain View Standard Detail A-22, Side Street/Driveway Pedestrian and Vehicle Triangle of Safety." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-22</span>
+                  <span class="sd-multiple__title">Driveway / Side-Street Triangle of Safety</span>
+                </button>
+                <button type="button" class="sd-multiple" data-evidence-id="sd-a23">
+                  <span class="sd-multiple__thumb"><img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a23-intersection-visibility.png" alt="City of Mountain View Standard Detail A-23, Corner/Intersection Visibility, Traffic Safety Visibility Area." loading="lazy" /></span>
+                  <span class="sd-multiple__num">A-23</span>
+                  <span class="sd-multiple__title">Corner / Intersection Visibility</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- A-4/A-5 cross-section explanation + why cross-sections
+                 matter -- kept, restyled. -->
+            <div class="sd-feature" id="cross-sections-matter">
+              <h3 class="sd-subhead">How the current arterial standards allocate space</h3>
+              <p>Sheet A-4 shows a 70-foot street and 90-foot and 100-foot four-lane arterial configurations. Sheet A-5 shows a 110-foot four-lane arterial and the City&#8217;s widest configurations, 120-foot and 134-foot six-lane arterials. Some configurations label outside roadway space &#8220;BIKE/PARKING&#8221; &mdash; combined space usable for parking or bicycling.</p>
+
+              <div class="sd-feature__pair">
+                <figure class="sd-feature__figure">
+                  <button type="button" class="sd-feature__img" data-evidence-id="sd-a4" aria-label="Open full-size drawing: A-4">
+                    <img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a4-four-lane-arterial.png" alt="City of Mountain View Standard Detail A-4, Standard Geometric Street Sections, 4-Lane Arterial." loading="lazy" />
+                  </button>
+                  <figcaption>A-4 &mdash; 4-Lane Arterial</figcaption>
+                </figure>
+                <figure class="sd-feature__figure">
+                  <button type="button" class="sd-feature__img" data-evidence-id="sd-a5" aria-label="Open full-size drawing: A-5">
+                    <img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a5-six-lane-arterial.png" alt="City of Mountain View Standard Detail A-5, Standard Geometric Street Sections, 6-Lane Arterial." loading="lazy" />
+                  </button>
+                  <figcaption>A-5 &mdash; 6-Lane Arterial</figcaption>
+                </figure>
+              </div>
+
+              <div class="sd-callout">
+                <p class="sd-callout__label">Why cross-sections matter</p>
+                <p>A street can have the same total right-of-way width but allocate that space very differently. City staff has said that in many instances, the existing right-of-way becomes a limiting factor, and the update is meant to help identify how to reallocate existing space for the various needs it has to serve.</p>
+              </div>
+
+              <div class="sd-crosssection" role="img" aria-label="Conceptual cross-section diagram showing seven zones in order: sidewalk, landscape, bike, vehicles, bike, landscape, sidewalk.">
+                <span class="sd-crosssection__zone">Sidewalk</span>
+                <span class="sd-crosssection__zone sd-crosssection__zone--green">Landscape</span>
+                <span class="sd-crosssection__zone sd-crosssection__zone--bike">Bike</span>
+                <span class="sd-crosssection__zone sd-crosssection__zone--vehicle">Vehicles</span>
+                <span class="sd-crosssection__zone sd-crosssection__zone--bike">Bike</span>
+                <span class="sd-crosssection__zone sd-crosssection__zone--green">Landscape</span>
+                <span class="sd-crosssection__zone">Sidewalk</span>
+              </div>
+              <p class="sd-crosssection-caveat">Conceptual only &mdash; not a proposed Mountain View design.</p>
+            </div>
+          </section>
+
+          <!-- ==================================================
+               5. SIDEWALKS + DRIVEWAYS -->
+          <section class="sd-block" id="sidewalks-driveways">
+            <p class="sd-section-num">5</p>
+            <h2>Sidewalks and driveways</h2>
+
+            <div class="sd-split">
+              <div class="sd-split__text">
+                <p>A driveway is a location where vehicles cross the pedestrian path, so its design affects continuity, accessibility, and comfort. Most driveway approaches slope the sidewalk down toward the street and back up; A-7A instead keeps the sidewalk level and slopes only the driveway apron below it.</p>
+                <p class="sd-split__key">Driveway design affects whether the pedestrian path stays level and continuous.</p>
+              </div>
+              <button type="button" class="sd-split__img" data-evidence-id="sd-a7a" aria-label="Open full-size drawing: A7-A, Level Sidewalk Cross-Section">
+                <img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a7a-level-sidewalk.png" alt="City of Mountain View Standard Detail A7-A, Modified Driveway Approach, Level Sidewalk Cross-Section." loading="lazy" />
+              </button>
+            </div>
+            <p class="sd-prose sd-tight">Supporting details: <button type="button" class="sd-inline-link" data-evidence-id="sd-a1">A-1</button>, <button type="button" class="sd-inline-link" data-evidence-id="sd-a7">A-7</button>, <button type="button" class="sd-inline-link" data-evidence-id="sd-a8">A-8</button>, <button type="button" class="sd-inline-link" data-evidence-id="sd-a8a">A-8A</button>, <button type="button" class="sd-inline-link" data-evidence-id="sd-a9">A-9</button> cover sidewalk/curb relationships, planter-strip driveways, and how existing driveways conform to new pavement.</p>
+          </section>
+
+          <!-- ==================================================
+               6. VISIBILITY -->
+          <section class="sd-block" id="visibility">
+            <p class="sd-section-num">6</p>
+            <h2>Visibility</h2>
+
+            <div class="sd-feature__pair">
+              <figure class="sd-feature__figure">
+                <button type="button" class="sd-feature__img" data-evidence-id="sd-a22" aria-label="Open full-size drawing: A-22">
+                  <img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a22-visibility-triangle.png" alt="City of Mountain View Standard Detail A-22, Side Street/Driveway Pedestrian and Vehicle Triangle of Safety." loading="lazy" />
+                </button>
+                <figcaption>A-22 &mdash; Driveway / side-street visibility</figcaption>
+              </figure>
+              <figure class="sd-feature__figure">
+                <button type="button" class="sd-feature__img" data-evidence-id="sd-a23" aria-label="Open full-size drawing: A-23">
+                  <img src="../../../../images/cities/mountainview-ca/standard-details/mv-standard-detail-a23-intersection-visibility.png" alt="City of Mountain View Standard Detail A-23, Corner/Intersection Visibility, Traffic Safety Visibility Area." loading="lazy" />
+                </button>
+                <figcaption>A-23 &mdash; Corner / intersection visibility</figcaption>
+              </figure>
+            </div>
+            <p class="sd-prose sd-tight"><strong>Why it matters:</strong> these standards affect where landscaping, fences, and other objects can be placed near conflict points. Because the update specifically includes sightline/visibility standards, they&#8217;re useful details to watch as the project develops.</p>
+          </section>
+
+          <!-- ==================================================
+               7. BICYCLE FACILITIES -- WHAT TO WATCH -->
+          <section class="sd-block" id="what-to-watch">
+            <p class="sd-section-num">7</p>
+            <h2>Bicycle facilities: what to watch</h2>
+            <p>The current arterial standards include bicycle space, including some sections labeled &#8220;BIKE/PARKING.&#8221; The Surface Standard Details reviewed here don&#8217;t appear to include a dedicated modern protected-bikeway geometric detail &mdash; that doesn&#8217;t mean Mountain View has no protected bike lane standards; they exist today through Precise Plans and project-specific design.</p>
+            <p class="sd-tight">What to watch as the update develops &mdash; how bicycle facilities interact with:</p>
+            <ul class="sd-matrix sd-matrix--compact">
+              <li class="sd-matrix__item">Parking</li>
+              <li class="sd-matrix__item">Driveways</li>
+              <li class="sd-matrix__item">Intersections</li>
+              <li class="sd-matrix__item">Transit</li>
+              <li class="sd-matrix__item">Street trees</li>
+              <li class="sd-matrix__item">Landscape strips</li>
+              <li class="sd-matrix__item">Green infrastructure</li>
+            </ul>
+          </section>
+
+          <!-- ==================================================
+               8. MUNICIPAL CODE + OPEN QUESTION -->
+          <section class="sd-block" id="municipal-code">
+            <p class="sd-section-num">8</p>
+            <h2>How the Standard Details connect to the Municipal Code</h2>
+
+            <div class="sd-flow">
+              <div class="sd-flow__step">
+                <p class="sd-flow__label">Municipal Code &sect;27.58</p>
+              </div>
+              <div class="sd-flow__step">
+                <p class="sd-flow__label">Standard Details</p>
+              </div>
+              <div class="sd-flow__step sd-flow__step--final">
+                <p class="sd-flow__label">Street / development design</p>
+              </div>
+            </div>
+
+            <blockquote class="bufp-quote-block__quote sd-quote sd-prose">&#8220;The standard for all streets in the city, including the designation of type, width, cross-section and design detail of each type of street, is as set forth in that certain document entitled &#8216;Standard Details for Streets and Sidewalks,&#8217; heretofore approved by the city council, and which may be amended from time to time by resolution of the city council.&#8221;</blockquote>
+            <p class="sd-quote-attribution sd-prose">Mountain View Municipal Code &sect;27.58, &#8220;Standard Details for Streets&#8221; adopted by reference</p>
+            <p class="sd-prose sd-tight">Article V is a street-improvement framework tied to development and public improvements &mdash; one part of how street design gets regulated, not the only mechanism.</p>
+
+            <div class="sd-open-question">
+              <p class="sd-open-question__label">Open process question</p>
+              <p>Staff&#8217;s described process ends with publishing updated details after review. &sect;27.58 separately allows the standards to be amended by Council resolution. The City&#8217;s description doesn&#8217;t say whether the revised streetscape standards will return to Council for formal adoption.</p>
+              <p class="sd-open-question__ask">Will revised street cross-sections and other streetscape standards be formally adopted by City Council under &sect;27.58, or published administratively by staff?</p>
+            </div>
+          </section>
+
+          <!-- ==================================================
+               9. TIMELINE -->
+          <section class="sd-block" id="timeline">
+            <p class="sd-section-num">9</p>
+            <h2>Timeline</h2>
+
+            <ol class="sd-htimeline">
+              <li class="sd-htimeline__item">
+                <p class="sd-htimeline__date">2023</p>
+                <p class="sd-htimeline__text">ATP Existing Conditions / Code Review identifies issues relevant to street standards.</p>
+              </li>
+              <li class="sd-htimeline__item">
+                <p class="sd-htimeline__date">Apr 14, 2026</p>
+                <p class="sd-htimeline__text">Council CIP discussion and staff describes the Standard Details update and public-review process.</p>
+                <p class="sd-htimeline__link"><a href="https://mountainview.legistar.com/MeetingDetail.aspx?G=37932D0B-039B-4529-B6D8-73445A1D4799&amp;GUID=1710BF87-89BF-487C-8122-64FA53B82D37&amp;ID=1352178&amp;Options=&amp;Search=" target="_blank" rel="noopener noreferrer">View April 14 Council meeting</a></p>
+              </li>
+              <li class="sd-htimeline__item">
+                <p class="sd-htimeline__date">FY 2026&ndash;27</p>
+                <p class="sd-htimeline__text">CIP Project 27-27 &mdash; Mountain View Standards Update.</p>
+              </li>
+              <li class="sd-htimeline__item sd-htimeline__item--milestone">
+                <p class="sd-htimeline__date">Q2 2027</p>
+                <p class="sd-htimeline__text">Expected BPAC review, per BPAC&#8217;s FY 2026&ndash;27 work plan.</p>
+                <p class="sd-htimeline__badge">Work-plan milestone, not a confirmed date</p>
+              </li>
+              <li class="sd-htimeline__item">
+                <p class="sd-htimeline__date">2026&ndash;28</p>
+                <p class="sd-htimeline__text">Technical work + public/advisory review.</p>
+              </li>
+              <li class="sd-htimeline__item sd-htimeline__item--target">
+                <p class="sd-htimeline__date">Early 2028</p>
+                <p class="sd-htimeline__text">Current staff target for completion.</p>
+              </li>
+            </ol>
+          </section>
+
+          <!-- ==================================================
+               10. SOURCES -->
+          <section class="sd-block" id="sources">
+            <p class="sd-section-num">10</p>
+            <h2>Sources &amp; original documents</h2>
+
+            <div class="sd-source-grid">
+              <div class="sd-source-item">
+                <p class="sd-source-item__title">FY 2026&ndash;27 Capital Improvement Program &mdash; Study Session</p>
+                <p class="sd-source-item__meta">City Council &middot; April 14, 2026</p>
+                <div class="sd-source-item__links">
+                  <a class="bufp-source-link" href="https://mountainview.legistar.com/MeetingDetail.aspx?G=37932D0B-039B-4529-B6D8-73445A1D4799&amp;GUID=1710BF87-89BF-487C-8122-64FA53B82D37&amp;ID=1352178&amp;Options=&amp;Search=" target="_blank" rel="noopener noreferrer">View April 14 Council meeting</a>
+                </div>
+              </div>
+
+              <div class="sd-source-item">
+                <p class="sd-source-item__title">City Council Questions &mdash; Question 6: Objective Design Standards</p>
+                <p class="sd-source-item__meta">City Council &middot; April 14, 2026</p>
+                <div class="sd-source-item__links">
+                  <a class="bufp-source-link" href="https://mountainview.legistar.com/View.ashx?GUID=a7f8d019-265f-4ae7-a116-3ba8242479b3&amp;ID=175592&amp;M=AO&amp;N=Q291bmNpbCBRdWVzdGlvbnM%3D" target="_blank" rel="noopener noreferrer">View Question 6 and staff response</a>
+                  <a class="bufp-source-link" href="../../../../documents/standard-details/mountain-view-council-questions-2026-04-14-item-3-1-cip.pdf">Archived copy</a>
+                </div>
+                <p class="sd-source-item__note">Staff response describing the scope and public-review process for the streetscape-related Standard Details update.</p>
+              </div>
+
+              <div class="sd-source-item">
+                <p class="sd-source-item__title">Standard Provisions and Standard Details</p>
+                <p class="sd-source-item__meta">City of Mountain View, Public Works &middot; Revised August 2026</p>
+                <div class="sd-source-item__links">
+                  <a class="bufp-source-link" href="https://www.mountainview.gov/our-city/departments/public-works/land-development" target="_blank" rel="noopener noreferrer">View original City document</a>
+                  <a class="bufp-source-link" href="../../../../documents/standard-details/mountain-view-standard-provisions-and-details-2026-08.pdf">Archived copy</a>
+                </div>
+              </div>
+
+              <div class="sd-source-item">
+                <p class="sd-source-item__title">Municipal Code &sect;27.58 &amp; Article V</p>
+                <p class="sd-source-item__meta">Street Improvement Standards</p>
+                <div class="sd-source-item__links">
+                  <a class="bufp-source-link" href="https://library.municode.com/ca/mountain_view/codes/" target="_blank" rel="noopener noreferrer">View Municipal Code</a>
+                </div>
+              </div>
+
+              <div class="sd-source-item">
+                <p class="sd-source-item__title">ATP &mdash; Existing Conditions and Needs Summary</p>
+                <p class="sd-source-item__meta">Code Review section &middot; October 2023, rev. July 2026</p>
+                <div class="sd-source-item__links">
+                  <a class="bufp-source-link" href="https://collaborate.mountainview.gov/atp" target="_blank" rel="noopener noreferrer">View ATP project page</a>
+                </div>
+              </div>
+
+              <div class="sd-source-item">
+                <p class="sd-source-item__title">Draft FY 2026&ndash;27 Work Plan and Tentative Agenda List</p>
+                <p class="sd-source-item__meta">Bicycle/Pedestrian Advisory Committee &middot; FY 2026&ndash;27</p>
+                <div class="sd-source-item__links">
+                  <a class="bufp-source-link" href="https://mountainview.legistar.com/View.ashx?GUID=B8C379FF-FC61-4130-AD2E-95B203668125&amp;ID=1378443&amp;M=PA" target="_blank" rel="noopener noreferrer">View official BPAC work plan</a>
+                </div>
+                <p class="sd-source-item__note">&#8220;Updated City Standard Details&#8221; &mdash; Q2 2027 (expected review period, not a confirmed hearing date).</p>
+              </div>
+            </div>
+          </section>
+
+          <p class="study-back-link"><a href="../">&larr; Back to Policies</a></p>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Reuses the sitewide evidence-modal lightbox markup/behavior, but
+       for images (Standard Detail sheets) rather than video -- this
+       page has no video. Same id/classes/focus-trap/Escape pattern as
+       the BUFP and Rengstorff pages' #evidence-modal. -->
+  <div id="evidence-modal" class="evidence-modal" hidden>
+    <div class="evidence-modal__backdrop" data-modal-close></div>
+    <div class="evidence-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="evidence-modal-caption" tabindex="-1">
+      <button type="button" class="evidence-modal__close" data-modal-close aria-label="Close">&times;</button>
+      <img class="evidence-modal__image" src="" alt="" />
+      <p id="evidence-modal-caption" class="evidence-modal__caption"></p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Shared per-sheet data: file, title, caption. Every trigger on
+      // the page keys into this same object by data-evidence-id.
+      var base = '../../../../images/cities/mountainview-ca/standard-details/';
+      var evidenceRecords = {
+        'sd-a1': { file: 'mv-standard-detail-a1-sidewalk.png', title: 'A-1 — Standard Sidewalk Section', caption: 'A-1 — Standard Sidewalk Section. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a2': { file: 'mv-standard-detail-a2-60-foot-street.png', title: 'A-2 — Geometric Section, 60-Foot Street', caption: 'A-2 — Geometric Section, 60-Foot Street. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a3': { file: 'mv-standard-detail-a3-street-sections.png', title: 'A-3 — Standard Geometric Street Sections, 55-Foot Frontage Road', caption: 'A-3 — Standard Geometric Street Sections, 55-Foot Frontage Road. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a4': { file: 'mv-standard-detail-a4-four-lane-arterial.png', title: 'A-4 — Standard Geometric Street Sections, 4-Lane Arterial', caption: 'A-4 — Standard Geometric Street Sections, 4-Lane Arterial. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a5': { file: 'mv-standard-detail-a5-six-lane-arterial.png', title: 'A-5 — Standard Geometric Street Sections, 6-Lane Arterial', caption: 'A-5 — Standard Geometric Street Sections, 6-Lane Arterial. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a6': { file: 'mv-standard-detail-a6-curb-gutter.png', title: 'A-6 — Standard Curb & Gutter and Extruded Median Curb', caption: 'A-6 — Standard Curb & Gutter and Extruded Median Curb. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a7': { file: 'mv-standard-detail-a7-sidewalk-driveway.png', title: 'A-7 — Standard Cross-Sections, Curb, Gutter, Sidewalk and Driveway Approach', caption: 'A-7 — Standard Cross-Sections, Curb, Gutter, Sidewalk and Driveway Approach. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a7a': { file: 'mv-standard-detail-a7a-level-sidewalk.png', title: 'A7-A — Modified Driveway Approach / Level Sidewalk Cross-Section', caption: 'A7-A — Modified Driveway Approach / Level Sidewalk Cross-Section. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a8': { file: 'mv-standard-detail-a8-detached-sidewalk.png', title: 'A-8 — Driveway Detail for Detached Sidewalk, Planter Strip 4.5’ or Greater', caption: 'A-8 — Driveway Detail for Detached Sidewalk, Planter Strip 4.5’ or Greater. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a8a': { file: 'mv-standard-detail-a8a-detached-sidewalk.png', title: 'A-8A — Driveway Detail for Detached Sidewalk, Planter Strip Less Than 4.5’', caption: 'A-8A — Driveway Detail for Detached Sidewalk, Planter Strip Less Than 4.5’. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a9': { file: 'mv-standard-detail-a9-driveway-conform.png', title: 'A-9 — Driveway and AC Conform Details', caption: 'A-9 — Driveway and AC Conform Details. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a22': { file: 'mv-standard-detail-a22-visibility-triangle.png', title: 'A-22 — Side Street/Driveway Pedestrian and Vehicle Triangle of Safety', caption: 'A-22 — Side Street/Driveway Pedestrian and Vehicle Triangle of Safety. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' },
+        'sd-a23': { file: 'mv-standard-detail-a23-intersection-visibility.png', title: 'A-23 — Corner/Intersection Visibility Traffic Safety Visibility Area', caption: 'A-23 — Corner/Intersection Visibility Traffic Safety Visibility Area. City of Mountain View Standard Provisions and Standard Details, revised August 2026.' }
+      };
+
+      var activeModal = null;
+      var lastTrigger = null;
+
+      function getFocusable(container) {
+        return Array.prototype.slice.call(container.querySelectorAll(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+        )).filter(function (el) { return el.offsetParent !== null; });
+      }
+
+      function onKeydown(e) {
+        if (!activeModal) return;
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeModal();
+          return;
+        }
+        if (e.key === 'Tab') {
+          var dialog = activeModal.querySelector('.evidence-modal__dialog');
+          var focusable = getFocusable(dialog);
+          if (!focusable.length) return;
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+
+      function populateEvidenceModal(modal, record) {
+        var img = modal.querySelector('.evidence-modal__image');
+        var caption = modal.querySelector('.evidence-modal__caption');
+        img.src = base + record.file;
+        img.alt = record.title;
+        caption.textContent = record.caption;
+      }
+
+      function openModal(modal, trigger) {
+        activeModal = modal;
+        lastTrigger = trigger;
+        modal.hidden = false;
+        document.body.classList.add('modal-open');
+        var dialog = modal.querySelector('.evidence-modal__dialog');
+        var focusable = getFocusable(dialog);
+        (focusable[0] || dialog).focus();
+        document.addEventListener('keydown', onKeydown, true);
+      }
+
+      function closeModal() {
+        if (!activeModal) return;
+        var modal = activeModal;
+        activeModal = null;
+        modal.hidden = true;
+        document.body.classList.remove('modal-open');
+        document.removeEventListener('keydown', onKeydown, true);
+        var img = modal.querySelector('.evidence-modal__image');
+        if (img) { img.removeAttribute('src'); img.alt = ''; }
+        if (lastTrigger) { lastTrigger.focus(); }
+        lastTrigger = null;
+      }
+
+      document.addEventListener('click', function (e) {
+        var opener = e.target.closest('[data-evidence-id]');
+        if (opener) {
+          var record = evidenceRecords[opener.getAttribute('data-evidence-id')];
+          if (record) {
+            e.preventDefault();
+            var modal = document.getElementById('evidence-modal');
+            populateEvidenceModal(modal, record);
+            openModal(modal, opener);
+          }
+          return;
+        }
+        var closer = e.target.closest('[data-modal-close]');
+        if (closer && closer.closest('.evidence-modal')) {
+          closeModal();
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    // Mobile/tablet collapsible on-page nav: same progressive
+    // enhancement as the BUFP and Rengstorff pages (working href="#id"
+    // links regardless of JS). The desktop sidebar (.sd-sidebar) is
+    // plain anchor links with no JS enhancement -- scroll-margin-top
+    // in the CSS already makes native jumps land correctly, and it's
+    // visible (not collapsible) at the widths it renders at, so it
+    // doesn't need this trigger/collapse logic at all.
+    (function () {
+      var nav = document.querySelector('.onpage-nav');
+      if (!nav) { return; }
+
+      var trigger = nav.querySelector('.onpage-nav__trigger');
+      var list = nav.querySelector('.onpage-nav__list');
+      var links = Array.prototype.slice.call(nav.querySelectorAll('.onpage-nav__link'));
+      var reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      if (trigger && list) {
+        list.hidden = true;
+
+        trigger.addEventListener('click', function () {
+          var open = trigger.getAttribute('aria-expanded') === 'true';
+          trigger.setAttribute('aria-expanded', String(!open));
+          list.hidden = open;
+        });
+
+        var mobileQuery = window.matchMedia('(max-width: 1024px)');
+        var resetIfDesktop = function () {
+          if (!mobileQuery.matches) {
+            trigger.setAttribute('aria-expanded', 'false');
+            list.hidden = true;
+          }
+        };
+        if (mobileQuery.addEventListener) {
+          mobileQuery.addEventListener('change', resetIfDesktop);
+        }
+      }
+
+      links.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          var id = link.getAttribute('href').slice(1);
+          var target = document.getElementById(id);
+          if (!target) { return; }
+
+          event.preventDefault();
+
+          var navHeight = nav.getBoundingClientRect().height;
+          var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+          var scrollTarget = Math.max(0, targetTop - navHeight - 16);
+
+          window.scrollTo({
+            top: scrollTarget,
+            behavior: reduceMotionQuery.matches ? 'auto' : 'smooth'
+          });
+
+          if (trigger && list && !list.hidden) {
+            trigger.setAttribute('aria-expanded', 'false');
+            list.hidden = true;
+          }
+
+          target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+          if (window.history && window.history.pushState) {
+            window.history.pushState(null, '', '#' + id);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

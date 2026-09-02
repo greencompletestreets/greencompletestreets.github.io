@@ -15261,37 +15261,112 @@ b,
 	scroll-margin-top: 4.5rem;
 }
 
-/* Council-direction compact 4-item summary -- orientation only, kept
-   deliberately quiet so it doesn't compete with the straw-poll/Actions
-   comparison further down the page. */
-.rengstorff-microsite .bufp-direction-grid {
-	display: grid;
-	gap: 1.25rem;
-	grid-template-columns: repeat(4, minmax(0, 1fr));
-	margin: 1.75rem 0 0;
-}
-
-.rengstorff-microsite .bufp-direction-item {
+/* "Watch the straw-poll excerpt" source line -- sits between the
+   section intro and the 8-card grid below, linking to the video
+   section/modal above rather than re-embedding it. Deliberately
+   understated: a small pill, not a second video card. */
+.rengstorff-microsite .bufp-elements-watch {
+	align-items: center;
 	background: #f4f8f4;
 	border: 1px solid #d4ded4;
-	border-radius: 6px;
-	padding: 1.1rem 1.25rem;
+	border-radius: 999px;
+	color: #16704d !important;
+	display: inline-flex;
+	font-size: 0.86rem;
+	font-weight: 700;
+	gap: 0.55rem;
+	margin: 1.5rem 0 0;
+	padding: 0.5rem 1rem;
+	text-decoration: none;
 }
 
-.rengstorff-microsite .bufp-direction-item__label {
+.rengstorff-microsite .bufp-elements-watch:hover,
+.rengstorff-microsite .bufp-elements-watch:focus-visible {
+	border-color: #4e9a73;
+}
+
+.rengstorff-microsite .bufp-elements-watch__icon {
+	color: #16704d;
+	font-size: 0.7rem;
+}
+
+/* Eight elements of Council direction -- full verbatim straw-poll
+   transcript per item. Two columns on desktop (never a 4-column
+   compressed grid) so each card has room for comfortable reading;
+   one column on mobile. */
+.rengstorff-microsite .bufp-elements-grid {
+	display: grid;
+	gap: 1.5rem 2rem;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	list-style: none;
+	margin: 1.75rem 0 0;
+	padding: 0;
+}
+
+.rengstorff-microsite .bufp-element-card {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 10px;
+	padding: 1.5rem 1.6rem;
+}
+
+.rengstorff-microsite .bufp-element-card__head {
+	align-items: center;
+	display: flex;
+	gap: 0.9rem;
+	margin-bottom: 0.9rem;
+}
+
+.rengstorff-microsite .bufp-element-card__num {
+	align-items: center;
+	background: #eef3ee;
+	border-radius: 50%;
+	color: #16704d !important;
+	display: flex;
+	flex-shrink: 0;
+	font-size: 1.15rem;
+	font-weight: 700;
+	height: 2.75rem;
+	justify-content: center;
+	width: 2.75rem;
+}
+
+.rengstorff-microsite .bufp-element-card__title {
+	color: #193c2b !important;
+	font-size: 1.02rem;
+	font-weight: 700;
+	line-height: 1.35;
+	margin: 0;
+}
+
+.rengstorff-microsite .bufp-element-card__label {
 	color: #4e745c !important;
-	font-size: 0.72rem;
+	font-size: 0.7rem;
 	font-weight: 700;
 	letter-spacing: 0.06em;
-	margin: 0 0 0.5rem;
+	margin: 0.2rem 0 0;
 	text-transform: uppercase;
 }
 
-.rengstorff-microsite .bufp-direction-item__body {
+.rengstorff-microsite .bufp-element-card__text {
 	color: #304238 !important;
-	font-size: 0.88rem;
-	line-height: 1.5;
+	font-size: 0.94rem;
+	line-height: 1.65;
 	margin: 0;
+}
+
+.rengstorff-microsite .bufp-element-card__text mark {
+	background: #dcefe0;
+	border-radius: 3px;
+	color: #134b32;
+	font-weight: 600;
+	padding: 0.02em 0.25em;
+}
+
+.rengstorff-microsite .bufp-element-card__text mark a {
+	color: inherit !important;
+	text-decoration: underline;
+	text-underline-offset: 2px;
 }
 
 /* Straw-poll video card -- the primary visual/source element on this
@@ -15967,18 +16042,1210 @@ b,
 }
 
 @media screen and (max-width: 1024px) {
-	.rengstorff-microsite .bufp-direction-grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
 	.rengstorff-microsite .bufp-action-grid {
 		grid-template-columns: 1fr;
 	}
 }
 
-@media screen and (max-width: 640px) {
-	.rengstorff-microsite .bufp-direction-grid {
+@media screen and (max-width: 780px) {
+	.rengstorff-microsite .bufp-elements-grid {
 		grid-template-columns: 1fr;
 	}
 }
 
+
+
+/* ==================================================================
+   MOUNTAIN VIEW STANDARD DETAILS UPDATE PAGE (v3 -- mockup match)
+   cities/mountainview-ca/policies/standard-details/index.html
+   Page-specific styles ("sd-" prefix), scoped under the extra
+   "sd-page" class this page's <body> carries alongside the shared
+   "rengstorff-microsite" skin. Reuses existing shared components as
+   the base wherever the mockup allows: .rengstorff-hero (dark hero),
+   .study-breadcrumb, .onpage-nav, .category-tag-style labels,
+   .evidence-modal, .bufp-source-link, .bufp-quote-block__quote, and
+   the #f9f3e6 cream tone already established by .bufp-missing-note.
+   Everything below is either new to this pass or a page-scoped
+   override -- never a change to the shared rule itself, so no other
+   page on the site is affected. ================================================== */
+
+.sd-page.rengstorff-microsite .section-block p:not(.eyebrow),
+.sd-page.rengstorff-microsite p.sd-prose,
+.sd-page.rengstorff-microsite .sd-block p:not(.eyebrow) {
+	font-size: 1.03rem;
+	line-height: 1.68;
+}
+
+/* Normal explanatory body text against the pale green section
+   background, darkened to the site's own base text color (the
+   .rengstorff-microsite default, #25332b) rather than the lighter
+   #304238 the shared section-block rule applies -- stronger contrast
+   without touching the background or the shared rule itself.
+   Deliberately scoped to bare ".sd-prose" paragraphs only (not the
+   broader ".section-block p" / ".sd-block p" patterns every specific-
+   color label on this page also matches -- sd-flow__label,
+   sd-htimeline__date, sd-callout__label, etc. -- which would otherwise
+   lose their own color to this rule's higher specificity).
+   :not(.sd-footnote) and :not(.sd-quote-attribution) keep those two
+   sd-prose-carrying elements at their existing, deliberately lighter
+   colors. */
+.sd-page.rengstorff-microsite p.sd-prose:not(.sd-footnote):not(.sd-quote-attribution) {
+	color: #25332b !important;
+}
+
+.sd-page .sd-block h2 {
+	font-size: 1.55rem;
+	margin: 0 0 0.9rem;
+}
+
+.sd-page .sd-tight {
+	margin-top: 0.6rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-footnote {
+	color: #5a6c60 !important;
+	font-size: 0.88rem !important;
+}
+
+/* ==================================================================
+   HERO
+   ================================================================== */
+
+/* .rengstorff-hero is normally a 2-col grid (copy / photo); the
+   status card needs to span the full hero width as a third row, so
+   this page's hero gets three explicit rows instead of the shared
+   component's implicit 1-row layout. */
+.sd-page .sd-hero {
+	align-items: start;
+	grid-template-rows: auto auto;
+	padding-bottom: 2.5rem;
+	position: relative;
+}
+
+.sd-page .sd-hero__copy {
+	align-self: start;
+	grid-column: 1;
+	grid-row: 1;
+	padding-top: 0.5rem;
+	position: relative;
+	z-index: 2;
+}
+
+.sd-page .sd-hero__copy .hero-subtitle {
+	max-width: 34rem;
+}
+
+/* Breadcrumb, light-on-dark variant -- scoped to inside the hero only
+   so the shared light-background .study-breadcrumb used on every
+   other page is untouched. */
+.sd-page .sd-hero__breadcrumb {
+	margin-bottom: 1.75rem;
+}
+
+.sd-page .sd-hero__breadcrumb ol {
+	color: #b9dcbf !important;
+}
+
+.sd-page .sd-hero__breadcrumb a {
+	color: #dbe9dd !important;
+}
+
+.sd-page .sd-hero__breadcrumb a:hover,
+.sd-page .sd-hero__breadcrumb a:focus-visible {
+	color: #ffffff !important;
+}
+
+.sd-page .sd-hero__breadcrumb li:not(:last-child)::after {
+	color: #4e745c;
+}
+
+.sd-page .sd-hero__breadcrumb [aria-current="page"] {
+	color: #ffffff !important;
+}
+
+/* Real Standard Detail sheet (A-22) as hero texture -- CSS-only
+   treatment (invert + grayscale + screen blend + fade mask), never a
+   pre-processed copy of the asset. Positioned in the second grid
+   column, right side, extending toward the top/bottom hero edges;
+   masked so it fades out before reaching the copy column and never
+   sits under the title text. */
+.sd-page .sd-hero__image {
+	grid-column: 2;
+	grid-row: 1;
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	pointer-events: none;
+	position: relative;
+	z-index: 1;
+}
+
+.sd-page .sd-hero__image img {
+	filter: invert(1) grayscale(1) brightness(0.85) contrast(1.05);
+	height: 130%;
+	left: -8%;
+	mix-blend-mode: screen;
+	object-fit: cover;
+	opacity: 0.32;
+	position: absolute;
+	top: -12%;
+	width: 130%;
+	-webkit-mask-image: linear-gradient(to right, transparent, #000 28%, #000 100%);
+	mask-image: linear-gradient(to right, transparent, #000 28%, #000 100%);
+}
+
+/* Status card -- spans the full hero width as its own row, "floating"
+   near the bottom of the green area rather than a fourth grid column. */
+.sd-page .sd-hero__status {
+	grid-column: 1 / -1;
+	grid-row: 2;
+	margin-top: 2rem;
+	position: relative;
+	z-index: 2;
+}
+
+.sd-page .sd-status-grid {
+	background: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 18px 40px rgba(10, 20, 15, 0.28);
+	column-gap: 1.75rem;
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	padding: 1.25rem 1.75rem;
+	row-gap: 1rem;
+}
+
+.sd-page .sd-status-item dt {
+	color: #5a6c60 !important;
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.35rem;
+	text-transform: uppercase;
+}
+
+.sd-page .sd-status-item dd {
+	color: #1a2b20 !important;
+	font-size: 0.94rem;
+	font-weight: 600;
+	line-height: 1.4;
+	margin: 0;
+}
+
+.sd-page .sd-status-pill {
+	background: #cdead1;
+	border-radius: 999px;
+	color: #0b5c3a !important;
+	display: inline-block;
+	font-size: 0.82rem;
+	font-weight: 700;
+	padding: 0.2rem 0.65rem;
+	text-transform: uppercase;
+}
+
+.sd-page .sd-status-pill--target {
+	background: #d9ebe9;
+	color: #1f5854 !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-hero__bpac-line {
+	color: #dbe9dd !important;
+	font-size: 0.88rem;
+	line-height: 1.5;
+	margin: 1rem 0 0;
+	max-width: 44rem;
+}
+
+.sd-page .sd-hero__bpac-strong {
+	color: #ffffff !important;
+	font-weight: 700;
+}
+
+.sd-page .sd-hero__bpac-line a {
+	color: #ffffff !important;
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+/* ==================================================================
+   WHY THIS MATTERS -- pale cream panel (reuses the #f9f3e6 tone
+   already established by .bufp-missing-note elsewhere on the site).
+   ================================================================== */
+.sd-page .sd-why {
+	background: #f9f3e6;
+	border: 1px solid #ecdfc0;
+	border-radius: 10px;
+	display: flex;
+	gap: 1.25rem;
+	margin: -2.5rem 0 2.5rem;
+	padding: 1.75rem 2rem;
+	position: relative;
+	z-index: 3;
+}
+
+.sd-page .sd-why__icon {
+	align-items: center;
+	border: 2px solid #b68d3f;
+	border-radius: 50%;
+	color: #8a6a2c;
+	display: flex;
+	flex-shrink: 0;
+	font-family: Georgia, serif;
+	font-size: 1.1rem;
+	font-style: italic;
+	font-weight: 700;
+	height: 2.25rem;
+	justify-content: center;
+	width: 2.25rem;
+}
+
+.sd-page .sd-why__body p {
+	margin: 0.6rem 0 0;
+}
+
+.sd-page.rengstorff-microsite .sd-why__body p:not(.eyebrow) {
+	color: #4a3f28 !important;
+}
+
+.sd-page .sd-why__label {
+	color: #8a6a2c !important;
+	font-size: 0.76rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	margin: 0 !important;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-why__policy {
+	border-top: 1px solid #ecdfc0;
+	font-size: 0.92rem !important;
+	margin-top: 1rem !important;
+	padding-top: 1rem;
+}
+
+.sd-page .sd-why__policy a {
+	color: #8a6a2c !important;
+	font-weight: 700;
+}
+
+/* ==================================================================
+   LAYOUT -- sticky sidebar (desktop) + main content column.
+   ================================================================== */
+.sd-page .sd-layout {
+	display: grid;
+	gap: 3rem;
+	grid-template-columns: 13rem minmax(0, 1fr);
+	margin-top: 1rem;
+}
+
+.sd-page .sd-sidebar {
+	position: sticky;
+	top: 1.5rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-sidebar__label {
+	color: #5a6c60 !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.85rem;
+	text-transform: uppercase;
+}
+
+.sd-page .sd-sidebar__list {
+	border-left: 2px solid #d4ded4;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.sd-page .sd-sidebar__list li {
+	margin: 0;
+}
+
+.sd-page .sd-sidebar__list a {
+	color: #304238;
+	display: block;
+	font-size: 0.88rem;
+	font-weight: 600;
+	padding: 0.5rem 0 0.5rem 1rem;
+	text-decoration: none;
+}
+
+.sd-page .sd-sidebar__list a:hover,
+.sd-page .sd-sidebar__list a:focus-visible {
+	color: #16704d;
+}
+
+/* The mobile/tablet collapsible bar is the sidebar's replacement below
+   the layout's column breakpoint -- hidden at the width the sidebar
+   takes over, shown below it. .sd-sidebar itself is hidden by default
+   and only shown once there's room for it (see media query), so a
+   narrow viewport never gets both navs at once. */
+.sd-page .sd-sidebar {
+	display: none;
+}
+
+.sd-page .sd-onpage-nav-mobile {
+	margin-bottom: 0;
+}
+
+/* Section numbers + spacing. */
+.sd-page .sd-block {
+	margin-bottom: 3rem;
+	padding-top: 0.5rem;
+	scroll-margin-top: 4.5rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-section-num {
+	color: #9fc7a8 !important;
+	font-size: 1.6rem;
+	font-weight: 800;
+	line-height: 1;
+	margin: 0 0 0.35rem;
+}
+
+.sd-page .sd-block h2 {
+	color: #16371f;
+}
+
+.sd-page .sd-subhead {
+	color: #16371f;
+	font-size: 1.2rem;
+	margin: 2rem 0 0.75rem;
+}
+
+.sd-page .sd-divider {
+	border-top: 1px solid #d4ded4;
+	margin: 2.25rem 0;
+}
+
+/* ==================================================================
+   1. WHAT ARE STANDARD DETAILS -- two-column split with the
+   policy-to-pavement diagram as an inset beside the main text.
+   ================================================================== */
+.sd-page .sd-split-2col {
+	display: grid;
+	gap: 2.25rem;
+	grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+}
+
+.sd-page .sd-compare {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin: 1.25rem 0 0;
+}
+
+.sd-page .sd-compare__col {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 8px;
+	padding: 1rem 1.1rem;
+}
+
+.sd-page .sd-compare__col--highlight {
+	background: #eef6ef;
+	border-color: #b8dcc0;
+}
+
+.sd-page.rengstorff-microsite p.sd-compare__heading {
+	color: #193c2b !important;
+	font-size: 0.82rem;
+	font-weight: 700;
+	margin: 0 0 0.6rem;
+}
+
+.sd-page .sd-compare__col ul {
+	color: #304238;
+	font-size: 0.86rem;
+	line-height: 1.6;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.sd-page .sd-compare__col li {
+	padding: 0.15rem 0;
+}
+
+.sd-page .sd-inset {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 10px;
+	height: fit-content;
+	padding: 1.5rem 1.5rem 1.25rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-inset__label {
+	color: #5a6c60 !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 1rem;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-inset__note {
+	color: #5a6c60 !important;
+	font-size: 0.84rem !important;
+	line-height: 1.5;
+	margin: 1rem 0 0 !important;
+}
+
+/* ==================================================================
+   FLOW DIAGRAMS (policy-to-pavement, review process, Municipal Code).
+   ================================================================== */
+.sd-page .sd-flow {
+	margin: 0;
+}
+
+.sd-page .sd-flow__step {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	padding: 0.75rem 1.1rem;
+	position: relative;
+	text-align: center;
+}
+
+.sd-page .sd-flow__step:not(:last-child) {
+	margin-bottom: 2rem;
+}
+
+.sd-page .sd-flow__step:not(:last-child)::after {
+	color: #4e9a73;
+	content: "\2193";
+	bottom: -1.7rem;
+	font-size: 1.3rem;
+	font-weight: 700;
+	left: 50%;
+	line-height: 1;
+	position: absolute;
+	transform: translateX(-50%);
+}
+
+.sd-page.rengstorff-microsite p.sd-flow__label {
+	color: #193c2b !important;
+	font-size: 0.9rem;
+	font-weight: 700;
+	margin: 0;
+}
+
+.sd-page .sd-flow__step--final {
+	background: #16704d;
+	border-color: #16704d;
+}
+
+.sd-page.rengstorff-microsite .sd-flow__step--final p.sd-flow__label {
+	color: #ffffff !important;
+}
+
+.sd-page .sd-flow__step--sub {
+	padding-bottom: 0.95rem;
+}
+
+/* Three peer review bodies inside the "Public / advisory review" step
+   -- plain compact columns, not bordered mini-cards (that read as
+   "stacked buttons" at narrow widths) and not connected by arrows to
+   each other, since the City doesn't establish an order among them. */
+.sd-page .sd-flow__peers {
+	column-gap: 1rem;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin: 0.6rem 0 0;
+	row-gap: 0.5rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-flow__peer {
+	color: #304238 !important;
+	font-size: 0.8rem;
+	font-weight: 600;
+	line-height: 1.35;
+	margin: 0;
+}
+
+.sd-page .sd-flow--vertical {
+	max-width: 34rem;
+}
+
+.sd-page .sd-quote {
+	margin: 1.25rem 0 0;
+	max-width: 48rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-quote-attribution {
+	color: #5a6c60 !important;
+	font-size: 0.86rem;
+	margin: 0.5rem 0 0;
+}
+
+/* ==================================================================
+   2. THE UPDATE -- compact matrix + pills.
+   ================================================================== */
+.sd-page .sd-matrix {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	list-style: none;
+	margin: 1rem 0 0;
+	padding: 0;
+}
+
+.sd-page .sd-matrix__item {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 999px;
+	color: #193c2b;
+	font-size: 0.86rem;
+	font-weight: 600;
+	padding: 0.42rem 0.9rem;
+}
+
+.sd-page .sd-matrix--compact .sd-matrix__item {
+	font-size: 0.82rem;
+	padding: 0.38rem 0.8rem;
+}
+
+.sd-page .sd-pill-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	margin: 0.75rem 0 0;
+}
+
+.sd-page .sd-pill {
+	background: #eef3ee;
+	border-radius: 6px;
+	color: #16704d;
+	cursor: help;
+	font-size: 0.84rem;
+	font-weight: 800;
+	padding: 0.38rem 0.75rem;
+}
+
+.sd-page .sd-callout {
+	background: #ffffff;
+	border-left: 4px solid #16704d;
+	border-radius: 6px;
+	margin: 1.5rem 0 0;
+	max-width: 46rem;
+	padding: 1.25rem 1.5rem;
+}
+
+.sd-page .sd-callout p {
+	margin: 0.6rem 0 0;
+}
+
+.sd-page .sd-callout p:first-of-type {
+	margin-top: 0;
+}
+
+.sd-page.rengstorff-microsite p.sd-callout__label {
+	color: #0b5c3a !important;
+	font-size: 0.74rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 !important;
+	text-transform: uppercase;
+}
+
+.sd-page .sd-callout--note {
+	border-left-color: #4e9a73;
+	border-left-style: dashed;
+}
+
+/* The BPAC milestone callout sits between the review-process diagram
+   and the closing "public feedback / early 2028" paragraph -- both
+   are plain paragraphs with the sitewide margin-top:0 reset, so
+   without an explicit bottom margin here the callout and the next
+   paragraph would sit flush against each other. Scoped to this one
+   instance (not all .sd-callout usages) so the "Nothing has been
+   selected yet" callout's existing tight footnote spacing elsewhere
+   on the page is untouched. */
+.sd-page .sd-callout--bpac {
+	margin-bottom: 1.75rem;
+}
+
+.sd-page .sd-callout__link {
+	margin-top: 0.85rem !important;
+}
+
+/* ==================================================================
+   3. PUBLIC REVIEW -- quote card + process diagram side by side.
+   align-items: start (not the grid default of stretch) so the quote
+   card sizes to its own content instead of stretching to match the
+   taller process diagram -- only the top edges of the two columns
+   line up. ================================================================== */
+.sd-page .sd-review-grid {
+	align-items: start;
+	display: grid;
+	gap: 2.25rem;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+	margin: 1.5rem 0 0;
+}
+
+.sd-page .sd-review-quote {
+	background: #f4f8f4;
+	border-left: 4px solid #16704d;
+	border-radius: 0 8px 8px 0;
+	margin: 0;
+	padding: 1.5rem 1.75rem;
+}
+
+.sd-page .sd-review-quote > p:first-child {
+	color: #193c2b;
+	font-size: 1.02rem;
+	font-style: italic;
+	line-height: 1.6;
+	margin: 0;
+}
+
+.sd-page .sd-review-quote cite {
+	color: #5a6c60;
+	display: block;
+	font-size: 0.85rem;
+	font-style: normal;
+	margin-top: 1rem;
+}
+
+.sd-page .sd-review-quote__link {
+	margin-top: 0.85rem !important;
+}
+
+/* ==================================================================
+   4. CURRENT STANDARDS -- grouped small multiples + A-4/A-5 feature.
+   ================================================================== */
+.sd-page .sd-group {
+	margin-top: 2rem;
+}
+
+.sd-page .sd-group__heading {
+	color: #193c2b;
+	font-size: 1.02rem;
+	margin: 0 0 0.9rem;
+}
+
+.sd-page .sd-group__grid {
+	display: grid;
+	gap: 1.1rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sd-page .sd-multiple {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	font-family: inherit;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	text-align: left;
+	transition: border-color 0.15s ease;
+}
+
+.sd-page .sd-multiple:hover,
+.sd-page .sd-multiple:focus-visible {
+	border-color: #4e9a73;
+}
+
+.sd-page .sd-multiple--feature {
+	border: 2px solid #c9a227;
+}
+
+.sd-page .sd-multiple__star {
+	background: #c9a227;
+	border-radius: 0 0 0 6px;
+	color: #ffffff;
+	font-size: 0.8rem;
+	line-height: 1;
+	padding: 0.25rem 0.4rem;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
+
+.sd-page .sd-multiple__thumb {
+	aspect-ratio: 8.5 / 11;
+	background: #f1f4ef;
+	display: block;
+	overflow: hidden;
+}
+
+.sd-page .sd-multiple__thumb img {
+	display: block;
+	height: 100%;
+	object-fit: contain;
+	width: 100%;
+}
+
+.sd-page .sd-multiple__num {
+	color: #16704d !important;
+	display: block;
+	font-size: 0.76rem;
+	font-weight: 800;
+	letter-spacing: 0.03em;
+	margin: 0.7rem 0.9rem 0;
+}
+
+.sd-page .sd-multiple__title {
+	color: #193c2b !important;
+	display: block;
+	font-size: 0.86rem;
+	font-weight: 600;
+	line-height: 1.3;
+	margin: 0.25rem 0.9rem 0.85rem;
+}
+
+.sd-page .sd-feature {
+	border-top: 1px solid #d4ded4;
+	margin-top: 2.5rem;
+	padding-top: 2rem;
+}
+
+.sd-page .sd-feature__pair {
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin: 1.5rem 0;
+}
+
+.sd-page .sd-feature__figure {
+	margin: 0;
+}
+
+.sd-page .sd-feature__img {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 8px;
+	cursor: pointer;
+	display: block;
+	padding: 0;
+	width: 100%;
+}
+
+.sd-page .sd-feature__img img {
+	background: #f1f4ef;
+	border-radius: 7px;
+	display: block;
+	width: 100%;
+}
+
+.sd-page .sd-feature__img:hover,
+.sd-page .sd-feature__img:focus-visible {
+	border-color: #4e9a73;
+}
+
+.sd-page .sd-feature__figure figcaption {
+	color: #5a6c60 !important;
+	font-size: 0.85rem;
+	font-weight: 600;
+	margin-top: 0.6rem;
+	text-align: center;
+}
+
+.sd-page .sd-crosssection {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px;
+	margin: 1.25rem 0 0;
+	overflow: hidden;
+}
+
+.sd-page .sd-crosssection__zone {
+	background: #b9c7bd;
+	color: #1a2b20;
+	flex: 1 1 6rem;
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	padding: 1rem 0.4rem;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.sd-page .sd-crosssection__zone--green {
+	background: #79b781;
+	color: #0b3d22;
+}
+
+.sd-page .sd-crosssection__zone--bike {
+	background: #2f8f75;
+	color: #ffffff;
+}
+
+.sd-page .sd-crosssection__zone--vehicle {
+	background: #445a4e;
+	color: #ffffff;
+	flex-grow: 2;
+}
+
+.sd-page.rengstorff-microsite p.sd-crosssection-caveat {
+	color: #5a6c60 !important;
+	font-size: 0.84rem;
+	margin: 0.6rem 0 0;
+}
+
+/* ==================================================================
+   5. SIDEWALKS + DRIVEWAYS.
+   ================================================================== */
+.sd-page .sd-split {
+	align-items: center;
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+	margin: 1.25rem 0 0;
+}
+
+.sd-page .sd-split__text p {
+	margin: 0.75rem 0 0;
+}
+
+.sd-page.rengstorff-microsite p.sd-split__key {
+	color: #0b5c3a !important;
+	font-size: 1rem !important;
+	font-weight: 700;
+}
+
+.sd-page .sd-split__img {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 8px;
+	cursor: pointer;
+	display: block;
+	padding: 0;
+	width: 100%;
+}
+
+.sd-page .sd-split__img img {
+	background: #f1f4ef;
+	border-radius: 7px;
+	display: block;
+	width: 100%;
+}
+
+.sd-page .sd-split__img:hover,
+.sd-page .sd-split__img:focus-visible {
+	border-color: #4e9a73;
+}
+
+.sd-page .sd-inline-link {
+	background: none;
+	border: none;
+	color: #16704d;
+	cursor: pointer;
+	font: inherit;
+	font-weight: 700;
+	padding: 0;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+/* ==================================================================
+   OPEN PROCESS QUESTION.
+   ================================================================== */
+.sd-page .sd-open-question {
+	background: #ffffff;
+	border: 2px solid #16704d;
+	border-radius: 8px;
+	margin: 1.5rem 0 0;
+	max-width: 48rem;
+	padding: 1.5rem 1.75rem;
+}
+
+.sd-page .sd-open-question p {
+	margin: 0.6rem 0 0;
+}
+
+.sd-page .sd-open-question p:nth-child(2) {
+	margin-top: 0;
+}
+
+.sd-page.rengstorff-microsite p.sd-open-question__label {
+	color: #0b5c3a !important;
+	font-size: 0.76rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	margin: 0 !important;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-open-question__ask {
+	border-top: 1px dashed #cdead1;
+	color: #193c2b !important;
+	font-size: 1.06rem;
+	font-weight: 700;
+	line-height: 1.5;
+	margin-top: 1.1rem !important;
+	padding-top: 1.1rem;
+}
+
+/* ==================================================================
+   TIMELINE -- horizontal (desktop) / vertical rail (mobile), with a
+   distinct treatment for the Q2 2027 work-plan milestone vs. the
+   confirmed-source entries.
+   ================================================================== */
+.sd-page .sd-htimeline {
+	display: flex;
+	list-style: none;
+	margin: 1.75rem 0 0;
+	padding: 0;
+	position: relative;
+}
+
+.sd-page .sd-htimeline::before {
+	background: #cdead1;
+	content: "";
+	height: 2px;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 6px;
+}
+
+.sd-page .sd-htimeline__item {
+	flex: 1;
+	padding: 1.5rem 0.6rem 0;
+	position: relative;
+	text-align: center;
+}
+
+.sd-page .sd-htimeline__item::before {
+	background: #16704d;
+	border: 2px solid #ffffff;
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px #cdead1;
+	content: "";
+	height: 12px;
+	left: 50%;
+	position: absolute;
+	top: 0;
+	transform: translateX(-50%);
+	width: 12px;
+}
+
+.sd-page .sd-htimeline__item--target::before {
+	background: #0b5c3a;
+	box-shadow: 0 0 0 3px #9fd6ac;
+}
+
+.sd-page .sd-htimeline__item--milestone::before {
+	background: #ffffff;
+	border-color: #c9a227;
+	box-shadow: 0 0 0 2px #f3e2ad;
+}
+
+.sd-page.rengstorff-microsite p.sd-htimeline__date {
+	color: #0b5c3a !important;
+	font-size: 0.8rem;
+	font-weight: 800;
+	letter-spacing: 0.03em;
+	margin: 0 0 0.3rem;
+	text-transform: uppercase;
+}
+
+.sd-page .sd-htimeline__item--milestone p.sd-htimeline__date {
+	color: #8a6a2c !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-htimeline__text {
+	color: #304238 !important;
+	font-size: 0.86rem;
+	line-height: 1.4;
+	margin: 0;
+}
+
+.sd-page.rengstorff-microsite p.sd-htimeline__link {
+	font-size: 0.78rem;
+	margin: 0.5rem 0 0 !important;
+}
+
+.sd-page .sd-htimeline__link a {
+	color: #16704d;
+	font-weight: 700;
+}
+
+.sd-page.rengstorff-microsite p.sd-htimeline__badge {
+	background: #f9f3e6;
+	border-radius: 4px;
+	color: #8a6a2c !important;
+	font-size: 0.68rem;
+	font-weight: 700;
+	margin: 0.5rem auto 0 !important;
+	max-width: 8rem;
+	padding: 0.2rem 0.4rem;
+}
+
+/* ==================================================================
+   SOURCES -- compact 2-column list.
+   ================================================================== */
+.sd-page .sd-source-grid {
+	display: grid;
+	gap: 1.25rem 2rem;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin: 1.5rem 0 0;
+}
+
+.sd-page .sd-source-item {
+	border-top: 1px solid #d4ded4;
+	padding-top: 1rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-source-item__title {
+	color: #193c2b !important;
+	font-size: 0.96rem;
+	font-weight: 700;
+	margin: 0;
+}
+
+.sd-page.rengstorff-microsite p.sd-source-item__meta {
+	color: #5a6c60 !important;
+	font-size: 0.83rem;
+	margin: 0.3rem 0 0;
+}
+
+.sd-page.rengstorff-microsite p.sd-source-item__note {
+	color: #5a6c60 !important;
+	font-size: 0.82rem;
+	margin: 0.5rem 0 0 !important;
+}
+
+.sd-page .sd-source-item__links {
+	display: flex;
+	gap: 1.1rem;
+	margin-top: 0.6rem;
+}
+
+/* ==================================================================
+   RESPONSIVE
+   ================================================================== */
+@media screen and (min-width: 1025px) {
+	.sd-page .sd-sidebar {
+		display: block;
+	}
+
+	.sd-page .sd-onpage-nav-mobile {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.sd-page .sd-layout {
+		display: block;
+	}
+
+	.sd-page .sd-status-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.sd-page .sd-split-2col {
+		grid-template-columns: 1fr;
+	}
+
+	.sd-page .sd-review-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.sd-page .sd-flow__peers {
+		grid-template-columns: 1fr;
+	}
+
+	.sd-page .sd-feature__pair,
+	.sd-page .sd-split,
+	.sd-page .sd-source-grid,
+	.sd-page .sd-group__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.sd-page .sd-compare {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.sd-page .sd-hero {
+		grid-template-columns: 1fr;
+	}
+
+	.sd-page .sd-hero__image {
+		display: none;
+	}
+
+	.sd-page .sd-hero__copy,
+	.sd-page .sd-hero__status {
+		grid-column: 1;
+	}
+
+	.sd-page .sd-why {
+		flex-direction: column;
+		margin: -1.5rem 1rem 2rem;
+	}
+}
+
+@media screen and (max-width: 780px) {
+	.sd-page .sd-htimeline {
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.sd-page .sd-htimeline::before {
+		bottom: 0;
+		height: auto;
+		left: 5px;
+		right: auto;
+		top: 6px;
+		width: 2px;
+	}
+
+	.sd-page .sd-htimeline__item {
+		padding: 0 0 1.75rem 1.75rem;
+		text-align: left;
+	}
+
+	.sd-page .sd-htimeline__item::before {
+		left: 0;
+		top: 0.2rem;
+		transform: none;
+	}
+
+	.sd-page.rengstorff-microsite p.sd-htimeline__badge {
+		margin: 0.5rem 0 0 !important;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.sd-page .sd-status-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.sd-page .sd-feature__pair,
+	.sd-page .sd-split,
+	.sd-page .sd-source-grid,
+	.sd-page .sd-group__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.sd-page .sd-split {
+		gap: 1.25rem;
+	}
+
+	.sd-page .sd-crosssection__zone {
+		font-size: 0.7rem;
+		padding: 0.85rem 0.3rem;
+	}
+
+	.sd-page .sd-why {
+		padding: 1.4rem 1.25rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sd-page * {
+		scroll-behavior: auto !important;
+	}
+}
