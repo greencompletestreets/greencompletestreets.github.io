@@ -170,11 +170,48 @@ check('"ATP Existing Conditions and Needs Summary" is linked inline', /ATP Exist
 check('the all-ages-and-abilities finding appears, attributed to the 2023 ATP report', html.includes('the current standards do not reflect streets that support active transportation for all ages and abilities'));
 check('A-1 through A-9 are described as the ATP’s starting-point cross-sections', html.includes('Standard Details A-1 through A-9 as the typical street cross-sections'));
 
-// 9e. Compact "Related standards + code" list -- 3-5 verified items.
-check('"Related standards + code" section present', html.includes('Related standards + code'));
-const relatedItemCount = (html.match(/sd-related__title/g) || []).length;
-check('Related standards + code has between 3 and 5 items', relatedItemCount >= 3 && relatedItemCount <= 5);
-check('Related standards + code cites its source (ATP Code Review Table 9)', html.includes('Table 9'));
+// 9e. "Existing rules that shape walking + bicycling" -- its own standalone
+//     section (not nested under Policy connections), with thematic groups
+//     of quoted/excerpted provisions, source-type badges, and a corrected
+//     Municipal Code bicycle-parking citation.
+check('the old "Related standards + code" mini-list has been removed', !html.includes('Related standards + code'));
+check('"sd-related" component classes are no longer used', !html.includes('sd-related__'));
+check('"Existing rules that shape walking + bicycling" heading present', html.includes('Existing rules that shape walking + bicycling'));
+check('#existing-rules section exists', /<section class="sd-block" id="existing-rules">/.test(html));
+check('the intro paragraph appears verbatim', html.includes("Standard Details aren&#8217;t the City&#8217;s only design rules."));
+check('at least 5 thematic sd-rules-group blocks present', (html.match(/class="sd-rules-group"/g) || []).length >= 5);
+check('at least 6 sd-provision cards present', (html.match(/class="sd-provision"/g) || []).length >= 6);
+
+// The incorrect §36.22.50 citation must be gone; the corrected §36.32.50 /
+// §36.32.85 pair must be present, with §36.32.50 visually subordinate.
+check('incorrect "§36.22.50" citation no longer appears anywhere on the page', !html.includes('36.22.50'));
+check('corrected §36.32.85 (bicycle parking facilities) is cited', html.includes('&sect;36.32.85'));
+check('corrected §36.32.50 (required number of parking spaces) is cited', html.includes('&sect;36.32.50'));
+check('the exact §36.32.85 quote (convenient access) appears', html.includes('Convenient access to bicycle parking facilities shall be provided.'));
+check('the exact §36.32.85 quote (curb ramps) appears', html.includes('curb ramps shall be installed where appropriate'));
+check('§36.32.50 is rendered as a visually subordinate sub-card', /sd-provision__subordinate[\s\S]{0,400}?&sect;36\.32\.50/.test(html));
+
+// Source-type badges distinguish current Code language from older/other
+// authority types (Standard Design Criteria, other City standards).
+check('Municipal Code source badge used', html.includes('sd-provision__source--code'));
+check('Standard Design Criteria source badge used', html.includes('sd-provision__source--sdc'));
+check('"2002 Standard Design Criteria" is dated distinctly from current Code provisions', html.includes('2002 Standard Design Criteria') || html.includes('Standard Design Criteria (2002)'));
+
+// Verbatim City-language provisions (§27.57, §27.61) are present with the
+// exact quote treatment, not just paraphrase.
+check('§27.57 is cited', html.includes('27.57'));
+check('§27.61 is cited', html.includes('27.61'));
+check('provision quote styling (sd-provision__quote) is used for verbatim language', html.includes('sd-provision__quote'));
+check('no ↗ arrow icons inside the Existing rules section', (() => {
+  const start = html.indexOf('id="existing-rules"');
+  const end = html.indexOf('id="public-review"');
+  if (start === -1 || end === -1) return false;
+  return !html.slice(start, end).includes('&#8599;');
+})());
+
+// Single-card groups (Visibility + landscaping; Street width + improvements)
+// get the width-constraint modifier so they don't stretch across the grid.
+check('single-card rules groups use the --single grid modifier', (html.match(/sd-rules-group__grid sd-rules-group__grid--single/g) || []).length === 2);
 
 // 10. Every referenced local image asset resolves on disk.
 const imageDir = join(REPO_ROOT, 'images/cities/mountainview-ca/standard-details');
@@ -233,6 +270,7 @@ if (existsSync(hubPath)) {
 //     id="sources" bug).
 const navItems = [
   ['#what-is-updated', 'What is being updated'],
+  ['#existing-rules', 'Existing rules'],
   ['#public-review', 'Public review'],
   ['#current-standards', 'Current standards'],
   ['#sidewalks-driveways', 'Sidewalks & driveways'],
