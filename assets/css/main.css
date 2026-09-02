@@ -16794,54 +16794,77 @@ b,
 }
 
 /* ==================================================================
-   3. EXISTING RULES THAT SHAPE WALKING + BICYCLING -- continuous
-   reference sections, not a card grid. This material is a connected
-   explanation (policy -> legal requirement -> engineering standard ->
-   project implementation), not a set of peer objects to compare, so
-   there's no per-provision card. Each topic group is ONE broad white
-   reading surface -- contrast against the page's pale-green
-   background, and a place for engineering-drawing cross-references to
-   stand out -- with its provisions stacked vertically inside and thin
-   full-width rules between them. Provision text itself (.sd-ref) is
-   capped at a comfortable reading measure well short of the surface's
-   full width, matching a real reference publication's column, not a
-   dashboard tile. Source badge, linked title, verbatim quote (green
-   rule + italic, not a nested card) vs. plain-language "why it
-   matters" stay visually distinct within that one flow. ================================================================== */
+   3. EXISTING RULES THAT SHAPE WALKING + BICYCLING.
+
+   Structural model (revised after visual review against a reference
+   sample): a THEMATIC GROUP is a light grouping boundary, not a card
+   -- a thin green outline, transparent background (the page's own
+   pale green shows through), with a large, prominent heading. Each
+   INDIVIDUAL provision inside it is its own separate white block,
+   with visible pale-green page background between blocks (a flex
+   column + gap, not a shared surface with internal dividers). The
+   earlier version put every provision in a group inside one shared
+   white "surface" with thin rules between them; this replaces that
+   entirely -- no two provisions share a white background anymore.
+
+   Hierarchy: SECTION (h2, in the white intro band) > THEMATIC GROUP
+   (h3, .sd-refgroup__heading -- large, dark green, own permalink) >
+   INDIVIDUAL PROVISION (.sd-ref__title -- linked to the official
+   source, plus its own separate permalink to this page's anchor).
+   ================================================================== */
 .sd-page .sd-refgroup {
+	border: 1px solid #a9cbb2;
+	border-radius: 12px;
 	margin-top: 2.5rem;
+	padding: 2.25rem 2rem;
 }
 
 .sd-page .sd-refgroup:first-of-type {
 	margin-top: 1.5rem;
 }
 
+/* Substantially larger than the old label-sized heading -- this is a
+   major organizational heading, not a small caption sitting above
+   the content, so it needs real visual weight (though still visibly
+   subordinate to the H2 section title above it). scroll-margin-top
+   matches .sd-block's, so the sticky nav doesn't cover it when linked
+   directly. */
 .sd-page .sd-refgroup__heading {
+	align-items: center;
 	color: #193c2b;
-	font-size: 1.05rem;
-	margin: 0 0 1rem;
+	display: flex;
+	font-size: 1.5rem;
+	font-weight: 800;
+	gap: 0.5rem;
+	margin: 0;
+	scroll-margin-top: 4.5rem;
 }
 
-.sd-page .sd-refgroup__surface {
+.sd-page.rengstorff-microsite p.sd-refgroup__desc {
+	color: #4b5c52 !important;
+	font-size: 0.95rem;
+	margin: 0.4rem 0 1.5rem !important;
+}
+
+/* Vertical stack of individual provision blocks -- gap (not margin on
+   each child) so the visible pale-green space between blocks is
+   consistent and doesn't depend on remembering a margin on the right
+   element. 18px sits in the middle of the requested 12-20px range. */
+.sd-page .sd-refgroup__list {
+	display: flex;
+	flex-direction: column;
+	gap: 1.125rem;
+}
+
+/* Each provision is its OWN separate white block -- own background,
+   own border, own radius. This is the one rule in this whole section
+   that must never be shared by two provisions at once. */
+.sd-page .sd-ref {
 	background: #ffffff;
 	border: 1px solid #d4ded4;
-	border-radius: 10px;
-	padding: 2rem 2.5rem;
-}
-
-/* The full-width rule between stacked provisions -- deliberately NOT
-   scoped to .sd-ref's own (narrower) reading measure, so it reads as
-   a section break across the whole surface rather than an underline
-   on the paragraph above it. */
-.sd-page .sd-refgroup__rule {
-	border-top: 1px solid #e7ece7;
-	margin: 2rem 0;
-}
-
-/* Reading measure for a single provision -- roughly 65-75% of the
-   surface's width on a wide desktop viewport, not a full-width block. */
-.sd-page .sd-ref {
-	max-width: 50rem;
+	border-radius: 8px;
+	padding: 1.5rem 1.75rem;
+	scroll-margin-top: 4.5rem;
 }
 
 .sd-page .sd-ref__source {
@@ -16907,9 +16930,13 @@ b,
 }
 
 .sd-page.rengstorff-microsite p.sd-ref__title {
+	align-items: baseline;
 	color: #193c2b !important;
+	display: flex;
+	flex-wrap: wrap;
 	font-size: 1.05rem;
 	font-weight: 700;
+	gap: 0.4rem;
 	margin: 0 0 0.75rem;
 }
 
@@ -16932,7 +16959,8 @@ b,
 }
 
 /* Quotation: thin green rule + italic, sitting directly in the flow --
-   not nested inside another box. */
+   not nested inside another box. Capped at a comfortable reading
+   measure even though the block itself spans the group's full width. */
 .sd-page .sd-ref__quote {
 	border-left: 3px solid #16704d;
 	color: #193c2b;
@@ -16940,35 +16968,48 @@ b,
 	font-style: italic;
 	line-height: 1.6;
 	margin: 0;
+	max-width: 42rem;
 	padding: 0.1rem 0 0.1rem 1.1rem;
 }
 
+/* Same reading-measure cap as the quote, above -- "Key details" /
+   "Key dimensions" lists (short label/value rows) are left
+   unconstrained, since capping short lines to a prose measure buys
+   nothing. */
 .sd-page.rengstorff-microsite p.sd-ref__why {
 	color: #304238 !important;
 	font-size: 0.92rem;
 	line-height: 1.6;
 	margin: 0.3rem 0 0;
+	max-width: 42rem;
 }
 
-.sd-page .sd-ref__subordinate {
-	border-top: 1px dashed #d4ded4;
-	margin-top: 1.25rem;
-	padding-top: 1.1rem;
+/* Local permalink (group headings + individual provisions) -- a
+   conventional, subtle chain-link icon, not "View source" text and
+   not ↗. Visually secondary to the heading it sits beside (muted,
+   partially transparent) until hovered/focused, when it becomes fully
+   opaque and switches to the link green -- keyboard-focusable since
+   it's a real <a>, with its own descriptive aria-label rather than
+   relying on visible text ("Link to X on this page"). Sized in em so
+   it scales with whatever heading it's attached to (small inside a
+   provision title, larger inside a group heading) without a separate
+   override for each context. */
+.sd-page .sd-permalink {
+	color: #7c9686;
+	display: inline-flex;
+	flex-shrink: 0;
+	opacity: 0.55;
 }
 
-.sd-page .sd-ref__source--small {
-	font-size: 0.62rem;
-	margin-bottom: 0.5rem;
-	padding: 0.15rem 0.5rem;
+.sd-page .sd-permalink:hover,
+.sd-page .sd-permalink:focus-visible {
+	color: #16704d;
+	opacity: 1;
 }
 
-.sd-page.rengstorff-microsite p.sd-ref__title--small {
-	font-size: 0.92rem !important;
-	margin-bottom: 0.4rem !important;
-}
-
-.sd-page.rengstorff-microsite p.sd-ref__why--small {
-	font-size: 0.85rem !important;
+.sd-page .sd-permalink__icon {
+	height: 0.72em;
+	width: 0.72em;
 }
 
 /* The BPAC milestone callout sits between the review-process diagram
@@ -17533,8 +17574,16 @@ b,
 		gap: 1.25rem;
 	}
 
-	.sd-page .sd-refgroup__surface {
+	.sd-page .sd-refgroup {
 		padding: 1.5rem 1.25rem;
+	}
+
+	.sd-page .sd-refgroup__heading {
+		font-size: 1.3rem;
+	}
+
+	.sd-page .sd-ref {
+		padding: 1.25rem 1.25rem;
 	}
 
 	.sd-page .sd-intro-band {

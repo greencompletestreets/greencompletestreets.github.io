@@ -200,8 +200,9 @@ check('"Existing rules that shape walking + bicycling" heading present', html.in
 check('#existing-rules section exists', /<section class="sd-block" id="existing-rules">/.test(html));
 check('the intro paragraph appears verbatim', html.includes("Standard Details are not the City&#8217;s only design rules."));
 check('at least 5 thematic sd-refgroup blocks present', (html.match(/class="sd-refgroup"/g) || []).length >= 5);
-check('at least 9 sd-ref reference blocks present', (html.match(/class="sd-ref"/g) || []).length >= 9);
-check('each thematic group is one continuous white reading surface (sd-refgroup__surface), not per-provision cards', (html.match(/sd-refgroup__surface/g) || []).length >= 5);
+check('at least 11 sd-ref reference blocks present (each provision now its own block)', (html.match(/class="sd-ref"/g) || []).length >= 11);
+check('the old shared-surface classes (sd-refgroup__surface, sd-refgroup__rule) are no longer used -- every provision is its own separate white block', !html.includes('sd-refgroup__surface') && !html.includes('sd-refgroup__rule'));
+check('sd-refgroup__list wraps each group\'s provisions (flex + gap, not a shared white background)', (html.match(/sd-refgroup__list/g) || []).length >= 5);
 check('"Sidewalks + frontage" group present', html.includes('Sidewalks + frontage'));
 check('"Driveways + crossings" group present', html.includes('Driveways + crossings'));
 check('"Bicycle access" group present', html.includes('Bicycle access'));
@@ -215,7 +216,8 @@ check('corrected §36.32.85 (bicycle parking facilities) is cited', html.include
 check('corrected §36.32.50 (required number of parking spaces) is cited', html.includes('&sect;36.32.50'));
 check('the exact §36.32.85 quote (convenient access) appears', html.includes('Convenient access to bicycle parking facilities shall be provided.'));
 check('the exact §36.32.85 quote (curb ramps) appears', html.includes('curb ramps shall be installed where appropriate'));
-check('§36.32.50 is rendered as a visually subordinate block (not a card)', /sd-ref__subordinate[\s\S]{0,400}?&sect;36\.32\.50/.test(html));
+check('§36.32.50 is its own separate white block with its own anchor (not nested inside §36.32.85\'s block)', /<div class="sd-ref" id="code-36-32-50">/.test(html));
+check('the old nested "subordinate" sub-card treatment is gone', !html.includes('sd-ref__subordinate'));
 
 // Source-type badges distinguish current Code language from older/other
 // authority types (Standard Design Criteria, Standard Detail, project
@@ -240,10 +242,6 @@ check('provision quote styling (sd-ref__quote, green rule + italic, not a nested
 // Compact "Key details" / "Key dimensions" structured lists pull
 // dimensions out of prose (task: not a 200-word block quote).
 check('sd-ref__details structured list is used', (html.match(/sd-ref__details/g) || []).length >= 2);
-
-// Thin full-width rules separate stacked provisions within one surface,
-// standing in for the removed per-provision card borders.
-check('sd-refgroup__rule dividers separate stacked provisions within a surface', (html.match(/sd-refgroup__rule/g) || []).length >= 5);
 
 // 2002 Standard Design Criteria §3.5 -- consolidated card with key
 // dimensions, honestly sourced to the ATP's characterization since the
@@ -283,10 +281,57 @@ check('no ↗ arrow icons inside the Existing rules section', (() => {
   return !html.slice(start, end).includes('&#8599;');
 })());
 
-// Provision text itself keeps a comfortable reading measure (roughly
-// 65-75% of the wide surface), not a full-width block -- the surface
-// panel is the broad element, .sd-ref is the narrower reading column.
-check('provision text (sd-ref) is not full-width -- reading measure is a distinct, narrower element from the surface it sits in', html.includes('sd-refgroup__surface') && html.includes('class="sd-ref"'));
+// Every individual provision has its own white block, separated by
+// visible pale-green gaps (a flex column + gap on the shared list
+// wrapper, not per-provision margin) -- verify each of the 11
+// provisions' anchor + block markup is present.
+const provisionAnchors = [
+  ['code-27-57', '&sect;27.57'],
+  ['policy-unimproved-streets', 'Policy on Unimproved Streets'],
+  ['sdc-3-5', '&sect;3.5'],
+  ['caltrans-curb-ramps', 'Curb ramp standards'],
+  ['standard-detail-a-22', 'Standard Detail A-22'],
+  ['code-36-32-85', '&sect;36.32.85'],
+  ['code-36-32-50', '&sect;36.32.50'],
+  ['standard-detail-f-1', 'Standard Detail F-1'],
+  ['code-36-34-10-m', '&sect;36.34.10(m)'],
+  ['code-27-60', '&sect;27.60'],
+  ['code-27-61', '&sect;27.61'],
+];
+for (const [id, label] of provisionAnchors) {
+  check(`provision "${label}" is its own white block at #${id}`, new RegExp(`<div class="sd-ref" id="${id}">`).test(html));
+}
+
+// Every thematic group has its own stable, human-readable anchor too.
+const groupAnchors = ['sidewalks-frontage', 'driveways-crossings', 'bicycle-access', 'visibility-landscaping', 'street-width-improvements'];
+for (const id of groupAnchors) {
+  check(`group anchor #${id} exists on its h3 heading`, new RegExp(`<h3 class="sd-refgroup__heading" id="${id}">`).test(html));
+}
+
+// Local permalinks: one per group + one per provision (16 total), each
+// a real, keyboard-focusable <a> with its own descriptive aria-label
+// pointing at this page's own anchor -- not the official source link,
+// and not a raw "#hash" displayed as visible text.
+check('16 local permalinks present (5 groups + 11 provisions)', (html.match(/class="sd-permalink"/g) || []).length === 16);
+check('permalinks are real <a> elements with an aria-label ("Link to X on this page"), not raw hash text', (html.match(/aria-label="Link to [^"]+ on this page"/g) || []).length === 16);
+check('no visible raw "#driveways-crossings"-style hash text appears in the section body', !/>#[a-z0-9-]+</.test(html.slice(html.indexOf('id="existing-rules"'), html.indexOf('id="public-review"'))));
+check('permalink icons use an inline SVG chain-link glyph, not the ↗ character', (html.match(/sd-permalink__icon/g) || []).length === 16 && !/sd-permalink[\s\S]{0,200}&#8599;/.test(html));
+
+// scroll-margin-top on both group headings and provision blocks, so a
+// direct #anchor URL isn't hidden under the sticky on-page nav.
+if (existsSync(CSS_PATH)) {
+  const css = readFileSync(CSS_PATH, 'utf8');
+  const groupHeadingRule = css.match(/\.sd-page \.sd-refgroup__heading \{([^}]*)\}/);
+  const refRule = css.match(/\.sd-page \.sd-ref \{([^}]*)\}/);
+  check('.sd-refgroup__heading has scroll-margin-top (anchor lands below the sticky nav)', !!groupHeadingRule && /scroll-margin-top/.test(groupHeadingRule[1]));
+  check('.sd-ref has scroll-margin-top (anchor lands below the sticky nav)', !!refRule && /scroll-margin-top/.test(refRule[1]));
+  const refgroupRule = css.match(/\.sd-page \.sd-refgroup \{([^}]*)\}/);
+  check('.sd-refgroup (the thematic group boundary) has a border but no white/filled background of its own -- pale-green page shows through', !!refgroupRule && /border:/.test(refgroupRule[1]) && !/background:\s*#fff/i.test(refgroupRule[1]));
+  const refBlockRule = css.match(/\.sd-page \.sd-ref \{[^}]*background:\s*(#[0-9a-f]+)/i);
+  check('.sd-ref (each individual provision) has its own white background', !!refBlockRule && /^#f+$/i.test(refBlockRule[1]));
+  const listRule = css.match(/\.sd-page \.sd-refgroup__list \{([^}]*)\}/);
+  check('.sd-refgroup__list uses a flex gap (12-20px range) to create visible green space between provisions, not shared borders', !!listRule && /gap:\s*1\.125rem/.test(listRule[1]));
+}
 
 // 10. Every referenced local image asset resolves on disk.
 const imageDir = join(REPO_ROOT, 'images/cities/mountainview-ca/standard-details');
@@ -374,7 +419,7 @@ check('mobile collapsible nav markup present', html.includes('sd-onpage-nav-mobi
 if (existsSync(CSS_PATH)) {
   const css = readFileSync(CSS_PATH, 'utf8');
   check('no page-scoped white-body-background override remains (pale green restored)', !/body\.sd-page\.rengstorff-microsite\s*\{\s*background:\s*#ffffff/.test(css));
-  check('.sd-refgroup__surface (the one broad white surface per topic group) is styled', css.includes('.sd-page .sd-refgroup__surface'));
+  check('.sd-refgroup (the thin-outline thematic-group boundary) is styled', css.includes('.sd-page .sd-refgroup {'));
   check('.sd-policy-ref (Policy connections, no bordered card) is styled', css.includes('.sd-page .sd-policy-ref'));
 } else {
   check('main.css exists for CSS-level checks', false);
@@ -398,6 +443,8 @@ check('no "View ..." action-line links remain inside Existing Rules', !/>View [^
 check('§27.61 section number is itself the clickable link', /<a href="[^"]*code_of_ordinances[^"]*"[^>]*>&sect;27\.61<\/a>/.test(existingRulesSlice));
 check('§36.32.85 section number is itself the clickable link', /<a href="[^"]*code_of_ordinances[^"]*"[^>]*>&sect;36\.32\.85<\/a>/.test(existingRulesSlice));
 check('"Curb ramp standards" heading is itself the clickable link', /<a href="[^"]*dot\.ca\.gov[^"]*"[^>]*>Curb ramp standards<\/a>/.test(existingRulesSlice));
+check('"Policy on Unimproved Streets" title is itself linked to a verified City source', /<a href="https:\/\/www\.mountainview\.gov\/[^"]*walking-and-bicycling[^"]*"[^>]*>Policy on Unimproved Streets<\/a>/.test(existingRulesSlice));
+check('the text discloses the linked page names the policy rather than being the original 1993 document itself', existingRulesSlice.includes('could not independently verify a standalone copy of the original 1993 policy document'));
 
 // 18. Section introduction bands -- every one of the page's 11 primary
 //     numbered sections gets a white intro band (number + H2 + any lead
