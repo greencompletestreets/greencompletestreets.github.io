@@ -471,5 +471,30 @@ if (existsSync(CSS_PATH)) {
   }
 }
 
+// 19. "Who administers this?" -- compact City-contacts block inside the
+//     §36.32.85 provision, informational (not advocacy, not a definitive
+//     legal assignment), dated, capped at a handful of named contacts,
+//     and distinguishing the responsible department from the specific
+//     Zoning Administrator review role §36.32.85 establishes.
+const code3685Start = html.indexOf('id="code-36-32-85"');
+const code3685End = html.indexOf('id="code-36-32-50"');
+const code3685Slice = (code3685Start !== -1 && code3685End !== -1) ? html.slice(code3685Start, code3685End) : '';
+check('"Who administers this?" block sits inside the §36.32.85 provision', code3685Slice.includes('Who administers this?'));
+check('the block is dated "as of September 2026"', /as of September 2026/.test(code3685Slice));
+check('the block is framed as informational, not a definitive legal assignment', code3685Slice.includes('not a definitive legal assignment of responsibility'));
+check('Christian Murdock is named as Community Development Director', /Christian Murdock[\s\S]{0,200}Community Development Director/.test(code3685Slice));
+check('George Schroeder is named as Zoning Administrator (verified via a Jan. 2026 Administrative Zoning Hearing record, not the older Blizinski attribution)', /George Schroeder[\s\S]{0,400}Zoning Administrator/.test(code3685Slice));
+check('outdated "Blizinski" name is not used (role verified as having changed since)', !code3685Slice.includes('Blizinski'));
+check('§36.32.85\'s specific role for the Zoning Administrator (type, location, design) is explained', code3685Slice.includes('determining bicycle-parking type, location, and design'));
+check('the text distinguishes department-context from the Zoning Administrator\'s specific review role (does not claim Murdock personally administers §36.32.85)', code3685Slice.includes('Community Development is the responsible department context, and the Zoning Administrator has the specific review role'));
+check('department phone number present', code3685Slice.includes('650-903-6306'));
+check('department email present (not a personal staff email)', code3685Slice.includes('community.development@mountainview.gov') && !/[a-z]+\.[a-z]+@mountainview\.gov/.test(code3685Slice.replace('community.development@mountainview.gov', '')));
+check('"Community Development Department" name is linked to the official department page', /<a href="https:\/\/www\.mountainview\.gov\/our-city\/departments\/community-development"[^>]*>Community Development Department<\/a>/.test(code3685Slice));
+check('a "Community Development directory" link points to the official current-contacts page, with a staff-can-change caveat', /Staff assignments can change[\s\S]{0,200}Community Development directory<\/a>/.test(code3685Slice));
+check('at most 3 named/role contacts (Murdock + Schroeder; no invented third person)', (code3685Slice.match(/sd-ref__contact-row/g) || []).length <= 3 && (code3685Slice.match(/sd-ref__contact-row/g) || []).length >= 2);
+check('no ↗ icons in the contacts block', !code3685Slice.includes('&#8599;'));
+check('no photos/images added to the contacts block', !/<img/.test(code3685Slice));
+check('the contacts block is visually subordinate (dashed rule), not its own separate white card', code3685Slice.includes('sd-ref__contacts">'));
+
 console.log(`\n${passes} passed, ${failures} failed.`);
 process.exit(failures > 0 ? 1 : 0);

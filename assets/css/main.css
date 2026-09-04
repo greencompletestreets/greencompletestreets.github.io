@@ -17018,6 +17018,85 @@ b,
 	width: 0.72em;
 }
 
+/* "Who administers this?" -- compact contacts appendix inside the
+   §36.32.85 provision block. Visually subordinate to the provision's
+   own content above it (smaller text, muted, a dashed top rule) --
+   informational, not another peer provision, so it does NOT get its
+   own white block/background; it's a labeled sub-section within the
+   one it belongs to. */
+.sd-page .sd-ref__contacts {
+	border-top: 1px dashed #d4ded4;
+	margin-top: 1.25rem;
+	padding-top: 1.1rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-ref__contacts-label {
+	color: #5a6c60 !important;
+	font-size: 0.68rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	margin: 0 0 0.5rem !important;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-ref__contacts-intro {
+	color: #304238 !important;
+	font-size: 0.85rem;
+	line-height: 1.55;
+	margin: 0 0 1rem !important;
+	max-width: 42rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-ref__contacts-meta {
+	color: #7c9686 !important;
+	font-size: 0.68rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	margin: 0 0 0.6rem !important;
+	text-transform: uppercase;
+}
+
+.sd-page .sd-ref__contact-row {
+	margin: 0 0 0.85rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-ref__contact-name {
+	color: #193c2b !important;
+	font-size: 0.88rem;
+	font-weight: 700;
+	margin: 0 !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-ref__contact-role {
+	color: #16704d !important;
+	font-size: 0.78rem;
+	font-weight: 600;
+	margin: 0.05rem 0 0 !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-ref__contact-context {
+	color: #4b5c52 !important;
+	font-size: 0.78rem;
+	line-height: 1.5;
+	margin: 0.3rem 0 0 !important;
+	max-width: 40rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-ref__contacts-dept {
+	color: #304238 !important;
+	font-size: 0.82rem;
+	font-weight: 600;
+	margin: 0.9rem 0 0 !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-ref__contacts-footnote {
+	color: #7c9686 !important;
+	font-size: 0.74rem;
+	line-height: 1.45;
+	margin: 0.6rem 0 0 !important;
+	max-width: 40rem;
+}
+
 /* The BPAC milestone callout sits between the review-process diagram
    and the closing "public feedback / early 2028" paragraph -- both
    are plain paragraphs with the sitewide margin-top:0 reset, so
