@@ -16070,17 +16070,38 @@ b,
    page on the site is affected. ================================================== */
 
 /* ------------------------------------------------------------------
-   LAYOUT-WIDTH PASS -- wide content frame + reading measure (below).
-   An earlier version of this pass also switched the page background
-   to white; that was tried and then explicitly reverted after review
-   in context -- the sitewide pale-green body (the "GCS custom theme"
-   reset's #dfe5dd, applied on the bare `body` element with
-   `!important`) is kept after all, since it read as connective tissue
-   with the dark-green hero and made the white surfaces that DO exist
-   (WHY THIS MATTERS, the reference-section surfaces below, engineering
-   drawings) stand out rather than making the whole page feel like a
-   plain white document. No override needed here -- this comment is
-   just the "don't redo this" note for later passes. */
+   CARD-BASED REDESIGN (v6) -- reverses the earlier "keep the sitewide
+   pale-green body" decision on purpose. That call made sense when the
+   page was borderless editorial text; once every numbered section
+   became its own bordered white surface (below), the pale-green body
+   showing through in the gaps read as more editorial text sitting
+   directly on green, not "connective tissue" -- the exact problem
+   this pass exists to fix. So this page now overrides both the
+   sitewide `.rengstorff-microsite` body tone (#f1f4ef) and the "GCS
+   custom theme" reset's higher-priority `html, body { !important }`
+   rule (#dfe5dd) with a very light neutral canvas -- specific/
+   `!important` enough to win against both, scoped to `.sd-page` so no
+   other page on the site is touched. Pale green is repositioned as an
+   accent -- secondary inset panels (.sd-inset-panel, .sd-policy-card,
+   .sd-process-card) and the prominent section numbers -- rather than
+   the page-wide reading background. */
+body.sd-page.rengstorff-microsite {
+	background: #f7f7f4 !important;
+}
+
+/* Every numbered story section becomes its own reading surface: white,
+   a soft border instead of a shadow (a "page", not a "widget"),
+   modest rounded corners, generous padding. Meaningful content groups
+   *inside* a section (the two policy cards in 01, the "Key elements"
+   inset in 02) get their own smaller surface; ordinary paragraphs,
+   lists, and quotes do not -- see the component rules below. */
+.sd-page .sd-story__section {
+	background: #ffffff;
+	border: 1px solid #e3e8e0;
+	border-radius: 16px;
+	margin-bottom: 2.5rem;
+	padding: 3rem 3.25rem;
+}
 
 /* WHY THIS MATTERS and the sidebar+main layout both sit in their own
    ".rengstorff-shell" instance (two separate elements, one per block)
@@ -16387,7 +16408,7 @@ b,
 	display: grid;
 	gap: 3rem;
 	grid-template-columns: 13rem minmax(0, 1fr);
-	margin-top: 1rem;
+	margin-top: 2rem;
 }
 
 .sd-page .sd-sidebar {
@@ -16440,6 +16461,21 @@ b,
 
 .sd-page .sd-onpage-nav-mobile {
 	margin-bottom: 0;
+}
+
+/* Trigger's "-- Section name" label -- filled in by the IntersectionObserver
+   script, scoped to this page's own .sd-onpage-nav-mobile instance so it
+   doesn't affect the shared .onpage-nav component elsewhere on the site.
+   Empty by default (before JS/observer runs), so :not(:empty) is what
+   actually draws the leading dash -- no dangling separator with nothing
+   after it. */
+.sd-page .sd-onpage-nav-mobile .onpage-nav__current {
+	color: #16704d;
+	font-weight: 700;
+}
+
+.sd-page .sd-onpage-nav-mobile .onpage-nav__current:not(:empty)::before {
+	content: "\2014\00a0";
 }
 
 /* Section numbers + spacing. Bottom margin widened from 3rem to 4rem
@@ -16674,15 +16710,54 @@ b,
 	color: #d3e6d8 !important;
 }
 
-.sd-page .sd-quote {
-	margin: 1.25rem 0 0;
-	max-width: 48rem;
+/* Quote + citation as one component: this wrapper carries the whole
+   pale-green box (background, green left rule, radius, padding); the
+   <blockquote> and its attribution sit inside as plain children
+   sharing that one surface, so the citation reads as part of the
+   quote rather than floating between it and "Open process question"
+   below. Border-left/padding are stripped back off the shared
+   .bufp-quote-block__quote rule itself (that rule is also used
+   elsewhere on the site) so nesting it here doesn't double up a
+   second border/padding. The generous bottom margin is the "clear
+   white space" the callout below needs to read as a separate,
+   secondary component rather than sitting flush underneath. */
+.sd-page .sd-quote-block {
+	background: #f1f6f2;
+	border-left: 4px solid #16704d;
+	border-radius: 0 12px 12px 0;
+	margin: 1.25rem 0 2.25rem;
+	padding: 2rem 2.25rem 2.25rem;
+}
+
+/* Large quotation-mark glyph, sized/positioned with a serif font so it
+   reads as a proper curly quote rather than a straight typewriter one;
+   negative margin tucks it close to the quote text instead of adding
+   its own line of vertical space. */
+.sd-page .sd-quote-block__mark {
+	color: #4fa578;
+	display: block;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 3.5rem;
+	font-weight: 700;
+	line-height: 1;
+	margin: -0.5rem 0 -0.75rem;
+}
+
+.sd-page .sd-quote-block .bufp-quote-block__quote {
+	border-left: none;
+	color: #193c2b !important;
+	font-size: 1.25rem;
+	font-style: normal;
+	line-height: 1.55;
+	margin: 0;
+	padding: 0;
 }
 
 .sd-page.rengstorff-microsite p.sd-quote-attribution {
-	color: #5a6c60 !important;
-	font-size: 0.86rem;
-	margin: 0.5rem 0 0;
+	color: #4b5c52 !important;
+	font-size: 0.92rem;
+	font-style: normal;
+	margin: 1.1rem 0 0 !important;
 }
 
 /* ==================================================================
@@ -16729,45 +16804,197 @@ b,
 	padding: 0.38rem 0.75rem;
 }
 
-/* max-width widened from 46rem in the layout-width pass: inside the
-   old ~816px .sd-main that was already most of the column, but in the
-   wider frame ("Nothing has been selected yet" was the flagged
-   example) it read as a narrow floating island. Kept visibly narrower
-   than the full section width, though, so callouts still read as a
-   distinct, bounded box rather than blending into the page. */
+/* ==================================================================
+   CALLOUT -- one shared warm-yellow system for every "important
+   contextual information" box on this page: "Nothing has been
+   selected yet", "What's next?", "Open process question", and the
+   B/PAC milestone. Same background/border/radius/padding/icon-circle
+   size and the same heading/body type scale everywhere; only the
+   icon glyph and the presence of an eyebrow+heading (vs. a single
+   label) vary by what kind of information each one is flagging.
+   Deliberately compact -- these are secondary contextual asides, not
+   page sections, so the type scale sits close to body-copy size
+   (~16px label/eyebrow, ~17px body, ~21px for the one secondary
+   heading, B/PAC's) and padding/gaps stay tight. An earlier pass
+   sized these like mini page-sections (28px+ padding, 20px+ body
+   text); this corrects that. No max-width on the body, so paragraphs
+   use the available column width instead of wrapping early.
+   (This replaces an unrelated, unused .sd-callout component left
+   over from an earlier version of this page -- confirmed zero
+   remaining references before reusing the name.)
+   ------------------------------------------------------------------ */
 .sd-page .sd-callout {
-	background: #ffffff;
-	border-left: 4px solid #16704d;
-	border-radius: 6px;
-	margin: 1.5rem 0 0;
-	max-width: 60rem;
-	padding: 1.25rem 1.5rem;
+	align-items: flex-start;
+	background: #fdf6dc;
+	border: 1px solid #eddb8f;
+	border-radius: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.85rem;
+	padding: 1rem 1.25rem;
 }
 
-.sd-page .sd-callout p {
-	margin: 0.6rem 0 0;
+.sd-page .sd-callout__icon {
+	align-items: center;
+	background: #a8790a;
+	border-radius: 999px;
+	color: #ffffff;
+	display: flex;
+	flex-shrink: 0;
+	font-size: 1rem;
+	font-weight: 800;
+	height: 2.75rem;
+	justify-content: center;
+	width: 2.75rem;
 }
 
-.sd-page .sd-callout p:first-of-type {
-	margin-top: 0;
+.sd-page .sd-callout__icon svg {
+	height: 1.2rem;
+	width: 1.2rem;
 }
 
-.sd-page.rengstorff-microsite p.sd-callout__label {
-	color: #0b5c3a !important;
-	font-size: 0.74rem;
-	font-weight: 700;
-	letter-spacing: 0.06em;
-	margin: 0 !important;
+.sd-page .sd-callout__body {
+	flex: 1 1 16rem;
+	min-width: 0;
+}
+
+.sd-page.rengstorff-microsite p.sd-callout__eyebrow {
+	color: #8a6a0a !important;
+	font-size: 0.95rem;
+	font-weight: 800;
+	letter-spacing: 0.04em;
+	margin: 0 0 0.2rem !important;
 	text-transform: uppercase;
 }
 
-.sd-page .sd-callout--note {
-	border-left-color: #4e9a73;
-	border-left-style: dashed;
+.sd-page.rengstorff-microsite p.sd-callout__label {
+	color: #8a6a0a !important;
+	font-size: 0.95rem;
+	font-weight: 800;
+	letter-spacing: 0.01em;
+	margin: 0 0 0.35rem !important;
+	text-transform: uppercase;
 }
 
-.sd-page .sd-callout--policy {
-	margin-top: 1rem;
+.sd-page.rengstorff-microsite p.sd-callout__heading {
+	color: #26241a !important;
+	font-size: 1.3rem;
+	font-weight: 800;
+	margin: 0 0 0.4rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-callout__text {
+	color: #43443c !important;
+	font-size: 1.05rem;
+	line-height: 1.5;
+	margin: 0 !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-callout__text strong {
+	color: #8a6a0a !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-callout__text--divided {
+	border-top: 1px dashed #eddb8f;
+	margin-top: 0.85rem !important;
+	padding-top: 0.85rem;
+}
+
+/* .sd-callout__ask (a dashed-divider "punchy question at the end"
+   treatment) was only ever used by "How standards connect to policy"'s
+   Open process question callout; that callout now uses the standard
+   eyebrow/heading/text pattern instead (matching the visual reference
+   and every other heading-style callout on this page), so the rule is
+   removed -- confirmed zero remaining references sitewide. */
+
+/* "What's next?" only: Learn more sits at the far right on wide
+   screens (margin-left: auto) and drops to its own line -- via the
+   shared .sd-callout's flex-wrap -- rather than squeezing the body
+   text on narrow ones. */
+.sd-page .sd-callout__link {
+	flex-shrink: 0;
+	margin: 0 0 0 auto;
+}
+
+.sd-page .sd-callout__link a {
+	color: #16704d;
+	font-size: 1rem;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+@media screen and (max-width: 640px) {
+	.sd-page .sd-callout__link {
+		margin-left: 0;
+	}
+}
+
+/* ------------------------------------------------------------------
+   FUNDING NOTE -- "What is being updated?" only. Deliberately plain:
+   white background (no card/box of its own), small pale-sage icon
+   circle + label + text, sitting well below the yellow "Nothing has
+   been selected yet" callout as quiet secondary metadata rather than
+   another card competing with it. Not a reuse of .sd-story__footnote
+   (that class is shared with a plain paragraph elsewhere on the page
+   that isn't part of this redesign).
+   ------------------------------------------------------------------ */
+.sd-page .sd-funding-note {
+	align-items: flex-start;
+	display: flex;
+	gap: 0.85rem;
+	margin: 1.75rem 0 0;
+}
+
+.sd-page .sd-funding-note__icon {
+	align-items: center;
+	background: #eef4ee;
+	border-radius: 999px;
+	color: #16704d;
+	display: flex;
+	flex-shrink: 0;
+	height: 2.5rem;
+	justify-content: center;
+	width: 2.5rem;
+}
+
+.sd-page .sd-funding-note__icon svg {
+	height: 1.2rem;
+	width: 1.2rem;
+}
+
+.sd-page .sd-funding-note__body {
+	min-width: 0;
+	padding-top: 0.2rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-funding-note__label {
+	color: #0b5c3a !important;
+	font-size: 0.85rem;
+	font-weight: 800;
+	letter-spacing: 0.05em;
+	margin: 0 0 0.3rem !important;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-funding-note__text {
+	color: #304238 !important;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	margin: 0 0 0.35rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-funding-note__text:last-child {
+	margin-bottom: 0 !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-funding-note__text strong {
+	color: #0b5c3a !important;
+	font-weight: 800;
+}
+
+.sd-page.rengstorff-microsite p.sd-funding-note__text--secondary {
+	color: #5a6c60 !important;
+	font-size: 0.88rem;
 }
 
 /* ==================================================================
@@ -16791,6 +17018,149 @@ b,
 	letter-spacing: 0.06em;
 	margin: 0 0 0.4rem !important;
 	text-transform: uppercase;
+}
+
+/* Compact "source" link under a .sd-policy-ref block -- e.g. the
+   adopted-CIP PDF under "CIP Project 27-27" on the Standard Details
+   page. Same arrow-link idiom as .sd-story__explore, just tighter
+   margin so it sits close to the sentence above it. */
+.sd-page.rengstorff-microsite p.sd-policy-ref__link {
+	font-size: 0.9rem;
+	font-weight: 700;
+	margin: 0.85rem 0 0 !important;
+}
+
+.sd-page .sd-policy-ref__link a {
+	color: #16704d;
+}
+
+/* "What is being updated?" -- primary link (April 14 discussion
+   transcript/video) plus a smaller, muted secondary link (the
+   official Legistar meeting record), on one line separated by a
+   small muted dot rather than an arrow or extra gap. No underline by
+   default on either -- underline only on hover/focus, per the site's
+   quieter text-link treatment for this section. */
+.sd-page .sd-cip-links {
+	align-items: baseline;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: 1.5rem 0 1.75rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-cip-links__primary {
+	font-size: 0.98rem;
+	font-weight: 700;
+	margin: 0 !important;
+}
+
+.sd-page .sd-cip-links__primary a {
+	color: #16704d;
+	text-decoration: none;
+}
+
+.sd-page .sd-cip-links__primary a:hover,
+.sd-page .sd-cip-links__primary a:focus-visible {
+	text-decoration: underline;
+}
+
+.sd-page .sd-cip-links__sep {
+	color: #9aa79e;
+	font-weight: 700;
+}
+
+.sd-page.rengstorff-microsite p.sd-cip-links__secondary {
+	font-size: 0.84rem;
+	font-weight: 600;
+	margin: 0 !important;
+}
+
+.sd-page .sd-cip-links__secondary a {
+	color: #5a6c60;
+	text-decoration: none;
+}
+
+.sd-page .sd-cip-links__secondary a:hover,
+.sd-page .sd-cip-links__secondary a:focus-visible {
+	color: #16704d;
+	text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------
+   PROJECT REFERENCE -- the CIP 27-27 citation, deliberately styled as
+   compact project metadata (a dedicated component, not a reuse of
+   .sd-policy-ref -- that class's "Why this matters" citation cards
+   look different enough, icon included, that sharing it risked
+   coupling the two). White surface (a step apart from the pale-sage
+   "Key elements" panel below it and the page's own canvas), a thin
+   neutral border plus the usual green left accent, small pale-green
+   icon circle, tight vertical padding -- reads as a reference strip,
+   not another content card.
+   ------------------------------------------------------------------ */
+.sd-page .sd-project-ref {
+	align-items: flex-start;
+	background: #ffffff;
+	border: 1px solid #d9e0da;
+	border-left: 4px solid #16704d;
+	border-radius: 8px;
+	display: flex;
+	gap: 0.9rem;
+	margin: 0 0 1.75rem;
+	max-width: 50rem;
+	padding: 0.9rem 1.1rem;
+}
+
+.sd-page .sd-project-ref__icon {
+	align-items: center;
+	background: #e3efe5;
+	border-radius: 999px;
+	color: #16704d;
+	display: flex;
+	flex-shrink: 0;
+	height: 2rem;
+	justify-content: center;
+	width: 2rem;
+}
+
+.sd-page .sd-project-ref__icon svg {
+	height: 1.05rem;
+	width: 1.05rem;
+}
+
+.sd-page .sd-project-ref__body {
+	min-width: 0;
+}
+
+.sd-page.rengstorff-microsite p.sd-project-ref__label {
+	color: #0b5c3a !important;
+	font-size: 0.76rem;
+	font-weight: 800;
+	letter-spacing: 0.05em;
+	margin: 0 0 0.3rem !important;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-project-ref__text {
+	color: #43443c !important;
+	font-size: 0.92rem;
+	line-height: 1.5;
+	margin: 0 0 0.5rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-project-ref__link {
+	font-size: 0.86rem;
+	font-weight: 700;
+	margin: 0 !important;
+}
+
+.sd-page .sd-project-ref__link a {
+	color: #16704d;
+	text-decoration: none;
+}
+
+.sd-page .sd-project-ref__link a:hover,
+.sd-page .sd-project-ref__link a:focus-visible {
+	text-decoration: underline;
 }
 
 /* ==================================================================
@@ -17097,18 +17467,6 @@ b,
 	max-width: 40rem;
 }
 
-/* The BPAC milestone callout sits between the review-process diagram
-   and the closing "public feedback / early 2028" paragraph -- both
-   are plain paragraphs with the sitewide margin-top:0 reset, so
-   without an explicit bottom margin here the callout and the next
-   paragraph would sit flush against each other. Scoped to this one
-   instance (not all .sd-callout usages) so the "Nothing has been
-   selected yet" callout's existing tight footnote spacing elsewhere
-   on the page is untouched. */
-.sd-page .sd-callout--bpac {
-	margin-bottom: 1.75rem;
-}
-
 /* ==================================================================
    3. PUBLIC REVIEW -- quote card + process diagram side by side.
    align-items: start (not the grid default of stretch) so the quote
@@ -17248,30 +17606,113 @@ b,
 	margin: 1.5rem 0;
 }
 
+/* Each example is now its own pale-green card (background/padding/
+   radius live here); the drawing itself sits in a white "paper" well
+   inside that card -- see .sd-feature__img below -- so the actual
+   engineering drawing reads as the primary content, with the card
+   as a frame around it rather than the drawing floating as a small
+   image inside an oversized container. */
 .sd-page .sd-feature__figure {
+	background: #eef4ee;
+	border-radius: 14px;
 	margin: 0;
+	padding: 1.25rem 1.25rem 1.5rem;
 }
 
+/* Fixed-height, flex-centered preview "viewport" -- identical for A-4,
+   A-5, and A-22 regardless of each source sheet's own proportions.
+   object-fit: contain (below, on the img) fits the whole sheet inside
+   it without cropping or stretching; width:auto/height:auto + the
+   max-width/max-height pair let the image shrink to whatever size
+   fits, rather than stretching to fill the box, so all three render
+   at a comparable visual scale within the same-size frame.
+
+   White well + a stronger green top accent (not a full dark-green
+   outline) signals "this is a distinct, clickable surface" without the
+   old persistent dark-green selected-look border -- white rather than
+   pale-sage now that the well sits inside a pale-green card, so the
+   drawing still has a surface to visually pop against. Hover/focus
+   shift is a small background/border tint plus a slightly stronger
+   magnifier badge -- see .sd-feature__zoom below -- never a heavy
+   outline.
+
+   A fixed pixel height (an earlier 260px, briefly 480px) either
+   wasted well space or under/over-shot depending on the column's
+   actual rendered width, because these source sheets are portrait
+   (2125x2750 -- the exact ratio below) and a 3-up column is narrower
+   than that ratio wants at most viewport widths, so the image ends up
+   width-bound with dead vertical space above/below it. aspect-ratio
+   matched to the real sheet ratio means the well's own shape always
+   matches what's going to be drawn inside it, so the drawing fills
+   the well edge-to-edge (minus the small padding) at any column
+   width instead of floating in extra empty space -- this is what
+   actually makes the drawing "occupy most of the card", not a taller
+   box on its own. */
 .sd-page .sd-feature__img {
+	align-items: center;
+	aspect-ratio: 2125 / 2750;
 	background: #ffffff;
-	border: 1px solid #d4ded4;
+	border: 1px solid #d7e0d8;
 	border-radius: 8px;
+	border-top: 4px solid #2f8f5f;
 	cursor: pointer;
-	display: block;
-	padding: 0;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+	padding: 0.6rem;
+	position: relative;
 	width: 100%;
 }
 
 .sd-page .sd-feature__img img {
-	background: #f1f4ef;
-	border-radius: 7px;
+	border-radius: 4px;
 	display: block;
-	width: 100%;
+	height: auto;
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: contain;
+	width: auto;
 }
 
 .sd-page .sd-feature__img:hover,
 .sd-page .sd-feature__img:focus-visible {
-	border-color: #4e9a73;
+	background: #e6f0e8;
+	border-color: #a9c4af;
+	border-top-color: #257a51;
+}
+
+.sd-page .sd-feature__img:focus-visible {
+	outline: 2px solid #16704d;
+	outline-offset: 2px;
+}
+
+/* Magnifier badge -- lower-right of the well, but the whole button
+   (image well) is the click target, not just this icon. */
+.sd-page .sd-feature__zoom {
+	align-items: center;
+	background: #ffffff;
+	border: 1px solid #c9d8cc;
+	border-radius: 999px;
+	bottom: 0.75rem;
+	color: #16704d;
+	display: flex;
+	height: 2.25rem;
+	justify-content: center;
+	position: absolute;
+	right: 0.75rem;
+	width: 2.25rem;
+}
+
+.sd-page .sd-feature__zoom svg {
+	height: 1.05rem;
+	width: 1.05rem;
+}
+
+.sd-page .sd-feature__img:hover .sd-feature__zoom,
+.sd-page .sd-feature__img:focus-visible .sd-feature__zoom {
+	background: #16704d;
+	border-color: #16704d;
+	color: #ffffff;
 }
 
 .sd-page .sd-feature__figure figcaption {
@@ -17282,40 +17723,30 @@ b,
 	text-align: center;
 }
 
-.sd-page .sd-crosssection {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 2px;
+/* ------------------------------------------------------------------
+   CONCEPTUAL CROSS-SECTION -- a hand-built, responsive SVG diagram
+   (not a screenshot/embedded image) replacing the earlier plain
+   colored-bar version. Symmetrical 9-zone allocation: sidewalk,
+   landscape strip (street tree), bike lane, landscaped buffer (street
+   tree -- the physical separation between the bike lane and moving
+   vehicles), vehicle lanes, then the same sequence mirrored back.
+   Vector, so it stays crisp at any size; .sd-xsection__scroll lets it
+   scroll horizontally on narrow viewports instead of shrinking labels
+   past legibility -- min-width on the svg is the actual floor.
+   ------------------------------------------------------------------ */
+.sd-page .sd-xsection {
 	margin: 1.25rem 0 0;
-	overflow: hidden;
 }
 
-.sd-page .sd-crosssection__zone {
-	background: #b9c7bd;
-	color: #1a2b20;
-	flex: 1 1 6rem;
-	font-size: 0.8rem;
-	font-weight: 700;
-	letter-spacing: 0.02em;
-	padding: 1rem 0.4rem;
-	text-align: center;
-	text-transform: uppercase;
+.sd-page .sd-xsection__scroll {
+	overflow-x: auto;
 }
 
-.sd-page .sd-crosssection__zone--green {
-	background: #79b781;
-	color: #0b3d22;
-}
-
-.sd-page .sd-crosssection__zone--bike {
-	background: #2f8f75;
-	color: #ffffff;
-}
-
-.sd-page .sd-crosssection__zone--vehicle {
-	background: #445a4e;
-	color: #ffffff;
-	flex-grow: 2;
+.sd-page .sd-xsection__svg {
+	display: block;
+	height: auto;
+	min-width: 820px;
+	width: 100%;
 }
 
 .sd-page.rengstorff-microsite p.sd-crosssection-caveat {
@@ -17380,170 +17811,557 @@ b,
 }
 
 /* ==================================================================
-   OPEN PROCESS QUESTION.
+   PROJECT TIMELINE -- large horizontal 5-stage timeline + substantial
+   cards beneath it, per the visual reference. Three stacked rows
+   (labels, nodes, cards) all share the same 5-column grid so they line
+   up automatically; the "milestone" column (Q2 2027) gets a matching
+   pale-yellow tint on its label block, node, and card so the three
+   read as one highlighted column even though they're separate rows.
+   Four visual states carry the sequence at a glance: "done" (already
+   happened -- solid dark green, checkmark), "current" (in progress --
+   solid green dot, the most prominent marker), "milestone" (Q2 2027 --
+   hollow gold ring -- an *expected* work-plan date, not a confirmed
+   hearing, hence the badge in its card), and "future" (hollow
+   gray-green ring, quieter since nothing there has happened yet). The
+   connecting line is a hard-stop gradient -- solid green through the
+   milestone node, muted gray-green after -- ending in a dashed
+   continuation + arrow (the project continues past this page). Each
+   card repeats its own date as a small dot+date line that's hidden on
+   desktop (the labels row already shows it) and shown on mobile, once
+   the labels/nodes rows collapse away.
    ================================================================== */
-/* max-width widened from 48rem alongside .sd-callout, above, for the
-   same reason -- see the layout-width pass comment there. */
-.sd-page .sd-open-question {
-	background: #ffffff;
-	border: 2px solid #16704d;
-	border-radius: 8px;
-	margin: 1.5rem 0 0;
-	max-width: 60rem;
-	padding: 1.5rem 1.75rem;
+.sd-page .sd-tl-header {
+	align-items: flex-start;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.75rem;
+	justify-content: space-between;
 }
 
-.sd-page .sd-open-question p {
-	margin: 0.6rem 0 0;
+.sd-page .sd-tl-header__intro {
+	flex: 1 1 26rem;
+	min-width: 0;
 }
 
-.sd-page .sd-open-question p:nth-child(2) {
-	margin-top: 0;
+.sd-page .sd-tl-header__intro p.sd-story__intro {
+	margin-bottom: 0;
 }
 
-.sd-page.rengstorff-microsite p.sd-open-question__label {
+.sd-page .sd-tl-phase {
+	background: #eef4ee;
+	border-radius: 12px;
+	display: flex;
+	flex: 0 1 24rem;
+	gap: 0.85rem;
+	padding: 1.1rem 1.35rem;
+}
+
+.sd-page .sd-tl-phase__icon {
+	align-items: center;
+	background: #d2e6d6;
+	border-radius: 999px;
+	color: #16704d;
+	display: flex;
+	flex-shrink: 0;
+	height: 2.5rem;
+	justify-content: center;
+	width: 2.5rem;
+}
+
+.sd-page .sd-tl-phase__icon svg {
+	height: 1.25rem;
+	width: 1.25rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-phase__eyebrow {
 	color: #0b5c3a !important;
 	font-size: 0.76rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	margin: 0.15rem 0 0.3rem !important;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-phase__text {
+	color: #304238 !important;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	margin: 0 !important;
+}
+
+.sd-page .sd-tl-body {
+	margin-top: 2.5rem;
+}
+
+.sd-page .sd-tl-labels,
+.sd-page .sd-tl-nodes,
+.sd-page .sd-tl-cards {
+	display: grid;
+	gap: 1.25rem;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.sd-page .sd-tl-labels__col {
+	border-radius: 10px 10px 0 0;
+	padding: 0.6rem 0.6rem 0.5rem;
+	text-align: center;
+}
+
+.sd-page .sd-tl-labels__col--milestone {
+	background: #fdf6dc;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-labels__title {
+	color: #16371f !important;
+	font-size: 0.98rem;
+	font-weight: 800;
+	line-height: 1.3;
+	margin: 0 !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-labels__date {
+	color: #0b5c3a !important;
+	font-size: 0.86rem;
+	font-weight: 700;
+	margin: 0.3rem 0 0 !important;
+}
+
+.sd-page .sd-tl-labels__col--milestone p.sd-tl-labels__date {
+	color: #8a6a0a !important;
+}
+
+.sd-page .sd-tl-nodes {
+	align-items: center;
+	margin: 0.4rem 0 0;
+	min-height: 2.5rem;
+	position: relative;
+}
+
+.sd-page .sd-tl-nodes::before {
+	background: linear-gradient(to right, #16704d 0%, #16704d 50%, #b9c4ba 50%, #b9c4ba 100%);
+	content: "";
+	height: 4px;
+	left: 10%;
+	position: absolute;
+	right: 10%;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 0;
+}
+
+.sd-page .sd-tl-nodes__col {
+	background: transparent;
+	display: flex;
+	justify-content: center;
+	padding-bottom: 0.5rem;
+	position: relative;
+	z-index: 1;
+}
+
+.sd-page .sd-tl-nodes__col--milestone {
+	background: #fdf6dc;
+}
+
+.sd-page .sd-tl-nodes__dot {
+	align-items: center;
+	border-radius: 999px;
+	display: flex;
+	flex-shrink: 0;
+	height: 1.75rem;
+	justify-content: center;
+	width: 1.75rem;
+}
+
+.sd-page .sd-tl-nodes__dot svg {
+	height: 1rem;
+	width: 1rem;
+}
+
+.sd-page .sd-tl-nodes__dot--done {
+	background: #0b5c3a;
+	color: #ffffff;
+}
+
+.sd-page .sd-tl-nodes__dot--current {
+	background: #ffffff;
+	box-shadow: 0 0 0 6px #cdead1;
+}
+
+.sd-page .sd-tl-nodes__dot--current::before {
+	background: #16704d;
+	border-radius: 999px;
+	content: "";
+	height: 1.1rem;
+	width: 1.1rem;
+}
+
+.sd-page .sd-tl-nodes__dot--milestone {
+	background: #fdf6dc;
+	border: 3px solid #c9a227;
+}
+
+.sd-page .sd-tl-nodes__dot--future {
+	background: #f2f4f2;
+	border: 3px solid #aab8ad;
+}
+
+.sd-page .sd-tl-nodes__continuation {
+	border-top: 2px dashed #aab8ad;
+	position: absolute;
+	right: -1.5rem;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 2.75rem;
+	z-index: 0;
+}
+
+.sd-page .sd-tl-nodes__continuation::after {
+	color: #8a9890;
+	content: "\2192";
+	font-size: 1.1rem;
+	font-weight: 700;
+	position: absolute;
+	right: -0.9rem;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.sd-page .sd-tl-cards {
+	margin-top: 1.5rem;
+}
+
+.sd-page .sd-tl-card {
+	border-radius: 0 0 12px 12px;
+	padding: 1.5rem 1.25rem 1.75rem;
+}
+
+.sd-page .sd-tl-card--done,
+.sd-page .sd-tl-card--current {
+	background: #eef4ee;
+}
+
+.sd-page .sd-tl-card--milestone {
+	background: #fdf6dc;
+}
+
+.sd-page .sd-tl-card--future {
+	background: #f2f4f2;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-card__mobile-meta {
+	display: none;
+}
+
+.sd-page .sd-tl-card__icon {
+	align-items: center;
+	border-radius: 999px;
+	color: #16704d;
+	display: flex;
+	height: 2.75rem;
+	justify-content: center;
+	margin-bottom: 1rem;
+	width: 2.75rem;
+}
+
+.sd-page .sd-tl-card--done .sd-tl-card__icon,
+.sd-page .sd-tl-card--current .sd-tl-card__icon {
+	background: #d2e6d6;
+}
+
+.sd-page .sd-tl-card--milestone .sd-tl-card__icon {
+	background: #f2e3b3;
+	color: #8a6a0a;
+}
+
+.sd-page .sd-tl-card--future .sd-tl-card__icon {
+	background: #e4e9e3;
+	color: #6b7d72;
+}
+
+.sd-page .sd-tl-card__icon svg {
+	height: 1.4rem;
+	width: 1.4rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-card__title {
+	color: #16371f !important;
+	font-size: 1.02rem;
+	font-weight: 800;
+	line-height: 1.3;
+	margin: 0 0 0.5rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-card__text {
+	color: #304238 !important;
+	font-size: 0.88rem;
+	line-height: 1.55;
+	margin: 0 !important;
+}
+
+.sd-page .sd-tl-card--future p.sd-tl-card__text {
+	color: #4b5c52 !important;
+}
+
+.sd-page .sd-tl-card__link {
+	border-top: 1px solid #d4ded4;
+	margin: 1rem 0 0 !important;
+	padding-top: 0.85rem;
+}
+
+.sd-page .sd-tl-card__link a {
+	color: #16704d;
+	font-size: 0.88rem;
+	font-weight: 700;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-card__badge {
+	background: #f7ecc9;
+	border-radius: 6px;
+	color: #8a6a0a !important;
+	font-size: 0.76rem;
+	font-weight: 700;
+	line-height: 1.4;
+	margin: 0.9rem 0 0 !important;
+	padding: 0.4rem 0.6rem;
+}
+
+/* ------------------------------------------------------------------
+   TIMELINE FOOTER -- deliberately the one neutral/blue-gray surface in
+   this section, so it reads as administrative fine print rather than
+   another green or gold card competing with the timeline above it.
+   ------------------------------------------------------------------ */
+.sd-page .sd-tl-footer {
+	align-items: flex-start;
+	background: #eef2f6;
+	border-radius: 12px;
+	display: flex;
+	gap: 1.75rem;
+	margin-top: 1.75rem;
+	padding: 1.25rem 1.75rem;
+}
+
+.sd-page .sd-tl-footer__col {
+	align-items: flex-start;
+	display: flex;
+	flex: 1 1 0;
+	gap: 0.75rem;
+	min-width: 0;
+}
+
+.sd-page .sd-tl-footer__icon {
+	color: #3d5875;
+	flex-shrink: 0;
+	margin-top: 0.1rem;
+}
+
+.sd-page .sd-tl-footer__icon svg {
+	height: 1.3rem;
+	width: 1.3rem;
+}
+
+.sd-page .sd-tl-footer__divider {
+	align-self: stretch;
+	background: #ccd6df;
+	flex-shrink: 0;
+	width: 1px;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-footer__label {
+	color: #16371f !important;
+	font-size: 0.94rem;
+	font-weight: 800;
+	margin: 0 0 0.3rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-footer__label--accent {
+	color: #0b5c3a !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-tl-footer__text {
+	color: #5a6c60 !important;
+	font-size: 0.86rem;
+	line-height: 1.5;
+	margin: 0 !important;
+}
+
+@media screen and (max-width: 900px) {
+	.sd-page .sd-tl-labels,
+	.sd-page .sd-tl-nodes {
+		display: none;
+	}
+
+	.sd-page .sd-tl-body {
+		margin-top: 1.75rem;
+	}
+
+	.sd-page .sd-tl-cards {
+		gap: 1rem;
+		grid-template-columns: 1fr;
+		margin-top: 0;
+	}
+
+	.sd-page .sd-tl-card {
+		border-radius: 12px;
+	}
+
+	.sd-page.rengstorff-microsite p.sd-tl-card__mobile-meta {
+		align-items: center;
+		color: #5a6c60 !important;
+		display: flex;
+		font-size: 0.78rem;
+		font-weight: 800;
+		gap: 0.5rem;
+		letter-spacing: 0.03em;
+		margin: 0 0 0.75rem !important;
+		text-transform: uppercase;
+	}
+
+	.sd-page .sd-tl-card__mobile-dot {
+		border-radius: 999px;
+		flex-shrink: 0;
+		height: 0.6rem;
+		width: 0.6rem;
+	}
+
+	.sd-page .sd-tl-card__mobile-dot--done,
+	.sd-page .sd-tl-card__mobile-dot--current {
+		background: #16704d;
+	}
+
+	.sd-page .sd-tl-card__mobile-dot--milestone {
+		background: #c9a227;
+	}
+
+	.sd-page .sd-tl-card__mobile-dot--future {
+		background: #aab8ad;
+	}
+
+	.sd-page .sd-tl-footer {
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.sd-page .sd-tl-footer__divider {
+		display: none;
+	}
+}
+/* ==================================================================
+   SOURCES -- an organized document index/bibliography, grouped into
+   three categories, rather than one flat list of cards. Each group
+   gets a small uppercase green heading with a thin rule trailing off
+   it; entries inside a group are plain (icon + title/meta/description
+   /link), separated by a subtle divider only where a group has more
+   than one row (the 3rd+ item), not a border around every entry.
+   Whole section stays on the page's existing white background --
+   grouping and typography carry the structure, not boxes.
+   ================================================================== */
+.sd-page .sd-source-index__group {
+	margin-top: 2.5rem;
+}
+
+.sd-page .sd-source-index__group:first-child {
+	margin-top: 1.75rem;
+}
+
+.sd-page .sd-source-index__heading-row {
+	align-items: center;
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1.25rem;
+}
+
+.sd-page .sd-source-index__heading-row::after {
+	background: #cdead1;
+	content: "";
+	flex: 1 1 auto;
+	height: 1px;
+}
+
+.sd-page.rengstorff-microsite p.sd-source-index__heading {
+	color: #0b5c3a !important;
+	flex-shrink: 0;
+	font-size: 0.8rem;
 	font-weight: 800;
 	letter-spacing: 0.06em;
 	margin: 0 !important;
 	text-transform: uppercase;
 }
 
-.sd-page.rengstorff-microsite p.sd-open-question__ask {
-	border-top: 1px dashed #cdead1;
-	color: #193c2b !important;
-	font-size: 1.06rem;
-	font-weight: 700;
-	line-height: 1.5;
-	margin-top: 1.1rem !important;
-	padding-top: 1.1rem;
-}
-
-/* ==================================================================
-   TIMELINE -- horizontal (desktop) / vertical rail (mobile), with a
-   distinct treatment for the Q2 2027 work-plan milestone vs. the
-   confirmed-source entries.
-   ================================================================== */
-.sd-page .sd-htimeline {
-	display: flex;
-	list-style: none;
-	margin: 1.75rem 0 0;
-	padding: 0;
-	position: relative;
-}
-
-.sd-page .sd-htimeline::before {
-	background: #cdead1;
-	content: "";
-	height: 2px;
-	left: 0;
-	position: absolute;
-	right: 0;
-	top: 6px;
-}
-
-.sd-page .sd-htimeline__item {
-	flex: 1;
-	padding: 1.5rem 0.6rem 0;
-	position: relative;
-	text-align: center;
-}
-
-.sd-page .sd-htimeline__item::before {
-	background: #16704d;
-	border: 2px solid #ffffff;
-	border-radius: 50%;
-	box-shadow: 0 0 0 2px #cdead1;
-	content: "";
-	height: 12px;
-	left: 50%;
-	position: absolute;
-	top: 0;
-	transform: translateX(-50%);
-	width: 12px;
-}
-
-.sd-page .sd-htimeline__item--target::before {
-	background: #0b5c3a;
-	box-shadow: 0 0 0 3px #9fd6ac;
-}
-
-.sd-page .sd-htimeline__item--milestone::before {
-	background: #ffffff;
-	border-color: #c9a227;
-	box-shadow: 0 0 0 2px #f3e2ad;
-}
-
-.sd-page.rengstorff-microsite p.sd-htimeline__date {
-	color: #0b5c3a !important;
-	font-size: 0.8rem;
-	font-weight: 800;
-	letter-spacing: 0.03em;
-	margin: 0 0 0.3rem;
-	text-transform: uppercase;
-}
-
-.sd-page .sd-htimeline__item--milestone p.sd-htimeline__date {
-	color: #8a6a2c !important;
-}
-
-.sd-page.rengstorff-microsite p.sd-htimeline__text {
-	color: #304238 !important;
-	font-size: 0.86rem;
-	line-height: 1.4;
-	margin: 0;
-}
-
-.sd-page.rengstorff-microsite p.sd-htimeline__badge {
-	background: #f9f3e6;
-	border-radius: 4px;
-	color: #8a6a2c !important;
-	font-size: 0.68rem;
-	font-weight: 700;
-	margin: 0.5rem auto 0 !important;
-	max-width: 8rem;
-	padding: 0.2rem 0.4rem;
-}
-
-/* ==================================================================
-   SOURCES -- compact 2-column list.
-   ================================================================== */
 .sd-page .sd-source-grid {
 	display: grid;
-	gap: 1.25rem 2rem;
+	gap: 1.75rem 2rem;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
-	margin: 1.5rem 0 0;
 }
 
 .sd-page .sd-source-item {
-	border-top: 1px solid #d4ded4;
-	padding-top: 1rem;
+	align-items: flex-start;
+	display: flex;
+	gap: 1rem;
+}
+
+/* Divider only between rows, not around every card: with a 2-column
+   grid, the 3rd item onward is a new row, so it alone gets a top rule
+   + matching padding to visually separate it from the row above. */
+.sd-page .sd-source-item:nth-child(n + 3) {
+	border-top: 1px solid #e3e8e0;
+	padding-top: 1.5rem;
+}
+
+.sd-page .sd-source-item__icon {
+	align-items: center;
+	background: #eef4ee;
+	border-radius: 999px;
+	color: #16704d;
+	display: flex;
+	flex-shrink: 0;
+	height: 2.5rem;
+	justify-content: center;
+	width: 2.5rem;
+}
+
+.sd-page .sd-source-item__icon svg {
+	height: 1.2rem;
+	width: 1.2rem;
+}
+
+.sd-page .sd-source-item__body {
+	min-width: 0;
 }
 
 .sd-page.rengstorff-microsite p.sd-source-item__title {
 	color: #193c2b !important;
-	font-size: 0.96rem;
+	font-size: 1rem;
 	font-weight: 700;
+	line-height: 1.35;
 	margin: 0;
 }
 
 .sd-page.rengstorff-microsite p.sd-source-item__meta {
 	color: #5a6c60 !important;
-	font-size: 0.83rem;
-	margin: 0.3rem 0 0;
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	margin: 0.35rem 0 0;
+	text-transform: uppercase;
 }
 
 .sd-page.rengstorff-microsite p.sd-source-item__note {
-	color: #5a6c60 !important;
-	font-size: 0.82rem;
+	color: #45564b !important;
+	font-size: 0.86rem;
+	line-height: 1.5;
 	margin: 0.5rem 0 0 !important;
 }
 
 .sd-page .sd-source-item__links {
 	display: flex;
-	gap: 1.1rem;
+	flex-wrap: wrap;
+	gap: 0.35rem 1.1rem;
 	margin-top: 0.6rem;
+}
+
+.sd-page .sd-source-item__links a {
+	font-size: 0.88rem;
+	font-weight: 700;
 }
 
 /* ==================================================================
@@ -17612,36 +18430,6 @@ b,
 	}
 }
 
-@media screen and (max-width: 780px) {
-	.sd-page .sd-htimeline {
-		flex-direction: column;
-		gap: 0;
-	}
-
-	.sd-page .sd-htimeline::before {
-		bottom: 0;
-		height: auto;
-		left: 5px;
-		right: auto;
-		top: 6px;
-		width: 2px;
-	}
-
-	.sd-page .sd-htimeline__item {
-		padding: 0 0 1.75rem 1.75rem;
-		text-align: left;
-	}
-
-	.sd-page .sd-htimeline__item::before {
-		left: 0;
-		top: 0.2rem;
-		transform: none;
-	}
-
-	.sd-page.rengstorff-microsite p.sd-htimeline__badge {
-		margin: 0.5rem 0 0 !important;
-	}
-}
 
 @media screen and (max-width: 640px) {
 	.sd-page .sd-status-grid {
@@ -17688,5 +18476,1220 @@ b,
 @media (prefers-reduced-motion: reduce) {
 	.sd-page * {
 		scroll-behavior: auto !important;
+	}
+}
+
+/* ==================================================================
+   MOUNTAIN VIEW STANDARD DETAILS UPDATE PAGE (v5 -- longform redesign)
+   cities/mountainview-ca/policies/standard-details/index.html
+
+   Major information-architecture pass: the page became an 8-section
+   editorial "story" (.sd-story) instead of a dense reference dump.
+   Detailed engineering-drawing browsing and the full Municipal Code
+   citation inventory moved to a reference layer -- the Standard
+   Details archive (../standards/) and individual detail pages
+   (../standards/<slug>/) -- with the Code citations collapsed into an
+   in-page accordion (.sd-code-ref) rather than always-open surfaces.
+
+   This block is ADDITIVE: it reuses the v3 hero/why/layout/sidebar
+   rules and several v3 components verbatim (.sd-feature (star),
+   .sd-crosssection (star), .sd-review-quote, .sd-open-question,
+   .sd-htimeline (star), .sd-source-grid (star), .sd-permalink (star),
+   .sd-quote (star)) -- see the "1", "2", "3"... numbered v3 blocks
+   above. Several v3 classes (.sd-intro-band, .sd-split-2col,
+   .sd-compare (star), .sd-matrix (star), .sd-pill (star), the
+   always-open .sd-refgroup / .sd-ref pair, and .sd-group / .sd-multiple
+   -- the inline 13-sheet gallery) are no longer used on THIS page --
+   that HTML moved to the new archive/detail pages -- but are left
+   defined above rather than deleted, since nothing here references
+   them and removing shared-looking rule blocks by hand risks silently
+   breaking a page this pass didn't review.
+   ================================================================== */
+
+/* ------------------------------------------------------------------
+   QUIET SIDEBAR ACTIVE STATE -- thin green rule + darker text only,
+   no shaded box, no icons (set by the IntersectionObserver script).
+   ------------------------------------------------------------------ */
+.sd-page .sd-sidebar__list a.is-active {
+	border-left: 2px solid #16704d;
+	color: #0b2f1c;
+	font-weight: 700;
+	margin-left: -2px;
+	padding-left: calc(1rem + 1px);
+}
+
+/* ------------------------------------------------------------------
+   STORY SPACING RHYTHM -- ~28px heading-to-content inside each card.
+   The big air *between* sections (formerly 7rem of bare vertical
+   space doing the only job of separating one editorial block from the
+   next) is now carried by each section's own card edge instead --
+   see the .sd-story__section background/border/margin rule in the
+   CARD-BASED REDESIGN block above. The .sd-main column itself stays
+   the same reading width established in the layout-width pass; only
+   the rhythm inside it changes here.
+   ------------------------------------------------------------------ */
+.sd-page .sd-story__section {
+	scroll-margin-top: 4.5rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-story__num {
+	color: #9fc7a8 !important;
+	font-size: 1.6rem;
+	font-weight: 800;
+	line-height: 1;
+	margin: 0 0 0.5rem;
+}
+
+.sd-page .sd-story__section h2 {
+	color: #16371f;
+	font-size: 1.65rem;
+	margin: 0 0 1.75rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-story__intro {
+	color: #25332b !important;
+	font-size: 1.03rem;
+	line-height: 1.68;
+	margin: 0 0 1.5rem;
+	max-width: 46rem;
+}
+
+.sd-page .sd-story__lead {
+	margin-bottom: 2rem;
+	max-width: 46rem;
+}
+
+.sd-page.rengstorff-microsite .sd-story__lead p {
+	color: #25332b !important;
+	font-size: 1.03rem;
+	line-height: 1.68;
+	margin: 0 0 1.1rem;
+}
+
+.sd-page .sd-story__citations {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	max-width: 50rem;
+}
+
+.sd-page .sd-story__citations .sd-policy-ref {
+	margin-top: 0;
+}
+
+/* Two parallel, smaller "policy card" surfaces for Vision Zero + the
+   Active Transportation Plan -- the mockup's secondary-grouping use of
+   pale green, inside the "Why this matters" white section card. Reuses
+   .sd-policy-ref for its label/paragraph colors (and .sd-policy-ref__
+   link's arrow-link idiom for the new "View Plan" links); .sd-policy-
+   card only adds the card shell and icon, and overrides the bare
+   .sd-policy-ref left-rule/padding-left it's paired with in the HTML. */
+.sd-page .sd-story__citations--cards {
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	max-width: none;
+}
+
+.sd-page .sd-story__citations--cards .sd-policy-card {
+	background: #eef5ee;
+	border-left: none;
+	border-radius: 12px;
+	padding: 1.5rem 1.5rem 1.65rem;
+}
+
+.sd-page .sd-policy-card__icon {
+	align-items: center;
+	background: #ffffff;
+	border-radius: 999px;
+	color: #16704d;
+	display: flex;
+	height: 2.75rem;
+	justify-content: center;
+	margin-bottom: 1rem;
+	width: 2.75rem;
+}
+
+.sd-page .sd-policy-card__icon svg {
+	height: 1.4rem;
+	width: 1.4rem;
+}
+
+@media screen and (max-width: 780px) {
+	.sd-page .sd-story__citations--cards {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ------------------------------------------------------------------
+   INSET PANEL -- subtle pale-green surface for one meaningful content
+   group sitting *inside* a white section card: heading + icon grid +
+   its two immediate caveats, here. Reusable wherever a later section
+   needs the same secondary-grouping treatment -- not meant to wrap
+   every fact, only an actual group of them (see the redesign's "avoid
+   unnecessary nested cards" note). Named ".sd-inset-panel" (not the
+   shorter ".sd-inset") because that name is already taken by a dead
+   .sd-compare-era rule further up this file (an earlier, unused
+   version of this same page) -- new name avoids silently inheriting
+   its border/height instead of a clean, deliberate ruleset.
+   ------------------------------------------------------------------ */
+.sd-page .sd-inset-panel {
+	background: #eef5ee;
+	border-radius: 12px;
+	margin: 0 0 1.75rem;
+	max-width: 58rem;
+	padding: 1.75rem 2rem 0.25rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-inset-panel__heading {
+	color: #16371f !important;
+	font-size: 1rem;
+	font-weight: 700;
+	margin: 0 0 1.5rem !important;
+}
+
+/* ------------------------------------------------------------------
+   ICON GRID -- "what is being updated": simple green line icons, no
+   pill badges, no cards.
+   ------------------------------------------------------------------ */
+.sd-page .sd-icon-grid {
+	display: grid;
+	gap: 1.75rem 1.5rem;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	list-style: none;
+	margin: 0 0 1.75rem;
+	max-width: 52rem;
+	padding: 0;
+}
+
+.sd-page .sd-icon-grid__item {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 0.65rem;
+	text-align: center;
+}
+
+.sd-page .sd-icon-grid__icon {
+	color: #16704d;
+	height: 2rem;
+	width: 2rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-icon-grid__label,
+.sd-page .sd-icon-grid__label {
+	color: #25332b;
+	font-size: 0.86rem;
+	font-weight: 600;
+	line-height: 1.35;
+	margin: 0;
+}
+
+.sd-page.rengstorff-microsite p.sd-story__note {
+	color: #5a6c60 !important;
+	font-size: 0.9rem;
+	line-height: 1.55;
+	margin: 0 0 1.5rem;
+	max-width: 46rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-story__guidance {
+	color: #304238 !important;
+	font-size: 0.88rem;
+	margin: 0 0 1.75rem;
+	max-width: 46rem;
+}
+
+.sd-page .sd-story__guidance span {
+	color: #5a6c60;
+	font-weight: 700;
+	margin-right: 0.35rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-story__footnote {
+	color: #5a6c60 !important;
+	font-size: 0.86rem;
+	line-height: 1.55;
+	margin: 0;
+	max-width: 46rem;
+}
+
+/* "Current standards" section: the feature pair is the page's visual
+   centerpiece here, so it gets more room than the v3 in-context use of
+   the same component (max-width lifted, image border slightly bolder).
+   Three sheets (A-4, A-5, A-22) side by side on desktop, full section
+   width (no more "Tip" aside sharing the row -- that panel's brief
+   explanation moved into the section's own intro paragraph instead),
+   generous gap; collapses to a single stacked column rather than an
+   awkward 2+1 wrap. */
+.sd-page .sd-feature__pair--lead {
+	align-items: start;
+	gap: 2rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin: 0 0 1.75rem;
+}
+
+@media screen and (max-width: 900px) {
+	.sd-page .sd-feature__pair--lead {
+		gap: 2.5rem;
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Title above each drawing + "View standard detail page" link below it,
+   replacing the old combined figcaption for this three-up layout.
+   min-height reserves space for two lines regardless of how many the
+   title actually wraps to (A-22's title runs to two; A-4/A-5's don't)
+   -- with an explicit line-height to make that reservation predictable,
+   this keeps all three preview boxes starting at the same vertical
+   position instead of the two-line title pushing A-22's image down. */
+.sd-page.rengstorff-microsite p.sd-feature__title {
+	color: #16371f !important;
+	font-size: 1.02rem;
+	font-weight: 700;
+	line-height: 1.3;
+	margin: 0 0 0.85rem !important;
+	min-height: 2.5rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-feature__link {
+	font-size: 0.88rem;
+	font-weight: 600;
+	margin: 0.85rem 0 0 !important;
+	text-align: left;
+}
+
+.sd-page .sd-feature__link a {
+	color: #16704d;
+}
+
+/* ------------------------------------------------------------------
+   EXPLORE NAV -- compact pale-green horizontal nav row pointing at the
+   full Standard Details archive. Deliberately not another content
+   card: single-line-height icon + title/text + chevron, the whole row
+   is the link (not just the title text). Replaces the old bare
+   .sd-story__explore text link.
+   ------------------------------------------------------------------ */
+.sd-page .sd-explore-nav {
+	align-items: center;
+	background: #eef4ee;
+	border-radius: 12px;
+	color: inherit;
+	display: flex;
+	gap: 1rem;
+	margin: 1.75rem 0 0;
+	padding: 1.1rem 1.5rem;
+	text-decoration: none;
+}
+
+.sd-page .sd-explore-nav:hover,
+.sd-page .sd-explore-nav:focus-visible {
+	background: #e3efe5;
+}
+
+.sd-page .sd-explore-nav:focus-visible {
+	outline: 2px solid #16704d;
+	outline-offset: 2px;
+}
+
+.sd-page .sd-explore-nav__icon {
+	align-items: center;
+	background: #ffffff;
+	border-radius: 999px;
+	color: #16704d;
+	display: flex;
+	flex-shrink: 0;
+	height: 2.5rem;
+	justify-content: center;
+	width: 2.5rem;
+}
+
+.sd-page .sd-explore-nav__icon svg {
+	height: 1.15rem;
+	width: 1.15rem;
+}
+
+.sd-page .sd-explore-nav__body {
+	display: block;
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.sd-page.rengstorff-microsite .sd-explore-nav__title {
+	color: #16371f;
+	display: block;
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.sd-page.rengstorff-microsite .sd-explore-nav__text {
+	color: #5a6c60;
+	display: block;
+	font-size: 0.85rem;
+	margin-top: 0.2rem;
+}
+
+.sd-page .sd-explore-nav__chevron {
+	color: #5a6c60;
+	display: flex;
+	flex-shrink: 0;
+}
+
+.sd-page .sd-explore-nav__chevron svg {
+	height: 1.15rem;
+	width: 1.15rem;
+}
+
+@media screen and (max-width: 560px) {
+	.sd-page .sd-explore-nav__text {
+		display: none;
+	}
+}
+
+/* Thin neutral rule separating the Standard Detail examples from the
+   conceptual cross-section subsection below -- these are two
+   distinct kinds of content ("the real thing" vs. "an illustration
+   of a concept"), not one continuous flow. */
+.sd-page .sd-section-divider {
+	background: none;
+	border: none;
+	border-top: 1px solid #e3e8e0;
+	margin: 2.25rem 0;
+}
+
+/* ------------------------------------------------------------------
+   WHAT TO WATCH -- editorial list, subtle dividers, icons, no cards.
+   ------------------------------------------------------------------ */
+.sd-page .sd-watch-list {
+	list-style: none;
+	margin: 0;
+	max-width: none;
+	padding: 0;
+}
+
+/* Alternating pale-green/white rows replace the old divider-line list:
+   the six topics are full-width bands, color alone doing the grouping
+   that a border used to do. Odd rows (1st, 3rd, 5th) get the sage
+   fill + modest rounded corners; even rows stay transparent (the
+   parent white section card shows through) but keep the exact same
+   padding, so vertical rhythm reads as identical whether a row is
+   tinted or not. This is a readability/rhythm device only -- it
+   doesn't map to any topic-level meaning. */
+.sd-page .sd-watch-list__item {
+	align-items: flex-start;
+	display: flex;
+	gap: 1.1rem;
+	padding: 1.5rem 1.75rem;
+}
+
+.sd-page .sd-watch-list__item:nth-child(odd) {
+	background: #eef4ee;
+	border-radius: 12px;
+}
+
+/* Icon sits in a subtle pale-green circle -- a navigational cue, not
+   an illustration -- and stays aligned with the top of the text
+   block (the label line) via align-items: flex-start above. Circle
+   is a step darker than an odd row's own background so it still
+   reads as a distinct badge there, not just an outline. */
+.sd-page .sd-watch-list__icon-wrap {
+	align-items: center;
+	background: #dfeee1;
+	border-radius: 999px;
+	display: flex;
+	flex-shrink: 0;
+	height: 2.5rem;
+	justify-content: center;
+	width: 2.5rem;
+}
+
+.sd-page .sd-watch-list__icon {
+	color: #16704d;
+	height: 1.35rem;
+	width: 1.35rem;
+}
+
+.sd-page .sd-watch-list__body {
+	min-width: 0;
+}
+
+/* Three-tier hierarchy -- topic label (small, green, uppercase) ->
+   question (larger, bold, dark -- the one line worth skimming) ->
+   supporting text (smaller, regular weight). Someone reading only
+   the bold questions down the page should still get the gist. */
+.sd-page.rengstorff-microsite p.sd-watch-list__label {
+	color: #0b5c3a !important;
+	font-size: 0.78rem;
+	font-weight: 800;
+	letter-spacing: 0.05em;
+	margin: 0 0 0.3rem !important;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-watch-list__question {
+	color: #16371f !important;
+	font-size: 1.12rem;
+	font-weight: 700;
+	line-height: 1.4;
+	margin: 0 0 0.5rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-watch-list__text {
+	color: #304238 !important;
+	font-size: 0.92rem;
+	line-height: 1.6;
+	margin: 0 !important;
+}
+
+/* ------------------------------------------------------------------
+   PROCESS CARDS -- "How the review will work" 5-step review process
+   only. Replaces the old .sd-simple-flow (which is no longer used
+   anywhere on the page -- "How standards connect to policy" has its
+   own .sd-connect-flow, and this section now gets pale-green icon
+   cards instead of the old plain white/arrow steps). Numbering alone
+   carries the sequence, so there are no connecting arrows here.
+   ------------------------------------------------------------------ */
+.sd-page.rengstorff-microsite h3.sd-subheading {
+	color: #16371f;
+	font-size: 1.15rem;
+	font-weight: 800;
+	margin: 2rem 0 0.5rem;
+}
+
+.sd-page .sd-process-row {
+	align-items: stretch;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+	margin: 1.5rem 0 1.75rem;
+}
+
+.sd-page .sd-process-card {
+	background: #eef4ee;
+	border-radius: 12px;
+	flex: 1 1 11rem;
+	padding: 1.5rem 1.5rem 1.75rem;
+	position: relative;
+}
+
+.sd-page .sd-process-card__num {
+	align-items: center;
+	background: #16704d;
+	border-radius: 999px;
+	color: #ffffff;
+	display: flex;
+	font-size: 0.85rem;
+	font-weight: 700;
+	height: 1.75rem;
+	justify-content: center;
+	margin-bottom: 1.25rem;
+	width: 1.75rem;
+}
+
+.sd-page .sd-process-card__icon {
+	align-items: center;
+	background: #d2e6d6;
+	border-radius: 999px;
+	color: #16704d;
+	display: flex;
+	height: 3.5rem;
+	justify-content: center;
+	margin-bottom: 1.1rem;
+	width: 3.5rem;
+}
+
+.sd-page .sd-process-card__icon svg {
+	display: block;
+	height: 1.7rem;
+	width: 1.7rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-process-card__title {
+	color: #16371f !important;
+	font-size: 1.12rem;
+	font-weight: 800;
+	line-height: 1.3;
+	margin: 0 0 0.5rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-process-card__text {
+	color: #4b5c52 !important;
+	font-size: 0.92rem;
+	line-height: 1.5;
+	margin: 0 !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-process-card__text + p.sd-process-card__text {
+	margin-top: 0.35rem !important;
+}
+
+/* Card 2's compact "PRC · B/PAC · Transportation Subcommittee" line --
+   deliberately just the abbreviations (kept card 2 the same height as
+   its siblings); the full names are spelled out once, below all five
+   cards, in .sd-process-key instead of stacking them inside this card. */
+.sd-page.rengstorff-microsite p.sd-process-card__text--links {
+	font-weight: 700;
+}
+
+.sd-page .sd-process-card__text--links a {
+	color: #16704d;
+}
+
+/* ------------------------------------------------------------------
+   PROCESS KEY -- quiet, single-line-per-item legend spelling out the
+   abbreviations used in card 2. Deliberately not another card: no
+   background/border, small type, sits in the section's plain white
+   background so it reads as a footnote to the process row above it.
+   ------------------------------------------------------------------ */
+.sd-page.rengstorff-microsite p.sd-process-key {
+	align-items: baseline;
+	color: #5a6c60 !important;
+	column-gap: 1.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 0.82rem;
+	line-height: 1.6;
+	margin: 0 0 2.25rem !important;
+	row-gap: 0.35rem;
+}
+
+.sd-page .sd-process-key__label {
+	color: #16371f;
+	flex-shrink: 0;
+	font-weight: 800;
+}
+
+.sd-page .sd-process-key__item a {
+	color: #16704d;
+	font-weight: 700;
+}
+
+/* ------------------------------------------------------------------
+   CONNECT FLOW -- "How standards connect to policy" only. A dedicated
+   component, not a reuse of .sd-simple-flow: that class is shared with
+   the 5-step process cards in "How the review will work" (deliberately
+   plain white/neutral there), and this diagram needs its own icons.
+   Per the visual reference, the whole eyebrow + 5-card row sits inside
+   one enclosing pale-green .sd-connect-panel (same tone as the
+   .sd-code-ref "Rules and context" panel below it, for one consistent
+   pale-green surface language), with all five cards sharing a single
+   near-white background so they read as cards against that panel
+   rather than each card being its own shade of green. Centered icon/
+   heading/text per card, matching the reference. A real green arrow
+   element (not a pseudo-element) sits between each pair of cards so it
+   stays vertically centered regardless of a card's own content height. */
+.sd-page .sd-connect-panel {
+	background: #eef4ee;
+	border-radius: 16px;
+	margin: 0 0 1.75rem;
+	padding: 1.75rem 2rem 2rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-connect-flow__eyebrow {
+	color: #0b5c3a !important;
+	font-size: 0.78rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	margin: 0 0 1.25rem !important;
+	text-transform: uppercase;
+}
+
+.sd-page .sd-connect-flow {
+	align-items: stretch;
+	display: flex;
+	margin: 0;
+}
+
+.sd-page .sd-connect-flow__step {
+	background: #f8fbf8;
+	border-radius: 12px;
+	flex: 1 1 0;
+	padding: 1.75rem 1.25rem;
+	text-align: center;
+}
+
+.sd-page .sd-connect-flow__icon {
+	align-items: center;
+	background: #d2e6d6;
+	border-radius: 999px;
+	color: #146c46;
+	display: flex;
+	height: 3rem;
+	justify-content: center;
+	margin: 0 auto 1rem;
+	width: 3rem;
+}
+
+.sd-page .sd-connect-flow__icon svg {
+	height: 1.5rem;
+	width: 1.5rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-connect-flow__title {
+	color: #16371f !important;
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1.3;
+	margin: 0 0 0.5rem !important;
+}
+
+/* Municipal Code's title wraps a real link (preserved from the prior
+   markup) -- styled to match the other four plain-text headings rather
+   than the site's default link green, so all five read as one
+   consistent card system; the href/behavior is unchanged. */
+.sd-page .sd-connect-flow__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.sd-page .sd-connect-flow__title a:hover,
+.sd-page .sd-connect-flow__title a:focus-visible {
+	text-decoration: underline;
+}
+
+.sd-page.rengstorff-microsite p.sd-connect-flow__text {
+	color: #45564b !important;
+	font-size: 0.85rem;
+	line-height: 1.45;
+	margin: 0 !important;
+}
+
+.sd-page .sd-connect-flow__arrow {
+	align-self: center;
+	color: #146c46;
+	flex: 0 0 auto;
+	font-size: 1.35rem;
+	font-weight: 700;
+	padding: 0 0.85rem;
+}
+
+@media screen and (max-width: 900px) {
+	.sd-page .sd-connect-flow {
+		flex-direction: column;
+	}
+
+	.sd-page .sd-connect-flow__arrow {
+		padding: 0.5rem 0;
+		transform: rotate(90deg);
+	}
+}
+
+/* ------------------------------------------------------------------
+   CODE REFERENCE ACCORDION -- "explore the rules behind the standards".
+   Native <details>/<summary>, no JS. The whole thing now sits on its
+   own pale-sage surface (a secondary grouping inside the white
+   "How standards connect to policy" section card, same idiom as
+   .sd-inset-panel elsewhere), with each category as its own white,
+   bordered, rounded row -- not the old plain divided list inside a
+   second white card. Expanding a row grows that same white box (the
+   background/border live on the <details> element itself, not a
+   separate panel), so there's no disconnected flyout.
+   ------------------------------------------------------------------ */
+.sd-page .sd-code-ref {
+	background: #eef4ee;
+	border-radius: 16px;
+	margin-top: 2.5rem;
+	padding: 2rem 2.25rem;
+}
+
+/* Icon + "Rules and context" heading + one-sentence explainer, side by
+   side per the visual reference (no separate small-caps eyebrow above
+   the heading -- the icon does that job now). */
+.sd-page .sd-code-ref__heading-row {
+	align-items: center;
+	display: flex;
+	gap: 1.1rem;
+	margin: 0 0 1.75rem;
+}
+
+.sd-page .sd-code-ref__icon {
+	align-items: center;
+	background: #d2e6d6;
+	border-radius: 999px;
+	color: #146c46;
+	display: flex;
+	flex-shrink: 0;
+	height: 3.25rem;
+	justify-content: center;
+	width: 3.25rem;
+}
+
+.sd-page .sd-code-ref__icon svg {
+	height: 1.6rem;
+	width: 1.6rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-ref__label {
+	color: #16371f !important;
+	font-size: 1.4rem;
+	font-weight: 800;
+	margin: 0 0 0.35rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-ref__intro {
+	color: #4b5c52 !important;
+	font-size: 0.94rem;
+	line-height: 1.5;
+	margin: 0 !important;
+	max-width: 46rem;
+}
+
+/* One white, bordered, rounded row per category. overflow: hidden
+   clips the expanded content to the same rounded corners; the
+   background/border belong to the <details> element itself so an
+   expanded row is still visibly the same card, just taller. */
+.sd-page .sd-code-group {
+	background: #ffffff;
+	border: 1px solid #dbe4dc;
+	border-radius: 12px;
+	margin-bottom: 1rem;
+	overflow: hidden;
+}
+
+.sd-page .sd-code-group:last-of-type {
+	margin-bottom: 0;
+}
+
+.sd-page .sd-code-group[open] {
+	padding-bottom: 1.5rem;
+}
+
+.sd-page .sd-code-group__heading {
+	align-items: center;
+	color: #193c2b;
+	cursor: pointer;
+	display: flex;
+	font-size: 1.05rem;
+	font-weight: 800;
+	gap: 0.85rem;
+	list-style: none;
+	padding: 1.3rem 1.75rem;
+	scroll-margin-top: 4.5rem;
+}
+
+.sd-page .sd-code-group__heading::-webkit-details-marker {
+	display: none;
+}
+
+.sd-page .sd-code-group__heading:hover,
+.sd-page .sd-code-group__heading:focus-visible {
+	background: #f4f8f4;
+}
+
+.sd-page .sd-code-group__heading:focus-visible {
+	outline: 2px solid #16704d;
+	outline-offset: -2px;
+}
+
+.sd-page .sd-code-group__title {
+	flex: 1 1 auto;
+}
+
+.sd-page .sd-code-group__chevron {
+	color: #5a6c60;
+	display: flex;
+	flex-shrink: 0;
+}
+
+.sd-page .sd-code-group__chevron svg {
+	height: 1.15rem;
+	transition: transform 0.15s ease;
+	width: 1.15rem;
+}
+
+.sd-page .sd-code-group[open] > .sd-code-group__heading .sd-code-group__chevron svg {
+	transform: rotate(180deg);
+}
+
+.sd-page.rengstorff-microsite p.sd-code-group__desc {
+	color: #5a6c60 !important;
+	font-size: 0.9rem;
+	margin: 0 0 1.5rem !important;
+	padding: 0 1.75rem;
+}
+
+.sd-page .sd-code-entry {
+	border-top: 1px solid #e3e9e3;
+	padding: 1.5rem 1.75rem 0;
+}
+
+.sd-page .sd-code-entry:first-of-type {
+	border-top: none;
+	padding-top: 0;
+}
+
+.sd-page .sd-code-entry:not(:last-of-type) {
+	padding-bottom: 1.5rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-entry__source {
+	color: #5a6c60 !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	margin: 0 0 0.4rem !important;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-entry__title {
+	color: #16371f !important;
+	font-size: 1rem;
+	font-weight: 700;
+	margin: 0 0 0.7rem !important;
+}
+
+.sd-page .sd-code-entry__title a {
+	color: #16371f;
+}
+
+.sd-page .sd-code-entry__quote {
+	border-left: 3px solid #d4ded4;
+	color: #304238;
+	font-size: 0.92rem;
+	font-style: italic;
+	line-height: 1.6;
+	margin: 0 0 0.9rem;
+	padding-left: 1rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-entry__text {
+	color: #304238 !important;
+	font-size: 0.92rem;
+	line-height: 1.6;
+	margin: 0 0 0.9rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-entry__why {
+	color: #4b5c52 !important;
+	font-size: 0.88rem;
+	line-height: 1.6;
+	margin: 0 !important;
+}
+
+.sd-page .sd-code-entry__why strong {
+	color: #0b5c3a;
+}
+
+.sd-page .sd-code-entry__contacts {
+	background: #f4f8f4;
+	border-radius: 8px;
+	margin-top: 1.25rem;
+	padding: 1.25rem 1.4rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-entry__contacts-label {
+	color: #0b5c3a !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.6rem !important;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-entry__contacts-intro,
+.sd-page.rengstorff-microsite p.sd-code-entry__contact,
+.sd-page.rengstorff-microsite p.sd-code-entry__contacts-dept {
+	color: #304238 !important;
+	font-size: 0.86rem;
+	line-height: 1.55;
+	margin: 0 0 0.7rem !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-entry__contacts-meta {
+	color: #5a6c60 !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	margin: 0 0 0.6rem !important;
+	text-transform: uppercase;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-entry__contacts-footnote {
+	color: #5a6c60 !important;
+	font-size: 0.78rem;
+	line-height: 1.5;
+	margin: 0.4rem 0 0 !important;
+}
+
+/* ------------------------------------------------------------------
+   ABOUT THESE SOURCES -- a compact white inset row closing out the
+   pale-green Rules and context panel: outlined info icon, bold label,
+   a thin vertical divider, then the source/methodology explanation.
+   Deliberately quieter than the white accordion rows above it (no
+   border, smaller type) even though it shares their white background.
+   flex-wrap lets the explanation drop to its own line under the
+   icon/label on narrow screens instead of overflowing. Every
+   qualification/source detail from the original footnote is preserved
+   verbatim.
+   ------------------------------------------------------------------ */
+.sd-page .sd-code-ref__about {
+	align-items: flex-start;
+	background: #ffffff;
+	border-radius: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem 0.9rem;
+	margin-top: 1.5rem;
+	padding: 0.9rem 1.25rem;
+}
+
+.sd-page .sd-code-ref__about-icon {
+	align-items: center;
+	color: #5a6c60;
+	display: flex;
+	flex-shrink: 0;
+	margin-top: 0.1rem;
+}
+
+.sd-page .sd-code-ref__about-icon svg {
+	height: 1.1rem;
+	width: 1.1rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-ref__about-label {
+	color: #16371f !important;
+	flex-shrink: 0;
+	font-size: 0.86rem;
+	font-weight: 800;
+	margin: 0.1rem 0 0 !important;
+}
+
+.sd-page .sd-code-ref__about-divider {
+	background: #c7d3c9;
+	flex-shrink: 0;
+	height: 1.1rem;
+	margin-top: 0.15rem;
+	width: 1px;
+}
+
+@media screen and (max-width: 480px) {
+	.sd-page .sd-code-ref__about-divider {
+		display: none;
+	}
+}
+
+.sd-page.rengstorff-microsite p.sd-code-ref__footnote {
+	color: #5a6c60 !important;
+	flex: 1 1 240px;
+	font-size: 0.78rem;
+	line-height: 1.55;
+	margin: 0 !important;
+}
+
+.sd-page.rengstorff-microsite p.sd-code-ref__footnote strong {
+	color: #45564b !important;
+	font-weight: 700;
+}
+
+@media screen and (max-width: 1024px) {
+	.sd-page .sd-icon-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media screen and (max-width: 780px) {
+	.sd-page .sd-story__section {
+		border-radius: 12px;
+		margin-bottom: 1.75rem;
+		padding: 1.85rem 1.5rem;
+	}
+
+	.sd-page .sd-icon-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.sd-page .sd-process-row {
+		flex-direction: column;
+	}
+
+	.sd-page .sd-code-ref {
+		padding: 1.5rem 1.25rem;
+	}
+
+	.sd-page .sd-code-group__heading {
+		padding: 1.1rem 1.15rem;
+	}
+
+	.sd-page.rengstorff-microsite p.sd-code-group__desc {
+		padding: 0 1.15rem;
+	}
+
+	.sd-page .sd-code-entry {
+		padding: 1.5rem 1.15rem 0;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.sd-page .sd-icon-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.sd-page .sd-watch-list__item {
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: 1.25rem 1.1rem;
+	}
+}
+
+/* ==================================================================
+   DRAWING VIEWER -- dedicated zoom/pan/fullscreen lightbox for the
+   "Current standards" drawings (A-4/A-5/A-22). See the HTML comment
+   at #sd-drawing-viewer for why this isn't the shared .evidence-modal
+   component. Sizing: ~94vw x 90vh on desktop per the brief's "90-95vw
+   x 90vh", collapsing to true full-screen on narrow/mobile viewports.
+   ================================================================== */
+.sd-page .sd-drawing-viewer[hidden] {
+	display: none;
+}
+
+.sd-page .sd-drawing-viewer {
+	align-items: center;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 200;
+}
+
+.sd-page .sd-drawing-viewer__backdrop {
+	background: rgba(15, 26, 20, 0.75);
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.sd-page .sd-drawing-viewer__dialog {
+	background: #ffffff;
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	height: 90vh;
+	max-width: 1500px;
+	overflow: hidden;
+	position: relative;
+	width: 94vw;
+	z-index: 1;
+}
+
+.sd-page .sd-drawing-viewer__dialog:fullscreen {
+	border-radius: 0;
+	height: 100vh;
+	max-width: none;
+	width: 100vw;
+}
+
+.sd-page .sd-drawing-viewer__dialog:-webkit-full-screen {
+	border-radius: 0;
+	height: 100vh;
+	max-width: none;
+	width: 100vw;
+}
+
+.sd-page .sd-drawing-viewer__toolbar {
+	align-items: center;
+	border-bottom: 1px solid #e3e8e0;
+	display: flex;
+	flex-shrink: 0;
+	gap: 1rem;
+	justify-content: space-between;
+	padding: 0.85rem 1.25rem;
+}
+
+.sd-page.rengstorff-microsite p.sd-drawing-viewer__caption {
+	color: #45564b !important;
+	font-size: 0.85rem;
+	margin: 0 !important;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.sd-page .sd-drawing-viewer__controls {
+	display: flex;
+	flex-shrink: 0;
+	gap: 0.5rem;
+}
+
+.sd-page .sd-drawing-viewer__btn {
+	align-items: center;
+	background: #eef4ee;
+	border: none;
+	border-radius: 999px;
+	color: #16371f;
+	cursor: pointer;
+	display: flex;
+	height: 2.35rem;
+	justify-content: center;
+	padding: 0;
+	width: 2.35rem;
+}
+
+.sd-page .sd-drawing-viewer__btn:hover,
+.sd-page .sd-drawing-viewer__btn:focus-visible {
+	background: #dcebe0;
+}
+
+.sd-page .sd-drawing-viewer__btn:focus-visible {
+	outline: 2px solid #16704d;
+	outline-offset: 2px;
+}
+
+.sd-page .sd-drawing-viewer__btn svg {
+	height: 1.15rem;
+	width: 1.15rem;
+}
+
+.sd-page .sd-drawing-viewer__close {
+	background: #f5eaea;
+	color: #7a2e2e;
+	font-size: 1.35rem;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.sd-page .sd-drawing-viewer__close:hover,
+.sd-page .sd-drawing-viewer__close:focus-visible {
+	background: #f0d9d9;
+}
+
+/* touch-action: none lets the stage own pointer gestures for panning
+   (see the page's inline script) instead of the browser's default
+   scroll/pinch handling. */
+.sd-page .sd-drawing-viewer__stage {
+	background: #f4f6f4;
+	flex: 1 1 auto;
+	overflow: hidden;
+	position: relative;
+	touch-action: none;
+}
+
+.sd-page .sd-drawing-viewer__image {
+	left: 50%;
+	max-height: calc(100% - 2rem);
+	max-width: calc(100% - 2rem);
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transform-origin: center center;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+@media screen and (max-width: 700px) {
+	.sd-page .sd-drawing-viewer__dialog {
+		border-radius: 0;
+		height: 100vh;
+		max-width: none;
+		width: 100vw;
+	}
+
+	.sd-page .sd-drawing-viewer__toolbar {
+		padding: 0.65rem 0.85rem;
 	}
 }
