@@ -10181,6 +10181,8 @@ b,
 .rengstorff-microsite #at-a-glance,
 .rengstorff-microsite #project-scope,
 .rengstorff-microsite #project-phases,
+.rengstorff-microsite #development-coordination,
+.rengstorff-microsite #connected-project,
 .rengstorff-microsite #history,
 .rengstorff-microsite #funding {
 	scroll-margin-top: 4.5rem;
@@ -11004,6 +11006,904 @@ b,
 		grid-template-columns: 1fr;
 	}
 }
+
+/* ============================================================
+   DEVELOPMENT COORDINATION
+   Case-study panel for 901-987 N. Rengstorff Avenue -- a live example
+   of a private development reconstructing a piece of Rengstorff
+   frontage ahead of the corridor-wide Green Complete Streets design.
+   Reuses the site's established green-left-border "highlighted box"
+   vocabulary (.grant-feature-panel, .decision-point-bridge) for the
+   coordination-question callout, and the same pale-green status-pill
+   language already used for .phase-status--in-progress, rather than
+   inventing new visual language for this one section. */
+.rengstorff-microsite .dev-coord-card {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-left: 5px solid #4e9a73;
+	border-radius: 8px;
+	box-shadow: 0 6px 18px rgba(35, 58, 43, 0.05);
+	margin-top: 2rem;
+	padding: 2rem 2.25rem;
+}
+
+.rengstorff-microsite .dev-coord-top {
+	display: grid;
+	gap: 2.5rem;
+	grid-template-columns: minmax(0, 0.62fr) minmax(0, 0.38fr);
+}
+
+/* Own copy of the sitewide .eyebrow look (small-caps green label)
+   rather than the shared .eyebrow class itself: this label sits two
+   levels deep inside .dev-coord-card, not as a direct child of
+   .section-intro/.section-block, so the shared
+   ".section-block > div > .eyebrow { display: none }" rule wouldn't
+   apply here anyway -- but a distinct class keeps that unrelated to
+   this one's own visibility. Color/weight/spacing match
+   .decision-point-round-label's established recipe. */
+.rengstorff-microsite .dev-coord-eyebrow {
+	color: #4e9a73 !important;
+	font-size: 0.84rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	margin: 0 0 0.6rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .dev-coord-title {
+	font-size: 1.6rem;
+	line-height: 1.2;
+	margin: 0 0 0.85rem;
+}
+
+.rengstorff-microsite .dev-coord-status {
+	margin: 0 0 1.1rem;
+}
+
+/* Same background/text pairing as .phase-status--in-progress, so
+   "approved and moving" reads consistently across the page. */
+.rengstorff-microsite .dev-coord-status__pill {
+	background: #cdead1;
+	border-radius: 999px;
+	color: #0b5c3a !important;
+	display: inline-block;
+	font-size: 0.88rem;
+	font-weight: 700;
+	line-height: 1.4;
+	padding: 0.45rem 0.9rem;
+}
+
+.rengstorff-microsite .dev-coord-main p {
+	margin: 0 0 1rem;
+}
+
+.rengstorff-microsite .dev-coord-main p:last-child {
+	margin-bottom: 0;
+}
+
+.rengstorff-microsite .dev-coord-question {
+	background: #e8f1e9;
+	border-left: 4px solid #4e9a73;
+	border-radius: 6px;
+	padding: 1.5rem;
+}
+
+.rengstorff-microsite .dev-coord-question__label {
+	align-items: center;
+	color: #193c2b !important;
+	display: flex;
+	font-size: 1.05rem;
+	font-weight: 700;
+	gap: 0.5rem;
+	margin: 0 0 0.75rem;
+}
+
+.rengstorff-microsite .dev-coord-question__label .fas {
+	color: #4e9a73;
+	font-size: 1.15rem;
+}
+
+.rengstorff-microsite .dev-coord-question__text {
+	color: #304238 !important;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.55;
+	margin: 0;
+}
+
+.rengstorff-microsite .dev-coord-divider {
+	background: #d4ded4;
+	border: 0;
+	height: 1px;
+	margin: 2rem 0;
+	width: 100%;
+}
+
+/* ---- Frontage visualization -------------------------------------
+   An explanatory planning diagram, not an engineering cross-section:
+   four labeled bands read left to right (sidewalk -> landscape/trees
+   -> bike facility -> bus island/curb), each just an icon inside a
+   flat color chip. Dimensions are shown only where a Condition of
+   Approval actually states one (sidewalk, landscape strip) -- the
+   bike facility and bus island bands are deliberately left
+   undimensioned rather than inventing a width. */
+.rengstorff-microsite .dev-coord-frontage {
+	background: #f4f8f4;
+	border: 1px solid #d4ded4;
+	border-radius: 8px;
+	display: grid;
+	gap: 1.75rem;
+	grid-template-columns: minmax(0, 0.22fr) minmax(0, 0.56fr) minmax(0, 0.22fr);
+	padding: 1.5rem 1.75rem;
+}
+
+.rengstorff-microsite .dev-coord-frontage__title {
+	color: #193c2b !important;
+	font-size: 0.98rem;
+	font-weight: 700;
+	margin: 0;
+}
+
+.rengstorff-microsite .dev-coord-frontage__caption {
+	color: #5a6c60 !important;
+	font-size: 0.84rem;
+	margin: 0.3rem 0 0;
+}
+
+.rengstorff-microsite .dev-coord-frontage__note {
+	color: #5a6c60 !important;
+	font-size: 0.8rem;
+	font-style: italic;
+	line-height: 1.5;
+	margin: 1rem 0 0;
+}
+
+.rengstorff-microsite .dev-coord-frontage__diagram {
+	align-items: start;
+	display: flex;
+	gap: 0.85rem;
+}
+
+.rengstorff-microsite .dev-coord-frontage__segment {
+	flex: 1;
+	text-align: center;
+}
+
+.rengstorff-microsite .dev-coord-frontage__strip {
+	align-items: center;
+	border-radius: 5px;
+	display: flex;
+	height: 2.75rem;
+	justify-content: center;
+	width: 100%;
+}
+
+.rengstorff-microsite .dev-coord-frontage__strip .fas {
+	font-size: 1.1rem;
+}
+
+.rengstorff-microsite .dev-coord-frontage__segment--sidewalk .dev-coord-frontage__strip {
+	background: #e6ebe6;
+	color: #304238;
+}
+
+.rengstorff-microsite .dev-coord-frontage__segment--landscape .dev-coord-frontage__strip {
+	background: #bfe0c8;
+	color: #14532d;
+}
+
+.rengstorff-microsite .dev-coord-frontage__segment--bike .dev-coord-frontage__strip {
+	background: #3d9b57;
+	color: #ffffff;
+}
+
+.rengstorff-microsite .dev-coord-frontage__segment--transit .dev-coord-frontage__strip {
+	background: #c7cdc7;
+	color: #2c352f;
+}
+
+.rengstorff-microsite .dev-coord-frontage__seg-label {
+	color: #193c2b !important;
+	font-size: 0.8rem;
+	font-weight: 700;
+	line-height: 1.3;
+	margin: 0.6rem 0 0;
+}
+
+.rengstorff-microsite .dev-coord-frontage__seg-dim {
+	color: #16704d !important;
+	font-size: 0.92rem;
+	font-weight: 800;
+	margin: 0.2rem 0 0;
+}
+
+.rengstorff-microsite .dev-coord-frontage__seg-note {
+	color: #5a6c60 !important;
+	font-size: 0.76rem;
+	margin: 0.2rem 0 0;
+}
+
+.rengstorff-microsite .dev-coord-frontage__aside {
+	background: #ffffff;
+	border: 1px solid #cfe0d0;
+	border-radius: 6px;
+	padding: 0.9rem 1.1rem;
+}
+
+.rengstorff-microsite .dev-coord-frontage__aside-title {
+	color: #193c2b !important;
+	font-size: 0.88rem;
+	font-weight: 700;
+	margin: 0;
+}
+
+.rengstorff-microsite .dev-coord-frontage__aside-body {
+	color: #304238 !important;
+	font-size: 0.86rem;
+	line-height: 1.45;
+	margin: 0.4rem 0 0;
+}
+
+.rengstorff-microsite .dev-coord-frontage__aside-source {
+	color: #5a6c60 !important;
+	font-size: 0.78rem;
+	font-style: italic;
+	margin: 0.35rem 0 0;
+}
+
+/* ---- Key Green Complete Streets elements (compact topic cards) --- */
+.rengstorff-microsite .dev-coord-topics__heading {
+	font-size: 1.15rem;
+	margin: 0 0 1.1rem;
+}
+
+.rengstorff-microsite .dev-coord-topics__grid {
+	column-gap: 1.25rem;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	row-gap: 1.25rem;
+}
+
+.rengstorff-microsite .dev-coord-topic {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem 1.1rem;
+}
+
+.rengstorff-microsite .dev-coord-topic__heading {
+	align-items: center;
+	color: #193c2b !important;
+	display: flex;
+	font-size: 0.95rem;
+	font-weight: 700;
+	gap: 0.5rem;
+	margin: 0 0 0.6rem;
+}
+
+.rengstorff-microsite .dev-coord-topic__icon {
+	color: #16704d;
+	font-size: 1rem;
+}
+
+.rengstorff-microsite .dev-coord-topic__list {
+	color: #304238;
+	font-size: 0.84rem;
+	line-height: 1.5;
+	margin: 0;
+	padding-left: 1.05rem;
+}
+
+.rengstorff-microsite .dev-coord-topic__source {
+	border-top: 1px solid #e3e9e3;
+	color: #4e745c !important;
+	font-size: 0.74rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	margin: 0.85rem 0 0;
+	padding-top: 0.6rem;
+}
+
+/* ---- Trees, canopy + green infrastructure ------------------------
+   The panel this section leads with: a larger pale-green surface,
+   then two contrasting columns reusing colors already established
+   elsewhere on this page rather than inventing new ones -- the green
+   "established" column matches .phase-status--in-progress, and the
+   sand "still to confirm" column matches .phase-status--unscheduled
+   (the same "identified but not yet resolved" neutral already used
+   for the unscheduled construction phase), so the color itself
+   signals confirmed-vs-open the same way it does elsewhere on the
+   page. */
+.rengstorff-microsite .dev-coord-trees {
+	background: #eaf3ea;
+	border-radius: 10px;
+	margin-top: 2rem;
+	padding: 1.85rem 2rem;
+}
+
+.rengstorff-microsite .dev-coord-trees__heading {
+	align-items: center;
+	color: #193c2b !important;
+	display: flex;
+	font-size: 1.3rem;
+	font-weight: 700;
+	gap: 0.65rem;
+	margin: 0 0 0.75rem;
+}
+
+.rengstorff-microsite .dev-coord-trees__icon {
+	align-items: center;
+	background: #cdead1;
+	border-radius: 50%;
+	color: #0b5c3a;
+	display: flex;
+	flex: 0 0 auto;
+	font-size: 1.05rem;
+	height: 2.15rem;
+	justify-content: center;
+	width: 2.15rem;
+}
+
+.rengstorff-microsite .dev-coord-trees__intro {
+	color: #304238 !important;
+	font-size: 1rem;
+	line-height: 1.6;
+	margin: 0 0 1.5rem;
+	max-width: 52rem;
+}
+
+.rengstorff-microsite .dev-coord-trees__columns {
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rengstorff-microsite .dev-coord-trees__col {
+	border-radius: 8px;
+	padding: 1.35rem 1.5rem;
+}
+
+.rengstorff-microsite .dev-coord-trees__col--established {
+	background: #f4faf5;
+	border: 1px solid #b9dcc0;
+}
+
+.rengstorff-microsite .dev-coord-trees__col--open {
+	background: #f9f1e0;
+	border: 1px solid #e3d3ab;
+}
+
+.rengstorff-microsite .dev-coord-trees__col-heading {
+	align-items: center;
+	display: flex;
+	font-size: 1rem;
+	font-weight: 700;
+	gap: 0.5rem;
+	margin: 0 0 0.85rem;
+}
+
+.rengstorff-microsite .dev-coord-trees__col--established .dev-coord-trees__col-heading {
+	color: #0b5c3a !important;
+}
+
+.rengstorff-microsite .dev-coord-trees__col--open .dev-coord-trees__col-heading {
+	color: #6b5a37 !important;
+}
+
+.rengstorff-microsite .dev-coord-trees__list {
+	color: #304238;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	margin: 0;
+	padding-left: 1.15rem;
+}
+
+.rengstorff-microsite .dev-coord-trees__col-source {
+	color: #4e745c !important;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	margin: 0.9rem 0 0;
+}
+
+/* ---- Why this matters (short strip, not another essay) ------------ */
+.rengstorff-microsite .dev-coord-why {
+	border-top: 1px solid #d4ded4;
+	margin-top: 2rem;
+	padding-top: 1.75rem;
+}
+
+.rengstorff-microsite .dev-coord-why__heading {
+	align-items: center;
+	color: #193c2b !important;
+	display: flex;
+	font-size: 1.05rem;
+	font-weight: 700;
+	gap: 0.55rem;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .dev-coord-why__heading .fas {
+	color: #4e9a73;
+}
+
+.rengstorff-microsite .dev-coord-why__body {
+	color: #304238 !important;
+	font-size: 0.96rem;
+	line-height: 1.6;
+	margin: 0;
+	max-width: 62rem;
+}
+
+.rengstorff-microsite .dev-coord-footer {
+	align-items: flex-start;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem 2rem;
+	justify-content: space-between;
+}
+
+/* The one strong filled CTA on this page -- deliberately its own
+   treatment (dark-green fill, pill shape, white label) rather than
+   .phase-detail-link's quieter text-arrow style, matching the visual
+   weight the mockup gives this specific action. */
+.rengstorff-microsite .dev-coord-cta {
+	background: #193c2b;
+	border-radius: 999px;
+	color: #ffffff !important;
+	display: inline-block;
+	font-size: 0.98rem;
+	font-weight: 700;
+	padding: 0.9rem 1.5rem;
+	text-decoration: none;
+}
+
+.rengstorff-microsite .dev-coord-cta:hover,
+.rengstorff-microsite .dev-coord-cta:focus-visible {
+	background: #0f2a1d;
+}
+
+.rengstorff-microsite .dev-coord-source {
+	max-width: 22rem;
+	text-align: right;
+}
+
+/* Same dotted-underline link treatment as .grant-source-item, this
+   page's established convention for a document-source link. */
+.rengstorff-microsite .dev-coord-source__link {
+	border-bottom: dotted 1px #16704d;
+	color: #16704d;
+	display: inline-block;
+	font-size: 0.95rem;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.rengstorff-microsite .dev-coord-source__link .fas {
+	font-size: 0.85rem;
+}
+
+.rengstorff-microsite .dev-coord-source__link:hover,
+.rengstorff-microsite .dev-coord-source__link:focus-visible {
+	border-bottom-color: transparent;
+}
+
+.rengstorff-microsite .dev-coord-source__label {
+	color: #5a6c60 !important;
+	display: block;
+	font-size: 0.82rem;
+	font-style: italic;
+	margin-top: 0.3rem;
+}
+
+@media screen and (max-width: 1100px) {
+	.rengstorff-microsite .dev-coord-topics__grid {
+		column-gap: 1.5rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.rengstorff-microsite .dev-coord-top {
+		gap: 1.75rem;
+		grid-template-columns: 1fr;
+	}
+
+	.rengstorff-microsite .dev-coord-card {
+		padding: 1.75rem;
+	}
+
+	/* Label / diagram / Plymouth aside stack in reading order instead
+	   of squeezing three columns into a narrowing row. */
+	.rengstorff-microsite .dev-coord-frontage {
+		grid-template-columns: 1fr;
+	}
+
+	.rengstorff-microsite .dev-coord-frontage__aside {
+		max-width: 26rem;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	/* The four frontage bands wrap 2x2 rather than shrinking to
+	   illegibility -- labels and dimensions stay full-size. */
+	.rengstorff-microsite .dev-coord-frontage__diagram {
+		flex-wrap: wrap;
+		row-gap: 1.25rem;
+	}
+
+	.rengstorff-microsite .dev-coord-frontage__segment {
+		flex: 1 1 40%;
+	}
+
+	.rengstorff-microsite .dev-coord-trees__columns {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.rengstorff-microsite .dev-coord-topics__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.rengstorff-microsite .dev-coord-trees {
+		padding: 1.5rem;
+	}
+
+	.rengstorff-microsite .dev-coord-footer {
+		flex-direction: column;
+	}
+
+	.rengstorff-microsite .dev-coord-source {
+		max-width: none;
+		text-align: left;
+	}
+}
+/* END DEVELOPMENT COORDINATION */
+
+/* ============================================================
+   CONNECTED PROJECT (VTA/Caltrans US-101 interchange)
+   A separate agency's project, not part of CIP 25-39 -- shown here so
+   a reader can see how it physically meets Rengstorff at US-101 and
+   why the two designs need to be coordinated. Reuses established
+   colors/components throughout (the .study-parent-banner pale-green +
+   left-accent banner, the sand "pending" hue already used for
+   .pending-doc-card__status and .phase-status--unscheduled, and
+   .grant-tag's pill language) rather than inventing new ones. */
+
+/* ---- Existing-conditions photo (VTA's own annotated aerial) -- the
+   one real source image in this section, so it gets the large,
+   nearly-full-width, centered treatment; distinct from the still-
+   pending conceptual-rendering placeholder below it. */
+.rengstorff-microsite .connected-project-existing {
+	margin-top: 1.75rem;
+}
+
+.rengstorff-microsite .connected-project-existing__heading {
+	font-size: 1.3rem;
+	margin: 0 0 1rem;
+}
+
+.rengstorff-microsite .connected-project-existing__figure {
+	margin: 0 auto;
+	max-width: 92%;
+}
+
+.rengstorff-microsite .connected-project-existing__figure a {
+	display: block;
+}
+
+.rengstorff-microsite .connected-project-existing__figure img {
+	border: 1px solid #d4ded4;
+	border-radius: 8px;
+	box-shadow: 0 6px 18px rgba(35, 58, 43, 0.08);
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+.rengstorff-microsite .connected-project-existing__caption {
+	color: #5a6c60 !important;
+	display: block;
+	font-size: 0.88rem;
+	line-height: 1.55;
+	margin: 0.85rem auto 0;
+	max-width: 46rem;
+	text-align: center;
+}
+
+.rengstorff-microsite .connected-project-existing__caption-source {
+	display: block;
+	font-style: italic;
+	margin-top: 0.3rem;
+}
+
+@media screen and (max-width: 640px) {
+	.rengstorff-microsite .connected-project-existing__figure {
+		max-width: 100%;
+	}
+}
+
+/* ---- Project logistics: pale-green banner + dark-green left accent,
+   deliberately heavier than a plain paragraph so it reads as its own
+   panel, not another card in the row below it. */
+.rengstorff-microsite .connected-project-glance {
+	background: #e4eee4;
+	border-left: 5px solid #4e9a73;
+	border-radius: 8px;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin-top: 2rem;
+	padding: 1.75rem 2rem;
+}
+
+.rengstorff-microsite .connected-project-glance__col {
+	padding: 0 1.5rem;
+}
+
+.rengstorff-microsite .connected-project-glance__col:first-child {
+	padding-left: 0;
+}
+
+.rengstorff-microsite .connected-project-glance__col:last-child {
+	padding-right: 0;
+}
+
+.rengstorff-microsite .connected-project-glance__col + .connected-project-glance__col {
+	border-left: 1px solid rgba(78, 154, 115, 0.3);
+}
+
+.rengstorff-microsite .connected-project-glance__icon {
+	align-items: center;
+	background: #ffffff;
+	border-radius: 50%;
+	color: #16704d;
+	display: flex;
+	font-size: 1rem;
+	height: 2.35rem;
+	justify-content: center;
+	width: 2.35rem;
+}
+
+.rengstorff-microsite .connected-project-glance__label {
+	color: #4e745c !important;
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0.85rem 0 0;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .connected-project-glance__title {
+	color: #193c2b !important;
+	font-size: 1.08rem;
+	font-weight: 700;
+	line-height: 1.35;
+	margin: 0.4rem 0 0;
+}
+
+.rengstorff-microsite .connected-project-glance__body {
+	color: #304238 !important;
+	font-size: 0.92rem;
+	line-height: 1.55;
+	margin: 0.4rem 0 0;
+}
+
+/* ---- What the VTA project includes (four simple feature cards) --- */
+.rengstorff-microsite .connected-project-features {
+	margin-top: 2.5rem;
+}
+
+.rengstorff-microsite .connected-project-features__heading {
+	font-size: 1.3rem;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .connected-project-features__intro {
+	color: #304238 !important;
+	font-size: 1rem;
+	line-height: 1.6;
+	margin: 0 0 1.5rem;
+	max-width: 52rem;
+}
+
+.rengstorff-microsite .connected-project-features__grid {
+	column-gap: 1.5rem;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	row-gap: 1.5rem;
+}
+
+.rengstorff-microsite .connected-project-feature {
+	background: #ffffff;
+	border: 1px solid #d4ded4;
+	border-radius: 6px;
+	padding: 1.5rem;
+}
+
+.rengstorff-microsite .connected-project-feature__icon {
+	align-items: center;
+	background: #e4eee4;
+	border-radius: 50%;
+	color: #16704d;
+	display: flex;
+	font-size: 1.15rem;
+	height: 2.6rem;
+	justify-content: center;
+	margin-bottom: 0.9rem;
+	width: 2.6rem;
+}
+
+.rengstorff-microsite .connected-project-feature__title {
+	color: #193c2b;
+	font-size: 1.05rem;
+	font-weight: 700;
+	line-height: 1.3;
+	margin: 0 0 0.5rem;
+}
+
+.rengstorff-microsite .connected-project-feature__body {
+	color: #304238 !important;
+	font-size: 0.9rem;
+	line-height: 1.55;
+	margin: 0;
+}
+
+/* ---- "These projects need to connect" callout --------------------- */
+.rengstorff-microsite .connected-project-callout {
+	background: #eaf3ea;
+	border-radius: 10px;
+	margin-top: 2.5rem;
+	padding: 1.85rem 2rem;
+}
+
+.rengstorff-microsite .connected-project-callout__heading {
+	align-items: center;
+	color: #193c2b !important;
+	display: flex;
+	font-size: 1.3rem;
+	font-weight: 700;
+	gap: 0.6rem;
+	margin: 0 0 0.75rem;
+}
+
+.rengstorff-microsite .connected-project-callout__heading .fas {
+	color: #4e9a73;
+}
+
+.rengstorff-microsite .connected-project-callout__body {
+	color: #304238 !important;
+	font-size: 1rem;
+	line-height: 1.6;
+	margin: 0 0 1.5rem;
+	max-width: 58rem;
+}
+
+.rengstorff-microsite .connected-project-topics__label {
+	color: #4e745c !important;
+	font-size: 0.82rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	margin: 0 0 0.75rem;
+}
+
+/* Outlined, not filled -- these are tracked coordination questions,
+   not confirmed facts, so the chip language is deliberately quieter
+   than .grant-tag's solid pale-green fill used elsewhere for
+   established project attributes. */
+.rengstorff-microsite .connected-project-topics__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rengstorff-microsite .connected-project-topics__list li {
+	background: #ffffff;
+	border: 1px solid #4e9a73;
+	border-radius: 999px;
+	color: #193c2b;
+	font-size: 0.86rem;
+	font-weight: 600;
+	padding: 0.4rem 0.9rem;
+}
+
+/* ---- Links ---------------------------------------------------------
+   The primary CTA has no page to point to yet, so it stays a visibly
+   inert placeholder (dashed outline, muted color, no href, no hover
+   state) rather than a link to a page that doesn't exist -- the same
+   "known, tracked gap" language as .decision-point-action--missing. */
+.rengstorff-microsite .connected-project-footer {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.25rem 2rem;
+	justify-content: space-between;
+	margin-top: 2rem;
+}
+
+.rengstorff-microsite .connected-project-cta {
+	background: none;
+	border: 1.5px dashed #9fb5a5;
+	border-radius: 999px;
+	color: #4e745c !important;
+	cursor: default;
+	display: inline-flex;
+	flex-direction: column;
+	font-size: 0.98rem;
+	font-weight: 700;
+	padding: 0.9rem 1.5rem;
+}
+
+.rengstorff-microsite .connected-project-cta__note {
+	color: #8a978c !important;
+	font-size: 0.74rem;
+	font-style: italic;
+	font-weight: 400;
+	margin-top: 0.2rem;
+}
+
+.rengstorff-microsite .connected-project-external-link {
+	border-bottom: dotted 1px #16704d;
+	color: #16704d;
+	display: inline-block;
+	font-size: 0.95rem;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.rengstorff-microsite .connected-project-external-link .fas {
+	font-size: 0.85rem;
+}
+
+.rengstorff-microsite .connected-project-external-link:hover,
+.rengstorff-microsite .connected-project-external-link:focus-visible {
+	border-bottom-color: transparent;
+}
+
+@media screen and (max-width: 1100px) {
+	.rengstorff-microsite .connected-project-features__grid {
+		column-gap: 1.25rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.rengstorff-microsite .connected-project-glance {
+		grid-template-columns: 1fr;
+		row-gap: 1.5rem;
+	}
+
+	.rengstorff-microsite .connected-project-glance__col {
+		border-left: 0 !important;
+		padding: 0 !important;
+	}
+
+	.rengstorff-microsite .connected-project-glance__col + .connected-project-glance__col {
+		border-top: 1px solid rgba(78, 154, 115, 0.3);
+		padding-top: 1.5rem !important;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.rengstorff-microsite .connected-project-features__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.rengstorff-microsite .connected-project-callout {
+		padding: 1.5rem;
+	}
+
+	.rengstorff-microsite .connected-project-footer {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+}
+/* END CONNECTED PROJECT */
 
 /* Funding breakdown: four stat cards read better as a single row on
    desktop than the sitewide 3-up default, and as a 2x2 grid once space
@@ -17724,28 +18624,23 @@ body.sd-page.rengstorff-microsite {
 }
 
 /* ------------------------------------------------------------------
-   CONCEPTUAL CROSS-SECTION -- a hand-built, responsive SVG diagram
-   (not a screenshot/embedded image) replacing the earlier plain
-   colored-bar version. Symmetrical 9-zone allocation: sidewalk,
-   landscape strip (street tree), bike lane, landscaped buffer (street
-   tree -- the physical separation between the bike lane and moving
-   vehicles), vehicle lanes, then the same sequence mirrored back.
-   Vector, so it stays crisp at any size; .sd-xsection__scroll lets it
-   scroll horizontally on narrow viewports instead of shrinking labels
-   past legibility -- min-width on the svg is the actual floor.
+   CONCEPTUAL CROSS-SECTION -- an uploaded conceptual illustration
+   (mountain-view-standard-details-street-cross-section.png), not a
+   hand-built diagram: sidewalk, landscape strip, bike lane, landscaped
+   buffer, vehicle lanes, mirrored back to the opposite sidewalk.
+   Centered, full content width, natural aspect ratio -- no cropping
+   or stretching -- with margin above/below so it reads as an
+   illustration rather than another card/block.
    ------------------------------------------------------------------ */
 .sd-page .sd-xsection {
-	margin: 1.25rem 0 0;
+	margin: 1.75rem 0;
+	text-align: center;
 }
 
-.sd-page .sd-xsection__scroll {
-	overflow-x: auto;
-}
-
-.sd-page .sd-xsection__svg {
+.sd-page .sd-xsection__image {
 	display: block;
 	height: auto;
-	min-width: 820px;
+	margin: 0 auto;
 	width: 100%;
 }
 

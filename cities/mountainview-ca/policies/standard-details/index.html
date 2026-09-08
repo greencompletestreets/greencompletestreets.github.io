@@ -294,143 +294,11 @@
             <h3 class="sd-subheading">The same right-of-way can be allocated differently</h3>
             <p class="sd-story__intro sd-tight">The diagram below shows how a street with the same total right-of-way width can allocate space in different ways for travel lanes, bicycle facilities, sidewalks, and landscaping.</p>
 
-            <!-- Hand-built responsive SVG (not an embedded screenshot of the
-                 mockup) -- symmetrical 9-zone conceptual allocation. See the
-                 CSS block "CONCEPTUAL CROSS-SECTION" for the responsive/
-                 horizontal-scroll behavior on narrow viewports. -->
+            <!-- Photorealistic conceptual illustration (uploaded PNG),
+                 replacing the earlier hand-built SVG diagram. Not a
+                 proposed Mountain View design -- see the caveat below. -->
             <div class="sd-xsection">
-              <div class="sd-xsection__scroll">
-                <svg class="sd-xsection__svg" viewBox="0 0 1500 430" preserveAspectRatio="xMidYMax meet" role="img" aria-labelledby="sd-xsection-title sd-xsection-desc" xmlns="http://www.w3.org/2000/svg">
-                <title id="sd-xsection-title">Conceptual street cross-section</title>
-                <desc id="sd-xsection-desc">A symmetrical, conceptual right-of-way allocation, from one edge to the other: sidewalk, landscape strip with a street tree, bike lane, landscaped buffer with a street tree separating the bike lane from moving vehicles, vehicle lanes, then the same sequence mirrored back to the opposite sidewalk. Not a proposed Mountain View design.</desc>
-                <defs>
-                <g id="sd-xsec-tree">
-                <rect x="-7" y="-104" width="14" height="72" fill="#5c4630" />
-                <ellipse cx="-34" cy="-14" rx="24" ry="18" fill="#6ba876" />
-                <ellipse cx="0" cy="-20" rx="28" ry="20" fill="#5a9868" />
-                <ellipse cx="34" cy="-14" rx="24" ry="18" fill="#6ba876" />
-                <circle cx="-30" cy="-122" r="42" fill="#3f7a4a" />
-                <circle cx="30" cy="-122" r="42" fill="#3f7a4a" />
-                <circle cx="-12" cy="-104" r="38" fill="#4f8f5b" />
-                <circle cx="12" cy="-104" r="38" fill="#4f8f5b" />
-                <circle cx="0" cy="-144" r="46" fill="#4f8f5b" />
-                </g>
-                <g id="sd-xsec-ped">
-                <circle cx="0" cy="-96" r="11" fill="#33493d" />
-                <path d="M-13,-83 C-13,-88 -7,-91 0,-91 C7,-91 13,-88 13,-83 L10,-46 L-10,-46 Z" fill="#33493d" />
-                <path d="M-11,-80 L-22,-56" stroke="#33493d" stroke-width="6" stroke-linecap="round" fill="none" />
-                <path d="M11,-80 L20,-58" stroke="#33493d" stroke-width="6" stroke-linecap="round" fill="none" />
-                <path d="M-6,-46 L-15,0" stroke="#33493d" stroke-width="9" stroke-linecap="round" fill="none" />
-                <path d="M6,-46 L12,0" stroke="#33493d" stroke-width="9" stroke-linecap="round" fill="none" />
-                </g>
-                <g id="sd-xsec-ped-skirt">
-                <circle cx="0" cy="-96" r="11" fill="#33493d" />
-                <path d="M-13,-83 C-13,-88 -7,-91 0,-91 C7,-91 13,-88 13,-83 L11,-52 L-11,-52 Z" fill="#33493d" />
-                <path d="M-11,-80 L-21,-58" stroke="#33493d" stroke-width="6" stroke-linecap="round" fill="none" />
-                <path d="M11,-80 L21,-58" stroke="#33493d" stroke-width="6" stroke-linecap="round" fill="none" />
-                <path d="M-15,-52 L15,-52 L20,-8 L-20,-8 Z" fill="#33493d" />
-                <path d="M-8,-8 L-8,0" stroke="#33493d" stroke-width="7" stroke-linecap="round" fill="none" />
-                <path d="M8,-8 L8,0" stroke="#33493d" stroke-width="7" stroke-linecap="round" fill="none" />
-                </g>
-                <g id="sd-xsec-cyclist">
-                <circle cx="-27" cy="-21" r="21" fill="none" stroke="#33493d" stroke-width="6" />
-                <circle cx="27" cy="-21" r="21" fill="none" stroke="#33493d" stroke-width="6" />
-                <path d="M-27,-21 L4,-56 L27,-21 M4,-56 L4,-36 M-27,-21 L17,-21" fill="none" stroke="#33493d" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
-                <circle cx="4" cy="-80" r="12" fill="#33493d" />
-                <path d="M4,-68 L0,-44 M2,-58 L25,-49 M0,-44 L19,-29 L4,-21" fill="none" stroke="#33493d" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
-                </g>
-                <g id="sd-xsec-car-front">
-                <path d="M-48,0 L-48,-38 C-48,-64 -32,-82 -14,-86 L14,-86 C32,-82 48,-64 48,-38 L48,0 Z" fill="#8b968e" />
-                <path d="M-30,-84 L30,-84 L22,-58 L-22,-58 Z" fill="#dde5df" opacity="0.9" />
-                <rect x="-42" y="-60" width="14" height="10" rx="3" fill="#fdf6e3" />
-                <rect x="28" y="-60" width="14" height="10" rx="3" fill="#fdf6e3" />
-                <rect x="-16" y="-26" width="32" height="10" rx="2" fill="#2f3b34" />
-                <rect x="-48" y="-16" width="96" height="16" rx="4" fill="#3c4941" />
-                <rect x="-55" y="-16" width="14" height="18" rx="4" fill="#20281f" />
-                <rect x="41" y="-16" width="14" height="18" rx="4" fill="#20281f" />
-                </g>
-                <g id="sd-xsec-car-rear">
-                <path d="M-48,0 L-48,-38 C-48,-64 -32,-82 -14,-86 L14,-86 C32,-82 48,-64 48,-38 L48,0 Z" fill="#55645c" />
-                <path d="M-30,-84 L30,-84 L22,-58 L-22,-58 Z" fill="#3c4941" opacity="0.9" />
-                <rect x="-42" y="-60" width="14" height="10" rx="3" fill="#b0483f" />
-                <rect x="28" y="-60" width="14" height="10" rx="3" fill="#b0483f" />
-                <rect x="-18" y="-24" width="36" height="9" rx="2" fill="#cbd3cd" />
-                <rect x="-48" y="-16" width="96" height="16" rx="4" fill="#2c352f" />
-                <rect x="-55" y="-16" width="14" height="18" rx="4" fill="#181f18" />
-                <rect x="41" y="-16" width="14" height="18" rx="4" fill="#181f18" />
-                </g>
-                </defs>
-                <g>
-                <rect x="0" y="300" width="150" height="100" fill="#d7ddd7" />
-                <rect x="150" y="300" width="150" height="100" fill="#8fc49e" />
-                <rect x="300" y="300" width="130" height="100" fill="#1f7d72" />
-                <rect x="430" y="300" width="170" height="100" fill="#a9d4b0" />
-                <rect x="600" y="300" width="300" height="100" fill="#173626" />
-                <rect x="900" y="300" width="170" height="100" fill="#a9d4b0" />
-                <rect x="1070" y="300" width="130" height="100" fill="#1f7d72" />
-                <rect x="1200" y="300" width="150" height="100" fill="#8fc49e" />
-                <rect x="1350" y="300" width="150" height="100" fill="#d7ddd7" />
-                </g>
-                <g stroke="#ffffff" stroke-width="3">
-                <line x1="150" y1="300" x2="150" y2="400" />
-                <line x1="300" y1="300" x2="300" y2="400" />
-                <line x1="430" y1="300" x2="430" y2="400" />
-                <line x1="600" y1="300" x2="600" y2="400" />
-                <line x1="900" y1="300" x2="900" y2="400" />
-                <line x1="1070" y1="300" x2="1070" y2="400" />
-                <line x1="1200" y1="300" x2="1200" y2="400" />
-                <line x1="1350" y1="300" x2="1350" y2="400" />
-                </g>
-                <g>
-                <use href="#sd-xsec-ped" x="75" y="300" />
-                <use href="#sd-xsec-tree" x="225" y="300" />
-                <use href="#sd-xsec-cyclist" x="365" y="300" />
-                <use href="#sd-xsec-tree" x="515" y="300" />
-                <use href="#sd-xsec-car-front" x="650" y="300" />
-                <use href="#sd-xsec-car-rear" x="850" y="300" />
-                <use href="#sd-xsec-tree" x="985" y="300" />
-                <use href="#sd-xsec-cyclist" x="1135" y="300" />
-                <use href="#sd-xsec-tree" x="1275" y="300" />
-                <use href="#sd-xsec-ped-skirt" x="1425" y="300" />
-                </g>
-                <g font-family="inherit" font-weight="700" text-anchor="middle">
-                <text x="75" y="356.6" fill="#2a332c" font-size="22" letter-spacing="0.4">
-                <tspan x="75" dy="0">SIDEWALK</tspan>
-                </text>
-                <text x="225" y="341.6" fill="#173a26" font-size="22" letter-spacing="0.4">
-                <tspan x="225" dy="0">LANDSCAPE</tspan>
-                <tspan x="225" dy="30">STRIP</tspan>
-                </text>
-                <text x="365" y="341.6" fill="#ffffff" font-size="22" letter-spacing="0.4">
-                <tspan x="365" dy="0">BIKE</tspan>
-                <tspan x="365" dy="30">LANE</tspan>
-                </text>
-                <text x="515" y="341.6" fill="#173a26" font-size="22" letter-spacing="0.4">
-                <tspan x="515" dy="0">LANDSCAPED</tspan>
-                <tspan x="515" dy="30">BUFFER</tspan>
-                </text>
-                <text x="750" y="341.6" fill="#ffffff" font-size="22" letter-spacing="0.4">
-                <tspan x="750" dy="0">VEHICLE</tspan>
-                <tspan x="750" dy="30">LANES</tspan>
-                </text>
-                <text x="985" y="341.6" fill="#173a26" font-size="22" letter-spacing="0.4">
-                <tspan x="985" dy="0">LANDSCAPED</tspan>
-                <tspan x="985" dy="30">BUFFER</tspan>
-                </text>
-                <text x="1135" y="341.6" fill="#ffffff" font-size="22" letter-spacing="0.4">
-                <tspan x="1135" dy="0">BIKE</tspan>
-                <tspan x="1135" dy="30">LANE</tspan>
-                </text>
-                <text x="1275" y="341.6" fill="#173a26" font-size="22" letter-spacing="0.4">
-                <tspan x="1275" dy="0">LANDSCAPE</tspan>
-                <tspan x="1275" dy="30">STRIP</tspan>
-                </text>
-                <text x="1425" y="356.6" fill="#2a332c" font-size="22" letter-spacing="0.4">
-                <tspan x="1425" dy="0">SIDEWALK</tspan>
-                </text>
-                </g>
-                </svg>
-              </div>
+              <img class="sd-xsection__image" src="../../../../images/cities/mountainview-ca/standard-details/mountain-view-standard-details-street-cross-section.png" alt="Conceptual complete street cross-section showing sidewalks, landscape strips, bike lanes, landscaped buffers, and vehicle lanes." loading="lazy" />
             </div>
             <p class="sd-crosssection-caveat">Conceptual only &mdash; not a proposed Mountain View design.</p>
 
@@ -442,7 +310,6 @@
                 <p class="sd-callout__label">What&#8217;s next?</p>
                 <p class="sd-callout__text">The Standard Details Update (<a href="https://mountainview.legistar.com/MeetingDetail.aspx?G=37932D0B-039B-4529-B6D8-73445A1D4799&amp;GUID=1710BF87-89BF-487C-8122-64FA53B82D37&amp;ID=1352178&amp;Options=&amp;Search=" target="_blank" rel="noopener noreferrer">CIP 27-27</a>) will review and update these and other details to better reflect the City&#8217;s current plans and priorities, including the <a href="https://collaborate.mountainview.gov/atp" target="_blank" rel="noopener noreferrer">Active Transportation Plan</a> and the <a href="../../plans/bufp/">Biodiversity and Urban Forest Plan</a>.</p>
               </div>
-              <p class="sd-callout__link"><a href="#what-is-updated">Learn more</a></p>
             </div>
           </section>
 
