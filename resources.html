@@ -186,6 +186,35 @@
       margin-bottom: 1rem;
     }
 
+    /* Subtle callout for section-level guidance — not a resource card */
+    .res-guidance {
+      background: var(--res-bg);
+      border: 1px solid var(--res-line);
+      border-left: 3px solid var(--res-accent);
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+      margin: 0 0 1.25rem 0;
+    }
+
+    .res-guidance h3 {
+      margin: 0 0 0.35rem 0;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--res-text);
+    }
+
+    .res-guidance p {
+      margin: 0 0 0.5rem 0;
+      color: var(--res-muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .res-guidance p:last-child {
+      margin-bottom: 0;
+    }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -768,10 +797,18 @@
           <section id="equity" class="res-block" data-section="EQUITY / MOBILITY">
             <h2>Equity / Mobility</h2>
             <p class="section-desc">Access, vulnerability, and trip data to align investments with user needs and mobility gaps.</p>
+
+            <div class="res-guidance">
+              <h3>Using equity metrics</h3>
+              <p>Equity metrics measure different kinds of need and operate at different geographic scales. Some describe socioeconomic or health vulnerability, while others measure environmental burdens, transportation access, tree canopy, or mobility patterns.</p>
+              <p>Pay attention to the geographic unit of each dataset. County- or census-tract-level measures can reveal broad patterns but may hide differences within those areas. Census block group, block, street, parcel, or point-level data can support more local analysis.</p>
+              <p>Choose metrics that match both the question being asked and the scale at which the issue occurs. No single metric provides a complete picture of equity, and quantitative measures are often most useful when combined with local data and community knowledge.</p>
+            </div>
+
             <div class="cards">
               <article class="card">
                 <h3>Healthy Places Index (HPI) 4.0</h3>
-                <p class="meta">Granularity: Census tract (California)</p>
+                <p class="meta">Geographic unit: Census tract (California)</p>
                 <div class="badges"><span class="badge">Shapefile</span><span class="badge">CSV</span><span class="badge">API</span></div>
                 <p>Social determinants of health and environmental vulnerability.</p>
                 <div class="links"><a href="https://www.healthyplacesindex.org">HPI</a></div>
@@ -779,7 +816,7 @@
 
               <article class="card">
                 <h3>Tree Equity Score (American Forests)</h3>
-                <p class="meta">Granularity: Census tract (urban U.S.)</p>
+                <p class="meta">Geographic unit: Census block group (urban U.S.)</p>
                 <div class="badges"><span class="badge">Shapefile</span><span class="badge">CSV</span><span class="badge">API</span></div>
                 <p>Tree canopy vs. need and equity scoring for urban areas.</p>
                 <div class="links"><a href="https://www.treeequityscore.org">Tree Equity Score</a></div>
@@ -787,7 +824,7 @@
 
               <article class="card">
                 <h3>CDC Social Vulnerability Index (SVI)</h3>
-                <p class="meta">Granularity: Census tract</p>
+                <p class="meta">Geographic unit: Census tract and county (published separately at each level)</p>
                 <div class="badges"><span class="badge">CSV</span><span class="badge">Shapefile</span></div>
                 <p>Composite socioeconomic and demographic vulnerability index.</p>
                 <div class="links"><a href="https://www.atsdr.cdc.gov/placeandhealth/svi">CDC/ATSDR SVI</a></div>
@@ -795,7 +832,7 @@
 
               <article class="card">
                 <h3>Caltrans Disadvantaged Communities Map</h3>
-                <p class="meta">Granularity: Census tract</p>
+                <p class="meta">Geographic unit: Census tract</p>
                 <div class="badges"><span class="badge">GIS</span></div>
                 <p>Transportation-disadvantaged areas by mode and access.</p>
                 <div class="links"><a href="https://gisdata-caltrans.opendata.arcgis.com">Caltrans Open Data</a></div>
@@ -803,7 +840,7 @@
 
               <article class="card">
                 <h3>Census ACS Journey to Work</h3>
-                <p class="meta">Granularity: Census tract</p>
+                <p class="meta">Geographic unit: Census tract, county, or state (varies by table; special county-to-county commuting flows also available)</p>
                 <div class="badges"><span class="badge">CSV</span></div>
                 <p>Mode share, commute time, and vehicle access indicators.</p>
                 <div class="links"><a href="https://data.census.gov">data.census.gov</a></div>
@@ -811,7 +848,7 @@
 
               <article class="card">
                 <h3>StreetLight Data</h3>
-                <p class="meta">Granularity: Custom / O-D zones</p>
+                <p class="meta">Geographic unit: Custom, user-defined zones (points, polygons, or line segments)</p>
                 <div class="badges"><span class="badge">API</span><span class="badge">CSV</span></div>
                 <p>Active transportation and origin-destination mobility analytics.</p>
                 <div class="links"><a href="https://www.streetlightdata.com">StreetLight</a></div>
@@ -937,7 +974,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
       visibleCards.forEach(c => {
         const section = c.closest('.res-block')?.querySelector('h2')?.innerText || "";
         const title = c.querySelector('h3')?.innerText || "";
-        const gran = (c.querySelector('.meta')?.innerText || "").replace(/^Granularity:\s*/i, '');
+        const gran = (c.querySelector('.meta')?.innerText || "").replace(/^(Granularity|Geographic unit):\s*/i, '');
         const formats = [...c.querySelectorAll('.badge')].map(b => b.innerText).join('; ');
         const desc = [...c.querySelectorAll('p')].find(p => !p.classList.contains('meta'))?.innerText || "";
         const links = [...c.querySelectorAll('.links a')].map(a => a.href).join('; ');
