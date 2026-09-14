@@ -54,7 +54,11 @@
     </section>
 
     <!-- On-page nav: identical markup/JS to the parent Overview page's
-         nav (added near the closing body tag below), just with this page's own five section ids. -->
+         nav (added near the closing body tag below). Five top-level
+         anchors matching the page's durable narrative structure --
+         Study at a glance is intentionally NOT in this list; it's
+         kept on the page as project-record reference material near
+         the bottom, not part of the primary story. -->
     <nav class="onpage-nav" aria-label="On this page">
       <span class="onpage-nav__label" aria-hidden="true">On this page</span>
       <button type="button" class="onpage-nav__trigger" aria-expanded="false" aria-controls="onpage-nav-list">
@@ -64,13 +68,17 @@
       <ul class="onpage-nav__list" id="onpage-nav-list">
         <li><a class="onpage-nav__link" href="#overview">Overview</a></li>
         <li><a class="onpage-nav__link" href="#design-concepts">Design concepts</a></li>
-        <li><a class="onpage-nav__link" href="#real-choice">The real choice</a></li>
-        <li><a class="onpage-nav__link" href="#at-a-glance">Study at a glance</a></li>
+        <li><a class="onpage-nav__link" href="#compare-designs">Compare designs</a></li>
+        <li><a class="onpage-nav__link" href="#what-it-means">What it means</a></li>
+        <li><a class="onpage-nav__link" href="#get-involved">Get involved</a></li>
       </ul>
     </nav>
 
     <div class="rengstorff-shell">
 
+      <!-- ==================================================
+           1. OVERVIEW -- what is this study, what part of
+           Rengstorff, why now. Unchanged content/imagery. -->
       <!-- OVERVIEW: new section. Two-column layout -- main narrative
            (left) + a sidebar carrying the local heat/shade evidence
            (right), stacking to one column <=900px. -->
@@ -130,76 +138,10 @@
         </div>
       </section>
 
-      <!-- THE OPPORTUNITY: new section. Opening narrative + the
-           Vancouver precedent photo (primary real-world precedent, so
-           it gets more visual prominence than the Santa Cruz photo
-           below), then the "Imagine a Rengstorff with..." panel with
-           the smaller Santa Cruz detail photo beside it. -->
-      <section class="section-block opportunity-section">
-        <div class="opportunity-layout">
-          <div class="opportunity-main">
-            <span class="category-tag category-tag--record">The opportunity</span>
-            <div class="section-intro">
-              <h2 id="opportunity-title">What if more everyday trips felt easy?</h2>
-            </div>
-            <p class="opportunity-lead">Walk to the park. Bike to school. Meet a neighbor. Pick something up nearby.</p>
-            <p>Not every trip has to require getting into a car.</p>
-            <p>Making short walking and bicycling trips safer and more comfortable gives people another choice &mdash; one that can be less expensive, active, social, and enjoyable.</p>
-            <p>And redesigning the street isn&#8217;t only about transportation. Adding trees and nature can create shade, reduce radiant heat, support stormwater management, and make the street itself a more pleasant place to be.</p>
-          </div>
-
-          <figure class="opportunity-precedent">
-            <p class="opportunity-precedent__label">Real-world precedent</p>
-            <img src="../../../../images/cities/mountainview-ca/rengstorff/green-street-vancouver-bc-smithe-street.jpeg" alt="A protected bikeway with planted buffers and mature tree canopy on Smithe Street in Vancouver, British Columbia, with people biking and walking." />
-            <figcaption>Protected bikeway, planting, and mature tree canopy on Smithe Street in Vancouver, British Columbia. Photo: April Webster.</figcaption>
-          </figure>
-        </div>
-
-        <div class="imagine-panel">
-          <div class="imagine-panel__content">
-            <h3 class="imagine-panel__heading">Imagine a Rengstorff with&hellip;</h3>
-            <div class="imagine-panel__grid">
-              <div class="imagine-item">
-                <span class="fas fa-shield-alt imagine-item__icon" aria-hidden="true"></span>
-                <p class="imagine-item__title">Safety</p>
-                <p class="imagine-item__body">Streets designed for people, not just cars.</p>
-              </div>
-              <div class="imagine-item">
-                <span class="fas fa-walking imagine-item__icon" aria-hidden="true"></span>
-                <p class="imagine-item__title">Comfort</p>
-                <p class="imagine-item__body">Easy to walk and bike, all year round.</p>
-              </div>
-              <div class="imagine-item">
-                <span class="fas fa-sun imagine-item__icon" aria-hidden="true"></span>
-                <p class="imagine-item__title">Shade &amp; heat relief</p>
-                <p class="imagine-item__body">Cooler, more comfortable places to travel and spend time outside.</p>
-              </div>
-              <div class="imagine-item">
-                <span class="fas fa-leaf imagine-item__icon" aria-hidden="true"></span>
-                <p class="imagine-item__title">Nature</p>
-                <p class="imagine-item__body">Trees, planting, and green infrastructure that support our environment.</p>
-              </div>
-              <div class="imagine-item">
-                <span class="fas fa-users imagine-item__icon" aria-hidden="true"></span>
-                <p class="imagine-item__title">Community</p>
-                <p class="imagine-item__body">More opportunities to see neighbors, connect, and belong.</p>
-              </div>
-            </div>
-          </div>
-
-          <figure class="opportunity-detail">
-            <img src="../../../../images/cities/mountainview-ca/rengstorff/santacruz-ca-union-st-street-garden.jpeg.png" alt="Street-side planting with flowering plants along a sidewalk on Union Street in Santa Cruz, California." />
-            <figcaption>Street-side planting on Union Street in Santa Cruz, California. Photo: April Webster.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <!-- Design concepts: the existing B/C image, now presented as its
-           own section using the same category-tag + .section-intro
-           (h2 + supporting paragraph) pattern as "Study at a glance"
-           and "Where we are in the study process", so it picks up the
-           same border-top + padding section rhythm as those sections
-           rather than sitting flush against the intro card. -->
+      <!-- ==================================================
+           2. DESIGN CONCEPTS -- what has the City shown?
+           Existing B/C image + intro copy, unchanged, just moved
+           to sit right after Overview. -->
       <section class="section-block">
         <span class="category-tag category-tag--record">Design concepts</span>
         <div class="section-intro">
@@ -210,21 +152,26 @@
         <figure class="alt-decision-figure">
           <img src="../../../../images/rengstorff%20-%20alternatives.jpeg" alt="Alternative B, more space for bicycling: Class IV protected bike lanes from Central to Leghorn, about 60% of on-street parking removed. Alternative C, more space for green infrastructure: trees, landscaping and bioretention, about 48% of on-street parking removed." />
         </figure>
+
+        <p class="alt-framing-disclaimer">These are preliminary concepts &mdash; examples of different combinations of design elements, not final designs.</p>
       </section>
 
-      <!-- Design alternatives / "What's the real choice?" + the B/C
-           comparison table -- unchanged internally, just now its own
-           section (same border-top + padding rhythm as the sections
-           above and below it) instead of sharing a section with the
-           image. -->
+      <!-- ==================================================
+           3. COMPARE DESIGNS -- where does the street space go,
+           and what physically changes between concepts? Existing
+           "What's the real choice?" material, unchanged internally;
+           only the anchor id changes (real-choice -> compare-designs)
+           so the nav/section names line up. This is the home for
+           future simplified cross-sections / space allocation /
+           lane widths etc. (not built yet). -->
       <section class="section-block">
         <!-- Concise interpretation, immediately below the image and
              before the detailed comparison -- editorial paragraph, not
              a callout box or second hero. -->
         <div class="alt-choice">
-          <span class="category-tag category-tag--record">Design alternatives</span>
+          <span class="category-tag category-tag--record">Compare designs</span>
           <div class="section-intro">
-            <h2 id="real-choice">What&#8217;s the real choice?</h2>
+            <h2 id="compare-designs">What&#8217;s the real choice?</h2>
           </div>
           <p class="alt-choice__body">Alternative A is the common safety foundation. Alternatives B and C include those improvements, then reallocate additional right-of-way toward different priorities: <strong class="alt-choice__emphasis alt-choice__emphasis--b">safer bicycling infrastructure</strong> versus <strong class="alt-choice__emphasis alt-choice__emphasis--c">green infrastructure</strong>.</p>
         </div>
@@ -324,6 +271,397 @@
         </div>
       </section>
 
+      <!-- ==================================================
+           4. WHAT IT MEANS -- what do these design choices mean
+           in everyday life? Two parts: the quick, scannable
+           translation (the existing Opportunity section) and the
+           deeper lived-experience layer (Everyday Stories). Anchor
+           id lives on the first section in the pair. -->
+      <!-- THE OPPORTUNITY: new section. Opening narrative + the
+           Vancouver precedent photo (primary real-world precedent, so
+           it gets more visual prominence than the Santa Cruz photo
+           below), then the "Imagine a Rengstorff with..." panel with
+           the smaller Santa Cruz detail photo beside it. -->
+      <section id="what-it-means" class="section-block opportunity-section">
+        <div class="opportunity-layout">
+          <div class="opportunity-main">
+            <span class="category-tag category-tag--record">The opportunity</span>
+            <div class="section-intro">
+              <h2 id="opportunity-title">What if more everyday trips felt easy?</h2>
+            </div>
+            <p class="opportunity-lead">Walk to the park. Bike to school. Meet a neighbor. Pick something up nearby.</p>
+            <p>Not every trip has to require getting into a car.</p>
+            <p>Making short walking and bicycling trips safer and more comfortable gives people another choice &mdash; one that can be less expensive, active, social, and enjoyable.</p>
+            <p>And redesigning the street isn&#8217;t only about transportation. Adding trees and nature can create shade, reduce radiant heat, support stormwater management, and make the street itself a more pleasant place to be.</p>
+          </div>
+
+          <figure class="opportunity-precedent">
+            <p class="opportunity-precedent__label">Real-world precedent</p>
+            <img src="../../../../images/cities/mountainview-ca/rengstorff/green-street-vancouver-bc-smithe-street.jpeg" alt="A protected bikeway with planted buffers and mature tree canopy on Smithe Street in Vancouver, British Columbia, with people biking and walking." />
+            <figcaption>Protected bikeway, planting, and mature tree canopy on Smithe Street in Vancouver, British Columbia. Photo: April Webster.</figcaption>
+          </figure>
+        </div>
+
+        <div class="imagine-panel">
+          <div class="imagine-panel__content">
+            <h3 class="imagine-panel__heading">Imagine a Rengstorff with&hellip;</h3>
+            <div class="imagine-panel__grid">
+              <div class="imagine-item">
+                <span class="fas fa-shield-alt imagine-item__icon" aria-hidden="true"></span>
+                <p class="imagine-item__title">Safety</p>
+                <p class="imagine-item__body">Streets designed for people, not just cars.</p>
+              </div>
+              <div class="imagine-item">
+                <span class="fas fa-walking imagine-item__icon" aria-hidden="true"></span>
+                <p class="imagine-item__title">Comfort</p>
+                <p class="imagine-item__body">Easy to walk and bike, all year round.</p>
+              </div>
+              <div class="imagine-item">
+                <span class="fas fa-sun imagine-item__icon" aria-hidden="true"></span>
+                <p class="imagine-item__title">Shade &amp; heat relief</p>
+                <p class="imagine-item__body">Cooler, more comfortable places to travel and spend time outside.</p>
+              </div>
+              <div class="imagine-item">
+                <span class="fas fa-leaf imagine-item__icon" aria-hidden="true"></span>
+                <p class="imagine-item__title">Nature</p>
+                <p class="imagine-item__body">Trees, planting, and green infrastructure that support our environment.</p>
+              </div>
+              <div class="imagine-item">
+                <span class="fas fa-users imagine-item__icon" aria-hidden="true"></span>
+                <p class="imagine-item__title">Community</p>
+                <p class="imagine-item__body">More opportunities to see neighbors, connect, and belong.</p>
+              </div>
+            </div>
+          </div>
+
+          <figure class="opportunity-detail">
+            <img src="../../../../images/cities/mountainview-ca/rengstorff/santacruz-ca-union-st-street-garden.jpeg.png" alt="Street-side planting with flowering plants along a sidewalk on Union Street in Santa Cruz, California." />
+            <figcaption>Street-side planting on Union Street in Santa Cruz, California. Photo: April Webster.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- BEGIN EVERYDAY STORIES TEST -->
+      <section class="section-block everyday-stories-section">
+        <span class="category-tag category-tag--record">Everyday stories</span>
+        <div class="section-intro">
+          <h2 id="everyday-stories">What does this mean in everyday life?</h2>
+          <p>Street design shapes everyday life. How Rengstorff Avenue looks and feels affects how we get around, how safe we feel, our health, and whether being outside feels comfortable.</p>
+        </div>
+
+        <!-- Story 1: Feeling safe -- large photo + text, side by side, not a
+             small card thumbnail. -->
+        <div class="everyday-stories-story everyday-stories-story--photo">
+          <figure class="everyday-stories-story__media">
+            <img src="../../../../images/cities/mountainview-ca/rengstorff/california-street-child-biking-sidewalk-before-pilot.jpg" alt="A child wearing a helmet and backpack biking along a sidewalk on California Street in Mountain View, before a since-implemented pilot project." style="object-position: 68% 65%;" />
+          </figure>
+          <div class="everyday-stories-story__content">
+            <p class="everyday-stories-story__label">Feeling safe</p>
+            <p class="everyday-stories-story__prompt">Would you feel comfortable letting a child bike here?</p>
+            <p class="everyday-stories-story__text">I have friends who live near Rengstorff who won&#8217;t let their children ride along it because they don&#8217;t feel it&#8217;s safe. A protected bikeway can change whether biking is actually an option for a child &mdash; not just whether a bike lane exists on a map.</p>
+            <p class="everyday-stories-story__meta">Photo: California Street in Mountain View, before the pilot project.<span class="everyday-stories-credit">Photo credit: April Webster</span></p>
+          </div>
+        </div>
+
+        <!-- Story 2: Heat + accessibility -- the main story (photo + pullout
+             + full explanation) with "Trees are natural misters" as a
+             smaller inset alongside it, not a fourth equal-weight card. -->
+        <div class="everyday-stories-story everyday-stories-story--heat">
+          <div class="everyday-stories-story__main">
+            <figure class="everyday-stories-story__media">
+              <img src="../../../../images/cities/mountainview-ca/rengstorff/mountainview-ca-moffett-waiting-for-bus.jpeg" alt="A person sitting under a red umbrella for shade while waiting at an exposed bus stop on Moffett Boulevard in Mountain View." style="object-position: 35% 55%;" />
+            </figure>
+            <p class="everyday-stories-story__label">Staying healthy</p>
+            <p class="everyday-stories-story__prompt">When heat makes a route unavailable</p>
+
+            <div class="everyday-stories-pullout">
+              <p class="everyday-stories-pullout__line">The door is unlocked.</p>
+              <p class="everyday-stories-pullout__line">But the 10th floor is stairs-only.</p>
+              <p class="everyday-stories-pullout__line everyday-stories-pullout__line--emphasis">Is the building really accessible?</p>
+            </div>
+
+            <p class="everyday-stories-story__text">A building isn&#8217;t truly accessible just because the front door is unlocked if the only way to the 10th floor is the stairs.</p>
+            <p class="everyday-stories-story__text">An unshaded sidewalk, bike route, or transit stop can be similar in extreme heat: technically open, but not realistically usable for everyone.</p>
+            <p class="everyday-stories-story__text">This can especially affect children, older adults, people with disabilities or limited mobility, people with conditions that increase heat vulnerability, and people taking medications that interfere with the body&#8217;s ability to regulate heat.</p>
+            <p class="everyday-stories-story__text everyday-stories-story__text--emphasis">Shade can determine when &mdash; and for whom &mdash; a walking, biking, or transit trip is realistically available.</p>
+            <p class="everyday-stories-story__meta">Photo: Moffett Boulevard, Mountain View.<span class="everyday-stories-credit">Photo credit: April Webster</span></p>
+          </div>
+
+          <aside class="everyday-stories-inset">
+            <p class="everyday-stories-inset__heading">Trees are natural misters</p>
+            <p class="everyday-stories-inset__text">If you&#8217;ve ever stood near a misting fan on a hot day, you know how much cooler the air can feel.</p>
+            <p class="everyday-stories-inset__text">Trees do something similar naturally. They draw water up through their roots and release water vapor through their leaves. As that water evaporates, it cools the surrounding air &mdash; a process called evapotranspiration.</p>
+            <p class="everyday-stories-inset__text">So trees don&#8217;t just provide shade. They also help cool the local microclimate.</p>
+
+            <div class="everyday-stories-video">
+              <a class="everyday-stories-video__thumb" href="https://youtube.com/shorts/Dxden0qHJoM?feature=share" rel="noopener" data-evidence-id="everyday-stories-mister-video" aria-label="Watch the short video: a misting fan cooling outdoor workers on a hot day">
+                <img src="https://img.youtube.com/vi/Dxden0qHJoM/hqdefault.jpg" alt="A misting fan spraying a fine cooling mist to keep outdoor workers cool on a hot summer day." loading="lazy" />
+                <span class="everyday-stories-video__play fas fa-play" aria-hidden="true"></span>
+              </a>
+              <p class="everyday-stories-video__caption">Closer to home: a misting fan being used to keep outdoor workers cool on a hot summer day. <a href="https://youtube.com/shorts/Dxden0qHJoM?feature=share" rel="noopener" data-evidence-id="everyday-stories-mister-video">Watch the short video &rarr;</a></p>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Closing thought -- quiet, no card box, hairline top rule. -->
+        <div class="everyday-stories-closing">
+          <p class="everyday-stories-closing__heading">More opportunities to see neighbors, connect, and belong</p>
+          <p class="everyday-stories-closing__text">Streets aren&#8217;t only transportation infrastructure. When walking, biking, waiting, and spending time outside feel comfortable, everyday trips create more chances to see neighbors and participate in community life.</p>
+        </div>
+
+        <!-- Design can change these conditions -- unchanged content/markup,
+             moved here from the now-removed Building Stronger Community
+             section (was its closing element there too). -->
+        <div class="community-stories-precedent">
+          <h3 class="community-stories-precedent__heading">Design can change these conditions</h3>
+          <p class="community-stories-precedent__intro">Other communities are showing what&#8217;s possible.</p>
+          <div class="community-stories-precedent__grid">
+            <figure class="community-stories-precedent__item">
+              <img src="../../../../images/cities/mountainview-ca/rengstorff/green-street-vancouver-bc-smithe-street.jpeg" alt="A protected bikeway with planted buffers and mature tree canopy on Smithe Street in Vancouver, British Columbia." />
+              <figcaption>
+                <p class="community-stories-precedent__title">Smithe Street, Vancouver, BC</p>
+                <p class="community-stories-precedent__caption">Protected biking, planting, and mature tree canopy on Smithe Street. Photo credit: April Webster</p>
+              </figcaption>
+            </figure>
+            <figure class="community-stories-precedent__item">
+              <img src="../../../../images/cities/mountainview-ca/rengstorff/santacruz-ca-union-st-street-garden.jpeg.png" alt="Street-side planting with flowering plants along a sidewalk on Union Street in Santa Cruz, California." />
+              <figcaption>
+                <p class="community-stories-precedent__title">Union Street, Santa Cruz, CA</p>
+                <p class="community-stories-precedent__caption">Street-side planting and greenery integrated into the neighborhood. Photo credit: April Webster</p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reuses the sitewide evidence-modal lightbox (same id, classes,
+           and open/close/focus/Escape behavior as the parent Overview
+           page's #evidence-modal) so the mister video opens in the same
+           on-page popup already used elsewhere on the site, instead of
+           navigating away. CSS is already shared/global (assets/css/main.css)
+           and needs no changes -- .evidence-modal__video is already sized
+           9:16 for a portrait YouTube Short. Only .evidence-modal__video
+           and .evidence-modal__caption are included below since this
+           page's modal only ever shows this one video (no image/document
+           records here), unlike the fuller image+video+document version
+           on the Overview page. -->
+      <div id="evidence-modal" class="evidence-modal" hidden>
+        <div class="evidence-modal__backdrop" data-modal-close></div>
+        <div class="evidence-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="evidence-modal-caption" tabindex="-1">
+          <button type="button" class="evidence-modal__close" data-modal-close aria-label="Close">&times;</button>
+          <div class="evidence-modal__video" hidden></div>
+          <p id="evidence-modal-caption" class="evidence-modal__caption"></p>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          // Same evidenceRecords + open/close/focus-trap/Escape pattern as
+          // the parent Overview page's lightbox script, trimmed to the one
+          // video this page needs -- not a second modal system, just the
+          // same component's markup/behavior reused on this page (each
+          // page loads its own copy of the DOM/JS, so there's no way to
+          // literally share the live modal instance across page loads).
+          var evidenceRecords = {
+            'everyday-stories-mister-video': {
+              type: 'video',
+              videoId: 'Dxden0qHJoM',
+              title: 'A misting fan being used to keep outdoor workers cool on a hot summer day',
+              caption: 'Closer to home: a misting fan being used to keep outdoor workers cool on a hot summer day.'
+            }
+          };
+
+          var activeModal = null;
+          var lastTrigger = null;
+
+          function getFocusable(container) {
+            return Array.prototype.slice.call(container.querySelectorAll(
+              'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+            )).filter(function (el) { return el.offsetParent !== null; });
+          }
+
+          function onKeydown(e) {
+            if (!activeModal) return;
+            if (e.key === 'Escape') {
+              e.preventDefault();
+              closeModal();
+              return;
+            }
+            if (e.key === 'Tab') {
+              var dialog = activeModal.querySelector('.evidence-modal__dialog');
+              var focusable = getFocusable(dialog);
+              if (!focusable.length) return;
+              var first = focusable[0];
+              var last = focusable[focusable.length - 1];
+              if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+              } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+              }
+            }
+          }
+
+          function populateEvidenceModal(modal, record) {
+            var video = modal.querySelector('.evidence-modal__video');
+            var caption = modal.querySelector('.evidence-modal__caption');
+            video.hidden = false;
+            video.innerHTML = '';
+            var iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube-nocookie.com/embed/' + record.videoId + '?autoplay=1&rel=0';
+            iframe.title = record.title;
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            video.appendChild(iframe);
+            caption.textContent = record.caption;
+          }
+
+          function openModal(modal, trigger) {
+            activeModal = modal;
+            lastTrigger = trigger;
+            modal.hidden = false;
+            document.body.classList.add('modal-open');
+            var dialog = modal.querySelector('.evidence-modal__dialog');
+            var focusable = getFocusable(dialog);
+            (focusable[0] || dialog).focus();
+            document.addEventListener('keydown', onKeydown, true);
+          }
+
+          function closeModal() {
+            if (!activeModal) return;
+            var modal = activeModal;
+            activeModal = null;
+            modal.hidden = true;
+            document.body.classList.remove('modal-open');
+            document.removeEventListener('keydown', onKeydown, true);
+            // Removing the iframe (rather than just hiding it) stops
+            // playback immediately, same as the sitewide component.
+            var video = modal.querySelector('.evidence-modal__video');
+            if (video) { video.innerHTML = ''; video.hidden = true; }
+            if (lastTrigger) { lastTrigger.focus(); }
+            lastTrigger = null;
+          }
+
+          document.addEventListener('click', function (e) {
+            var opener = e.target.closest('[data-evidence-id]');
+            if (opener) {
+              var record = evidenceRecords[opener.getAttribute('data-evidence-id')];
+              if (record) {
+                // These triggers are real links to the YouTube Short (so
+                // the video still works if JS fails to load); once JS is
+                // running, open the on-page modal instead of navigating.
+                e.preventDefault();
+                var modal = document.getElementById('evidence-modal');
+                populateEvidenceModal(modal, record);
+                openModal(modal, opener);
+              }
+              return;
+            }
+            var closer = e.target.closest('[data-modal-close]');
+            if (closer && closer.closest('.evidence-modal')) {
+              closeModal();
+            }
+          });
+        })();
+      </script>
+      <!-- END EVERYDAY STORIES TEST -->
+
+      <!-- ==================================================
+           5. GET INVOLVED -- what's being decided in Round 2, and
+           how can I give feedback? The bridge carries the
+           get-involved anchor since it's the first element of this
+           area; a new "Round 2 community input" eyebrow sits above
+           the existing "The decision point" label so this reads as
+           the CURRENT engagement window, not the page's permanent
+           identity. -->
+      <!-- BEGIN DECISION POINT TEST -->
+      <div id="get-involved" class="decision-point-bridge">
+        <p>The decision is not simply whether to choose Alternative A, B, or C. It is which elements should be prioritized, which trade-offs are acceptable, and which ideas should advance into the next phase.</p>
+      </div>
+
+      <section class="section-block decision-point-section">
+        <div class="decision-point-intro">
+          <p class="decision-point-round-label">Round 2 community input</p>
+          <span class="category-tag category-tag--record">The decision point</span>
+          <div class="section-intro">
+            <h2 id="decision-point">What should Community and Council decide?</h2>
+            <p>The feasibility study shows that there are different ways to use the available street space. <strong class="decision-point-emphasis">The decision is not simply whether to choose Alternative A, B, or C.</strong> It is which elements should be prioritized, which trade-offs are acceptable, and which ideas should advance into the next phase for deeper analysis and more detailed design.</p>
+          </div>
+
+          <p class="decision-point-callout">The alternatives are examples, not fixed packages. You can support one element, several, or all of them.</p>
+        </div>
+
+        <div class="decision-point-wide">
+          <div class="decision-point-elements-intro">
+            <h3 class="decision-point-elements-intro__heading">What elements are important to you?</h3>
+          </div>
+
+          <p class="decision-point-highlight">You can choose all of them.</p>
+          <p class="decision-point-note decision-point-note--small">Round Two of Design is the time to tell the City which elements should move forward for deeper analysis and more detailed design.</p>
+
+          <div class="decision-point-cards">
+          <div class="decision-point-card">
+            <figure class="decision-point-card__media">
+              <img src="../../../../images/cities/mountainview-ca/rengstorff/mv-bicyclists-shoreline-at-ecr.jpg" alt="People biking and a person using a mobility scooter waiting to cross at a busy signalized intersection in Mountain View." style="object-position: 55% 70%;" />
+            </figure>
+            <div class="decision-point-card__body">
+              <h4 class="decision-point-card__heading">Safer intersections</h4>
+              <p class="decision-point-card__text">Safer crossings and fewer conflicts.</p>
+            </div>
+          </div>
+
+          <div class="decision-point-card">
+            <figure class="decision-point-card__media">
+              <img src="../../../../images/cities/mountainview-ca/rengstorff/green-street-vancouver-bc-smithe-street.jpeg" alt="A protected bikeway with planted buffers separating people biking from moving traffic on Smithe Street in Vancouver, British Columbia." style="object-position: 30% 40%;" />
+            </figure>
+            <div class="decision-point-card__body">
+              <h4 class="decision-point-card__heading">Protected bikeways</h4>
+              <p class="decision-point-card__text">Continuous physical separation from moving traffic.</p>
+            </div>
+          </div>
+
+          <div class="decision-point-card">
+            <figure class="decision-point-card__media">
+              <img src="../../../../images/cities/mountainview-ca/rengstorff/santacruz-ca-union-st-street-garden.jpeg.png" alt="Street-side planting and green stormwater infrastructure integrated into a sidewalk in Santa Cruz, California." />
+            </figure>
+            <div class="decision-point-card__body">
+              <h4 class="decision-point-card__heading">Green infrastructure</h4>
+              <p class="decision-point-card__text">Trees, planting, shade, cooling, and stormwater management.</p>
+            </div>
+          </div>
+
+          <div class="decision-point-card decision-point-card--combo">
+            <figure class="decision-point-card__media decision-point-card__media--placeholder" role="img" aria-label="Placeholder: no existing photo yet shows safer intersections, protected bikeways, and green infrastructure combined together.">
+              <span class="decision-point-card__placeholder-text">Image needed</span>
+            </figure>
+            <div class="decision-point-card__body">
+              <h4 class="decision-point-card__heading">All of them</h4>
+              <p class="decision-point-card__text">Safer intersections + protected bikeways + green infrastructure.</p>
+              <p class="decision-point-card__text decision-point-card__text--secondary">The whole kit and caboodle.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision-point-cta">
+          <h3 class="decision-point-cta__heading">Tell the City what you want to move forward</h3>
+
+          <div class="decision-point-actions">
+            <a class="button primary decision-point-action decision-point-action--primary" href="https://web.cvent.com/survey/93a6421c-3963-4c80-923d-13246b4715fc/welcome" target="_blank" rel="noopener noreferrer">Take the survey</a>
+            <a class="button decision-point-action" href="mailto:city.council@mountainview.gov?subject=Rengstorff%20Green%20Complete%20Streets%20Feasibility%20Study%20Feedback&amp;body=Dear%20Mayor%20Ramos%20and%20Councilmembers%2C%0D%0A%0D%0AI%27d%20like%20to%20provide%20my%20feedback%20on%20the%20Rengstorff%20Green%20Complete%20Streets%20Feasibility%20and%20Alternatives%20Study.%0D%0A%0D%0APlease%20direct%20staff%20to%20carry%20all%20of%20the%20following%20elements%20forward%20together%20into%20the%20next%20round%20of%20design%20and%20detailed%20analysis%2C%20rather%20than%20treating%20them%20as%20mutually%20exclusive%20alternatives%3A%0D%0A%0D%0A%E2%80%A2%20protected%20intersections%3B%0D%0A%E2%80%A2%20all%20four%20planned%20mid-block%20crossings%2C%20with%20Pedestrian%20Hybrid%20Beacons%20%28PHBs%29%20evaluated%20for%20wide%2C%20multilane%20or%20higher-speed%20locations%20rather%20than%20defaulting%20to%20Rectangular%20Rapid%20Flashing%20Beacons%20%28RRFBs%29%3B%0D%0A%E2%80%A2%20continuous%20Class%20IV%20protected%20bicycle%20lanes%3B%0D%0A%E2%80%A2%20green%20infrastructure%20protecting%20the%20bicycle%20lanes%2C%20including%20street%20trees%20and%20landscaping%20in%20raised%20curb%20buffers%3B%0D%0A%E2%80%A2%20green%20stormwater%20infrastructure%2C%20such%20as%20bioswales%2C%20GSI%20trees%2C%20and%20bioretention%3B%0D%0A%E2%80%A2%20native%20plantings%3B%20and%0D%0A%E2%80%A2%20continuous%20shade%20and%20tree%20canopy%20wherever%20feasible%20for%20people%20walking%2C%20bicycling%2C%20rolling%2C%20and%20waiting%20for%20transit.%0D%0A%0D%0AI%20would%20like%20to%20see%20the%20next%20round%20develop%20an%20integrated%20community%20alternative%20that%20combines%20safer%20intersections%2C%20protected%20bikeways%2C%20and%20green%20infrastructure%2C%20with%20the%20costs%2C%20benefits%2C%20space%20requirements%2C%20and%20trade-offs%20clearly%20presented%20for%20further%20community%20and%20Council%20review.%0D%0A%0D%0AI%20look%20forward%20to%20a%20new%20and%20improved%20Rengstorff%20Avenue%20that%20prioritizes%20physical%20safety%20and%20heat%20safety%20for%20people%20walking%2C%20bicycling%2C%20and%20rolling%2C%20while%20also%20supporting%20climate%20resilience%2C%20stormwater%20management%2C%20and%20biodiversity%20in%20alignment%20with%20Mountain%20View%27s%20recently%20adopted%20Biodiversity%20and%20Urban%20Forest%20Plan%20and%20the%20forthcoming%20Active%20Transportation%20Plan.%0D%0A%0D%0AThank%20you%2C%0D%0A%0D%0A%3Cname%3E%0D%0A%3Cneighborhood%3E">Email Council</a>
+            <span class="decision-point-action decision-point-action--missing">Learn more on the City project page<span class="decision-point-action__note">Link needed</span></span>
+          </div>
+
+          <p class="decision-point-note decision-point-note--small">Sample email provided &mdash; edit it to reflect your own priorities and experience.</p>
+        </div>
+        </div>
+      </section>
+      <!-- END DECISION POINT TEST -->
+
+      <!-- ==================================================
+           6. STUDY AT A GLANCE -- project record / administrative
+           reference. Kept on the page but intentionally NOT part of
+           the primary top navigation. -->
       <!-- A. Study at a glance -->
       <section class="section-block" aria-labelledby="at-a-glance">
         <span class="category-tag category-tag--record">Project record</span>
