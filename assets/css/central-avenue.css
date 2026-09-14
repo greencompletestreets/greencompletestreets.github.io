@@ -1,0 +1,553 @@
+/* =========================================================
+   Central Avenue campaign page — page-scoped styles.
+
+   Loaded alongside assets/css/main.css (after it, so these rules win
+   on equal specificity). Everything here is scoped under
+   `.central-ave-page` so it can never leak onto other pages. Reuses
+   the shared design tokens already defined in main.css's `:root`
+   (--gcs-bg, --gcs-surface, --gcs-accent, etc.) rather than inventing
+   a new palette, and reuses the sitewide `.button` / `.hero-actions`
+   components for every call-to-action on the page.
+   ========================================================= */
+
+/* ---------- Breadcrumb ---------- */
+
+.central-ave-page .central-ave-breadcrumb {
+  background: var(--gcs-surface);
+  border-bottom: 1px solid var(--gcs-line);
+}
+
+.central-ave-page .central-ave-breadcrumb .container {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+.central-ave-page .central-ave-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.central-ave-page .central-ave-breadcrumb li {
+  color: var(--gcs-text-subtle) !important;
+}
+
+.central-ave-page .central-ave-breadcrumb li:not(:last-child)::after {
+  content: "\203A";
+  margin: 0 0.55rem;
+  color: var(--gcs-text-subtle);
+}
+
+.central-ave-page .central-ave-breadcrumb a {
+  color: var(--gcs-text-muted);
+}
+
+.central-ave-page .central-ave-breadcrumb a:hover {
+  color: var(--gcs-accent-dark) !important;
+}
+
+.central-ave-page .central-ave-breadcrumb [aria-current="page"] {
+  color: var(--gcs-text) !important;
+  font-weight: 600;
+}
+
+/* ---------- Shared layout helpers ---------- */
+
+.central-ave-page .central-ave-narrow {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.central-ave-page .central-ave-eyebrow {
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--gcs-accent) !important;
+  margin: 0 0 0.75rem 0;
+}
+
+.central-ave-page .central-ave-section {
+  padding: clamp(3rem, 6vw, 4.5rem) 0;
+}
+
+.central-ave-page .central-ave-section--soft {
+  background: var(--gcs-surface-soft);
+  border-top: 1px solid var(--gcs-line);
+  border-bottom: 1px solid var(--gcs-line);
+}
+
+.central-ave-page .central-ave-section h2 {
+  font-size: clamp(1.7rem, 3vw, 2.3rem) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem 0 !important;
+}
+
+.central-ave-page .central-ave-section p + p {
+  margin-top: 1rem;
+}
+
+/* ---------- Hero ---------- */
+
+.central-ave-page .central-ave-hero {
+  background: var(--gcs-surface-soft);
+  border-bottom: 1px solid var(--gcs-line);
+  padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
+}
+
+.central-ave-page .central-ave-hero__title {
+  font-size: clamp(2.4rem, 5vw, 3.6rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+  max-width: 16ch;
+  margin: 0 0 0.6em 0 !important;
+}
+
+.central-ave-page .central-ave-hero__subtitle {
+  max-width: 52ch;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem) !important;
+  line-height: 1.6 !important;
+}
+
+.central-ave-page .central-ave-hero__actions {
+  margin-top: 1.75rem;
+}
+
+.central-ave-page .central-ave-campaign-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 2rem 0 0 0 !important;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--gcs-surface);
+  border: 1px solid var(--gcs-line);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gcs-accent-dark) !important;
+}
+
+.central-ave-page .central-ave-campaign-line .fas {
+  color: var(--gcs-accent);
+}
+
+/* ---------- Connection strip ---------- */
+
+.central-ave-page .central-ave-connections {
+  background: var(--gcs-surface);
+  border-bottom: 1px solid var(--gcs-line);
+  padding: 0.85rem 0;
+}
+
+.central-ave-page .central-ave-connections p {
+  margin: 0 !important;
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gcs-text-subtle) !important;
+}
+
+/* ---------- Existing-conditions statement ---------- */
+
+.central-ave-page .central-ave-statement {
+  margin: 2.75rem auto;
+  max-width: 880px;
+  padding: 0 20px;
+  text-align: center;
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+  line-height: 1.25 !important;
+  color: var(--gcs-text) !important;
+}
+
+.central-ave-page .central-ave-statement::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--gcs-accent);
+  margin: 0 auto 1.4rem;
+}
+
+/* ---------- Editorial photo story ---------- */
+
+.central-ave-page .central-ave-photo-story {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  margin-top: 2.5rem;
+}
+
+/* A single photo (no secondary shot) sits a little tighter to the copy
+   above it and gets slightly more width, so it reads as one deliberate
+   editorial image rather than a two-photo layout missing its second
+   half. */
+.central-ave-page .central-ave-photo-story--single {
+  margin-top: 2rem;
+}
+
+.central-ave-page .central-ave-photo-story--single .central-ave-photo--primary {
+  max-width: 700px;
+}
+
+.central-ave-page .central-ave-photo {
+  margin: 0;
+  width: 100%;
+}
+
+.central-ave-page .central-ave-photo--primary {
+  max-width: 640px;
+}
+
+.central-ave-page .central-ave-photo--secondary {
+  max-width: 420px;
+}
+
+.central-ave-page .central-ave-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(15, 23, 20, 0.06);
+}
+
+.central-ave-page .central-ave-photo--primary img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.central-ave-page .central-ave-photo--secondary img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.central-ave-page .central-ave-photo figcaption {
+  margin-top: 0.85rem;
+  font-size: 0.92rem;
+  text-align: center;
+  color: var(--gcs-text-subtle) !important;
+}
+
+/* ---------- Vision list ---------- */
+
+.central-ave-page .central-ave-vision-list {
+  list-style: none;
+  margin: 2rem auto 0;
+  padding: 0;
+  max-width: 760px;
+}
+
+.central-ave-page .central-ave-vision-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--gcs-line);
+}
+
+.central-ave-page .central-ave-vision-list li:last-child {
+  border-bottom: 1px solid var(--gcs-line);
+}
+
+.central-ave-page .central-ave-vision-icon {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--gcs-surface-soft);
+  color: var(--gcs-accent-dark);
+  font-size: 0.95rem;
+}
+
+.central-ave-page .central-ave-vision-list h3 {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0 0 0.4rem 0 !important;
+}
+
+.central-ave-page .central-ave-vision-list p {
+  margin: 0 !important;
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.central-ave-page .central-ave-vision-list p + p {
+  margin-top: 0.65rem !important;
+}
+
+/* ---------- Featured idea: "A slow, green neighborhood street" ----------
+   One distinct, bordered panel for the corridor-level idea -- deliberately
+   singular (not a grid) so it reads as one elevated idea among the vision
+   list above it, not another card in a set. */
+
+.central-ave-page .central-ave-feature {
+  margin-top: 2.5rem;
+  padding: 2rem clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--gcs-surface);
+  border: 1px solid var(--gcs-line);
+  border-left: 3px solid var(--gcs-accent);
+  border-radius: 14px;
+}
+
+.central-ave-page .central-ave-feature .central-ave-eyebrow {
+  margin-bottom: 0.5rem;
+}
+
+.central-ave-page .central-ave-feature__title {
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.85rem 0 !important;
+}
+
+.central-ave-page .central-ave-feature p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.central-ave-page .central-ave-feature__toolkit {
+  margin-top: 1.25rem !important;
+  font-weight: 700 !important;
+  color: var(--gcs-accent-dark) !important;
+}
+
+.central-ave-page .central-ave-feature__photo {
+  margin: 1.75rem 0 0 0;
+}
+
+.central-ave-page .central-ave-feature__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px rgba(15, 23, 20, 0.06);
+}
+
+.central-ave-page .central-ave-feature__photo figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--gcs-text-subtle) !important;
+}
+
+.central-ave-page .central-ave-feature__note {
+  margin-top: 1.5rem !important;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--gcs-line);
+  font-size: 0.92rem !important;
+  font-style: italic;
+  color: var(--gcs-text-subtle) !important;
+}
+
+/* ---------- Campaign principle (thesis statement, right after the hero) ----------
+   Deliberately quiet: the same light surface as the hero (not a full-bleed
+   color block), ordinary section padding, no imagery. This is the page's
+   thesis, not a marketing banner. */
+
+.central-ave-page .central-ave-principle {
+  background: var(--gcs-surface-soft);
+  border-bottom: 1px solid var(--gcs-line);
+  padding: clamp(3rem, 6vw, 4.5rem) 0;
+}
+
+.central-ave-page .central-ave-principle__statement {
+  font-size: clamp(2rem, 5vw, 2.9rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em;
+  color: var(--gcs-accent-dark) !important;
+  margin: 0 0 1.5rem 0 !important;
+}
+
+.central-ave-page .central-ave-principle p {
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.central-ave-page .central-ave-principle__emphasis {
+  font-weight: 700 !important;
+  font-size: 1.15rem !important;
+  color: var(--gcs-accent-dark) !important;
+  margin-top: 1.5rem !important;
+}
+
+/* ---------- Callout line (why a petition) ---------- */
+
+.central-ave-page .central-ave-callout {
+  border-left: 3px solid var(--gcs-accent);
+  padding-left: 1.25rem;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  color: var(--gcs-text) !important;
+  margin: 1.75rem 0 !important;
+}
+
+.central-ave-page .central-ave-source {
+  margin-top: 1.5rem !important;
+  font-size: 0.9rem;
+  color: var(--gcs-text-subtle) !important;
+}
+
+/* ---------- Community acknowledgment note ---------- */
+
+.central-ave-page .central-ave-note-wrap {
+  padding: 0 0 clamp(3rem, 6vw, 4.5rem);
+}
+
+.central-ave-page .central-ave-note {
+  background: var(--gcs-surface);
+  border: 1px solid var(--gcs-line);
+  border-radius: 14px;
+  padding: 1.85rem 2rem;
+}
+
+.central-ave-page .central-ave-note__heading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700 !important;
+  color: var(--gcs-accent-dark) !important;
+  margin: 0 0 0.85rem 0 !important;
+}
+
+.central-ave-page .central-ave-note__heading .fas {
+  color: var(--gcs-accent);
+}
+
+.central-ave-page .central-ave-note p {
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.central-ave-page .central-ave-note p + p {
+  margin-top: 0.85rem !important;
+}
+
+/* ---------- Small supporting lines under the closing section's buttons ----------
+   (Formerly also used by two separate "Petition CTA" / "Stay Involved"
+   sections that have since been merged into .central-ave-closing below.) */
+
+.central-ave-page .central-ave-cta__steps {
+  margin-top: 1.1rem !important;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gcs-text-subtle) !important;
+}
+
+.central-ave-page .central-ave-small-note {
+  margin-top: 1.1rem !important;
+  font-size: 0.85rem;
+  color: var(--gcs-text-subtle) !important;
+}
+
+/* ---------- Closing section ---------- */
+
+.central-ave-page .central-ave-closing {
+  padding: clamp(3.5rem, 6vw, 5rem) 0;
+  text-align: center;
+  border-top: 1px solid var(--gcs-line);
+  scroll-margin-top: 1.5rem;
+}
+
+.central-ave-page .central-ave-closing p {
+  max-width: 620px;
+  margin: 0 auto !important;
+}
+
+.central-ave-page .central-ave-closing__final {
+  margin-top: 1.5rem !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+  color: var(--gcs-accent-dark) !important;
+}
+
+.central-ave-page .central-ave-closing .hero-actions {
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* ---------- Shared button group + secondary (outline) button ---------- */
+
+.central-ave-page .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.central-ave-page .hero-actions .button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 240px;
+  height: 60px !important;
+  padding: 0 1.75rem !important;
+  border-radius: 14px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+.central-ave-page .hero-actions .button.primary {
+  background: #38bf87 !important;
+  color: #ffffff !important;
+  border: 2px solid #38bf87 !important;
+}
+
+.central-ave-page .hero-actions .button.primary:hover {
+  background: #2fa777 !important;
+  border-color: #2fa777 !important;
+}
+
+.central-ave-page .hero-actions .button:not(.primary) {
+  background: var(--gcs-surface) !important;
+  color: var(--gcs-text) !important;
+  border: 2px solid #38bf87 !important;
+}
+
+.central-ave-page .hero-actions .button:not(.primary):hover {
+  background: var(--gcs-surface-soft) !important;
+  color: var(--gcs-text) !important;
+}
+
+/* ---------- Responsive ---------- */
+
+@media screen and (max-width: 860px) {
+  .central-ave-page .central-ave-photo-story {
+    gap: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .central-ave-page .central-ave-hero__title {
+    max-width: none;
+  }
+
+  .central-ave-page .hero-actions .button {
+    min-width: 100%;
+  }
+
+  .central-ave-page .central-ave-vision-list li {
+    gap: 1rem;
+  }
+}
