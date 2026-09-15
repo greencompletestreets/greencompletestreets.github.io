@@ -1,0 +1,342 @@
+/* =========================================================
+   Design Toolkit pages — page-scoped styles.
+
+   Loaded alongside assets/css/main.css (after it, so these rules win
+   on equal specificity). Everything here is scoped under
+   `.toolkit-page` so it can never leak onto other pages. Reuses the
+   shared design tokens already defined in main.css's `:root`
+   (--gcs-bg, --gcs-surface, --gcs-accent, etc.) and the sitewide
+   `.page-hero` / `.page-eyebrow` / `.page-title` / `.page-subtitle` /
+   `.wrapper.style1` / `.card` / `.card-grid` components rather than
+   inventing a new design system.
+   ========================================================= */
+
+/* ---------- Breadcrumb (same pattern as the Central Avenue page) ---------- */
+
+.toolkit-page .toolkit-breadcrumb {
+  background: var(--gcs-surface);
+  border-bottom: 1px solid var(--gcs-line);
+}
+
+.toolkit-page .toolkit-breadcrumb .container {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+.toolkit-page .toolkit-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.toolkit-page .toolkit-breadcrumb li {
+  color: var(--gcs-text-subtle) !important;
+}
+
+.toolkit-page .toolkit-breadcrumb li:not(:last-child)::after {
+  content: "\203A";
+  margin: 0 0.55rem;
+  color: var(--gcs-text-subtle);
+}
+
+.toolkit-page .toolkit-breadcrumb a {
+  color: var(--gcs-text-muted);
+}
+
+.toolkit-page .toolkit-breadcrumb a:hover {
+  color: var(--gcs-accent-dark) !important;
+}
+
+.toolkit-page .toolkit-breadcrumb [aria-current="page"] {
+  color: var(--gcs-text) !important;
+  font-weight: 600;
+}
+
+/* ---------- Title block ---------- */
+
+.toolkit-page .toolkit-aka {
+  margin: 0 0 1.25rem 0 !important;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gcs-text-subtle) !important;
+}
+
+.toolkit-page .page-hero .page-subtitle {
+  max-width: 62ch;
+}
+
+.toolkit-page .page-hero .page-subtitle + .page-subtitle {
+  margin-top: 0.85em;
+}
+
+/* ---------- Callout ("Interim doesn't have to mean plastic...") ---------- */
+
+.toolkit-page .toolkit-callout {
+  margin: 0 auto 2.5rem;
+  max-width: 780px;
+  padding: 0 20px;
+  text-align: center;
+  font-size: clamp(1.3rem, 2.8vw, 1.9rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
+  line-height: 1.3 !important;
+  color: var(--gcs-text) !important;
+}
+
+.toolkit-page .toolkit-callout::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--gcs-accent);
+  margin: 0 auto 1.25rem;
+}
+
+/* ---------- Section rhythm ---------- */
+
+.toolkit-page .toolkit-section h2 {
+  margin-top: 0;
+}
+
+.toolkit-page .toolkit-section p + p {
+  margin-top: 1rem;
+}
+
+/* ---------- Decision-table figure ---------- */
+
+.toolkit-page .toolkit-figure {
+  margin: 2rem 0 1rem 0;
+}
+
+.toolkit-page .toolkit-figure__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  border: 1px solid var(--gcs-line);
+  background: var(--gcs-surface);
+}
+
+.toolkit-page .toolkit-figure__scroll img {
+  display: block;
+  width: 100%;
+  min-width: 720px;
+  height: auto;
+  cursor: zoom-in;
+}
+
+.toolkit-page .toolkit-figure__expand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gcs-accent-dark) !important;
+  cursor: pointer;
+}
+
+.toolkit-page .toolkit-figure__expand:hover {
+  text-decoration: underline;
+}
+
+.toolkit-page .toolkit-note {
+  max-width: 760px;
+  font-size: 0.92rem;
+  color: var(--gcs-text-subtle) !important;
+}
+
+/* Lightbox */
+
+.toolkit-page .toolkit-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(15, 23, 20, 0.86);
+}
+
+.toolkit-page .toolkit-lightbox[hidden] {
+  display: none !important;
+}
+
+.toolkit-page .toolkit-lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.toolkit-page .toolkit-lightbox__close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1f2420;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ---------- Cost spectrum placeholder ---------- */
+
+.toolkit-page .toolkit-cost-spectrum {
+  margin: 1.75rem 0 !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: var(--gcs-text) !important;
+  line-height: 1.8 !important;
+}
+
+.toolkit-page .toolkit-cost-spectrum__arrow {
+  margin: 0 0.5rem;
+  color: var(--gcs-accent);
+  font-weight: 400;
+}
+
+/* ---------- Labeled principle callout (centered label + statement) ----------
+   Used for a second, distinctly-labeled callout further down a page (e.g.
+   "GREEN COMPLETE STREETS PRINCIPLE"), reusing .toolkit-callout's statement
+   styling immediately below it. */
+
+.toolkit-page .toolkit-callout__label {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--gcs-accent) !important;
+  margin: 0 0 0.75rem 0 !important;
+}
+
+.toolkit-page .toolkit-callout__label + .toolkit-callout {
+  margin-top: 0;
+}
+
+/* ---------- Inline cross-link (e.g. "Explore Rapid Delivery →") ---------- */
+
+.toolkit-page .toolkit-inline-link {
+  display: inline-block;
+  margin: 0.5rem 0 0 0;
+  font-weight: 700;
+  color: var(--gcs-accent-dark) !important;
+}
+
+.toolkit-page .toolkit-inline-link:hover {
+  color: var(--gcs-accent-dark) !important;
+  text-decoration: underline;
+}
+
+/* ---------- Concept list (native planting / shade tree / GSI) ----------
+   Same restrained "icon + heading + copy, divided rows" language as the
+   Central Avenue vision list -- not cards. */
+
+.toolkit-page .toolkit-concept-list {
+  list-style: none;
+  margin: 1.75rem 0 0 0;
+  padding: 0;
+}
+
+.toolkit-page .toolkit-concept-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--gcs-line);
+}
+
+.toolkit-page .toolkit-concept-list li:last-child {
+  border-bottom: 1px solid var(--gcs-line);
+}
+
+.toolkit-page .toolkit-concept-icon {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--gcs-surface-soft);
+  color: var(--gcs-accent-dark);
+  font-size: 0.95rem;
+}
+
+.toolkit-page .toolkit-concept-list h3 {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 0.35rem 0 !important;
+}
+
+.toolkit-page .toolkit-concept-spec {
+  display: block;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gcs-text-subtle) !important;
+}
+
+.toolkit-page .toolkit-concept-list p {
+  margin: 0 !important;
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.toolkit-page .toolkit-concept-list p + p {
+  margin-top: 0.6rem !important;
+}
+
+/* ---------- Understated treatment-list preview ---------- */
+
+.toolkit-page .toolkit-treatment-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0;
+  margin: 1.5rem 0 !important;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gcs-text) !important;
+}
+
+.toolkit-page .toolkit-treatment-list span:not(.toolkit-treatment-list__sep) {
+  white-space: nowrap;
+}
+
+.toolkit-page .toolkit-treatment-list__sep {
+  margin: 0 0.6rem;
+  color: var(--gcs-text-subtle);
+}
+
+/* ---------- Responsive ---------- */
+
+@media screen and (max-width: 736px) {
+  .toolkit-page .toolkit-figure__scroll img {
+    min-width: 640px;
+  }
+
+  .toolkit-page .toolkit-callout {
+    font-size: 1.3rem !important;
+  }
+
+  .toolkit-page .toolkit-cost-spectrum {
+    font-size: 0.95rem !important;
+  }
+
+  .toolkit-page .toolkit-concept-list li {
+    gap: 1rem;
+  }
+}
