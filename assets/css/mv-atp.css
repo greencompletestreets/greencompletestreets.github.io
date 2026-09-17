@@ -1,0 +1,2187 @@
+/* =========================================================
+   Mountain View ATP page — small set of new components only.
+
+   This page otherwise reuses the existing .rengstorff-microsite
+   system verbatim (.section-block, .section-intro, .study-breadcrumb,
+   .onpage-nav, .evidence-cards/.evidence-card, .bufp-compare,
+   .bufp-doc-card, .bufp-missing-note, .evidence-nav-grid,
+   .connected-project-cta, .category-tag) -- see cities/mountainview-ca/
+   plans/bufp/index.html for the shared component set this borrows.
+   Only genuinely new pieces live here: status badges for the
+   recommendations-comparison table, a small "Table 7" source tag, and
+   a simple timeline stepper. Same color logic as the existing
+   .phase-status badges (distinct hues, not shades of one color;
+   neutral sand for "not yet" rather than red/yellow).
+   ========================================================= */
+
+.rengstorff-microsite .atp-status {
+  display: inline-block;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.7rem;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-status--partial {
+  background: #d9ebe9;
+  color: #1f5854 !important;
+}
+
+.rengstorff-microsite .atp-status--not-added {
+  background: #f2e9d8;
+  color: #6b5a37 !important;
+}
+
+.rengstorff-microsite .atp-status--substantial {
+  background: #cdead1;
+  color: #0b5c3a !important;
+}
+
+/* ---------- "Table 7" source tag ---------- */
+
+.rengstorff-microsite .atp-table7-tag {
+  display: inline-block;
+  margin: 0 0.5rem 0.35rem 0;
+  border-radius: 4px;
+  background: #e8ede5;
+  color: #4d5850 !important;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  vertical-align: middle;
+}
+
+/* ---------- Timeline stepper ---------- */
+
+.rengstorff-microsite .atp-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.75rem 0;
+  margin: 1.5rem 0 1.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-timeline__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  max-width: 11rem;
+}
+
+.rengstorff-microsite .atp-timeline__label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--gcs-text, #1f2420);
+}
+
+.rengstorff-microsite .atp-timeline__step--done .atp-timeline__label {
+  color: #16704d;
+}
+
+.rengstorff-microsite .atp-timeline__step--upcoming .atp-timeline__label {
+  color: #6b5a37;
+}
+
+.rengstorff-microsite .atp-timeline__dot {
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.3rem;
+  border-radius: 50%;
+  background: #9fb5a5;
+}
+
+.rengstorff-microsite .atp-timeline__step--done .atp-timeline__dot {
+  background: #16704d;
+}
+
+.rengstorff-microsite .atp-timeline__step--upcoming .atp-timeline__dot {
+  background: #c9a35a;
+}
+
+.rengstorff-microsite .atp-timeline__arrow {
+  align-self: center;
+  margin: 0 0.6rem;
+  color: #9fb5a5;
+}
+
+/* Compact variant, used for the "coming soon" 4-step preview under the
+   August 31 table -- same shape, quieter (no dots/color-coding, since
+   none of those steps have happened yet). */
+
+.rengstorff-microsite .atp-timeline--preview .atp-timeline__label {
+  font-weight: 600;
+  color: #8a978c;
+}
+
+.rengstorff-microsite .atp-timeline--preview .atp-timeline__dot {
+  display: none;
+}
+
+/* ---------- Hero -- matches the Standard Details page's design
+   system (.sd-hero/.sd-status-grid in main.css): same dark green
+   #193c2b, same white status-card treatment, same restraint. Scoped
+   under .atp-hero-page so it can never leak onto sd-page or any other
+   .rengstorff-hero use on the site. Unlike sd-page's engineering-
+   drawing texture (grayscale/invert/screen-blend suits a line
+   drawing), this hero's image is a real color photo, so it gets a
+   plain dark tint + a green gradient fade toward the copy side
+   instead -- same effect (subdued, doesn't fight the title), right
+   technique for a photo. */
+
+/* Image is now a full-bleed absolutely-positioned layer spanning the
+   right ~55-58% of the FULL hero width (edge to edge, no side inset),
+   so .atp-hero drops the grid entirely -- copy and status stack in
+   normal block flow (their own combined height is what determines
+   the hero's total height), and the image just fills that height via
+   top/right/bottom:0. This is what makes the hero read as one
+   continuous field rather than a photo card floating next to text. */
+.atp-hero-page .atp-hero {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.atp-hero-page .atp-hero__copy {
+  position: relative;
+  z-index: 2;
+  box-sizing: content-box;
+  max-width: 29rem;
+  padding: 3rem 1.5rem 0 max(1.5rem, calc((100vw - 1120px) / 2));
+}
+
+.atp-hero-page .atp-hero h1 {
+  font-size: clamp(1.9rem, 3vw, 2.75rem) !important;
+  line-height: 1.12 !important;
+}
+
+.atp-hero-page .atp-hero__copy .hero-subtitle {
+  max-width: 26rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 0.75rem;
+}
+
+.atp-hero-page .atp-hero__breadcrumb {
+  margin-bottom: 1.1rem;
+}
+
+.atp-hero-page .atp-hero__breadcrumb ol {
+  color: #b9dcbf !important;
+}
+
+.atp-hero-page .atp-hero__breadcrumb a {
+  color: #dbe9dd !important;
+}
+
+.atp-hero-page .atp-hero__breadcrumb a:hover,
+.atp-hero-page .atp-hero__breadcrumb a:focus-visible {
+  color: #ffffff !important;
+}
+
+.atp-hero-page .atp-hero__breadcrumb li:not(:last-child)::after {
+  color: #4e745c;
+}
+
+.atp-hero-page .atp-hero__breadcrumb [aria-current="page"] {
+  color: #ffffff !important;
+}
+
+.atp-hero-page .atp-hero__image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 58%;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.atp-hero-page .atp-hero__image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% 32%;
+  filter: saturate(0.9) brightness(0.88);
+}
+
+.atp-hero-page .atp-hero__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, #193c2b 0%, rgba(25, 60, 43, 0.96) 10%, rgba(25, 60, 43, 0.55) 24%, rgba(25, 60, 43, 0) 42%),
+    linear-gradient(rgba(10, 20, 15, 0.14), rgba(10, 20, 15, 0.14));
+}
+
+.atp-hero-page .atp-timeline-shell {
+  padding-top: 1.75rem;
+  padding-bottom: 1.25rem;
+}
+
+.atp-hero-page .atp-hero__status {
+  position: relative;
+  z-index: 2;
+  margin: 1.75rem 0 0 0;
+  padding: 0 max(1.5rem, calc((100vw - 1120px) / 2)) 1.75rem max(1.5rem, calc((100vw - 1120px) / 2));
+}
+
+.atp-hero-page .atp-status-grid {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 14px 32px rgba(10, 20, 15, 0.24);
+  column-gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 1.1rem 1.5rem;
+  row-gap: 0.85rem;
+  margin: 0;
+}
+
+.atp-hero-page .atp-status-item dt {
+  color: #5a6c60 !important;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.3rem;
+  text-transform: uppercase;
+}
+
+.atp-hero-page .atp-status-item dd {
+  color: #1a2b20 !important;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.atp-hero-page .atp-status-item__note {
+  margin: 0.25rem 0 0 0 !important;
+  color: #8a978c !important;
+  font-size: 0.76rem !important;
+  line-height: 1.3;
+}
+
+.atp-hero-page .atp-status-pill {
+  background: #cdead1;
+  border-radius: 999px;
+  color: #0b5c3a !important;
+  display: inline-block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 0.22rem 0.7rem;
+}
+
+.atp-hero-page .atp-status-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1.5px solid #16704d;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  color: #16704d !important;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.atp-hero-page .atp-status-btn:hover,
+.atp-hero-page .atp-status-btn:focus-visible {
+  background: #eef4ee;
+}
+
+.atp-hero-page .atp-status-btn--pending {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  border-style: dashed;
+  border-color: #c9d4cb;
+  color: #8a978c !important;
+  cursor: default;
+  white-space: normal;
+}
+
+.atp-hero-page .atp-status-btn__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.atp-hero-page .atp-status-btn--pending:hover {
+  background: none;
+}
+
+.atp-hero-page .atp-status-btn--pending .atp-status-item__note {
+  margin: 0 !important;
+  font-size: 0.68rem !important;
+  font-style: italic;
+  color: #a9b3ab !important;
+}
+
+@media screen and (max-width: 900px) {
+  .atp-hero-page .atp-hero__image {
+    display: none;
+  }
+
+  .atp-hero-page .atp-hero__copy {
+    max-width: none;
+    padding-right: max(1.5rem, calc((100vw - 1120px) / 2));
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .atp-hero-page .atp-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .atp-hero-page .atp-status-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Pending document card (no hosted file/URL yet) ---------- */
+
+.rengstorff-microsite .bufp-doc-card.atp-doc-pending {
+  cursor: default;
+}
+
+.rengstorff-microsite .bufp-doc-card.atp-doc-pending:hover {
+  border-color: #d4ded4;
+}
+
+.rengstorff-microsite .atp-doc-pending .bufp-doc-card__action {
+  color: #8a978c !important;
+  font-style: italic;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 736px) {
+  .rengstorff-microsite .atp-timeline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .rengstorff-microsite .atp-timeline__arrow {
+    display: none;
+  }
+}
+
+/* =========================================================
+   Table 5 -- "How projects are prioritized" scoring framework.
+   Each category keeps its own icon color (matching the source
+   Table 5 graphic) rather than the page's single green accent, since
+   the whole point of the row is to distinguish five categories at a
+   glance. Point VALUES (32/27/22/10/9) are the real 100-point scale;
+   bar fill WIDTHS are set inline per row normalized against the
+   largest category (32 = 100%) purely so the five weights are easy to
+   compare visually -- the numbers, not the bars, carry the "out of
+   100" meaning.
+   ========================================================= */
+
+.rengstorff-microsite .atp-priority__deck {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #3f7a56 !important;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.85rem 0 !important;
+}
+
+.rengstorff-microsite .atp-priority__cols {
+  display: flex;
+  gap: 2rem;
+  margin: 1.75rem 0 0.5rem 0;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #d4e2d7;
+}
+
+.rengstorff-microsite .atp-priority__colhead {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #748076;
+}
+
+.rengstorff-microsite .atp-priority__colhead--points {
+  flex: 0 0 340px;
+}
+
+.rengstorff-microsite .atp-priority__colhead--measures {
+  flex: 1;
+}
+
+.rengstorff-microsite .atp-priority__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-priority-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #e4ebe4;
+}
+
+.rengstorff-microsite .atp-priority-row:last-child {
+  border-bottom: none;
+}
+
+.rengstorff-microsite .atp-priority-row__icon {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.rengstorff-microsite .atp-priority-row__icon--safety {
+  background: #f6dede;
+  color: #a34848;
+}
+
+.rengstorff-microsite .atp-priority-row__icon--access {
+  background: #d9ecd9;
+  color: #3f7a56;
+}
+
+.rengstorff-microsite .atp-priority-row__icon--mobility {
+  background: #dbe6ef;
+  color: #3d6c8f;
+}
+
+.rengstorff-microsite .atp-priority-row__icon--feasibility {
+  background: #f2e9d0;
+  color: #8a6d2f;
+}
+
+.rengstorff-microsite .atp-priority-row__icon--sustainability {
+  background: #e3ecdc;
+  color: #5c7a3f;
+}
+
+.rengstorff-microsite .atp-priority-row__score {
+  flex: 0 0 340px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.65rem;
+  padding-top: 0.15rem;
+}
+
+.rengstorff-microsite .atp-priority-row__num {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 1.9rem;
+  color: #16412e;
+  line-height: 1;
+}
+
+.rengstorff-microsite .atp-priority-row__unit {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #748076;
+}
+
+.rengstorff-microsite .atp-priority-row__bar {
+  flex: 1 1 100%;
+  height: 18px;
+  border-radius: 999px;
+  background: #e4ebe4;
+  overflow: hidden;
+}
+
+.rengstorff-microsite .atp-priority-row__fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: #3f7a56;
+}
+
+.rengstorff-microsite .atp-priority-row__meta {
+  flex: 1;
+  min-width: 0;
+  padding-top: 0.15rem;
+}
+
+.rengstorff-microsite .atp-priority-row__title {
+  display: block;
+  margin: 0 0 0.35rem 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-priority-row__desc {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #3c463e;
+}
+
+/* ---------- Per-category "View scoring details" disclosure ---------- */
+
+.rengstorff-microsite .atp-priority-row__toggle {
+  flex-basis: 100%;
+  margin: 0.9rem 0 0 calc(52px + 1.25rem);
+  padding: 0.15rem 0.1rem;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #3f7a56;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+}
+
+.rengstorff-microsite .atp-priority-row__toggle:hover {
+  color: #235939;
+  text-decoration: underline;
+}
+
+.rengstorff-microsite .atp-priority-row__toggle:focus-visible {
+  outline: 2px solid #3f7a56;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.rengstorff-microsite .atp-priority-row__chevron {
+  display: inline-block;
+  font-size: 0.75em;
+  transition: transform 0.15s ease;
+}
+
+.rengstorff-microsite .atp-priority-row__toggle[aria-expanded="true"] .atp-priority-row__chevron {
+  transform: rotate(180deg);
+}
+
+.rengstorff-microsite .atp-priority-row__details {
+  flex-basis: 100%;
+  margin: 1.1rem 0 0 calc(52px + 1.25rem);
+  padding-top: 1.1rem;
+  border-top: 1px dashed #d4e2d7;
+}
+
+.rengstorff-microsite .atp-priority-row__details[hidden] {
+  display: none;
+}
+
+.rengstorff-microsite .atp-priority-row__details-source {
+  margin: 1.1rem 0 0 0 !important;
+  font-size: 0.74rem !important;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #8a978c !important;
+}
+
+.rengstorff-microsite .atp-priority-crit + .atp-priority-crit {
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid #eef2ee;
+}
+
+.rengstorff-microsite .atp-priority-crit__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.rengstorff-microsite .atp-priority-crit__name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-priority-crit__max {
+  flex: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #748076;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-priority-crit__source {
+  margin: 0.3rem 0 0 0 !important;
+  font-size: 0.78rem !important;
+  color: #8a978c !important;
+}
+
+.rengstorff-microsite .atp-priority-crit__note {
+  margin: 0.5rem 0 0 0 !important;
+  font-size: 0.85rem !important;
+  color: #3c463e !important;
+}
+
+.rengstorff-microsite .atp-priority-crit__thresholds {
+  margin: 0.65rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-priority-crit__threshold {
+  display: flex;
+  gap: 0.85rem;
+  padding: 0.3rem 0;
+}
+
+.rengstorff-microsite .atp-priority-crit__threshold .atp-priority-crit__score {
+  flex: none;
+  width: 2.6rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #16704d;
+}
+
+.rengstorff-microsite .atp-priority-crit__desc {
+  flex: 1;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #3c463e;
+}
+
+.rengstorff-microsite .atp-priority__footer {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: #eef4ee;
+  border: 1px solid #d4e2d7;
+  border-radius: 16px;
+}
+
+.rengstorff-microsite .atp-priority__footer-icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #dbe6df;
+  color: #3f7a56;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.rengstorff-microsite .atp-priority__footer-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.rengstorff-microsite .atp-priority__footer-title {
+  margin: 0 0 0.35rem 0 !important;
+  font-size: 0.98rem !important;
+  font-weight: 700 !important;
+  color: #16412e !important;
+}
+
+.rengstorff-microsite .atp-priority__footer-text p {
+  margin: 0 0 0.2rem 0 !important;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #3c463e !important;
+}
+
+.rengstorff-microsite .atp-priority__footer-source {
+  margin-top: 0.4rem !important;
+  font-size: 0.74rem !important;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #8a978c !important;
+}
+
+.rengstorff-microsite .atp-priority__footer-cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  background: #cdead1;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #16412e !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-priority__footer-cta:hover,
+.rengstorff-microsite .atp-priority__footer-cta:focus-visible {
+  background: #b8dcbe;
+}
+
+@media screen and (max-width: 700px) {
+  .rengstorff-microsite .atp-priority__cols {
+    display: none;
+  }
+
+  .rengstorff-microsite .atp-priority-row {
+    flex-wrap: wrap;
+  }
+
+  .rengstorff-microsite .atp-priority-row__score {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .rengstorff-microsite .atp-priority-row__meta {
+    flex: 1 1 100%;
+    padding-top: 0.85rem;
+  }
+
+  .rengstorff-microsite .atp-priority-row__toggle,
+  .rengstorff-microsite .atp-priority-row__details {
+    margin-left: 0;
+  }
+
+  .rengstorff-microsite .atp-priority__footer {
+    flex-wrap: wrap;
+  }
+
+  .rengstorff-microsite .atp-priority__footer-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =========================================================
+   "Where are the 100 points?" -- same 17 criteria as Table 5 above,
+   regrouped by weight rather than by category. Category color pairs
+   here are copied verbatim from .atp-priority-row__icon--* above so
+   one category keeps exactly one color for the whole ATP page. The
+   three point groups (55 / 22.5 / 22.5) are deliberately left
+   uncolored (neutral ink) -- color's only job on this page is category.
+   ========================================================= */
+
+.rengstorff-microsite .atp-points {
+  background: #ffffff;
+  padding: 1.5rem clamp(1.25rem, 4vw, 3rem) 1.75rem;
+}
+
+.rengstorff-microsite .atp-points__head {
+  max-width: none;
+}
+
+.rengstorff-microsite .atp-points__title {
+  font-family: "Inter", Helvetica, sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 1.6rem !important;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #14181a !important;
+  margin: 0 0 0.35rem 0 !important;
+}
+
+.rengstorff-microsite .atp-points__subtitle {
+  font-size: 0.94rem !important;
+  line-height: 1.45;
+  color: #4a5650 !important;
+  margin: 0 0 0.25rem 0 !important;
+}
+
+.rengstorff-microsite .atp-points__subtitle em {
+  font-style: italic;
+}
+
+.rengstorff-microsite .atp-points__source {
+  font-size: 0.76rem !important;
+  color: #8a978c !important;
+  margin: 0 !important;
+}
+
+/* ---------- Compact two-column analytical panel ---------- */
+
+.rengstorff-microsite .atp-points__panel {
+  display: grid;
+  grid-template-columns: minmax(150px, 30%) 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid #dde6de;
+}
+
+.rengstorff-microsite .atp-points__stat-num {
+  display: block;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #14181a;
+}
+
+.rengstorff-microsite .atp-points__stat-unit {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #748076;
+}
+
+.rengstorff-microsite .atp-points__stat-desc {
+  margin: 0.6rem 0 0 0 !important;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #3c463e !important;
+}
+
+.rengstorff-microsite .atp-points__stat-sub {
+  margin: 0.5rem 0 0 0 !important;
+  padding-top: 0.5rem;
+  border-top: 1px solid #eef2ee;
+  font-size: 0.8rem !important;
+  color: #7c8a7e !important;
+}
+
+.rengstorff-microsite .atp-points__stat-sub strong {
+  color: #3c463e !important;
+}
+
+.rengstorff-microsite .atp-points__row-head {
+  display: grid;
+  grid-template-columns: 3rem 1fr minmax(130px, 170px);
+  gap: 0.85rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #d4e2d7;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #748076;
+}
+
+.rengstorff-microsite .atp-points__row {
+  display: grid;
+  grid-template-columns: 3rem 1fr minmax(130px, 170px);
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eef2ee;
+}
+
+.rengstorff-microsite .atp-points__more .atp-points__row:last-child {
+  border-bottom: none;
+}
+
+.rengstorff-microsite .atp-points__value {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.88rem;
+  color: #14181a;
+}
+
+.rengstorff-microsite .atp-points__name {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #23281f;
+}
+
+.rengstorff-microsite .atp-points__cat {
+  display: inline-block;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.12rem 0.5rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-points__cat--safety {
+  background: #f6dede;
+  color: #a34848 !important;
+}
+
+.rengstorff-microsite .atp-points__cat--access {
+  background: #d9ecd9;
+  color: #3f7a56 !important;
+}
+
+.rengstorff-microsite .atp-points__cat--mobility {
+  background: #dbe6ef;
+  color: #3d6c8f !important;
+}
+
+.rengstorff-microsite .atp-points__cat--feasibility {
+  background: #f2e9d0;
+  color: #8a6d2f !important;
+}
+
+.rengstorff-microsite .atp-points__cat--sustainability {
+  background: #e3ecdc;
+  color: #5c7a3f !important;
+}
+
+.rengstorff-microsite .atp-points__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0.5rem 0 0 0;
+  padding: 0.15rem 0.05rem;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #16704d;
+  cursor: pointer;
+}
+
+.rengstorff-microsite .atp-points__toggle:hover {
+  color: #0f5a3d;
+  text-decoration: underline;
+}
+
+.rengstorff-microsite .atp-points__toggle:focus-visible {
+  outline: 2px solid #16704d;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.rengstorff-microsite .atp-points__chevron {
+  display: inline-block;
+  font-size: 0.7rem;
+  transition: transform 0.15s ease;
+}
+
+.rengstorff-microsite .atp-points__toggle[aria-expanded="true"] .atp-points__chevron {
+  transform: rotate(180deg);
+}
+
+.rengstorff-microsite .atp-points__more[hidden] {
+  display: none;
+}
+
+/* ---------- Single-line takeaway strip ---------- */
+
+.rengstorff-microsite .atp-points__takeaway {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding: 0.6rem 0.9rem;
+  background: #f5f8f4;
+  border: 1px solid #e3e9e2;
+  border-radius: 8px;
+  min-height: 50px;
+}
+
+.rengstorff-microsite .atp-points__takeaway .fas {
+  flex: none;
+  color: #5c7a3f;
+  font-size: 0.85rem;
+}
+
+.rengstorff-microsite .atp-points__takeaway p {
+  margin: 0 !important;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #3c463e !important;
+}
+
+@media screen and (max-width: 700px) {
+  .rengstorff-microsite .atp-points__panel {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .rengstorff-microsite .atp-points__row-head {
+    display: none;
+  }
+
+  .rengstorff-microsite .atp-points__row {
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    grid-template-areas: "value name" ". cat";
+    column-gap: 0.6rem;
+    row-gap: 0.3rem;
+    align-items: baseline;
+    padding: 0.5rem 0;
+  }
+
+  .rengstorff-microsite .atp-points__value {
+    grid-area: value;
+  }
+
+  .rengstorff-microsite .atp-points__name {
+    grid-area: name;
+    min-width: 0;
+  }
+
+  .rengstorff-microsite .atp-points__cat {
+    grid-area: cat;
+    justify-self: start;
+  }
+}
+
+/* =========================================================
+   MVATP Scoring Criteria Framework -- compact accordion redesign.
+   Replaces the old tall .atp-priority layout on the main ATP page
+   (that markup/CSS is kept below, unused here, because the detailed
+   per-criterion threshold breakdown moved to its own subpage,
+   scoring-criteria/, which still renders with it verbatim).
+
+   Cognitive goal: at a glance, 100 points -> 17 criteria -> 5
+   categories -> relative weights. Category rows are the primary
+   information and stay compact (~72px collapsed) with a redundant
+   point value + proportional bar (literal percent-of-100, not
+   normalized to the largest category) so the number and the bar tell
+   the same story two ways. Individual criteria are progressive
+   disclosure only -- collapsed by default, revealed per-row on click,
+   independently (not an exclusive accordion), because the whole
+   point of the row list is to keep all five weights comparable at
+   once even while one is expanded. Category colors are the exact
+   same swatches used everywhere else on this page
+   (.atp-priority-row__icon--* / .atp-points__cat--*). ---------- */
+
+.rengstorff-microsite .atp-scoring {
+  background: #ffffff;
+  padding: 1.25rem clamp(1.25rem, 4vw, 3rem) 1.4rem;
+}
+
+.rengstorff-microsite .atp-scoring__title {
+  font-family: "Inter", Helvetica, sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(1.7rem, 2.4vw, 2rem) !important;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #14181a !important;
+  margin: 0 0 0.4rem 0 !important;
+}
+
+.rengstorff-microsite .atp-scoring__deck {
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  color: #3f7a56 !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+.rengstorff-microsite .atp-scoring__intro {
+  font-size: 1rem !important;
+  line-height: 1.5;
+  color: #4a5650 !important;
+  max-width: 48rem;
+  margin: 0 !important;
+}
+
+.rengstorff-microsite .atp-scoring__list {
+  margin: 1rem 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rengstorff-microsite .atp-scoring__item {
+  border: 1px solid #e4ebe4;
+  border-radius: 10px;
+  background: #fafcfa;
+  overflow: hidden;
+}
+
+.rengstorff-microsite .atp-scoring__row {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  width: 100%;
+  padding: 0.55rem 1rem;
+  min-height: 64px;
+  background: none;
+  border: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rengstorff-microsite .atp-scoring__row:hover {
+  background: #f2f6f2;
+}
+
+.rengstorff-microsite .atp-scoring__row:focus-visible {
+  outline: 2px solid #16704d;
+  outline-offset: -2px;
+}
+
+.rengstorff-microsite .atp-scoring__icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.rengstorff-microsite .atp-scoring__icon--safety {
+  background: #f6dede;
+  color: #a34848;
+}
+
+.rengstorff-microsite .atp-scoring__icon--access {
+  background: #d9ecd9;
+  color: #3f7a56;
+}
+
+.rengstorff-microsite .atp-scoring__icon--mobility {
+  background: #dbe6ef;
+  color: #3d6c8f;
+}
+
+.rengstorff-microsite .atp-scoring__icon--sustainability {
+  background: #e3ecdc;
+  color: #5c7a3f;
+}
+
+.rengstorff-microsite .atp-scoring__icon--feasibility {
+  background: #f2e9d0;
+  color: #8a6d2f;
+}
+
+.rengstorff-microsite .atp-scoring__score {
+  flex: none;
+  width: 130px;
+}
+
+.rengstorff-microsite .atp-scoring__value {
+  display: block;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #14181a;
+  line-height: 1;
+}
+
+.rengstorff-microsite .atp-scoring__unit {
+  margin-left: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #8a978c;
+}
+
+.rengstorff-microsite .atp-scoring__bar {
+  display: block;
+  margin-top: 0.35rem;
+  height: 6px;
+  border-radius: 999px;
+  background: #e4ebe4;
+  overflow: hidden;
+}
+
+.rengstorff-microsite .atp-scoring__fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: #3f7a56;
+}
+
+.rengstorff-microsite .atp-scoring__meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.rengstorff-microsite .atp-scoring__name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-scoring__desc {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #748076;
+}
+
+.rengstorff-microsite .atp-scoring__chevron {
+  flex: none;
+  font-size: 0.7rem;
+  color: #9fb5a5;
+  transition: transform 0.15s ease;
+}
+
+.rengstorff-microsite .atp-scoring__row[aria-expanded="true"] .atp-scoring__chevron {
+  transform: rotate(180deg);
+}
+
+.rengstorff-microsite .atp-scoring__panel {
+  padding: 0 1rem 1rem calc(1rem + 36px + 1.1rem);
+  border-top: 1px solid #e4ebe4;
+  margin: 0 1rem;
+}
+
+.rengstorff-microsite .atp-scoring__panel[hidden] {
+  display: none;
+}
+
+.rengstorff-microsite .atp-scoring__panel-label {
+  margin: 0.75rem 0 0.5rem 0 !important;
+  font-size: 0.72rem !important;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a978c !important;
+}
+
+.rengstorff-microsite .atp-scoring__crit-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-scoring__crit {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  grid-template-areas: "pts name" ". desc";
+  column-gap: 0.75rem;
+  row-gap: 0.1rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid #eef2ee;
+}
+
+.rengstorff-microsite .atp-scoring__crit:last-child {
+  border-bottom: none;
+}
+
+.rengstorff-microsite .atp-scoring__crit-pts {
+  grid-area: pts;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #16704d;
+  font-variant-numeric: tabular-nums;
+}
+
+.rengstorff-microsite .atp-scoring__crit-name {
+  grid-area: name;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-scoring__crit-desc {
+  grid-area: desc;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: #667069;
+}
+
+.rengstorff-microsite .atp-scoring__panel-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #16704d !important;
+  text-decoration: none !important;
+}
+
+.rengstorff-microsite .atp-scoring__panel-link:hover {
+  text-decoration: underline !important;
+}
+
+.rengstorff-microsite .atp-scoring__footer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  font-size: 0.76rem;
+  color: #8a978c;
+}
+
+.rengstorff-microsite .atp-scoring__footer p {
+  margin: 0 !important;
+  color: #8a978c !important;
+}
+
+.rengstorff-microsite .atp-scoring__footer a {
+  color: #16704d;
+  font-weight: 700;
+}
+
+.rengstorff-microsite .atp-scoring__footer-icon {
+  flex: none;
+  color: #9fb5a5;
+  font-size: 0.78rem;
+}
+
+@media screen and (max-width: 700px) {
+  .rengstorff-microsite .atp-scoring__row {
+    align-items: flex-start;
+    gap: 0.75rem;
+    min-height: 0;
+  }
+
+  .rengstorff-microsite .atp-scoring__score {
+    width: 76px;
+  }
+
+  .rengstorff-microsite .atp-scoring__panel {
+    padding-left: 1rem;
+  }
+
+  .rengstorff-microsite .atp-scoring__crit {
+    grid-template-columns: 2rem 1fr;
+  }
+}
+
+/* =========================================================
+   NEW PAGE ARCHITECTURE -- everything below this line is new,
+   unlocked component work for the page-level redesign. It does not
+   modify, extend, or override any selector under .atp-priority or
+   .atp-points (the two locked components above) -- those stay exactly
+   as shipped. New components reuse the same five category colors as
+   .atp-priority-row__icon--* / .atp-points__cat--* so category color
+   stays a single stable mapping across the whole page.
+   ========================================================= */
+
+/* ---------- "Explore the Plan" -- calm source-document index, moved
+   to the bottom of the page. Same white-panel treatment as Vision and
+   "Where are the 100 points?" above; rows, not cards -- number/letter
+   is a subtle anchor, not a graphic. ---------- */
+
+.rengstorff-microsite .atp-docs {
+  background: #ffffff;
+  padding: 3.5rem clamp(1.25rem, 4vw, 3rem) 3.75rem;
+}
+
+.rengstorff-microsite .atp-docs__title {
+  font-family: "Inter", Helvetica, sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(2rem, 3.4vw, 2.75rem) !important;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: #14181a !important;
+  margin: 0 0 0.85rem 0 !important;
+}
+
+.rengstorff-microsite .atp-docs__intro {
+  font-size: 1.08rem !important;
+  line-height: 1.6;
+  color: #4a5650 !important;
+  max-width: 42rem;
+  margin: 0 !important;
+}
+
+.rengstorff-microsite .atp-docs__group-label {
+  margin: 3rem 0 0.5rem 0 !important;
+  font-size: 0.76rem !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4e745c !important;
+}
+
+.rengstorff-microsite .atp-docs__group-label--appendices {
+  margin-top: 3.25rem !important;
+}
+
+.rengstorff-microsite .atp-docs__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-docs__row {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  grid-template-areas:
+    "num title action"
+    "num desc action";
+  column-gap: 1.5rem;
+  row-gap: 0.3rem;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #eef2ee;
+}
+
+.rengstorff-microsite .atp-docs__row:last-child {
+  border-bottom: none;
+}
+
+.rengstorff-microsite .atp-docs__head {
+  display: contents;
+}
+
+.rengstorff-microsite .atp-docs__num {
+  grid-area: num;
+  align-self: start;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #9fb5a5;
+  padding-top: 0.15rem;
+}
+
+.rengstorff-microsite .atp-docs__item-title {
+  grid-area: title;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-docs__desc {
+  grid-area: desc;
+  margin: 0 !important;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #526258 !important;
+}
+
+.rengstorff-microsite .atp-docs__action {
+  grid-area: action;
+  justify-self: end;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #16704d !important;
+  white-space: nowrap;
+  text-decoration: none !important;
+}
+
+.rengstorff-microsite .atp-docs__action:hover,
+.rengstorff-microsite .atp-docs__action:focus-visible {
+  text-decoration: underline !important;
+}
+
+@media screen and (max-width: 700px) {
+  .rengstorff-microsite .atp-docs__row {
+    display: block;
+    padding: 1.1rem 0;
+  }
+
+  .rengstorff-microsite .atp-docs__head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .rengstorff-microsite .atp-docs__desc {
+    display: block;
+    margin-bottom: 0.6rem !important;
+  }
+
+  .rengstorff-microsite .atp-docs__action {
+    display: inline-block;
+  }
+}
+
+/* ---------- A small solid CTA for real, working links (distinct from
+   .connected-project-cta, whose dashed border + default cursor signal
+   "not available yet" -- these link somewhere real) ---------- */
+
+.rengstorff-microsite .atp-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.3rem;
+  border-radius: 999px;
+  background: #16704d;
+  color: #ffffff !important;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.rengstorff-microsite .atp-cta:hover,
+.rengstorff-microsite .atp-cta:focus-visible {
+  background: #0f5a3d;
+}
+
+/* ---------- 02. Vision & guiding principles ----------
+   White background so this reads as a distinct panel, same treatment
+   as the "Where are the 100 points?" figure elsewhere on this page. */
+
+.rengstorff-microsite .atp-vision {
+  background: #ffffff;
+  padding: 1.5rem clamp(1.25rem, 4vw, 3rem) 1.75rem;
+}
+
+.rengstorff-microsite .atp-vision__title {
+  font-family: "Inter", Helvetica, sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(2.375rem, 2.7vw, 2.625rem) !important;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #14181a !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+.rengstorff-microsite .atp-vision__intro {
+  font-size: 1.0625rem !important;
+  line-height: 1.5;
+  color: #4a5650 !important;
+  max-width: 47.5rem;
+  margin: 0 !important;
+}
+
+.rengstorff-microsite .atp-vision__statement {
+  margin: 1.5rem 0 0 0;
+  padding: 1.5rem 2rem;
+  border-left: 4px solid #16704d;
+  background: #f2f7f2;
+}
+
+.rengstorff-microsite .atp-vision__statement p {
+  margin: 0 !important;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: #16412e !important;
+}
+
+.rengstorff-microsite .atp-vision__statement cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #748076;
+}
+
+.rengstorff-microsite .atp-vision__divider {
+  margin: 1.5rem 0 0 0;
+  border: none;
+  border-top: 1px solid #dde6de;
+}
+
+.rengstorff-microsite .atp-vision__label {
+  margin: 1rem 0 0.5rem 0 !important;
+  font-size: 0.78rem !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4e745c !important;
+}
+
+.rengstorff-microsite .atp-vision__principles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-vision__principle-tag {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.rengstorff-microsite .atp-vision__principle-tag--safety {
+  background: #f6dede;
+  color: #a34848 !important;
+}
+
+.rengstorff-microsite .atp-vision__principle-tag--access {
+  background: #d9ecd9;
+  color: #3f7a56 !important;
+}
+
+.rengstorff-microsite .atp-vision__principle-tag--mobility {
+  background: #dbe6ef;
+  color: #3d6c8f !important;
+}
+
+.rengstorff-microsite .atp-vision__principle-tag--sustainability {
+  background: #e3ecdc;
+  color: #5c7a3f !important;
+}
+
+.rengstorff-microsite .atp-vision__principle-tag--neutral {
+  background: #ece6f7;
+  color: #6b4fa0 !important;
+}
+
+.rengstorff-microsite .atp-vision__note {
+  margin: 0.85rem 0 0 0 !important;
+  font-size: 0.8rem !important;
+  color: #6e8577 !important;
+  max-width: 48rem;
+}
+
+/* ---------- 04 / 09. Process visualization (vertical step flow) ---------- */
+
+.rengstorff-microsite .atp-process__steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-process__step {
+  width: 100%;
+  max-width: 42rem;
+  padding: 1.1rem 1.5rem;
+  border: 1px solid #d4e2d7;
+  border-radius: 14px;
+  background: #f5f8f4;
+  text-align: center;
+}
+
+.rengstorff-microsite .atp-process__label {
+  display: block;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-process__label a {
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-process__desc {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #526258;
+}
+
+.rengstorff-microsite .atp-process__arrow {
+  padding: 0.35rem 0;
+  color: #9fb5a5;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.rengstorff-microsite .atp-process__steps--compact .atp-process__step {
+  padding: 0.9rem 1.5rem;
+}
+
+.rengstorff-microsite .atp-process__steps--compact .atp-process__label {
+  font-size: 0.98rem;
+}
+
+/* ---------- 06. Priority projects (unchanged) ---------- */
+
+/* ---------- 07. Policies & programs -- categorized accordion.
+   Modeled closely on .atp-scoring's row/panel pattern (same compact
+   density, same independent-toggle behavior), but with its own icon
+   color palette: these 7 policy/program categories are a different
+   taxonomy from the 5 ATP scoring categories used elsewhere on this
+   page, so reusing those exact colors here would wrongly imply they
+   are the same classification. The one deliberate exception is
+   Greening / Tree Canopy, which reuses the Sustainability &
+   Biodiversity green -- that overlap is real, not coincidental. ---------- */
+
+.rengstorff-microsite .atp-polcat__orient {
+  margin: 0.5rem 0 0 0 !important;
+  font-size: 0.85rem !important;
+  color: #667069 !important;
+}
+
+.rengstorff-microsite .atp-polcat__list {
+  margin: 1.1rem 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rengstorff-microsite .atp-polcat__item {
+  border: 1px solid #e4ebe4;
+  border-radius: 10px;
+  background: #fafcfa;
+  overflow: hidden;
+}
+
+.rengstorff-microsite .atp-polcat__row {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  width: 100%;
+  padding: 0.55rem 1rem;
+  min-height: 64px;
+  background: none;
+  border: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rengstorff-microsite .atp-polcat__row:hover {
+  background: #f2f6f2;
+}
+
+.rengstorff-microsite .atp-polcat__row:focus-visible {
+  outline: 2px solid #16704d;
+  outline-offset: -2px;
+}
+
+.rengstorff-microsite .atp-polcat__icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.92rem;
+}
+
+.rengstorff-microsite .atp-polcat__icon--street-safety {
+  background: #f7dcd5;
+  color: #a1462e;
+}
+
+.rengstorff-microsite .atp-polcat__icon--bicycling {
+  background: #dcebf0;
+  color: #2d6e82;
+}
+
+.rengstorff-microsite .atp-polcat__icon--walking {
+  background: #fbe4d5;
+  color: #a15c2e;
+}
+
+.rengstorff-microsite .atp-polcat__icon--saferoutes {
+  background: #f7ecc9;
+  color: #8a7422;
+}
+
+.rengstorff-microsite .atp-polcat__icon--design {
+  background: #e2e8f2;
+  color: #3c5a80;
+}
+
+.rengstorff-microsite .atp-polcat__icon--tdm {
+  background: #eae2f6;
+  color: #6a4f99;
+}
+
+.rengstorff-microsite .atp-polcat__icon--staff {
+  background: #e6eaec;
+  color: #4a5d68;
+}
+
+.rengstorff-microsite .atp-polcat__icon--greening {
+  background: #e3ecdc;
+  color: #5c7a3f;
+}
+
+.rengstorff-microsite .atp-polcat__icon--ops {
+  background: #f8e0e3;
+  color: #a34a5a;
+}
+
+.rengstorff-microsite .atp-polcat__icon--measure {
+  background: #dceae7;
+  color: #2f6e63;
+}
+
+.rengstorff-microsite .atp-polcat__meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.rengstorff-microsite .atp-polcat__title-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rengstorff-microsite .atp-polcat__name {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-polcat__count {
+  font-size: 0.76rem;
+  color: #8a978c;
+}
+
+.rengstorff-microsite .atp-polcat__desc {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #748076;
+}
+
+.rengstorff-microsite .atp-polcat__action {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #16704d;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-polcat__chevron {
+  font-size: 0.7rem;
+  color: #9fb5a5;
+  transition: transform 0.15s ease;
+}
+
+.rengstorff-microsite .atp-polcat__row[aria-expanded="true"] .atp-polcat__chevron {
+  transform: rotate(180deg);
+}
+
+.rengstorff-microsite .atp-polcat__panel {
+  padding: 0 1rem 1rem calc(1rem + 36px + 1.1rem);
+  border-top: 1px solid #e4ebe4;
+  margin: 0 1rem;
+}
+
+.rengstorff-microsite .atp-polcat__panel[hidden] {
+  display: none;
+}
+
+.rengstorff-microsite .atp-polcat__policies {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-polcat__policies li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #eef2ee;
+}
+
+.rengstorff-microsite .atp-polcat__policies li:last-child {
+  border-bottom: none;
+}
+
+.rengstorff-microsite .atp-polcat__policy-name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-polcat__policy-desc {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #526258;
+}
+
+.rengstorff-microsite .atp-polcat__footer {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #f5f8f4;
+  border: 1px solid #e3e9e2;
+  border-radius: 8px;
+}
+
+.rengstorff-microsite .atp-polcat__footer .fa-info-circle {
+  flex: none;
+  color: #9fb5a5;
+  font-size: 0.85rem;
+}
+
+.rengstorff-microsite .atp-polcat__footer-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.rengstorff-microsite .atp-polcat__footer-text p {
+  margin: 0 !important;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #3c463e !important;
+}
+
+.rengstorff-microsite .atp-polcat__footer-sub {
+  color: #8a978c !important;
+}
+
+.rengstorff-microsite .atp-polcat__footer-link {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border: 1.5px solid #16704d;
+  border-radius: 999px;
+  background: #eef4ee;
+  color: #16704d !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-polcat__footer-link:hover,
+.rengstorff-microsite .atp-polcat__footer-link:focus-visible {
+  background: #dfeade;
+}
+
+@media screen and (max-width: 700px) {
+  .rengstorff-microsite .atp-polcat__row {
+    align-items: flex-start;
+    gap: 0.75rem;
+    min-height: 0;
+  }
+
+  .rengstorff-microsite .atp-polcat__action-label {
+    display: none;
+  }
+
+  .rengstorff-microsite .atp-polcat__panel {
+    padding-left: 1rem;
+  }
+
+  .rengstorff-microsite .atp-polcat__footer {
+    flex-wrap: wrap;
+  }
+
+  .rengstorff-microsite .atp-polcat__footer-link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ---------- 08/10. Green Complete Streets outcome blocks ---------- */
+
+.rengstorff-microsite .atp-gcs__outcome {
+  max-width: 56rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid #dde6de;
+}
+
+.rengstorff-microsite .atp-gcs__outcome:first-of-type {
+  margin-top: 2rem;
+}
+
+.rengstorff-microsite .atp-gcs__outcome-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.rengstorff-microsite .atp-gcs__outcome-head h3 {
+  margin: 0 !important;
+  font-size: 1.15rem !important;
+}
+
+.rengstorff-microsite .atp-gcs__status {
+  flex: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-gcs__status--explicit {
+  background: #cdead1;
+  color: #0b5c3a !important;
+}
+
+.rengstorff-microsite .atp-gcs__status--indirect {
+  background: #f2e9d8;
+  color: #6b5a37 !important;
+}
+
+.rengstorff-microsite .atp-gcs__question {
+  margin: 0.6rem 0 0.85rem 0 !important;
+  font-size: 1.02rem !important;
+  font-weight: 600;
+  color: #3c463e !important;
+}
+
+.rengstorff-microsite .atp-gcs__list {
+  margin: 0.85rem 0;
+  padding-left: 1.2rem;
+}
+
+.rengstorff-microsite .atp-gcs__list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #3c463e;
+}
+
+.rengstorff-microsite .atp-gcs__source {
+  margin: 0.75rem 0 0 0 !important;
+  font-size: 0.78rem !important;
+  color: #8a978c !important;
+}
+
+/* ---------- 13. Small closing footer -- replaces the former "How the
+   plan changed" section, "What's still missing?" placeholder and the
+   large Documents & Sources card grid. Deliberately minimal: one
+   contextual link out to the advocacy/history subpage, one line of
+   source attribution, the existing back-link. ---------- */
+
+.rengstorff-microsite .atp-footer {
+  margin-top: 1rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #d4ded4;
+}
+
+.rengstorff-microsite .atp-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: #16704d;
+}
+
+.rengstorff-microsite .atp-footer__source {
+  margin: 1rem 0 0 0 !important;
+  font-size: 0.85rem !important;
+  color: #8a978c !important;
+  max-width: 48rem;
+}
+
+.rengstorff-microsite .atp-footer .study-back-link {
+  margin-top: 1.5rem;
+}
+
+/* =========================================================
+   "On this page" -- sticky left sidebar (desktop) replacing the wide
+   horizontal .onpage-nav bar, modeled directly on the Standard
+   Details page's .sd-layout/.sd-sidebar (same slim vertical rule,
+   quiet inactive links, thin green rule + darker/bolder text for the
+   active one, no shaded box, no icons). The mobile/tablet dropdown
+   below the breakpoint is the existing shared .onpage-nav component
+   itself, not a new control -- only .atp-onpage-nav-mobile's
+   desktop visibility changes here. Active-state + smooth-scroll for
+   both navs comes from one shared script (see the HTML's closing
+   script block); this file only supplies appearance. ========================================================= */
+
+.rengstorff-microsite .atp-layout {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 3rem;
+}
+
+.rengstorff-microsite .atp-sidebar {
+  display: none;
+  position: sticky;
+  top: 1.5rem;
+  align-self: start;
+}
+
+.rengstorff-microsite.rengstorff-microsite p.atp-sidebar__label {
+  color: #5a6c60 !important;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.85rem;
+  text-transform: uppercase;
+}
+
+.rengstorff-microsite .atp-sidebar__list {
+  border-left: 2px solid #d4ded4;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rengstorff-microsite .atp-sidebar__list li {
+  margin: 0;
+}
+
+.rengstorff-microsite .atp-sidebar__list a {
+  color: #304238;
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.5rem 0 0.5rem 1rem;
+  text-decoration: none;
+}
+
+.rengstorff-microsite .atp-sidebar__list a:hover,
+.rengstorff-microsite .atp-sidebar__list a:focus-visible {
+  color: #16704d;
+}
+
+.rengstorff-microsite .atp-sidebar__list a.is-active {
+  border-left: 2px solid #16704d;
+  color: #0b2f1c;
+  font-weight: 700;
+  margin-left: -2px;
+  padding-left: calc(1rem + 1px);
+}
+
+.rengstorff-microsite .atp-onpage-nav-mobile .onpage-nav__current {
+  color: #16704d;
+  font-weight: 700;
+}
+
+.rengstorff-microsite .atp-onpage-nav-mobile .onpage-nav__current:not(:empty)::before {
+  content: "\2014\00a0";
+}
+
+@media screen and (min-width: 1025px) {
+  .rengstorff-microsite .atp-sidebar {
+    display: block;
+  }
+
+  .rengstorff-microsite .atp-onpage-nav-mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .rengstorff-microsite .atp-layout {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .rengstorff-microsite .atp-vision__statement {
+    padding: 1.25rem;
+  }
+
+  .rengstorff-microsite .atp-process__step {
+    max-width: none;
+  }
+}

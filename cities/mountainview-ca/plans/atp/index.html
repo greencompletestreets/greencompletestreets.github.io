@@ -1,0 +1,1281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Active Transportation Plan | Mountain View, CA | Green Complete Streets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A guide to Mountain View's 2026 Active Transportation Plan — what it proposes, how it changed through public review, what community groups recommended, and what happens next." />
+  <link rel="stylesheet" href="../../../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../../../assets/css/mv-atp.css" />
+</head>
+<body class="rengstorff-microsite atp-hero-page">
+  <main>
+
+    <!-- ==================================================
+         HERO -- redesigned to match the Standard Details page's
+         design system (.rengstorff-hero + the same dark-green/white
+         card language as .sd-hero/.sd-status-grid), scoped under
+         .atp-hero-page so nothing here touches sd-page or any other
+         hero on the site. Image is a real MVATP asset (Chapter 4
+         cover photo -- a rider in the green-painted bike lane past
+         downtown storefronts), not an invented streetscape; it carries
+         no caption since it's a chapter cover crop, not a network map.
+         "City's ATP page" links to https://collaborate.mountainview.gov/atp,
+         the same verified City URL already used elsewhere on this site
+         (Standard Details page); "Full ATP PDF" has no single verified
+         combined-PDF URL, so it keeps the site's existing pending-link
+         treatment rather than invent one. -->
+    <section class="rengstorff-hero atp-hero" id="overview">
+      <div class="rengstorff-hero__copy atp-hero__copy">
+        <nav class="study-breadcrumb atp-hero__breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../../index.html">Mountain View</a></li>
+            <li><a href="../">Plans</a></li>
+            <li><span aria-current="page">Active Transportation Plan</span></li>
+          </ol>
+        </nav>
+        <h1 id="page-title">Mountain View<br />Active Transportation<br />Plan</h1>
+        <p class="hero-subtitle">Mountain View&#8217;s 2026 plan for walking, bicycling, and active transportation &mdash; what it proposes, how it changed, and what happens next.</p>
+      </div>
+
+      <figure class="atp-hero__image" aria-hidden="true">
+        <img src="../../../../images/cities/mountainview-ca/atp/mvatp-2026-08-chapter-4-lets-roll-thumb.jpg" alt="" loading="lazy" />
+      </figure>
+
+      <div class="atp-hero__status">
+        <dl class="atp-status-grid">
+          <div class="atp-status-item">
+            <dt>Status</dt>
+            <dd><span class="atp-status-pill">Council consideration</span></dd>
+            <p class="atp-status-item__note">Final plan scheduled for City Council</p>
+          </div>
+          <div class="atp-status-item">
+            <dt>Council meeting</dt>
+            <dd>September 22, 2026</dd>
+            <p class="atp-status-item__note">(scheduled)</p>
+          </div>
+          <div class="atp-status-item">
+            <dt>City&#8217;s ATP page</dt>
+            <dd><a class="atp-status-btn" href="https://collaborate.mountainview.gov/atp" target="_blank" rel="noopener noreferrer">View City ATP page <span class="fas fa-external-link-alt" aria-hidden="true"></span></a></dd>
+          </div>
+          <div class="atp-status-item">
+            <dt>Full ATP PDF</dt>
+            <dd><span class="atp-status-btn atp-status-btn--pending" aria-disabled="true"><span class="atp-status-btn__label">Link pending <span class="fas fa-external-link-alt" aria-hidden="true"></span></span><span class="atp-status-item__note">Awaiting a verified URL</span></span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Timeline -- same milestones as before, moved out of the green
+         hero into normal page flow (matching how the Standard Details
+         page keeps its own timeline as a separate section) and
+         relabeled with the fuller two-line date/description form. -->
+    <div class="rengstorff-shell atp-timeline-shell">
+      <ol class="atp-timeline" aria-label="Plan timeline">
+        <li class="atp-timeline__step atp-timeline__step--done"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label">April 2026<br />Draft Plan</span></li>
+        <li class="atp-timeline__arrow" aria-hidden="true">&rarr;</li>
+        <li class="atp-timeline__step atp-timeline__step--done"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label">June 16, 2026<br />City Transportation Commission (CTC)</span></li>
+        <li class="atp-timeline__arrow" aria-hidden="true">&rarr;</li>
+        <li class="atp-timeline__step atp-timeline__step--done"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label">August 2026<br />Revised ATP</span></li>
+        <li class="atp-timeline__arrow" aria-hidden="true">&rarr;</li>
+        <li class="atp-timeline__step atp-timeline__step--done"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label">August 31, 2026<br />CTC</span></li>
+        <li class="atp-timeline__arrow" aria-hidden="true">&rarr;</li>
+        <li class="atp-timeline__step atp-timeline__step--upcoming"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label">September 22, 2026<br />City Council</span></li>
+      </ol>
+    </div>
+
+    <!-- Mobile/tablet "On this page" -- the shared .onpage-nav
+         component (same one used elsewhere on the site), collapsed to
+         a dropdown trigger by its own CSS at <=1024px. Hidden above
+         that width via .atp-onpage-nav-mobile (see mv-atp.css) once
+         the sticky sidebar below takes over -- same split as the
+         Standard Details page's sd-onpage-nav-mobile/sd-sidebar pair.
+         Its existing click/smooth-scroll/IntersectionObserver script
+         (further down this file) now also drives the sidebar's active
+         state, so the two navs never disagree about the current
+         section. -->
+    <nav class="onpage-nav atp-onpage-nav-mobile" aria-label="On this page">
+      <span class="onpage-nav__label" aria-hidden="true">On this page</span>
+      <button type="button" class="onpage-nav__trigger" aria-expanded="false" aria-controls="onpage-nav-list">
+        <span>On this page</span>
+        <span class="onpage-nav__current"></span>
+        <span class="onpage-nav__chevron" aria-hidden="true">&#9662;</span>
+      </button>
+      <ul class="onpage-nav__list" id="onpage-nav-list">
+        <li><a class="onpage-nav__link" href="#overview">Overview</a></li>
+        <li><a class="onpage-nav__link" href="#vision">Vision</a></li>
+        <li><a class="onpage-nav__link" href="#network-to-projects">Network to Projects</a></li>
+        <li><a class="onpage-nav__link" href="#table-5">Scoring Framework</a></li>
+        <li><a class="onpage-nav__link" href="#priority-projects">Priority Projects</a></li>
+        <li><a class="onpage-nav__link" href="#policies-programs">Policies &amp; Programs</a></li>
+        <li><a class="onpage-nav__link" href="#green-complete-streets">Green Complete Streets</a></li>
+        <li><a class="onpage-nav__link" href="#plan-to-implementation">Plan to Implementation</a></li>
+        <li><a class="onpage-nav__link" href="#measuring-progress">Measuring Progress</a></li>
+        <li><a class="onpage-nav__link" href="#explore-the-plan">Explore the Plan</a></li>
+      </ul>
+    </nav>
+
+    <div class="rengstorff-shell atp-layout">
+      <!-- Desktop sticky sidebar -- shown only at >=1025px (see
+           mv-atp.css), replacing the wide horizontal on-page nav there.
+           Visual language matches the Standard Details page's
+           .sd-sidebar exactly: slim vertical rule, quiet inactive
+           links, thin green rule + darker/bolder text for the active
+           one (set by the shared script below), no shaded box. -->
+      <aside class="atp-sidebar" aria-label="On this page">
+        <p class="atp-sidebar__label">On this page</p>
+        <ul class="atp-sidebar__list">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#vision">Vision</a></li>
+          <li><a href="#network-to-projects">Network to Projects</a></li>
+          <li><a href="#table-5">Scoring Framework</a></li>
+          <li><a href="#priority-projects">Priority Projects</a></li>
+          <li><a href="#policies-programs">Policies &amp; Programs</a></li>
+          <li><a href="#green-complete-streets">Green Complete Streets</a></li>
+          <li><a href="#plan-to-implementation">Plan to Implementation</a></li>
+          <li><a href="#measuring-progress">Measuring Progress</a></li>
+          <li><a href="#explore-the-plan">Explore the Plan</a></li>
+        </ul>
+      </aside>
+
+      <div class="atp-main">
+
+      <!-- ==================================================
+           02. What does the ATP envision? -- Vision Statement and the
+           five Guiding Principles are transcribed verbatim from MVATP
+           Chapter 1 ("Vision & Guiding Principles of the MVATP", p.9)
+           and the Executive Summary (p.VIII), which confirms "five
+           Guiding Principles." Feasibility is NOT one of the five --
+           Chapter 3 (p.40) names it as an additional scoring category
+           alongside four of the five guiding principles, so it gets no
+           guiding-principle tag here. The four guiding principles that
+           double as scoring categories reuse the exact same category
+           colors as the Table 5 visualization below; "Innovation &
+           Action-Orientation" isn't a scoring category, so it stays
+           neutral. The "on the street" translation is Green Complete
+           Streets' own reading of the vision language, and is labeled
+           as such rather than presented as ATP text. -->
+      <section class="section-block atp-vision" id="vision">
+        <span class="category-tag category-tag--record">Vision &amp; guiding principles</span>
+        <div class="section-intro">
+          <h2 class="atp-vision__title">What does the ATP envision?</h2>
+          <p class="atp-vision__intro">The MVATP is built around a Vision Statement and five Guiding Principles, developed with the ATPAC, TAC and BPAC and approved by City Council. Together they set the standard against which every recommendation in the plan &mdash; and every recommendation on this page &mdash; is measured.</p>
+        </div>
+
+        <blockquote class="atp-vision__statement">
+          <p>&#8220;Mountain View leads the region with an Active Transportation Plan that defines a series of connected, low-stress, and green corridors that invite active transportation. The corridors include shade, wildlife habitat, and public open spaces. The plan enables the City to intentionally support a culture of walking and biking, enhance biodiversity, and reduce climate change impacts.&#8221;</p>
+          <cite>MVATP Vision Statement, Chapter 1</cite>
+        </blockquote>
+
+        <hr class="atp-vision__divider" />
+
+        <p class="atp-vision__label">The five guiding principles</p>
+        <ul class="atp-vision__principles">
+          <li class="atp-vision__principle"><span class="atp-vision__principle-tag atp-vision__principle-tag--safety">Safety &amp; Comfort</span></li>
+          <li class="atp-vision__principle"><span class="atp-vision__principle-tag atp-vision__principle-tag--access">Access &amp; Equity</span></li>
+          <li class="atp-vision__principle"><span class="atp-vision__principle-tag atp-vision__principle-tag--mobility">Mobility &amp; Connectivity</span></li>
+          <li class="atp-vision__principle"><span class="atp-vision__principle-tag atp-vision__principle-tag--sustainability">Sustainability &amp; Biodiversity</span></li>
+          <li class="atp-vision__principle"><span class="atp-vision__principle-tag atp-vision__principle-tag--neutral">Innovation &amp; Action-Orientation</span></li>
+        </ul>
+        <p class="atp-vision__note">The first four also organize the project scoring criteria below (plus a separate Feasibility category that isn&#8217;t tied to a guiding principle). Same colors, same categories, everywhere on this page.</p>
+      </section>
+
+
+      <!-- ==================================================
+           04. From network to priority projects -- a simple process
+           visualization, not a dashboard. Counts are sourced from
+           Appendix A / Chapter 3: "over 100 potential pedestrian and
+           bicycle infrastructure project opportunities" were screened
+           and scored; "City staff reviewed the twenty-four highest
+           scoring potential projects and selected twenty to move
+           forward into draft project concepts (the four other
+           projects already have plans underway or are in the Caltrans
+           right of way)"; "Cut-sheets for sixteen of these projects
+           are included in Appendix B." -->
+      <section class="section-block atp-process" id="network-to-projects">
+        <span class="category-tag category-tag--analysis">How a project gets chosen</span>
+        <div class="section-intro">
+          <h2>From network to priority projects</h2>
+          <p>The MVATP&#8217;s recommendations didn&#8217;t start as a list of projects &mdash; they started as a citywide network, then narrowed step by step using the scoring framework below.</p>
+        </div>
+
+        <ol class="atp-process__steps">
+          <li class="atp-process__step">
+            <span class="atp-process__label">Long-term network</span>
+            <span class="atp-process__desc">A holistic map of the walking, bicycling and rolling network the City is working toward, built from existing conditions analysis and community input.</span>
+          </li>
+          <li class="atp-process__arrow" aria-hidden="true">&darr;</li>
+          <li class="atp-process__step">
+            <span class="atp-process__label">100+ potential projects</span>
+            <span class="atp-process__desc">Over 100 potential pedestrian and bicycle infrastructure projects were identified from that network and screened for scope and feasibility.</span>
+          </li>
+          <li class="atp-process__arrow" aria-hidden="true">&darr;</li>
+          <li class="atp-process__step">
+            <span class="atp-process__label"><a href="#table-5">MVATP Scoring Criteria Framework</a></span>
+            <span class="atp-process__desc">17 criteria &middot; 100 possible points. Every screened project was scored against the same framework &mdash; see how below.</span>
+          </li>
+          <li class="atp-process__arrow" aria-hidden="true">&darr;</li>
+          <li class="atp-process__step">
+            <span class="atp-process__label">Priority projects</span>
+            <span class="atp-process__desc">City staff reviewed the 24 highest-scoring projects and advanced 20 into draft project concepts (four others already had plans underway or sit in Caltrans right-of-way).</span>
+          </li>
+          <li class="atp-process__arrow" aria-hidden="true">&darr;</li>
+          <li class="atp-process__step">
+            <span class="atp-process__label"><a href="#priority-projects">16 priority project concepts</a></span>
+            <span class="atp-process__desc">Detailed cutsheets &mdash; existing and proposed cross-sections &mdash; are published for 16 of these projects in Appendix B.</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ==================================================
+           2b. Table 5 -- How projects are prioritized. Criteria,
+           category weights and point totals are transcribed directly
+           from MVATP Appendix A / Table 5 (August 2026), linked above
+           in the Explore the Plan appendix grid. Point VALUES are the
+           literal 100-point scale (32/27/22/10/9). Bar fill WIDTHS are
+           instead normalized to the largest category (32 = 100%) so
+           the relative weighting reads clearly -- this is a visual
+           scale change only; the numbers still total 100. -->
+      <section class="section-block atp-scoring" id="table-5">
+        <span class="category-tag category-tag--analysis">How projects are prioritized</span>
+        <div class="section-intro">
+          <h2 class="atp-scoring__title">MVATP Scoring Criteria Framework</h2>
+          <p class="atp-scoring__deck">Mountain View Active Transportation Plan &middot; 100 points &middot; 17 criteria &middot; 5 categories</p>
+          <p class="atp-scoring__intro">Mountain View uses this framework to score and prioritize potential pedestrian and bicycle projects. More than 100 projects were evaluated, with the highest-scoring projects informing the ATP&#8217;s priority project list.</p>
+        </div>
+
+        <ul class="atp-scoring__list">
+          <li class="atp-scoring__item">
+            <button type="button" class="atp-scoring__row" aria-expanded="false" aria-controls="scoring-panel-safety" id="scoring-toggle-safety">
+              <span class="atp-scoring__icon atp-scoring__icon--safety" aria-hidden="true"><i class="fas fa-shield-alt"></i></span>
+              <span class="atp-scoring__score">
+                <span class="atp-scoring__value">32<span class="atp-scoring__unit">pts</span></span>
+                <span class="atp-scoring__bar"><span class="atp-scoring__fill" style="width: 100%;"></span></span>
+              </span>
+              <span class="atp-scoring__meta">
+                <span class="atp-scoring__name">Safety &amp; Comfort</span>
+                <span class="atp-scoring__desc">Addresses community concerns, historic crash patterns, and pedestrian crossing safety.</span>
+              </span>
+              <span class="atp-scoring__chevron" aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="atp-scoring__panel" id="scoring-panel-safety" role="region" aria-labelledby="scoring-toggle-safety" hidden>
+              <p class="atp-scoring__panel-label">This category includes 4 criteria</p>
+              <ul class="atp-scoring__crit-list">
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">9</span><span class="atp-scoring__crit-name">Addresses community concerns</span><span class="atp-scoring__crit-desc">Reflects the volume of community input received about the project area.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">14</span><span class="atp-scoring__crit-name">Addresses existing (historic) crash patterns</span><span class="atp-scoring__crit-desc">Prioritizes areas with a history of fatal or severe injury crashes.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">4</span><span class="atp-scoring__crit-name">Improves pedestrian network density</span><span class="atp-scoring__crit-desc">Shortens excessively long pedestrian block lengths.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">5</span><span class="atp-scoring__crit-name">Reduces pedestrian crossing distance</span><span class="atp-scoring__crit-desc">Shortens the distance pedestrians must cross at intersections.</span></li>
+              </ul>
+              <a class="atp-scoring__panel-link" href="scoring-criteria/#table5-detail-safety">Full thresholds &amp; data sources <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </li>
+
+          <li class="atp-scoring__item">
+            <button type="button" class="atp-scoring__row" aria-expanded="false" aria-controls="scoring-panel-access" id="scoring-toggle-access">
+              <span class="atp-scoring__icon atp-scoring__icon--access" aria-hidden="true"><i class="fas fa-users"></i></span>
+              <span class="atp-scoring__score">
+                <span class="atp-scoring__value">27<span class="atp-scoring__unit">pts</span></span>
+                <span class="atp-scoring__bar"><span class="atp-scoring__fill" style="width: 84.375%;"></span></span>
+              </span>
+              <span class="atp-scoring__meta">
+                <span class="atp-scoring__name">Access &amp; Equity</span>
+                <span class="atp-scoring__desc">Supports lower income residents and fills gaps in the sidewalk and All Ages and Abilities bicycle networks.</span>
+              </span>
+              <span class="atp-scoring__chevron" aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="atp-scoring__panel" id="scoring-panel-access" role="region" aria-labelledby="scoring-toggle-access" hidden>
+              <p class="atp-scoring__panel-label">This category includes 3 criteria</p>
+              <ul class="atp-scoring__crit-list">
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">14</span><span class="atp-scoring__crit-name">Supports lower income residents</span><span class="atp-scoring__crit-desc">Benefits residents in lower- and low-income census tracts.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">6.5</span><span class="atp-scoring__crit-name">Fills a gap in existing sidewalk network</span><span class="atp-scoring__crit-desc">Closes gaps in the pedestrian sidewalk network.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">6.5</span><span class="atp-scoring__crit-name">Fills a gap in the AAA bicycle network</span><span class="atp-scoring__crit-desc">Completes low-stress connections for people of all ages and abilities.</span></li>
+              </ul>
+              <a class="atp-scoring__panel-link" href="scoring-criteria/#table5-detail-access">Full thresholds &amp; data sources <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </li>
+
+          <li class="atp-scoring__item">
+            <button type="button" class="atp-scoring__row" aria-expanded="false" aria-controls="scoring-panel-mobility" id="scoring-toggle-mobility">
+              <span class="atp-scoring__icon atp-scoring__icon--mobility" aria-hidden="true"><i class="fas fa-project-diagram"></i></span>
+              <span class="atp-scoring__score">
+                <span class="atp-scoring__value">22<span class="atp-scoring__unit">pts</span></span>
+                <span class="atp-scoring__bar"><span class="atp-scoring__fill" style="width: 68.75%;"></span></span>
+              </span>
+              <span class="atp-scoring__meta">
+                <span class="atp-scoring__name">Mobility &amp; Connectivity</span>
+                <span class="atp-scoring__desc">Improves network connectivity and supports efficient, reliable travel for people walking and bicycling.</span>
+              </span>
+              <span class="atp-scoring__chevron" aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="atp-scoring__panel" id="scoring-panel-mobility" role="region" aria-labelledby="scoring-toggle-mobility" hidden>
+              <p class="atp-scoring__panel-label">This category includes 3 criteria</p>
+              <ul class="atp-scoring__crit-list">
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">9</span><span class="atp-scoring__crit-name">Supports school children</span><span class="atp-scoring__crit-desc">Fronts, or lies on a suggested route to, a school.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">9</span><span class="atp-scoring__crit-name">Supports other key destinations</span><span class="atp-scoring__crit-desc">Connects to commercial centers, parks, trails, and senior facilities.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">4</span><span class="atp-scoring__crit-name">Improves first/last mile connection to transit</span><span class="atp-scoring__crit-desc">Connects people to nearby bus or rail transit stops.</span></li>
+              </ul>
+              <a class="atp-scoring__panel-link" href="scoring-criteria/#table5-detail-mobility">Full thresholds &amp; data sources <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </li>
+
+          <li class="atp-scoring__item">
+            <button type="button" class="atp-scoring__row" aria-expanded="false" aria-controls="scoring-panel-sustainability" id="scoring-toggle-sustainability">
+              <span class="atp-scoring__icon atp-scoring__icon--sustainability" aria-hidden="true"><i class="fas fa-leaf"></i></span>
+              <span class="atp-scoring__score">
+                <span class="atp-scoring__value">9<span class="atp-scoring__unit">pts</span></span>
+                <span class="atp-scoring__bar"><span class="atp-scoring__fill" style="width: 28.125%;"></span></span>
+              </span>
+              <span class="atp-scoring__meta">
+                <span class="atp-scoring__name">Sustainability &amp; Biodiversity</span>
+                <span class="atp-scoring__desc">Reduces impervious surface area and creates space for trees and plantings.</span>
+              </span>
+              <span class="atp-scoring__chevron" aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="atp-scoring__panel" id="scoring-panel-sustainability" role="region" aria-labelledby="scoring-toggle-sustainability" hidden>
+              <p class="atp-scoring__panel-label">This category includes 2 criteria</p>
+              <ul class="atp-scoring__crit-list">
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">4.5</span><span class="atp-scoring__crit-name">Reduces impervious surface area</span><span class="atp-scoring__crit-desc">Reduces paved surface area to support stormwater and habitat goals.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">4.5</span><span class="atp-scoring__crit-name">Provide Plantable Space</span><span class="atp-scoring__crit-desc">Creates space for ground cover plantings and shade trees.</span></li>
+              </ul>
+              <a class="atp-scoring__panel-link" href="scoring-criteria/#table5-detail-sustainability">Full thresholds &amp; data sources <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </li>
+
+          <li class="atp-scoring__item">
+            <button type="button" class="atp-scoring__row" aria-expanded="false" aria-controls="scoring-panel-feasibility" id="scoring-toggle-feasibility">
+              <span class="atp-scoring__icon atp-scoring__icon--feasibility" aria-hidden="true"><i class="fas fa-cogs"></i></span>
+              <span class="atp-scoring__score">
+                <span class="atp-scoring__value">10<span class="atp-scoring__unit">pts</span></span>
+                <span class="atp-scoring__bar"><span class="atp-scoring__fill" style="width: 31.25%;"></span></span>
+              </span>
+              <span class="atp-scoring__meta">
+                <span class="atp-scoring__name">Feasibility</span>
+                <span class="atp-scoring__desc">Weighs project cost, agency coordination, timeline, and funding alignment.</span>
+              </span>
+              <span class="atp-scoring__chevron" aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="atp-scoring__panel" id="scoring-panel-feasibility" role="region" aria-labelledby="scoring-toggle-feasibility" hidden>
+              <p class="atp-scoring__panel-label">This category includes 5 criteria</p>
+              <ul class="atp-scoring__crit-list">
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">2</span><span class="atp-scoring__crit-name">Order of Magnitude Cost</span><span class="atp-scoring__crit-desc">Favors lower-cost projects that are easier to deliver.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">2</span><span class="atp-scoring__crit-name">Interagency Coordination</span><span class="atp-scoring__crit-desc">Favors projects needing less cross-agency coordination.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">2</span><span class="atp-scoring__crit-name">Practical Implementation Timeframe</span><span class="atp-scoring__crit-desc">Favors projects deliverable on a shorter timeline.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">2</span><span class="atp-scoring__crit-name">Opportunity To Leverage Existing Planned Project</span><span class="atp-scoring__crit-desc">Favors projects that build on already-planned work.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">2</span><span class="atp-scoring__crit-name">Alignment With Funding Sources/Opportunities</span><span class="atp-scoring__crit-desc">Favors projects aligned with available funding programs.</span></li>
+              </ul>
+              <a class="atp-scoring__panel-link" href="scoring-criteria/#table5-detail-feasibility">Full thresholds &amp; data sources <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </li>
+        </ul>
+
+        <div class="atp-scoring__footer">
+          <span class="atp-scoring__footer-icon" aria-hidden="true"><i class="fas fa-info-circle"></i></span>
+          <p>See the full list of 17 criteria and how projects are scored in our <a href="scoring-criteria/">detailed scoring analysis</a>. <span aria-hidden="true">&#8599;</span></p>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           2c. Where are the 100 points? -- REVISED: 77.5 restored as
+           the primary statistic, top 5 = 55 as the secondary line, in
+           a compact two-column analytical panel (~30/70 split) rather
+           than stacked full-width groups. Default view shows the top
+           9 criteria (the ones that sum to 77.5); "View all 17
+           criteria" expands the remaining 8 inline. Same 17
+           criteria/point values as Table 5 above; category colors
+           reuse the exact swatches used everywhere else on this page.
+
+           NOTE on category count: the subtitle below says "5
+           categories" (Safety & Comfort, Access & Equity, Mobility &
+           Connectivity, Sustainability & Biodiversity, and
+           Feasibility), not 4. Feasibility is a real scoring category
+           in MVATP Table 5 (5 criteria, 10 points) -- it's just not
+           one of the ATP's five guiding principles, and it never
+           appears in the top-9 list below (its criteria top out at 2
+           points each), which is likely why it reads as absent here.
+           Saying "4 categories" would undercount the framework by 10
+           points and contradict the Scoring Criteria Framework
+           section directly above this one. -->
+      <section class="section-block atp-points" id="where-are-the-points">
+        <div class="atp-points__head">
+          <h2 class="atp-points__title">Where are the 100 points?</h2>
+          <p class="atp-points__subtitle">The City evaluates projects using 17 criteria across 5 categories, for a <em>total</em> of 100 points.</p>
+          <p class="atp-points__source">Based on Table 5 in the 2026 ATP.</p>
+        </div>
+
+        <div class="atp-points__panel">
+          <div class="atp-points__stat">
+            <span class="atp-points__stat-num">77.5</span>
+            <span class="atp-points__stat-unit">points</span>
+            <p class="atp-points__stat-desc">Nine of the 17 criteria account for 77.5% of the possible score.</p>
+            <p class="atp-points__stat-sub">Top 5 = <strong>55 points</strong></p>
+          </div>
+
+          <div class="atp-points__table">
+            <div class="atp-points__row-head">
+              <span>Points</span>
+              <span>Criteria</span>
+              <span>Category</span>
+            </div>
+            <div class="atp-points__row">
+              <span class="atp-points__value">14</span>
+              <span class="atp-points__name">Supports lower-income residents</span>
+              <span class="atp-points__cat atp-points__cat--access">Access &amp; Equity</span>
+            </div>
+            <div class="atp-points__row">
+              <span class="atp-points__value">14</span>
+              <span class="atp-points__name">Historic crash patterns</span>
+              <span class="atp-points__cat atp-points__cat--safety">Safety &amp; Comfort</span>
+            </div>
+            <div class="atp-points__row">
+              <span class="atp-points__value">9</span>
+              <span class="atp-points__name">Community concerns</span>
+              <span class="atp-points__cat atp-points__cat--safety">Safety &amp; Comfort</span>
+            </div>
+            <div class="atp-points__row">
+              <span class="atp-points__value">9</span>
+              <span class="atp-points__name">School children</span>
+              <span class="atp-points__cat atp-points__cat--mobility">Mobility &amp; Connectivity</span>
+            </div>
+            <div class="atp-points__row">
+              <span class="atp-points__value">9</span>
+              <span class="atp-points__name">Other key destinations</span>
+              <span class="atp-points__cat atp-points__cat--mobility">Mobility &amp; Connectivity</span>
+            </div>
+            <div class="atp-points__row">
+              <span class="atp-points__value">6.5</span>
+              <span class="atp-points__name">Sidewalk network gap</span>
+              <span class="atp-points__cat atp-points__cat--access">Access &amp; Equity</span>
+            </div>
+            <div class="atp-points__row">
+              <span class="atp-points__value">6.5</span>
+              <span class="atp-points__name">AAA bicycle network gap</span>
+              <span class="atp-points__cat atp-points__cat--access">Access &amp; Equity</span>
+            </div>
+            <div class="atp-points__row">
+              <span class="atp-points__value">5</span>
+              <span class="atp-points__name">Pedestrian crossing distance</span>
+              <span class="atp-points__cat atp-points__cat--safety">Safety &amp; Comfort</span>
+            </div>
+            <div class="atp-points__row">
+              <span class="atp-points__value">4.5</span>
+              <span class="atp-points__name">Reduces impervious surface</span>
+              <span class="atp-points__cat atp-points__cat--sustainability">Sustainability &amp; Biodiversity</span>
+            </div>
+
+            <button type="button" class="atp-points__toggle" aria-expanded="false" aria-controls="atp-points-more">
+              <span class="atp-points__toggle-label">View all 17 criteria</span>
+              <span class="atp-points__chevron" aria-hidden="true">&darr;</span>
+            </button>
+
+            <div class="atp-points__more" id="atp-points-more" hidden>
+              <div class="atp-points__row">
+                <span class="atp-points__value">4.5</span>
+                <span class="atp-points__name">Plantable space</span>
+                <span class="atp-points__cat atp-points__cat--sustainability">Sustainability &amp; Biodiversity</span>
+              </div>
+              <div class="atp-points__row">
+                <span class="atp-points__value">4</span>
+                <span class="atp-points__name">Pedestrian network density</span>
+                <span class="atp-points__cat atp-points__cat--safety">Safety &amp; Comfort</span>
+              </div>
+              <div class="atp-points__row">
+                <span class="atp-points__value">4</span>
+                <span class="atp-points__name">First/last-mile transit</span>
+                <span class="atp-points__cat atp-points__cat--mobility">Mobility &amp; Connectivity</span>
+              </div>
+              <div class="atp-points__row">
+                <span class="atp-points__value">2</span>
+                <span class="atp-points__name">Cost</span>
+                <span class="atp-points__cat atp-points__cat--feasibility">Feasibility</span>
+              </div>
+              <div class="atp-points__row">
+                <span class="atp-points__value">2</span>
+                <span class="atp-points__name">Interagency coordination</span>
+                <span class="atp-points__cat atp-points__cat--feasibility">Feasibility</span>
+              </div>
+              <div class="atp-points__row">
+                <span class="atp-points__value">2</span>
+                <span class="atp-points__name">Implementation timeframe</span>
+                <span class="atp-points__cat atp-points__cat--feasibility">Feasibility</span>
+              </div>
+              <div class="atp-points__row">
+                <span class="atp-points__value">2</span>
+                <span class="atp-points__name">Leverage planned project</span>
+                <span class="atp-points__cat atp-points__cat--feasibility">Feasibility</span>
+              </div>
+              <div class="atp-points__row">
+                <span class="atp-points__value">2</span>
+                <span class="atp-points__name">Funding alignment</span>
+                <span class="atp-points__cat atp-points__cat--feasibility">Feasibility</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="atp-points__takeaway">
+          <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          <p><strong>Key takeaway:</strong> Nine of the 17 criteria account for 77.5% of the total possible score; the top five alone account for 55%.</p>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           06. Priority projects -- shell for now. Table 6 ("MVATP
+           Identified Priority Projects with Extents, Mileage, and
+           Recommendations") and the Appendix B cutsheets are the
+           sources; this section will surface them directly once the
+           project-by-project presentation is designed. -->
+      <section class="section-block" id="priority-projects">
+        <span class="category-tag category-tag--record">What rose to the top</span>
+        <div class="section-intro">
+          <h2>Priority projects</h2>
+          <p>Twenty projects advanced into draft concepts after scoring (see <a href="#network-to-projects">how projects get chosen</a> above); sixteen of them have published cutsheets showing existing and proposed cross-sections in Appendix B.</p>
+        </div>
+
+        <p class="bufp-transcription-note">A project-by-project view &mdash; pulling each priority project&#8217;s extent, mileage and recommended improvements from Table 6, alongside its Appendix B cutsheet where one exists &mdash; is planned for this section. For now, see Appendix B directly.</p>
+
+        <a class="atp-cta" href="../../../../documents/atp/mvatp-2026-08-appendix-b-project-cutsheets.pdf" target="_blank" rel="noopener noreferrer">Appendix B &mdash; Project Cutsheets <span aria-hidden="true">&rarr;</span></a>
+      </section>
+
+      <!-- ==================================================
+           07. Beyond projects: policies + programs. The framing quote
+           and all 23 program/policy names/descriptions below are
+           transcribed verbatim from MVATP Chapter 3, Table 7 ("List of
+           Recommended Policies and Programs", pp.48-55) -- unchanged
+           from the original flat-list version, just regrouped (twice
+           now; this is the second pass).
+
+           CATEGORY VERIFICATION (10 categories, all 23 actions once,
+           none lost/duplicated -- counts below are literally what's
+           in the DOM, not asserted):
+             Street Safety + Intersections .............. 8
+             Bicycling + Micromobility ................... 3
+             Walking + Connections ....................... 2
+             Safe Routes + Community Programs ............ 2
+             Design Standards ............................ 1
+             Transportation Demand Management ............ 1
+             Staff Training + Implementation ............. 1
+             Greening / Tree Canopy Improvements ......... 1
+             Operations + Maintenance .................... 2
+             Measurement + Accountability ................ 2
+                                                    total = 23
+
+           SECOND-PASS REGROUPING RATIONALE: the first regrouping mixed
+           modes, safety outcomes, programs, and implementation
+           mechanisms in the same categories (e.g. a "Walking +
+           Pedestrian Safety" category containing daylighting and No
+           Right Turn on Red, which also benefit cyclists; a "Design
+           Standards + Best Practices" category that had absorbed
+           Staff Continuing Education and bicycle parking standards,
+           neither of which is a design standard). This pass gives
+           bicycling its own first-class category, keeps Design
+           Standards narrow (infrastructure/design standards only, not
+           general professional practice), and assigns every action to
+           the ONE category a reader would look for it under first --
+           not every category it could theoretically affect:
+             - Daylighting/No Right Turn/LPI/APS + speed evaluation/
+               enforcement/road-user management/road safety education
+               all go to Street Safety + Intersections (multi-modal
+               street safety, not pedestrian-only) even though several
+               also benefit cyclists.
+             - Bicycle parking standards moved OUT of Design Standards
+               into Bicycling + Micromobility, since that's where a
+               reader looking for it would check first, even though
+               it's technically a design standard.
+             - Staff Continuing Education moved OUT of Design Standards
+               (it's staff capacity, not an infrastructure standard) into
+               its own small Staff Training + Implementation category --
+               no other implementation/capacity action on this page was
+               a natural fit for it, so it stays a deliberate single-item
+               category rather than being forced into an unrelated one.
+             - Transportation Demand Management (TDM) and Safe Routes +
+               Community Programs were split out of the former "Programs
+               + Transportation Options" catch-all into their own
+               focused categories.
+           Greening / Tree Canopy Improvements, Operations + Maintenance,
+           and Measurement + Accountability are unchanged from the prior
+           pass -- this correction didn't touch them. -->
+      <section class="section-block atp-policies" id="policies-programs">
+        <span class="category-tag category-tag--analysis">Beyond capital projects</span>
+        <div class="section-intro">
+          <h2>Policies &amp; programs</h2>
+          <p>&#8220;Infrastructure changes are not the only &#8216;tool in the toolbox&#8217; to improve the travel experience for people who walk, roll, and ride in Mountain View.&#8221; Table 7 lists 23 policies and programs &mdash; aligned with the MVATP vision and guiding principles &mdash; that support active transportation alongside capital projects.</p>
+          <p class="atp-polcat__orient">Explore the policies and programs by category below. This is the full list from Table 7 (23 actions, unranked).</p>
+        </div>
+
+        <ul class="atp-polcat__list">
+          <li class="atp-polcat__item">
+            <button type="button" class="atp-polcat__row" aria-expanded="false" aria-controls="polcat-panel-street-safety" id="polcat-toggle-street-safety">
+              <span class="atp-polcat__icon atp-polcat__icon--street-safety" aria-hidden="true"><i class="fas fa-traffic-light"></i></span>
+              <span class="atp-polcat__meta">
+                <span class="atp-polcat__title-row">
+                  <span class="atp-polcat__name">Street Safety + Intersections</span>
+                  <span class="atp-polcat__count">8 policies</span>
+                </span>
+                <span class="atp-polcat__desc">Make streets and intersections safer for people walking, bicycling, and driving.</span>
+              </span>
+              <span class="atp-polcat__action"><span class="atp-polcat__action-label">View policies</span><span class="atp-polcat__chevron" aria-hidden="true">&#9662;</span></span>
+            </button>
+            <div class="atp-polcat__panel" id="polcat-panel-street-safety" role="region" aria-labelledby="polcat-toggle-street-safety" hidden>
+              <ul class="atp-polcat__policies">
+                <li><span class="atp-polcat__policy-name">No Right Turn on Red Policy</span><span class="atp-polcat__policy-desc">Pilot to prohibit right turns on red at selected signalized intersections to improve safety, comfort and confidence for pedestrians and cyclists.</span></li>
+                <li><span class="atp-polcat__policy-name">Leading Pedestrian Interval Policy</span><span class="atp-polcat__policy-desc">Give pedestrians a head start entering the crosswalk at intersections evaluated and recommended by staff.</span></li>
+                <li><span class="atp-polcat__policy-name">Upgrade Pedestrian Signals to Accessible Pedestrian Signals (APS)</span><span class="atp-polcat__policy-desc">Provide non-visual information &mdash; auditory tones, messages and/or vibrations &mdash; about when to cross the street.</span></li>
+                <li><span class="atp-polcat__policy-name">Improve Visibility at Intersections (Daylighting)</span><span class="atp-polcat__policy-desc">Implement and enforce California&#8217;s Daylighting Law (AB 413), prohibiting parking within 20 feet of a crosswalk approach (15 feet with a curb extension) to improve visibility for everyone.</span></li>
+                <li><span class="atp-polcat__policy-name">Evaluation of Speed Limits and Speed Zones</span><span class="atp-polcat__policy-desc">Examine speed-limit reductions allowable under the California Vehicle Code, informed by post-project or district/zone engineering and traffic surveys.</span></li>
+                <li><span class="atp-polcat__policy-name">Enforcement of School Zone Speed Limits</span><span class="atp-polcat__policy-desc">Promote driver awareness and caution in areas where youth are gathered.</span></li>
+                <li><span class="atp-polcat__policy-name">Managing and Enforcing the Transportation System of All Road Users</span><span class="atp-polcat__policy-desc">Enforce space allocated to each mode &mdash; no parking or stopping in bicycle lanes, managing sidewalk space &mdash; to reduce modal conflict and crash risk.</span></li>
+                <li><span class="atp-polcat__policy-name">Road Safety Education</span><span class="atp-polcat__policy-desc">Road safety education for all modes and road users to increase awareness of rules of the road and traveler responsibilities.</span></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="atp-polcat__item">
+            <button type="button" class="atp-polcat__row" aria-expanded="false" aria-controls="polcat-panel-bicycling" id="polcat-toggle-bicycling">
+              <span class="atp-polcat__icon atp-polcat__icon--bicycling" aria-hidden="true"><i class="fas fa-bicycle"></i></span>
+              <span class="atp-polcat__meta">
+                <span class="atp-polcat__title-row">
+                  <span class="atp-polcat__name">Bicycling + Micromobility</span>
+                  <span class="atp-polcat__count">3 policies</span>
+                </span>
+                <span class="atp-polcat__desc">Support bicycling and e-bike/e-scooter use through parking, recognition, and education.</span>
+              </span>
+              <span class="atp-polcat__action"><span class="atp-polcat__action-label">View policies</span><span class="atp-polcat__chevron" aria-hidden="true">&#9662;</span></span>
+            </button>
+            <div class="atp-polcat__panel" id="polcat-panel-bicycling" role="region" aria-labelledby="polcat-toggle-bicycling" hidden>
+              <ul class="atp-polcat__policies">
+                <li><span class="atp-polcat__policy-name">Update Bicycle Parking Standards</span><span class="atp-polcat__policy-desc">Simplify and add flexibility to municipal code bicycle-parking standards to allow more high-quality bicycle parking.</span></li>
+                <li><span class="atp-polcat__policy-name">Education and Enforcement on Use of Personal Electric Micromobility Devices</span><span class="atp-polcat__policy-desc">Public education and safety training, through Safe Routes to School and other outlets, on legal and appropriate e-bike/e-scooter use.</span></li>
+                <li><span class="atp-polcat__policy-name">Bicycle Friendly Community Designation</span><span class="atp-polcat__policy-desc">Pursue the League of American Bicyclists&#8217; designation, opening up resources supporting bicycle infrastructure and policy.</span></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="atp-polcat__item">
+            <button type="button" class="atp-polcat__row" aria-expanded="false" aria-controls="polcat-panel-walking" id="polcat-toggle-walking">
+              <span class="atp-polcat__icon atp-polcat__icon--walking" aria-hidden="true"><i class="fas fa-walking"></i></span>
+              <span class="atp-polcat__meta">
+                <span class="atp-polcat__title-row">
+                  <span class="atp-polcat__name">Walking + Connections</span>
+                  <span class="atp-polcat__count">2 policies</span>
+                </span>
+                <span class="atp-polcat__desc">Create safe, direct walking connections through neighborhoods and new development.</span>
+              </span>
+              <span class="atp-polcat__action"><span class="atp-polcat__action-label">View policies</span><span class="atp-polcat__chevron" aria-hidden="true">&#9662;</span></span>
+            </button>
+            <div class="atp-polcat__panel" id="polcat-panel-walking" role="region" aria-labelledby="polcat-toggle-walking" hidden>
+              <ul class="atp-polcat__policies">
+                <li><span class="atp-polcat__policy-name">Consideration of Pedestrian Connectivity via Paseos in Property Development</span><span class="atp-polcat__policy-desc">Narrow pedestrian-only paths between buildings, alleys or public staircases that provide safe walking and biking connections across neighborhoods.</span></li>
+                <li><span class="atp-polcat__policy-name">Walk Safe Designation</span><span class="atp-polcat__policy-desc">Pursue America Walks&#8217; Walk Safe Community designation and related Community Change grants.</span></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="atp-polcat__item">
+            <button type="button" class="atp-polcat__row" aria-expanded="false" aria-controls="polcat-panel-saferoutes" id="polcat-toggle-saferoutes">
+              <span class="atp-polcat__icon atp-polcat__icon--saferoutes" aria-hidden="true"><i class="fas fa-users"></i></span>
+              <span class="atp-polcat__meta">
+                <span class="atp-polcat__title-row">
+                  <span class="atp-polcat__name">Safe Routes + Community Programs</span>
+                  <span class="atp-polcat__count">2 policies</span>
+                </span>
+                <span class="atp-polcat__desc">Build community participation in walking and bicycling through outreach and events.</span>
+              </span>
+              <span class="atp-polcat__action"><span class="atp-polcat__action-label">View policies</span><span class="atp-polcat__chevron" aria-hidden="true">&#9662;</span></span>
+            </button>
+            <div class="atp-polcat__panel" id="polcat-panel-saferoutes" role="region" aria-labelledby="polcat-toggle-saferoutes" hidden>
+              <ul class="atp-polcat__policies">
+                <li><span class="atp-polcat__policy-name">Expansion of Safe Routes Programs</span><span class="atp-polcat__policy-desc">Add Safe Routes to Parks and Safe Routes to Transit alongside the existing Safe Routes to School program.</span></li>
+                <li><span class="atp-polcat__policy-name">Social Walks/Rides</span><span class="atp-polcat__policy-desc">Regularly scheduled, community-promoted walk or bicycle tours focused on encouragement, training for new users, and road-safety awareness.</span></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="atp-polcat__item">
+            <button type="button" class="atp-polcat__row" aria-expanded="false" aria-controls="polcat-panel-design" id="polcat-toggle-design">
+              <span class="atp-polcat__icon atp-polcat__icon--design" aria-hidden="true"><i class="fas fa-file-alt"></i></span>
+              <span class="atp-polcat__meta">
+                <span class="atp-polcat__title-row">
+                  <span class="atp-polcat__name">Design Standards</span>
+                  <span class="atp-polcat__count">1 policy</span>
+                </span>
+                <span class="atp-polcat__desc">Keep the City&#8217;s engineering standards current with best practices.</span>
+              </span>
+              <span class="atp-polcat__action"><span class="atp-polcat__action-label">View policy</span><span class="atp-polcat__chevron" aria-hidden="true">&#9662;</span></span>
+            </button>
+            <div class="atp-polcat__panel" id="polcat-panel-design" role="region" aria-labelledby="polcat-toggle-design" hidden>
+              <ul class="atp-polcat__policies">
+                <li><span class="atp-polcat__policy-name">Updated Design Standards to be Informed by Best Practices</span><span class="atp-polcat__policy-desc">Use best-practice guidance and standards (Caltrans, FHWA, AASHTO, U.S. Access Board, NACTO, ITE) to inform transportation project design for roadway users of all ages and abilities.</span></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="atp-polcat__item">
+            <button type="button" class="atp-polcat__row" aria-expanded="false" aria-controls="polcat-panel-tdm" id="polcat-toggle-tdm">
+              <span class="atp-polcat__icon atp-polcat__icon--tdm" aria-hidden="true"><i class="fas fa-exchange-alt"></i></span>
+              <span class="atp-polcat__meta">
+                <span class="atp-polcat__title-row">
+                  <span class="atp-polcat__name">Transportation Demand Management</span>
+                  <span class="atp-polcat__count">1 policy</span>
+                </span>
+                <span class="atp-polcat__desc">Reduce car dependency by making walking and biking more feasible alternatives.</span>
+              </span>
+              <span class="atp-polcat__action"><span class="atp-polcat__action-label">View policy</span><span class="atp-polcat__chevron" aria-hidden="true">&#9662;</span></span>
+            </button>
+            <div class="atp-polcat__panel" id="polcat-panel-tdm" role="region" aria-labelledby="polcat-toggle-tdm" hidden>
+              <ul class="atp-polcat__policies">
+                <li><span class="atp-polcat__policy-name">Transportation Demand Management (TDM)</span><span class="atp-polcat__policy-desc">Reduce automobile dependency through policy and programs, supporting infrastructure investments by making walking and biking more feasible. Mountain View&#8217;s TDM ordinance took effect in June 2026.</span></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="atp-polcat__item">
+            <button type="button" class="atp-polcat__row" aria-expanded="false" aria-controls="polcat-panel-staff" id="polcat-toggle-staff">
+              <span class="atp-polcat__icon atp-polcat__icon--staff" aria-hidden="true"><i class="fas fa-graduation-cap"></i></span>
+              <span class="atp-polcat__meta">
+                <span class="atp-polcat__title-row">
+                  <span class="atp-polcat__name">Staff Training + Implementation</span>
+                  <span class="atp-polcat__count">1 policy</span>
+                </span>
+                <span class="atp-polcat__desc">Build City staff expertise to deliver and enforce active transportation improvements.</span>
+              </span>
+              <span class="atp-polcat__action"><span class="atp-polcat__action-label">View policy</span><span class="atp-polcat__chevron" aria-hidden="true">&#9662;</span></span>
+            </button>
+            <div class="atp-polcat__panel" id="polcat-panel-staff" role="region" aria-labelledby="polcat-toggle-staff" hidden>
+              <ul class="atp-polcat__policies">
+                <li><span class="atp-polcat__policy-name">Staff Continuing Education</span><span class="atp-polcat__policy-desc">Continuing education on the Vision Zero Action Plan, Local Road Safety Plan, defensive driving, the Safe Systems Approach and safety countermeasures.</span></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="atp-polcat__item">
+            <button type="button" class="atp-polcat__row" aria-expanded="false" aria-controls="polcat-panel-greening" id="polcat-toggle-greening">
+              <span class="atp-polcat__icon atp-polcat__icon--greening" aria-hidden="true"><i class="fas fa-leaf"></i></span>
+              <span class="atp-polcat__meta">
+                <span class="atp-polcat__title-row">
+                  <span class="atp-polcat__name">Greening / Tree Canopy Improvements</span>
+                  <span class="atp-polcat__count">1 policy</span>
+                </span>
+                <span class="atp-polcat__desc">Incorporate greenery and street trees into infrastructure improvements to create cooler, greener streets.</span>
+              </span>
+              <span class="atp-polcat__action"><span class="atp-polcat__action-label">View policy</span><span class="atp-polcat__chevron" aria-hidden="true">&#9662;</span></span>
+            </button>
+            <div class="atp-polcat__panel" id="polcat-panel-greening" role="region" aria-labelledby="polcat-toggle-greening" hidden>
+              <ul class="atp-polcat__policies">
+                <li><span class="atp-polcat__policy-name">Greening / Tree Canopy Improvements</span><span class="atp-polcat__policy-desc">Incorporate greenery and street trees into infrastructural improvements along roadways &mdash; serving environmental and planning goals and safer street design alike. See <a href="#green-complete-streets">Green Complete Streets</a> below.</span></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="atp-polcat__item">
+            <button type="button" class="atp-polcat__row" aria-expanded="false" aria-controls="polcat-panel-ops" id="polcat-toggle-ops">
+              <span class="atp-polcat__icon atp-polcat__icon--ops" aria-hidden="true"><i class="fas fa-wrench"></i></span>
+              <span class="atp-polcat__meta">
+                <span class="atp-polcat__title-row">
+                  <span class="atp-polcat__name">Operations + Maintenance</span>
+                  <span class="atp-polcat__count">2 policies</span>
+                </span>
+                <span class="atp-polcat__desc">Keep active transportation facilities and public spaces clean, well maintained, and ready to use.</span>
+              </span>
+              <span class="atp-polcat__action"><span class="atp-polcat__action-label">View policies</span><span class="atp-polcat__chevron" aria-hidden="true">&#9662;</span></span>
+            </button>
+            <div class="atp-polcat__panel" id="polcat-panel-ops" role="region" aria-labelledby="polcat-toggle-ops" hidden>
+              <ul class="atp-polcat__policies">
+                <li><span class="atp-polcat__policy-name">Maintenance of Active Transportation Facilities</span><span class="atp-polcat__policy-desc">Fund and program regular maintenance &mdash; bicycle lane sweeping, sidewalk cleaning and repair &mdash; to uphold safety and comfort.</span></li>
+                <li><span class="atp-polcat__policy-name">Waste Bin Policy and Maintenance</span><span class="atp-polcat__policy-desc">Place waste bins conspicuously throughout Mountain View to promote proper disposal.</span></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="atp-polcat__item">
+            <button type="button" class="atp-polcat__row" aria-expanded="false" aria-controls="polcat-panel-measure" id="polcat-toggle-measure">
+              <span class="atp-polcat__icon atp-polcat__icon--measure" aria-hidden="true"><i class="fas fa-chart-bar"></i></span>
+              <span class="atp-polcat__meta">
+                <span class="atp-polcat__title-row">
+                  <span class="atp-polcat__name">Measurement + Accountability</span>
+                  <span class="atp-polcat__count">2 policies</span>
+                </span>
+                <span class="atp-polcat__desc">Evaluate project outcomes and track progress through clear performance indicators.</span>
+              </span>
+              <span class="atp-polcat__action"><span class="atp-polcat__action-label">View policies</span><span class="atp-polcat__chevron" aria-hidden="true">&#9662;</span></span>
+            </button>
+            <div class="atp-polcat__panel" id="polcat-panel-measure" role="region" aria-labelledby="polcat-toggle-measure" hidden>
+              <ul class="atp-polcat__policies">
+                <li><span class="atp-polcat__policy-name">Evaluation of Infrastructure Projects</span><span class="atp-polcat__policy-desc">Monitor whether built projects achieve their intended safety and travel-behavior impact, including pre/post counts required by funding programs like the CTC&#8217;s Active Transportation Program. See <a href="#measuring-progress">Measuring Progress</a> below.</span></li>
+                <li><span class="atp-polcat__policy-name">Develop Key Performance Indicators (KPIs) to Measure Active Transportation Progress</span><span class="atp-polcat__policy-desc">City staff develop KPIs to measure and report annual overall progress toward the ATP Guiding Principles. See <a href="#measuring-progress">Measuring Progress</a> below.</span></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+        <div class="atp-polcat__footer">
+          <i class="fas fa-info-circle" aria-hidden="true"></i>
+          <div class="atp-polcat__footer-text">
+            <p>These 23 policies and programs are listed in Table 7 of the 2026 ATP.</p>
+            <p class="atp-polcat__footer-sub">They are not scored, but they play an important role in implementing the Plan.</p>
+          </div>
+          <a class="atp-polcat__footer-link" href="../../../../documents/atp/mvatp-2026-08-chapter-3-recommendations.pdf" target="_blank" rel="noopener noreferrer">View Table 7 (PDF) <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           08. Green Complete Streets -- a major analytical section, not
+           a sidebar. The Trees & Shade / Biodiversity content below is
+           drawn directly from Chapter 3's "Greening / Tree Canopy
+           Improvements" discussion (p.50-51), including the three BUFP
+           actions it names (1, 10, 17) and the Heat Mitigation Strategy
+           Zone. The other four outcomes are intentionally left as brief,
+           honest placeholders per instructions -- no unsupported claims
+           yet, full analysis to follow. Each outcome is tagged with how
+           directly the ATP addresses it (kept as plain text + a status
+           word, not color alone). -->
+      <section class="section-block atp-gcs" id="green-complete-streets">
+        <span class="category-tag category-tag--analysis">A Green Complete Streets reading</span>
+        <div class="section-intro">
+          <h2>Green Complete Streets</h2>
+          <p>How does the ATP support streets that are safe, comfortable, green and useful for people? Green Complete Streets isn&#8217;t &#8220;add some trees to a bicycle plan&#8221; &mdash; it&#8217;s an integrated view of safe movement, accessibility, useful connections, comfort, shade, urban forestry, biodiversity, stormwater and climate resilience, together. This section reads the ATP through that lens, organized around what a person &mdash; and the environment around them &mdash; actually experiences.</p>
+          <p class="bufp-transcription-note">Each outcome below is marked by how directly the ATP addresses it. Trees &amp; Shade and Biodiversity are developed first because the ATP speaks to them explicitly; the rest are placeholders for analysis still to come.</p>
+        </div>
+
+        <div class="atp-gcs__outcome">
+          <div class="atp-gcs__outcome-head">
+            <h3>Trees &amp; shade</h3>
+            <span class="atp-gcs__status atp-gcs__status--explicit">ATP addresses this explicitly</span>
+          </div>
+          <p class="atp-gcs__question">Does the plan create cooler, shaded walking and bicycling routes?</p>
+          <p>The MVATP and the Biodiversity and Urban Forest Plan (BUFP) are explicitly linked. Active transportation corridors &mdash; the existing and proposed bikeways in the MVATP &mdash; are treated as priorities within the BUFP&#8217;s Heat Mitigation Strategy Zone and are included in that plan&#8217;s connectivity analyses. The BUFP names three actions directly tied to the MVATP&#8217;s Sustainability and Biodiversity guiding principle:</p>
+          <ul class="atp-gcs__list">
+            <li><strong>Action 1</strong> &mdash; strategically include green features in active transportation project design to increase ecological value and achieve other City priorities.</li>
+            <li><strong>Action 10</strong> &mdash; maximize biodiversity support within city parks and trail corridors while continuing to meet community needs.</li>
+            <li><strong>Action 17</strong> &mdash; prioritize shade tree planting in the Cooling Zone to protect against heat and improve walkability.</li>
+          </ul>
+          <p class="atp-gcs__source">Source: MVATP Chapter 3, &#8220;Greening / Tree Canopy Improvements&#8221; (Table 7), pp.50&ndash;51.</p>
+        </div>
+
+        <div class="atp-gcs__outcome">
+          <div class="atp-gcs__outcome-head">
+            <h3>Biodiversity</h3>
+            <span class="atp-gcs__status atp-gcs__status--explicit">ATP addresses this explicitly</span>
+          </div>
+          <p class="atp-gcs__question">Does transportation investment create ecological value and habitat?</p>
+          <p>The BUFP states Mountain View&#8217;s commitment to planting and protecting native trees and vegetation &#8220;to enhance native biodiversity, strengthen climate resilience, and support community health and connections.&#8221; The MVATP and BUFP are described as complementary, sharing goals, principles and methods &mdash; incorporating greenery and street trees into infrastructural improvements of varying scale is framed as serving both environmental goals and safer street design.</p>
+          <p class="atp-gcs__source">Source: MVATP Chapter 3, &#8220;Greening / Tree Canopy Improvements&#8221; (Table 7), pp.50&ndash;51.</p>
+        </div>
+
+        <div class="atp-gcs__outcome">
+          <div class="atp-gcs__outcome-head">
+            <h3>Safety</h3>
+            <span class="atp-gcs__status atp-gcs__status--indirect">Analysis planned</span>
+          </div>
+          <p class="atp-gcs__question">Can people walk, bicycle and cross safely?</p>
+          <p class="bufp-transcription-note">Safety & Comfort is the highest-weighted scoring category (32 of 100 points) and the subject of several Table 7 actions &mdash; No Right Turn on Red, Daylighting, APS upgrades, speed-limit evaluation. A full Green Complete Streets reading of what this does and doesn&#8217;t cover is planned for this section.</p>
+        </div>
+
+        <div class="atp-gcs__outcome">
+          <div class="atp-gcs__outcome-head">
+            <h3>Accessibility &amp; usability</h3>
+            <span class="atp-gcs__status atp-gcs__status--indirect">Analysis planned</span>
+          </div>
+          <p class="atp-gcs__question">Can people of different ages and abilities actually use the network comfortably and reach useful destinations?</p>
+          <p class="bufp-transcription-note">Mobility & Connectivity scoring rewards proximity to schools, key destinations and transit; APS upgrades and the AAA bicycle network gap criteria speak to this too. A full accounting is planned for this section.</p>
+        </div>
+
+        <div class="atp-gcs__outcome">
+          <div class="atp-gcs__outcome-head">
+            <h3>Green infrastructure</h3>
+            <span class="atp-gcs__status atp-gcs__status--indirect">Analysis planned</span>
+          </div>
+          <p class="atp-gcs__question">Can street projects reduce impervious area and manage stormwater?</p>
+          <p class="bufp-transcription-note">The Sustainability & Biodiversity scoring criteria directly reward reduced impervious surface area and plantable space (9 of 100 points). Whether that&#8217;s sufficient weighting is a question for later analysis, not this pass.</p>
+        </div>
+
+        <div class="atp-gcs__outcome">
+          <div class="atp-gcs__outcome-head">
+            <h3>Equity</h3>
+            <span class="atp-gcs__status atp-gcs__status--indirect">Analysis planned</span>
+          </div>
+          <p class="atp-gcs__question">Who benefits, and how does prioritization account for different needs?</p>
+          <p class="bufp-transcription-note">Access & Equity is the second-highest-weighted category (27 of 100 points), led by the lower-income-residents criterion (up to 14 points). A full equity reading of the priority project list is planned for this section.</p>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           09. From plan to implementation -- shell. Connects the ATP's
+           own mechanisms (design standards, programs, capital
+           projects, resurfacing/reconstruction/development,
+           maintenance, evaluation) named across Table 7. -->
+      <section class="section-block atp-implementation" id="plan-to-implementation">
+        <span class="category-tag category-tag--record">How recommendations become streets</span>
+        <div class="section-intro">
+          <h2>From plan to implementation</h2>
+          <p>A recommendation in the ATP isn&#8217;t a built street. Table 7&#8217;s policy and program actions describe several of the mechanisms that carry recommendations forward:</p>
+        </div>
+
+        <ol class="atp-process__steps atp-process__steps--compact">
+          <li class="atp-process__step">
+            <span class="atp-process__label">ATP recommendations</span>
+            <span class="atp-process__desc">Scored infrastructure projects, plus Table 7 policies and programs.</span>
+          </li>
+          <li class="atp-process__arrow" aria-hidden="true">&darr;</li>
+          <li class="atp-process__step">
+            <span class="atp-process__label">Design standards</span>
+            <span class="atp-process__desc">Updated Design Standards to be Informed by Best Practices brings Caltrans, FHWA, AASHTO, NACTO and ITE guidance into how projects get designed.</span>
+          </li>
+          <li class="atp-process__arrow" aria-hidden="true">&darr;</li>
+          <li class="atp-process__step">
+            <span class="atp-process__label">Programs &amp; policy</span>
+            <span class="atp-process__desc">Non-capital actions &mdash; enforcement, education, TDM, Safe Routes expansion &mdash; that don&#8217;t require a capital project to take effect.</span>
+          </li>
+          <li class="atp-process__arrow" aria-hidden="true">&darr;</li>
+          <li class="atp-process__step">
+            <span class="atp-process__label">Capital projects, resurfacing, reconstruction &amp; development</span>
+            <span class="atp-process__desc">Where priority projects and standards actually get built &mdash; including through resurfacing, reconstruction and private development frontages.</span>
+          </li>
+          <li class="atp-process__arrow" aria-hidden="true">&darr;</li>
+          <li class="atp-process__step">
+            <span class="atp-process__label">Maintenance</span>
+            <span class="atp-process__desc">Maintenance of Active Transportation Facilities funds the ongoing sweeping, cleaning and repair that keeps built projects usable.</span>
+          </li>
+          <li class="atp-process__arrow" aria-hidden="true">&darr;</li>
+          <li class="atp-process__step">
+            <span class="atp-process__label"><a href="#measuring-progress">Evaluation</a></span>
+            <span class="atp-process__desc">Evaluation of Infrastructure Projects and citywide KPIs close the loop back to the plan.</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ==================================================
+           10. Measuring progress -- shell built from the two Table 7
+           actions that speak to evaluation/monitoring. -->
+      <section class="section-block" id="measuring-progress">
+        <span class="category-tag category-tag--record">Closing the loop</span>
+        <div class="section-intro">
+          <h2>Measuring progress</h2>
+          <p>Table 7 names two distinct kinds of measurement &mdash; one project-level, one citywide:</p>
+        </div>
+
+        <div class="atp-gcs__outcome">
+          <div class="atp-gcs__outcome-head">
+            <h3>Evaluation of Infrastructure Projects</h3>
+          </div>
+          <p>Monitors whether an individual built project achieved its intended impact on travel behavior and safety for multiple modes. Funding programs such as the CTC&#8217;s Active Transportation Program require pre- and post-project counts of walking, bicycling and vehicles.</p>
+        </div>
+
+        <div class="atp-gcs__outcome">
+          <div class="atp-gcs__outcome-head">
+            <h3>Develop KPIs to Measure Active Transportation Progress</h3>
+          </div>
+          <p>City staff develop key performance indicators to measure and report annual overall progress toward the ATP Guiding Principles &mdash; a citywide measure, distinct from any single project&#8217;s evaluation.</p>
+        </div>
+
+        <p class="bufp-transcription-note">The ATP doesn&#8217;t yet specify what those KPIs are. What Green Complete Streets thinks should be measured &mdash; and how &mdash; is planned as a later addition to this section.</p>
+      </section>
+
+      <!-- ==================================================
+           Explore the Plan -- moved to the bottom of the page as a
+           calm source-document index (was a photo/thumbnail card grid
+           near the top; see prior revisions if that's ever needed
+           again). Every href below is one of the actual uploaded
+           MVATP (August 2026) documents, hosted under documents/atp/
+           -- unchanged from the previous version, nothing invented. -->
+      <section class="section-block atp-docs" id="explore-the-plan">
+        <div class="section-intro">
+          <span class="category-tag category-tag--record">Explore the plan</span>
+          <h2 class="atp-docs__title">Read the full MVATP</h2>
+          <p class="atp-docs__intro">Explore the four chapters of the Mountain View Active Transportation Plan and its supporting technical appendices.</p>
+        </div>
+
+        <p class="atp-docs__group-label">The plan</p>
+        <ul class="atp-docs__list">
+          <li class="atp-docs__row">
+            <span class="atp-docs__head">
+              <span class="atp-docs__num" aria-hidden="true">01</span>
+              <span class="atp-docs__item-title">Introduction</span>
+            </span>
+            <p class="atp-docs__desc">How the plan was developed, who participated, and the vision and principles guiding it.</p>
+            <a class="atp-docs__action" href="../../../../documents/atp/mvatp-2026-08-chapter-1-introduction.pdf" target="_blank" rel="noopener noreferrer">Read Chapter 1 <span aria-hidden="true">&rarr;</span></a>
+          </li>
+          <li class="atp-docs__row">
+            <span class="atp-docs__head">
+              <span class="atp-docs__num" aria-hidden="true">02</span>
+              <span class="atp-docs__item-title">What&#8217;s it like to walk, bicycle and roll in Mountain View today?</span>
+            </span>
+            <p class="atp-docs__desc">Existing conditions, networks, safety, equity, and opportunities for the future.</p>
+            <a class="atp-docs__action" href="../../../../documents/atp/mvatp-2026-08-chapter-2-mountain-view-today.pdf" target="_blank" rel="noopener noreferrer">Read Chapter 2 <span aria-hidden="true">&rarr;</span></a>
+          </li>
+          <li class="atp-docs__row">
+            <span class="atp-docs__head">
+              <span class="atp-docs__num" aria-hidden="true">03</span>
+              <span class="atp-docs__item-title">Recommendations</span>
+            </span>
+            <p class="atp-docs__desc">Projects, policies, and programs proposed to make walking, bicycling, and rolling safer and more connected.</p>
+            <a class="atp-docs__action" href="../../../../documents/atp/mvatp-2026-08-chapter-3-recommendations.pdf" target="_blank" rel="noopener noreferrer">Read Chapter 3 <span aria-hidden="true">&rarr;</span></a>
+          </li>
+          <li class="atp-docs__row">
+            <span class="atp-docs__head">
+              <span class="atp-docs__num" aria-hidden="true">04</span>
+              <span class="atp-docs__item-title">Let&#8217;s Roll! Implementing the MVATP</span>
+            </span>
+            <p class="atp-docs__desc">Costs, phasing, funding, collaboration, and how recommendations can move from plan to implementation.</p>
+            <a class="atp-docs__action" href="../../../../documents/atp/mvatp-2026-08-chapter-4-lets-roll.pdf" target="_blank" rel="noopener noreferrer">Read Chapter 4 <span aria-hidden="true">&rarr;</span></a>
+          </li>
+        </ul>
+
+        <p class="atp-docs__group-label atp-docs__group-label--appendices">Technical appendices</p>
+        <ul class="atp-docs__list">
+          <li class="atp-docs__row">
+            <span class="atp-docs__head">
+              <span class="atp-docs__num" aria-hidden="true">A</span>
+              <span class="atp-docs__item-title">Project Prioritization</span>
+            </span>
+            <p class="atp-docs__desc">How projects were scored and ranked.</p>
+            <a class="atp-docs__action" href="../../../../documents/atp/mvatp-2026-08-appendix-a-project-prioritization.pdf" target="_blank" rel="noopener noreferrer">View Appendix A <span aria-hidden="true">&rarr;</span></a>
+          </li>
+          <li class="atp-docs__row">
+            <span class="atp-docs__head">
+              <span class="atp-docs__num" aria-hidden="true">B</span>
+              <span class="atp-docs__item-title">Project Cutsheets</span>
+            </span>
+            <p class="atp-docs__desc">Concept designs and alternatives for priority corridors.</p>
+            <a class="atp-docs__action" href="../../../../documents/atp/mvatp-2026-08-appendix-b-project-cutsheets.pdf" target="_blank" rel="noopener noreferrer">View Appendix B <span aria-hidden="true">&rarr;</span></a>
+          </li>
+          <li class="atp-docs__row">
+            <span class="atp-docs__head">
+              <span class="atp-docs__num" aria-hidden="true">C</span>
+              <span class="atp-docs__item-title">Recommended Improvements</span>
+            </span>
+            <p class="atp-docs__desc">Complete list of recommended bicycle and pedestrian improvements.</p>
+            <a class="atp-docs__action" href="../../../../documents/atp/mvatp-2026-08-appendix-c-recommended-improvements.pdf" target="_blank" rel="noopener noreferrer">View Appendix C <span aria-hidden="true">&rarr;</span></a>
+          </li>
+          <li class="atp-docs__row">
+            <span class="atp-docs__head">
+              <span class="atp-docs__num" aria-hidden="true">D</span>
+              <span class="atp-docs__item-title">Vision Zero Recommendations</span>
+            </span>
+            <p class="atp-docs__desc">Programs and policies supporting safer streets.</p>
+            <a class="atp-docs__action" href="../../../../documents/atp/mvatp-2026-08-appendix-d-vzap-lrsp.pdf" target="_blank" rel="noopener noreferrer">View Appendix D <span aria-hidden="true">&rarr;</span></a>
+          </li>
+          <li class="atp-docs__row">
+            <span class="atp-docs__head">
+              <span class="atp-docs__num" aria-hidden="true">E</span>
+              <span class="atp-docs__item-title">Existing Conditions + Needs</span>
+            </span>
+            <p class="atp-docs__desc">Analysis of Mountain View&#8217;s transportation network, safety, equity, sustainability, and biodiversity.</p>
+            <a class="atp-docs__action" href="../../../../documents/atp/mvatp-2026-08-appendix-e-existing-conditions.pdf" target="_blank" rel="noopener noreferrer">View Appendix E <span aria-hidden="true">&rarr;</span></a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ==================================================
+           13. Small contextual source/footer treatment -- replaces the
+           former "How the plan changed" section, "What's still
+           missing?" placeholder, and the large Documents & Sources
+           card grid. Nothing here was deleted: the plan-history
+           timeline and both full recommendation-comparison tables
+           moved to community-advocacy/ (which now owns the "what did
+           advocates ask for, what changed, what happens next" story);
+           chapter/appendix/table source links stay contextual,
+           in-place, where each is already discussed above (Explore
+           the Plan, Table 5 footer, Priority Projects, Table 7 quote). -->
+      <div class="atp-footer">
+        <a class="atp-footer__link" href="community-advocacy/">Community advocacy &amp; plan history <span aria-hidden="true">&rarr;</span></a>
+        <p class="atp-footer__source">Source: Mountain View Active Transportation Plan (August 2026). Chapters, appendices, tables and figures are linked throughout this page as they&#8217;re discussed; the full document set is in <a href="#explore-the-plan">Explore the Plan</a> above.</p>
+        <p class="study-back-link"><a href="../">&larr; Back to Plans</a></p>
+      </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // On this page: progressive enhancement over plain working anchor
+    // links. Drives THREE things together so they never disagree: the
+    // desktop sticky sidebar (.atp-sidebar__list, >=1025px), the
+    // mobile/tablet dropdown (.onpage-nav, <=1024px -- collapse/expand
+    // behavior unchanged from the generic component), and that
+    // dropdown trigger's "-- Section name" current-label span. Only
+    // one of the sidebar/dropdown is ever visible at a given width
+    // (see the CSS), but both get real click handling and both get
+    // updated by the one shared IntersectionObserver below.
+    (function () {
+      var nav = document.querySelector('.onpage-nav');
+      var sidebar = document.querySelector('.atp-sidebar');
+      if (!nav && !sidebar) { return; }
+
+      var trigger = nav && nav.querySelector('.onpage-nav__trigger');
+      var list = nav && nav.querySelector('.onpage-nav__list');
+      var mobileLinks = nav ? Array.prototype.slice.call(nav.querySelectorAll('.onpage-nav__link')) : [];
+      var sidebarLinks = sidebar ? Array.prototype.slice.call(sidebar.querySelectorAll('.atp-sidebar__list a')) : [];
+      var currentLabel = nav && nav.querySelector('.onpage-nav__current');
+      var reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      if (trigger && list) {
+        list.hidden = true;
+
+        trigger.addEventListener('click', function () {
+          var open = trigger.getAttribute('aria-expanded') === 'true';
+          trigger.setAttribute('aria-expanded', String(!open));
+          list.hidden = open;
+        });
+
+        var mobileQuery = window.matchMedia('(max-width: 1024px)');
+        var resetIfDesktop = function () {
+          if (!mobileQuery.matches) {
+            trigger.setAttribute('aria-expanded', 'false');
+            list.hidden = true;
+          }
+        };
+        if (mobileQuery.addEventListener) {
+          mobileQuery.addEventListener('change', resetIfDesktop);
+        }
+      }
+
+      var scrollToTarget = function (id, offset) {
+        var target = document.getElementById(id);
+        if (!target) { return; }
+
+        var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+        var scrollTarget = Math.max(0, targetTop - offset);
+
+        window.scrollTo({
+          top: scrollTarget,
+          behavior: reduceMotionQuery.matches ? 'auto' : 'smooth'
+        });
+
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, '', '#' + id);
+        }
+      };
+
+      mobileLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          var id = link.getAttribute('href').slice(1);
+          if (!document.getElementById(id)) { return; }
+
+          event.preventDefault();
+          var navHeight = nav.getBoundingClientRect().height;
+          scrollToTarget(id, navHeight + 16);
+
+          if (trigger && list && !list.hidden) {
+            trigger.setAttribute('aria-expanded', 'false');
+            list.hidden = true;
+          }
+        });
+      });
+
+      sidebarLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          var id = link.getAttribute('href').slice(1);
+          if (!document.getElementById(id)) { return; }
+
+          event.preventDefault();
+          scrollToTarget(id, 24);
+        });
+      });
+
+      var mobileLinkFor = {};
+      mobileLinks.forEach(function (link) { mobileLinkFor[link.getAttribute('href').slice(1)] = link; });
+
+      var sidebarLinkFor = {};
+      sidebarLinks.forEach(function (link) { sidebarLinkFor[link.getAttribute('href').slice(1)] = link; });
+
+      var allIds = Object.keys(mobileLinkFor).concat(Object.keys(sidebarLinkFor))
+        .filter(function (id, i, arr) { return arr.indexOf(id) === i; });
+
+      var sections = allIds
+        .map(function (id) {
+          var section = document.getElementById(id);
+          return section ? { id: id, section: section } : null;
+        })
+        .filter(Boolean);
+
+      if (sections.length && 'IntersectionObserver' in window) {
+        var setActive = function (id) {
+          mobileLinks.forEach(function (l) { l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
+          sidebarLinks.forEach(function (l) { l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
+
+          var mobileLink = mobileLinkFor[id];
+          if (mobileLink) {
+            mobileLink.classList.add('is-active');
+            mobileLink.setAttribute('aria-current', 'true');
+            if (currentLabel) { currentLabel.textContent = mobileLink.textContent; }
+          }
+
+          var sidebarLink = sidebarLinkFor[id];
+          if (sidebarLink) {
+            sidebarLink.classList.add('is-active');
+            sidebarLink.setAttribute('aria-current', 'true');
+          }
+        };
+
+        var observer = new IntersectionObserver(function (entries) {
+          var visible = entries.filter(function (entry) { return entry.isIntersecting; });
+          if (!visible.length) { return; }
+
+          visible.sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+          var match = sections.filter(function (entry) { return entry.section === visible[0].target; })[0];
+          if (match) { setActive(match.id); }
+        }, {
+          rootMargin: '-10% 0px -70% 0px',
+          threshold: 0
+        });
+
+        sections.forEach(function (entry) { observer.observe(entry.section); });
+      }
+    })();
+
+    // MVATP Scoring Criteria Framework -- compact accordion rows.
+    // Each row toggles independently (not exclusive): expanding one
+    // category doesn't collapse the others, since the whole point is
+    // to keep all five weights visible and comparable at once.
+    (function () {
+      var rows = Array.prototype.slice.call(document.querySelectorAll('.atp-scoring__row'));
+      if (!rows.length) { return; }
+
+      rows.forEach(function (row) {
+        row.addEventListener('click', function () {
+          var isOpen = row.getAttribute('aria-expanded') === 'true';
+          var panel = document.getElementById(row.getAttribute('aria-controls'));
+          row.setAttribute('aria-expanded', String(!isOpen));
+          if (panel) { panel.hidden = isOpen; }
+        });
+      });
+    })();
+
+    // Policies & programs -- category accordion. Same independent-
+    // toggle pattern as the Scoring Framework rows above: expanding
+    // one category doesn't collapse the others.
+    (function () {
+      var rows = Array.prototype.slice.call(document.querySelectorAll('.atp-polcat__row'));
+      if (!rows.length) { return; }
+
+      rows.forEach(function (row) {
+        row.addEventListener('click', function () {
+          var isOpen = row.getAttribute('aria-expanded') === 'true';
+          var panel = document.getElementById(row.getAttribute('aria-controls'));
+          row.setAttribute('aria-expanded', String(!isOpen));
+          if (panel) { panel.hidden = isOpen; }
+        });
+      });
+    })();
+
+    // "Where are the 100 points?" -- single "View all 17 criteria"
+    // disclosure revealing the remaining two point groups.
+    (function () {
+      var toggle = document.querySelector('.atp-points__toggle');
+      if (!toggle) { return; }
+
+      var panel = document.getElementById(toggle.getAttribute('aria-controls'));
+      var label = toggle.querySelector('.atp-points__toggle-label');
+
+      toggle.addEventListener('click', function () {
+        var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        if (panel) { panel.hidden = isOpen; }
+        if (label) { label.textContent = isOpen ? 'View all 17 criteria' : 'Show fewer criteria'; }
+      });
+    })();
+  </script>
+</body>
+</html>
