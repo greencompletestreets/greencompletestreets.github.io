@@ -1638,29 +1638,31 @@
   max-width: 48rem;
 }
 
-/* ---------- 04 / 09. Process visualization (vertical step flow) ---------- */
+/* ---------- 04. Compact network-to-projects process strip ---------- */
 
 .rengstorff-microsite .atp-process__steps {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 2rem 0 0 0;
+  align-items: stretch;
+  margin: 1.5rem 0 0 0;
   padding: 0;
   list-style: none;
 }
 
 .rengstorff-microsite .atp-process__step {
-  width: 100%;
-  max-width: 42rem;
-  padding: 1.1rem 1.5rem;
+  flex: 1 1 0;
+  min-width: 8rem;
+  padding: 0.8rem 0.75rem;
   border: 1px solid #d4e2d7;
-  border-radius: 14px;
+  border-radius: 6px;
   background: #f5f8f4;
-  text-align: center;
+  text-align: left;
 }
+
+.rengstorff-microsite .atp-process__number { display: block; color: #16704d; font-size: 1.35rem; font-weight: 800; line-height: 1; }
 
 .rengstorff-microsite .atp-process__label {
   display: block;
+  margin-top: 0.35rem;
   font-weight: 700;
   font-size: 1.05rem;
   color: #16412e;
@@ -1671,26 +1673,45 @@
 }
 
 .rengstorff-microsite .atp-process__desc {
-  display: block;
-  margin-top: 0.4rem;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: #526258;
+  display: none;
 }
 
 .rengstorff-microsite .atp-process__arrow {
-  padding: 0.35rem 0;
+  align-self: center;
+  padding: 0 0.35rem;
   color: #9fb5a5;
   font-size: 1.1rem;
   line-height: 1;
 }
 
-.rengstorff-microsite .atp-process__steps--compact .atp-process__step {
-  padding: 0.9rem 1.5rem;
-}
+/* ---------- Priority bikeway results: summary first, segments on demand ---------- */
+.rengstorff-microsite .atp-bikeways { margin-top: 2rem; }
+.rengstorff-microsite .atp-bikeways h3 { margin: 0 0 0.25rem; color: #16412e; font-size: 1.35rem; }
+.rengstorff-microsite .atp-bikeways__source { margin: 0 0 0.9rem !important; color: #748076 !important; font-size: 0.75rem !important; }
+.rengstorff-microsite .atp-bikeways__head,
+.rengstorff-microsite .atp-bikeways__row,
+.rengstorff-microsite .atp-bikeways__total { display: grid; grid-template-columns: minmax(12rem, 1.8fr) repeat(5, minmax(5.6rem, 0.8fr)) 1.2rem; gap: 0.7rem; align-items: center; }
+.rengstorff-microsite .atp-bikeways__head { padding: 0.45rem 0.8rem; color: #526258; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.rengstorff-microsite .atp-bikeways__list { margin: 0; padding: 0; list-style: none; }
+.rengstorff-microsite .atp-bikeways__item { margin: 0 0 0.45rem; border-left: 5px solid #1d9168; border-radius: 4px; overflow: hidden; background: #eaf6ef; }
+.rengstorff-microsite .atp-bikeways__item--class-iii { border-color: #1878d1; background: #e9f3fc; }
+.rengstorff-microsite .atp-bikeways__item--class-ii { border-color: #8c61c4; background: #f1ebfa; }
+.rengstorff-microsite .atp-bikeways__row { width: 100%; min-height: 4.6rem; padding: 0.65rem 0.8rem; border: 0; background: transparent; color: #12251a; font: inherit; font-size: 0.88rem; font-weight: 700; text-align: left; cursor: pointer; }
+.rengstorff-microsite .atp-bikeways__row:hover { filter: brightness(0.98); }
+.rengstorff-microsite .atp-bikeways__row:focus-visible { outline: 2px solid #16704d; outline-offset: -2px; }
+.rengstorff-microsite .atp-bikeways__class strong { display: block; font-size: 1.08rem; }
+.rengstorff-microsite .atp-bikeways__class span { display: block; margin-top: 0.15rem; color: #31543e; font-size: 0.73rem; font-weight: 600; }
+.rengstorff-microsite .atp-bikeways__chevron { justify-self: end; color: #183c2a; transition: transform 0.15s ease; }
+.rengstorff-microsite .atp-bikeways__row[aria-expanded="true"] .atp-bikeways__chevron { transform: rotate(180deg); }
+.rengstorff-microsite .atp-bikeways__panel { padding: 0.7rem 0.8rem 0.9rem; border-top: 1px solid rgba(22, 65, 46, 0.15); background: rgba(255, 255, 255, 0.55); }
+.rengstorff-microsite .atp-bikeways__panel[hidden] { display: none; }
+.rengstorff-microsite .atp-bikeways__panel-note { margin: 0 0 0.45rem !important; color: #526258 !important; font-size: 0.75rem !important; }
+.rengstorff-microsite .atp-bikeways__segments { margin: 0; padding: 0; list-style: none; }
+.rengstorff-microsite .atp-bikeways__segments li { display: grid; grid-template-columns: minmax(10rem, 1.2fr) minmax(15rem, 2fr) repeat(4, minmax(4rem, 0.55fr)); gap: 0.65rem; padding: 0.4rem 0; border-top: 1px solid rgba(22, 65, 46, 0.1); font-size: 0.75rem; }
+.rengstorff-microsite .atp-bikeways__total { grid-template-columns: minmax(12rem, 1.8fr) repeat(5, minmax(5.6rem, 0.8fr)); margin-top: 0.7rem; padding: 0.8rem; border-radius: 4px; background: #eceeef; font-size: 0.88rem; }
 
-.rengstorff-microsite .atp-process__steps--compact .atp-process__label {
-  font-size: 0.98rem;
+@media screen and (max-width: 900px) {
+  .rengstorff-microsite .atp-bikeways__head, .rengstorff-microsite .atp-bikeways__row { grid-template-columns: minmax(10rem, 1.5fr) repeat(5, minmax(4.5rem, 0.8fr)) 1rem; gap: 0.4rem; font-size: 0.76rem; }
 }
 
 /* ---------- 06. Priority projects (unchanged) ---------- */
@@ -2181,7 +2202,13 @@
     padding: 1.25rem;
   }
 
-  .rengstorff-microsite .atp-process__step {
-    max-width: none;
-  }
+  .rengstorff-microsite .atp-process__steps { flex-wrap: wrap; gap: 0.35rem; }
+  .rengstorff-microsite .atp-process__step { flex: 1 1 calc(50% - 0.35rem); min-width: 0; }
+  .rengstorff-microsite .atp-process__arrow { flex: 0 0 1rem; padding: 0; }
+  .rengstorff-microsite .atp-bikeways__head { display: none; }
+  .rengstorff-microsite .atp-bikeways__row { grid-template-columns: minmax(0, 1fr) repeat(2, auto) 1rem; gap: 0.35rem; }
+  .rengstorff-microsite .atp-bikeways__row > span:nth-child(4), .rengstorff-microsite .atp-bikeways__row > span:nth-child(5), .rengstorff-microsite .atp-bikeways__row > span:nth-child(6) { display: none; }
+  .rengstorff-microsite .atp-bikeways__segments li { grid-template-columns: 1fr 1fr; gap: 0.25rem 0.7rem; }
+  .rengstorff-microsite .atp-bikeways__segments li span:nth-last-child(-n+4) { color: #526258; }
+  .rengstorff-microsite .atp-bikeways__total { grid-template-columns: 1fr 1fr; gap: 0.4rem; }
 }
