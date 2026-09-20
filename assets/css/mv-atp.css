@@ -942,17 +942,38 @@
   color: #5c7a3f !important;
 }
 
+.rengstorff-microsite .atp-points__threshold {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.rengstorff-microsite .atp-points__threshold-line {
+  flex: 1;
+  height: 1px;
+  background-image: repeating-linear-gradient(to right, #b7c3ba 0, #b7c3ba 4px, transparent 4px, transparent 8px);
+}
+
+.rengstorff-microsite .atp-points__threshold-pts {
+  flex: none;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #748076;
+  white-space: nowrap;
+}
+
 .rengstorff-microsite .atp-points__toggle {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  margin: 0.5rem 0 0 0;
-  padding: 0.15rem 0.05rem;
+  gap: 0.4rem;
+  margin: 0.6rem 0 0 0;
+  padding: 0.55rem 0.3rem;
   background: none;
   border: none;
   font: inherit;
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-size: 0.92rem;
+  font-weight: 800;
   color: #16704d;
   cursor: pointer;
 }
@@ -970,7 +991,7 @@
 
 .rengstorff-microsite .atp-points__chevron {
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   transition: transform 0.15s ease;
 }
 
@@ -1228,7 +1249,7 @@
 
 .rengstorff-microsite .atp-scoring__chevron {
   flex: none;
-  font-size: 0.7rem;
+  font-size: 1.02rem;
   color: #9fb5a5;
   transition: transform 0.15s ease;
 }
@@ -2003,75 +2024,746 @@
   }
 }
 
-/* ---------- 08/10. Green Complete Streets outcome blocks ---------- */
+/* ---------- 10. Measuring progress -- simple outcome blocks, still
+   used by the section below Green Complete Streets even after that
+   section's redesign (kept minimal now that the status pill/question/
+   list/source variants live under .atp-gce-table__* instead). ---------- */
 
 .rengstorff-microsite .atp-gcs__outcome {
   max-width: 56rem;
-  padding: 1.75rem 0;
+  padding: 1.25rem 0;
   border-top: 1px solid #dde6de;
 }
 
 .rengstorff-microsite .atp-gcs__outcome:first-of-type {
-  margin-top: 2rem;
-}
-
-.rengstorff-microsite .atp-gcs__outcome-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem 1rem;
+  margin-top: 1.5rem;
 }
 
 .rengstorff-microsite .atp-gcs__outcome-head h3 {
   margin: 0 !important;
-  font-size: 1.15rem !important;
+  font-size: 1.1rem !important;
 }
 
-.rengstorff-microsite .atp-gcs__status {
+/* ---------- 08. Green Complete Streets -- hero, "what makes a
+   Green Complete Street" diagram, and the element table. Card colors
+   reuse the site's existing category palette (safety=red, mobility/
+   accessibility=blue, sustainability/trees/biodiversity=green,
+   equity/heat=tan-orange) so this reads as one system with the
+   Scoring Framework section above it, not a separate visual
+   language. ---------- */
+
+.rengstorff-microsite .atp-gce {
+  background: #ffffff;
+  padding: 1.25rem clamp(1.25rem, 4vw, 3rem) 1.4rem;
+}
+
+/* -- Hero: copy + card/photo aside -- */
+
+.rengstorff-microsite .atp-gce-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+.rengstorff-microsite .atp-gce-hero__copy h2 {
+  font-family: "Inter", Helvetica, sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(1.9rem, 3vw, 2.4rem) !important;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #14181a !important;
+  margin: 0 0 0.9rem 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-hero .atp-gce-hero__copy p {
+  font-size: 1rem !important;
+  line-height: 1.6;
+  color: #4a5650 !important;
+  margin: 0 0 0.9rem 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-hero .atp-gce-hero__copy p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-hero__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rengstorff-microsite .atp-gce-hero__card {
+  background: #16412e;
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem;
+  color: #eaf3ec;
+}
+
+.rengstorff-microsite .atp-gce-hero__card p.atp-gce-hero__card-lead {
+  font-weight: 800 !important;
+  font-size: 1.08rem !important;
+  line-height: 1.3;
+  color: #ffffff !important;
+  margin: 0 0 0.75rem 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-hero__card p.atp-gce-hero__card-note {
+  font-size: 0.86rem !important;
+  font-style: italic;
+  line-height: 1.5;
+  color: #cfe3d5 !important;
+  margin: 0 0 0.6rem 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-hero__card p.atp-gce-hero__card-note:last-child {
+  margin-bottom: 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-hero__photo {
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.rengstorff-microsite .atp-gce-hero__photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+/* -- "What makes a Green Complete Street?" diagram -- */
+
+.rengstorff-microsite .atp-gce-diagram {
+  margin-top: 3rem;
+}
+
+.rengstorff-microsite .atp-gce-diagram > .category-tag {
+  margin-bottom: 0.6rem;
+}
+
+.rengstorff-microsite .atp-gce-diagram h2 {
+  font-family: "Inter", Helvetica, sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(1.7rem, 2.6vw, 2.15rem) !important;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #14181a !important;
+  margin: 0 0 0.6rem 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-diagram p.atp-gce-diagram__intro {
+  font-size: 1rem !important;
+  line-height: 1.55;
+  color: #4a5650 !important;
+  max-width: 52rem;
+  margin: 0 0 1.5rem 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-diagram__cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0 0.55rem;
+  /* Breaks out of .atp-gce's own side padding (up to 3rem each side)
+     so the three cards use the full sidebar-adjusted content column
+     instead of a further-inset one -- matched by .atp-gce-outcome
+     below so the band stays flush with the cards above it. Doesn't
+     touch .rengstorff-shell/.atp-layout, so the sidebar and every
+     other section on the page are unaffected. */
+  margin-left: clamp(-3rem, -4vw, -1.25rem);
+  margin-right: clamp(-3rem, -4vw, -1.25rem);
+}
+
+.rengstorff-microsite .atp-gce-diagram__plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  font-weight: 300;
+  color: #9fb5a5;
+  line-height: 1;
+}
+
+.rengstorff-microsite .atp-gce-card {
+  border-radius: 14px;
+  padding: 0.78rem 1.1rem 0.88rem;
+  min-width: 0;
+}
+
+.rengstorff-microsite .atp-gce-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.rengstorff-microsite .atp-gce-card h3 {
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+  line-height: 1.15;
+  min-height: 2.55rem;
+  margin: 0 0 0.28rem 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-card p.atp-gce-card__subtitle {
+  font-size: 0.82rem !important;
+  line-height: 1.32;
+  color: inherit !important;
+  opacity: 0.75;
+  margin: 0 0 0.5rem 0 !important;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(20, 24, 26, 0.12);
+}
+
+.rengstorff-microsite .atp-gce-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-gce-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.28;
+  margin-bottom: 0.36rem;
+}
+
+.rengstorff-microsite .atp-gce-card li:last-child {
+  margin-bottom: 0;
+}
+
+.rengstorff-microsite .atp-gce-card li .fas {
   flex: none;
-  font-size: 0.72rem;
+  width: 1.1em;
+  margin-top: 0.15em;
+  text-align: center;
+  font-size: 0.85em;
+}
+
+.rengstorff-microsite .atp-gce-card--people {
+  background: #e5eef8;
+  color: #1f3a54;
+}
+
+.rengstorff-microsite .atp-gce-card--people .atp-gce-card__icon {
+  background: #c4dbf0;
+  color: #275c8a;
+}
+
+.rengstorff-microsite .atp-gce-card--people h3 {
+  color: #1f3a54 !important;
+}
+
+.rengstorff-microsite .atp-gce-card--people li .fas {
+  color: #275c8a;
+}
+
+.rengstorff-microsite .atp-gce-card--climate {
+  background: #e4efe2;
+  color: #2c4a30;
+}
+
+.rengstorff-microsite .atp-gce-card--climate .atp-gce-card__icon {
+  background: #c3ddc0;
+  color: #3f7a3f;
+}
+
+.rengstorff-microsite .atp-gce-card--climate h3 {
+  color: #2c4a30 !important;
+}
+
+.rengstorff-microsite .atp-gce-card--climate li .fas {
+  color: #3f7a3f;
+}
+
+.rengstorff-microsite .atp-gce-card--equity {
+  background: #f5ecd9;
+  color: #5c4a1f;
+}
+
+.rengstorff-microsite .atp-gce-card--equity .atp-gce-card__icon {
+  background: #ecdcb3;
+  color: #8a6d2f;
+}
+
+.rengstorff-microsite .atp-gce-card--equity h3 {
+  color: #5c4a1f !important;
+}
+
+.rengstorff-microsite .atp-gce-card--equity li .fas {
+  color: #8a6d2f;
+}
+
+.rengstorff-microsite .atp-gce-diagram__arrow-down {
+  display: flex;
+  justify-content: center;
+  margin: 0.6rem 0;
+  font-size: 1.15rem;
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-gce-outcome {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #eef5ec;
+  border-left: 4px solid #16412e;
+  border-radius: 10px;
+  padding: 0.9rem 1.5rem;
+  /* Matches .atp-gce-diagram__cards' breakout so the band stays flush
+     with the cards above it instead of sitting narrower. */
+  margin-left: clamp(-3rem, -4vw, -1.25rem);
+  margin-right: clamp(-3rem, -4vw, -1.25rem);
+}
+
+.rengstorff-microsite .atp-gce-outcome__icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #16412e;
+  color: #cdead1;
+  font-size: 1.05rem;
+}
+
+.rengstorff-microsite .atp-gce-outcome__label {
+  flex: none;
+  padding-right: 1.25rem;
+  border-right: 1px solid #c9d9cd;
+}
+
+.rengstorff-microsite .atp-gce-outcome__label h3 {
+  font-weight: 800 !important;
+  font-size: 1.08rem !important;
+  color: #16412e !important;
+  margin: 0 !important;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-gce-outcome p.atp-gce-outcome__tagline {
+  font-size: 0.78rem !important;
+  font-weight: 600;
+  color: #4e745c !important;
+  margin: 0.15rem 0 0 0 !important;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-gce-outcome p.atp-gce-outcome__desc {
+  font-size: 0.88rem !important;
+  line-height: 1.45;
+  color: #3c463e !important;
+  margin: 0 !important;
+}
+
+/* -- Element table -- */
+
+.rengstorff-microsite .atp-gce-table-wrap {
+  margin-top: 2.75rem;
+}
+
+.rengstorff-microsite .atp-gce-table-wrap h3 {
+  font-family: "Inter", Helvetica, sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 1.3rem !important;
+  color: #14181a !important;
+  margin: 0 0 0.35rem 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-table-wrap p.atp-gce-table__intro {
+  font-size: 0.95rem !important;
+  color: #4a5650 !important;
+  max-width: 48rem;
+  margin: 0 0 1.1rem 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-table {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rengstorff-microsite .atp-gce-table__item {
+  border: 1px solid #e4ebe4;
+  border-radius: 10px;
+  background: #fafcfa;
+  overflow: hidden;
+}
+
+.rengstorff-microsite .atp-gce-table__row {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  min-height: 64px;
+  background: none;
+  border: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rengstorff-microsite .atp-gce-table__row:hover {
+  background: #f2f6f2;
+}
+
+.rengstorff-microsite .atp-gce-table__row:focus-visible {
+  outline: 2px solid #16704d;
+  outline-offset: -2px;
+}
+
+.rengstorff-microsite .atp-gce-table__icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.rengstorff-microsite .atp-gce-table__icon--safety {
+  background: #f6dede;
+  color: #a34848;
+}
+
+.rengstorff-microsite .atp-gce-table__icon--mobility {
+  background: #dbe6ef;
+  color: #3d6c8f;
+}
+
+.rengstorff-microsite .atp-gce-table__icon--accessibility {
+  background: #e6def2;
+  color: #6b4f96;
+}
+
+.rengstorff-microsite .atp-gce-table__icon--trees {
+  background: #e3ecdc;
+  color: #5c7a3f;
+}
+
+.rengstorff-microsite .atp-gce-table__icon--biodiversity {
+  background: #d9ecd9;
+  color: #3f7a56;
+}
+
+.rengstorff-microsite .atp-gce-table__icon--green-infra {
+  background: #d6ecec;
+  color: #2f7a7a;
+}
+
+.rengstorff-microsite .atp-gce-table__icon--equity {
+  background: #f2e9d0;
+  color: #8a6d2f;
+}
+
+.rengstorff-microsite .atp-gce-table__icon--heat {
+  background: #fbe0cc;
+  color: #b1591f;
+}
+
+.rengstorff-microsite .atp-gce-table__meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.rengstorff-microsite .atp-gce-table__name {
+  display: block;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  font-size: 0.98rem;
+  color: #16412e;
+}
+
+.rengstorff-microsite .atp-gce-table__desc {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #748076;
+}
+
+.rengstorff-microsite .atp-gce-table__assessment {
+  flex: none;
+  width: 216px;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-gce-table__dot {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+/* Four-tier assessment taxonomy: how far each element travels through
+   implementation, not just whether the ATP mentions it. Integrated =
+   strongest (carried through multiple stages); Explicit but limited =
+   present but concentrated in one stage; Linked through another plan =
+   substantively depends on a different City plan/process; Weak
+   implementation connection = goal/criterion exists but little carries
+   it into design, delivery or measurement. */
+
+.rengstorff-microsite .atp-gce-table__assessment--integrated {
+  color: #0b5c3a;
+}
+
+.rengstorff-microsite .atp-gce-table__assessment--integrated .atp-gce-table__dot {
+  background: #16704d;
+}
+
+.rengstorff-microsite .atp-gce-table__assessment--explicit-limited {
+  color: #6b5a37;
+}
+
+.rengstorff-microsite .atp-gce-table__assessment--explicit-limited .atp-gce-table__dot {
+  background: #a67c27;
+}
+
+.rengstorff-microsite .atp-gce-table__assessment--linked {
+  color: #2f5a72;
+}
+
+.rengstorff-microsite .atp-gce-table__assessment--linked .atp-gce-table__dot {
+  background: #3d7ba0;
+}
+
+.rengstorff-microsite .atp-gce-table__assessment--weak {
+  color: #8a4a3a;
+}
+
+.rengstorff-microsite .atp-gce-table__assessment--weak .atp-gce-table__dot {
+  background: #b1591f;
+}
+
+.rengstorff-microsite .atp-gce-table__chevron {
+  flex: none;
+  width: 1.4rem;
+  text-align: right;
+  font-size: 1.02rem;
+  color: #9fb5a5;
+  transition: transform 0.15s ease;
+  padding: 0.55rem 0;
+  margin: -0.55rem 0;
+}
+
+.rengstorff-microsite .atp-gce-table__row[aria-expanded="true"] .atp-gce-table__chevron {
+  transform: rotate(180deg);
+}
+
+.rengstorff-microsite .atp-gce-table__panel {
+  padding: 0.15rem 1.25rem 1.25rem calc(1rem + 36px + 1.1rem);
+  border-top: 1px solid #e4ebe4;
+  margin: 0 1rem;
+}
+
+.rengstorff-microsite .atp-gce-table__panel[hidden] {
+  display: none;
+}
+
+/* -- Evidence panel: WHAT / WHERE / CHAIN / READING -- a technical
+   evidence layout, not prose. Each block is introduced by a small
+   uppercase label so the hierarchy (finding -> evidence -> chain ->
+   interpretation) stays legible at a glance. -- */
+
+.rengstorff-microsite .atp-gce-evidence__block {
+  margin-top: 1rem;
+}
+
+.rengstorff-microsite .atp-gce-evidence__block:first-child {
+  margin-top: 0.9rem;
+}
+
+.rengstorff-microsite .atp-gce-evidence__label {
+  display: block;
+  font-size: 0.7rem !important;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0.3rem 0.7rem;
+  color: #8a978c !important;
+  margin: 0 0 0.4rem 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-table__panel .atp-gce-evidence__block p {
+  font-size: 0.9rem !important;
+  line-height: 1.55;
+  color: #3c463e !important;
+  margin: 0 !important;
+}
+
+.rengstorff-microsite .atp-gce-evidence__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-gce-evidence__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.4rem;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eef2ee;
+}
+
+.rengstorff-microsite .atp-gce-evidence__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.rengstorff-microsite .atp-gce-evidence__type {
+  flex: none;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #4e745c;
+}
+
+.rengstorff-microsite .atp-gce-evidence__sep {
+  color: #b7c3ba;
+}
+
+.rengstorff-microsite .atp-gce-evidence__title {
+  color: #3c463e;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.rengstorff-microsite .atp-gce-evidence__page {
+  flex: none;
+  color: #8a978c;
+  font-size: 0.82rem;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* -- Implementation chain: GOAL -> PRIORITIZATION -> DESIGN ->
+   DELIVERY -> MEASUREMENT. Strength is double-coded (fill/border
+   style, not color alone): strong = solid fill; indirect = tinted
+   fill, solid border; weak/absent = no fill, dashed border. -- */
+
+.rengstorff-microsite .atp-gce-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rengstorff-microsite .atp-gce-chain__stage {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.28rem 0.6rem;
   border-radius: 999px;
   white-space: nowrap;
 }
 
-.rengstorff-microsite .atp-gcs__status--explicit {
+.rengstorff-microsite .atp-gce-chain__stage--strong {
   background: #cdead1;
-  color: #0b5c3a !important;
+  border: 1px solid #16704d;
+  color: #0b5c3a;
 }
 
-.rengstorff-microsite .atp-gcs__status--indirect {
-  background: #f2e9d8;
-  color: #6b5a37 !important;
+.rengstorff-microsite .atp-gce-chain__stage--indirect {
+  background: #f2e9d0;
+  border: 1px solid #a67c27;
+  color: #6b5a37;
 }
 
-.rengstorff-microsite .atp-gcs__question {
-  margin: 0.6rem 0 0.85rem 0 !important;
-  font-size: 1.02rem !important;
-  font-weight: 600;
-  color: #3c463e !important;
+.rengstorff-microsite .atp-gce-chain__stage--weak {
+  background: none;
+  border: 1px dashed #b7bfb9;
+  color: #8a978c;
 }
 
-.rengstorff-microsite .atp-gcs__list {
-  margin: 0.85rem 0;
-  padding-left: 1.2rem;
+.rengstorff-microsite .atp-gce-chain__arrow {
+  font-size: 0.72rem;
+  color: #b7c3ba;
 }
 
-.rengstorff-microsite .atp-gcs__list li {
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: #3c463e;
+@media screen and (max-width: 900px) {
+  .rengstorff-microsite .atp-gce-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .rengstorff-microsite .atp-gce-diagram__cards {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .rengstorff-microsite .atp-gce-diagram__plus {
+    justify-self: center;
+  }
+
+  .rengstorff-microsite .atp-gce-outcome {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .rengstorff-microsite .atp-gce-outcome__label {
+    border-right: none;
+    padding-right: 0;
+  }
 }
 
-.rengstorff-microsite .atp-gcs__source {
-  margin: 0.75rem 0 0 0 !important;
-  font-size: 0.78rem !important;
-  color: #8a978c !important;
+@media screen and (max-width: 700px) {
+  .rengstorff-microsite .atp-gce-table__row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.6rem 0.75rem;
+    min-height: 0;
+  }
+
+  .rengstorff-microsite .atp-gce-table__meta {
+    flex: 1 1 100%;
+    order: 1;
+  }
+
+  .rengstorff-microsite .atp-gce-table__assessment {
+    width: auto;
+    order: 2;
+  }
+
+  .rengstorff-microsite .atp-gce-table__chevron {
+    order: 3;
+    margin-left: auto;
+  }
+
+  .rengstorff-microsite .atp-gce-table__panel {
+    padding-left: 1rem;
+  }
+
+  .rengstorff-microsite .atp-gce-evidence__page {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
 }
 
 /* ---------- 13. Small closing footer -- replaces the former "How the

@@ -314,29 +314,6 @@
           </li>
 
           <li class="atp-scoring__item">
-            <button type="button" class="atp-scoring__row" aria-expanded="false" aria-controls="scoring-panel-sustainability" id="scoring-toggle-sustainability">
-              <span class="atp-scoring__icon atp-scoring__icon--sustainability" aria-hidden="true"><i class="fas fa-leaf"></i></span>
-              <span class="atp-scoring__score">
-                <span class="atp-scoring__value">9<span class="atp-scoring__unit">pts</span></span>
-                <span class="atp-scoring__bar"><span class="atp-scoring__fill" style="width: 28.125%;"></span></span>
-              </span>
-              <span class="atp-scoring__meta">
-                <span class="atp-scoring__name">Sustainability &amp; Biodiversity</span>
-                <span class="atp-scoring__desc">Reduces impervious surface area and creates space for trees and plantings.</span>
-              </span>
-              <span class="atp-scoring__chevron" aria-hidden="true">&#9662;</span>
-            </button>
-            <div class="atp-scoring__panel" id="scoring-panel-sustainability" role="region" aria-labelledby="scoring-toggle-sustainability" hidden>
-              <p class="atp-scoring__panel-label">This category includes 2 criteria</p>
-              <ul class="atp-scoring__crit-list">
-                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">4.5</span><span class="atp-scoring__crit-name">Reduces impervious surface area</span><span class="atp-scoring__crit-desc">Reduces paved surface area to support stormwater and habitat goals.</span></li>
-                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">4.5</span><span class="atp-scoring__crit-name">Provide Plantable Space</span><span class="atp-scoring__crit-desc">Creates space for ground cover plantings and shade trees.</span></li>
-              </ul>
-              <a class="atp-scoring__panel-link" href="scoring-criteria/#table5-detail-sustainability">Full thresholds &amp; data sources <span aria-hidden="true">&rarr;</span></a>
-            </div>
-          </li>
-
-          <li class="atp-scoring__item">
             <button type="button" class="atp-scoring__row" aria-expanded="false" aria-controls="scoring-panel-feasibility" id="scoring-toggle-feasibility">
               <span class="atp-scoring__icon atp-scoring__icon--feasibility" aria-hidden="true"><i class="fas fa-cogs"></i></span>
               <span class="atp-scoring__score">
@@ -361,6 +338,29 @@
               <a class="atp-scoring__panel-link" href="scoring-criteria/#table5-detail-feasibility">Full thresholds &amp; data sources <span aria-hidden="true">&rarr;</span></a>
             </div>
           </li>
+
+          <li class="atp-scoring__item">
+            <button type="button" class="atp-scoring__row" aria-expanded="false" aria-controls="scoring-panel-sustainability" id="scoring-toggle-sustainability">
+              <span class="atp-scoring__icon atp-scoring__icon--sustainability" aria-hidden="true"><i class="fas fa-leaf"></i></span>
+              <span class="atp-scoring__score">
+                <span class="atp-scoring__value">9<span class="atp-scoring__unit">pts</span></span>
+                <span class="atp-scoring__bar"><span class="atp-scoring__fill" style="width: 28.125%;"></span></span>
+              </span>
+              <span class="atp-scoring__meta">
+                <span class="atp-scoring__name">Sustainability &amp; Biodiversity</span>
+                <span class="atp-scoring__desc">Reduces impervious surface area and creates space for trees and plantings.</span>
+              </span>
+              <span class="atp-scoring__chevron" aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="atp-scoring__panel" id="scoring-panel-sustainability" role="region" aria-labelledby="scoring-toggle-sustainability" hidden>
+              <p class="atp-scoring__panel-label">This category includes 2 criteria</p>
+              <ul class="atp-scoring__crit-list">
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">4.5</span><span class="atp-scoring__crit-name">Reduces impervious surface area</span><span class="atp-scoring__crit-desc">Reduces paved surface area to support stormwater and habitat goals.</span></li>
+                <li class="atp-scoring__crit"><span class="atp-scoring__crit-pts">4.5</span><span class="atp-scoring__crit-name">Provide Plantable Space</span><span class="atp-scoring__crit-desc">Creates space for ground cover plantings and shade trees.</span></li>
+              </ul>
+              <a class="atp-scoring__panel-link" href="scoring-criteria/#table5-detail-sustainability">Full thresholds &amp; data sources <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </li>
         </ul>
 
         <div class="atp-scoring__footer">
@@ -370,14 +370,15 @@
       </section>
 
       <!-- ==================================================
-           2c. Where are the 100 points? -- REVISED: 77.5 restored as
-           the primary statistic, top 5 = 55 as the secondary line, in
-           a compact two-column analytical panel (~30/70 split) rather
-           than stacked full-width groups. Default view shows the top
-           9 criteria (the ones that sum to 77.5); "View all 17
-           criteria" expands the remaining 8 inline. Same 17
-           criteria/point values as Table 5 above; category colors
-           reuse the exact swatches used everywhere else on this page.
+           2c. Where are the 100 points? -- REVISED: 55 (top 5) is now
+           the primary statistic, told as a progressive story. Collapsed
+           view shows only the top 5 criteria (cumulative 55 pts / 50%
+           threshold marker), then "View all 17 criteria" expands to
+           reveal criteria 6-9 (cumulative reaches 77.5 pts / 75%
+           threshold marker) followed by the remaining 8 (cumulative
+           100). Same 17 criteria/point values as Table 5 above;
+           category colors reuse the exact swatches used everywhere
+           else on this page.
 
            NOTE on category count: the subtitle below says "5
            categories" (Safety & Comfort, Access & Equity, Mobility &
@@ -399,9 +400,9 @@
 
         <div class="atp-points__panel">
           <div class="atp-points__stat">
-            <span class="atp-points__stat-num">77.5</span>
+            <span class="atp-points__stat-num">55</span>
             <span class="atp-points__stat-unit">points</span>
-            <p class="atp-points__stat-desc">Nine of the 17 criteria account for 77.5% of the possible score.</p>
+            <p class="atp-points__stat-desc">5 of the 17 criteria account for 55% of the possible score.</p>
             <p class="atp-points__stat-sub">Top 5 = <strong>55 points</strong></p>
           </div>
 
@@ -436,25 +437,10 @@
               <span class="atp-points__name">Other key destinations</span>
               <span class="atp-points__cat atp-points__cat--mobility">Mobility &amp; Connectivity</span>
             </div>
-            <div class="atp-points__row">
-              <span class="atp-points__value">6.5</span>
-              <span class="atp-points__name">Sidewalk network gap</span>
-              <span class="atp-points__cat atp-points__cat--access">Access &amp; Equity</span>
-            </div>
-            <div class="atp-points__row">
-              <span class="atp-points__value">6.5</span>
-              <span class="atp-points__name">AAA bicycle network gap</span>
-              <span class="atp-points__cat atp-points__cat--access">Access &amp; Equity</span>
-            </div>
-            <div class="atp-points__row">
-              <span class="atp-points__value">5</span>
-              <span class="atp-points__name">Pedestrian crossing distance</span>
-              <span class="atp-points__cat atp-points__cat--safety">Safety &amp; Comfort</span>
-            </div>
-            <div class="atp-points__row">
-              <span class="atp-points__value">4.5</span>
-              <span class="atp-points__name">Reduces impervious surface</span>
-              <span class="atp-points__cat atp-points__cat--sustainability">Sustainability &amp; Biodiversity</span>
+
+            <div class="atp-points__threshold">
+              <span class="atp-points__threshold-line" aria-hidden="true"></span>
+              <span class="atp-points__threshold-pts">55 pts</span>
             </div>
 
             <button type="button" class="atp-points__toggle" aria-expanded="false" aria-controls="atp-points-more">
@@ -463,6 +449,32 @@
             </button>
 
             <div class="atp-points__more" id="atp-points-more" hidden>
+              <div class="atp-points__row">
+                <span class="atp-points__value">6.5</span>
+                <span class="atp-points__name">Sidewalk network gap</span>
+                <span class="atp-points__cat atp-points__cat--access">Access &amp; Equity</span>
+              </div>
+              <div class="atp-points__row">
+                <span class="atp-points__value">6.5</span>
+                <span class="atp-points__name">AAA bicycle network gap</span>
+                <span class="atp-points__cat atp-points__cat--access">Access &amp; Equity</span>
+              </div>
+              <div class="atp-points__row">
+                <span class="atp-points__value">5</span>
+                <span class="atp-points__name">Pedestrian crossing distance</span>
+                <span class="atp-points__cat atp-points__cat--safety">Safety &amp; Comfort</span>
+              </div>
+              <div class="atp-points__row">
+                <span class="atp-points__value">4.5</span>
+                <span class="atp-points__name">Reduces impervious surface</span>
+                <span class="atp-points__cat atp-points__cat--sustainability">Sustainability &amp; Biodiversity</span>
+              </div>
+
+              <div class="atp-points__threshold">
+                <span class="atp-points__threshold-line" aria-hidden="true"></span>
+                <span class="atp-points__threshold-pts">77.5 pts</span>
+              </div>
+
               <div class="atp-points__row">
                 <span class="atp-points__value">4.5</span>
                 <span class="atp-points__name">Plantable space</span>
@@ -821,83 +833,472 @@
       </section>
 
       <!-- ==================================================
-           08. Green Complete Streets -- a major analytical section, not
-           a sidebar. The Trees & Shade / Biodiversity content below is
-           drawn directly from Chapter 3's "Greening / Tree Canopy
-           Improvements" discussion (p.50-51), including the three BUFP
-           actions it names (1, 10, 17) and the Heat Mitigation Strategy
-           Zone. The other four outcomes are intentionally left as brief,
-           honest placeholders per instructions -- no unsupported claims
-           yet, full analysis to follow. Each outcome is tagged with how
-           directly the ATP addresses it (kept as plain text + a status
-           word, not color alone). -->
-      <section class="section-block atp-gcs" id="green-complete-streets">
-        <span class="category-tag category-tag--analysis">A Green Complete Streets reading</span>
-        <div class="section-intro">
-          <h2>Green Complete Streets</h2>
-          <p>How does the ATP support streets that are safe, comfortable, green and useful for people? Green Complete Streets isn&#8217;t &#8220;add some trees to a bicycle plan&#8221; &mdash; it&#8217;s an integrated view of safe movement, accessibility, useful connections, comfort, shade, urban forestry, biodiversity, stormwater and climate resilience, together. This section reads the ATP through that lens, organized around what a person &mdash; and the environment around them &mdash; actually experiences.</p>
-          <p class="bufp-transcription-note">Each outcome below is marked by how directly the ATP addresses it. Trees &amp; Shade and Biodiversity are developed first because the ATP speaks to them explicitly; the rest are placeholders for analysis still to come.</p>
+           08. Green Complete Streets -- redesigned 2026-09-19 to match
+           the "From Plan Goals to Real Streets" concept: hero intro +
+           photo, a "what makes a Green Complete Street" 3-input/1-output
+           diagram, and a table (icon, name, short examples, assessment,
+           expand) rather than the previous plain accordion list. All 8
+           rows re-verified against the September 2026 final ATP; do not
+           carry forward citations/assessments from any earlier draft
+           without re-checking the current PDF. Assessment uses a
+           three-tier scale (kept as plain text + a status word, not
+           color alone): "Explicitly addressed" (direct, substantial
+           evidence), "Partially addressed" (real but incomplete
+           evidence), "Not yet addressed" (unused for now -- all 8 rows
+           have direct evidence in the September plan). -->
+      <section class="section-block atp-gce" id="green-complete-streets">
+        <span class="category-tag category-tag--analysis">Green Complete Streets reading</span>
+
+        <div class="atp-gce-hero">
+          <div class="atp-gce-hero__copy">
+            <h2>From Plan Goals to Real Streets</h2>
+            <p>The ATP contains many of the ingredients of a Green Complete Street. The question is how well these goals are integrated when projects are designed, funded and built.</p>
+            <p>Mountain View&#8217;s Active Transportation Plan goes beyond traditional transportation planning. It addresses safe walking and bicycling, accessibility, trees and shade, biodiversity, stormwater management and equity. Some of these elements are core project-prioritization criteria; others enter through connections to plans like the Biodiversity and Urban Forest Plan (BUFP).</p>
+            <p>This section reviews how the ATP addresses each of these elements and examines where integration happens &mdash; and where there are opportunities to strengthen the connection from plan to implementation.</p>
+          </div>
+          <div class="atp-gce-hero__aside">
+            <div class="atp-gce-hero__card">
+              <p class="atp-gce-hero__card-lead">A Green Complete Street works as a system.</p>
+              <p class="atp-gce-hero__card-note">Safe and useful for people, healthy for the environment, and equitable in who benefits.</p>
+              <p class="atp-gce-hero__card-note">Streets are more than travel corridors. They are public spaces that move people, support ecosystems and strengthen communities.</p>
+            </div>
+            <figure class="atp-gce-hero__photo">
+              <img src="../../../../images/cities/mountainview-ca/rengstorff/mountain-view-people-walking-shaded-street.jpg" alt="A tree-shaded sidewalk in a Mountain View neighborhood" loading="lazy" />
+            </figure>
+          </div>
         </div>
 
-        <div class="atp-gcs__outcome">
-          <div class="atp-gcs__outcome-head">
-            <h3>Trees &amp; shade</h3>
-            <span class="atp-gcs__status atp-gcs__status--explicit">ATP addresses this explicitly</span>
+        <div class="atp-gce-diagram">
+          <span class="category-tag category-tag--analysis">A Green Complete Streets reading</span>
+          <h2>What makes a Green Complete Street?</h2>
+          <p class="atp-gce-diagram__intro">A Green Complete Street integrates people, environment and equity. These elements work together &mdash; not in isolation &mdash; to create streets that are safe, comfortable, green and useful for everyone in Mountain View.</p>
+
+          <div class="atp-gce-diagram__cards">
+            <div class="atp-gce-card atp-gce-card--people">
+              <span class="atp-gce-card__icon" aria-hidden="true"><i class="fas fa-walking"></i></span>
+              <h3>Safe + Useful<br />for People</h3>
+              <p class="atp-gce-card__subtitle">Move, connect and belong.</p>
+              <ul>
+                <li><i class="fas fa-bicycle" aria-hidden="true"></i><span>Walking and bicycling networks</span></li>
+                <li><i class="fas fa-shield-alt" aria-hidden="true"></i><span>Safe crossings and intersections</span></li>
+                <li><i class="fas fa-wheelchair" aria-hidden="true"></i><span>All-ages accessibility</span></li>
+                <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Connections to transit, parks and services</span></li>
+                <li><i class="fas fa-users" aria-hidden="true"></i><span>Comfort and a high-quality public realm</span></li>
+              </ul>
+            </div>
+            <span class="atp-gce-diagram__plus" aria-hidden="true">+</span>
+            <div class="atp-gce-card atp-gce-card--climate">
+              <span class="atp-gce-card__icon" aria-hidden="true"><i class="fas fa-leaf"></i></span>
+              <h3>Climate + Ecology</h3>
+              <p class="atp-gce-card__subtitle">Healthy, resilient and regenerative.</p>
+              <ul>
+                <li><i class="fas fa-tree" aria-hidden="true"></i><span>Shade and urban forestry</span></li>
+                <li><i class="fas fa-leaf" aria-hidden="true"></i><span>Biodiversity and habitat</span></li>
+                <li><i class="fas fa-tint" aria-hidden="true"></i><span>Stormwater management</span></li>
+                <li><i class="fas fa-sun" aria-hidden="true"></i><span>Heat resilience</span></li>
+                <li><i class="fas fa-seedling" aria-hidden="true"></i><span>Green infrastructure in the right-of-way</span></li>
+              </ul>
+            </div>
+            <span class="atp-gce-diagram__plus" aria-hidden="true">+</span>
+            <div class="atp-gce-card atp-gce-card--equity">
+              <span class="atp-gce-card__icon" aria-hidden="true"><i class="fas fa-users"></i></span>
+              <h3>Equity</h3>
+              <p class="atp-gce-card__subtitle">Fair access and shared benefits.</p>
+              <ul>
+                <li><i class="fas fa-users" aria-hidden="true"></i><span>Who has access and who benefits</span></li>
+                <li><i class="fas fa-chart-bar" aria-hidden="true"></i><span>Geographic and demographic prioritization</span></li>
+                <li><i class="fas fa-home" aria-hidden="true"></i><span>Investments in underserved communities</span></li>
+                <li><i class="fas fa-handshake" aria-hidden="true"></i><span>Inclusive engagement</span></li>
+                <li><i class="fas fa-balance-scale" aria-hidden="true"></i><span>Affordability and anti-displacement considerations</span></li>
+              </ul>
+            </div>
           </div>
-          <p class="atp-gcs__question">Does the plan create cooler, shaded walking and bicycling routes?</p>
-          <p>The MVATP and the Biodiversity and Urban Forest Plan (BUFP) are explicitly linked. Active transportation corridors &mdash; the existing and proposed bikeways in the MVATP &mdash; are treated as priorities within the BUFP&#8217;s Heat Mitigation Strategy Zone and are included in that plan&#8217;s connectivity analyses. The BUFP names three actions directly tied to the MVATP&#8217;s Sustainability and Biodiversity guiding principle:</p>
-          <ul class="atp-gcs__list">
-            <li><strong>Action 1</strong> &mdash; strategically include green features in active transportation project design to increase ecological value and achieve other City priorities.</li>
-            <li><strong>Action 10</strong> &mdash; maximize biodiversity support within city parks and trail corridors while continuing to meet community needs.</li>
-            <li><strong>Action 17</strong> &mdash; prioritize shade tree planting in the Cooling Zone to protect against heat and improve walkability.</li>
+
+          <div class="atp-gce-diagram__arrow-down" aria-hidden="true"><i class="fas fa-chevron-down"></i></div>
+
+          <div class="atp-gce-outcome">
+            <span class="atp-gce-outcome__icon" aria-hidden="true"><i class="fas fa-tree"></i></span>
+            <div class="atp-gce-outcome__label">
+              <h3>Green Complete Street</h3>
+              <p class="atp-gce-outcome__tagline">Safe + comfortable &middot; green &middot; equitable</p>
+            </div>
+            <p class="atp-gce-outcome__desc">These elements are designed and delivered together &mdash; not as separate transportation, forestry, stormwater and equity projects.</p>
+          </div>
+        </div>
+
+        <div class="atp-gce-table-wrap">
+          <h3>How the ATP addresses these elements</h3>
+          <p class="atp-gce-table__intro">The ATP addresses each part of the Green Complete Streets framework differently. Expand a row to see where it appears in the plan, how it enters implementation, and where connections or gaps remain.</p>
+
+          <ul class="atp-gce-table">
+            <li class="atp-gce-table__item">
+              <button type="button" class="atp-gce-table__row" aria-expanded="false" aria-controls="gce-panel-safety" id="gce-toggle-safety">
+                <span class="atp-gce-table__icon atp-gce-table__icon--safety" aria-hidden="true"><i class="fas fa-shield-alt"></i></span>
+                <span class="atp-gce-table__meta">
+                  <span class="atp-gce-table__name">Safety &amp; comfort</span>
+                  <span class="atp-gce-table__desc">No Right Turn on Red, daylighting, crash-pattern scoring, VZAP/LRSP monitoring</span>
+                </span>
+                <span class="atp-gce-table__assessment atp-gce-table__assessment--integrated"><span class="atp-gce-table__dot" aria-hidden="true"></span>Integrated</span>
+                <span class="atp-gce-table__chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="atp-gce-table__panel" id="gce-panel-safety" role="region" aria-labelledby="gce-toggle-safety" hidden>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">What the ATP does</span>
+                  <p>Safety &amp; Comfort carries the single highest scoring weight in project prioritization and is reinforced by concrete Table 7 policy actions and an external crash-monitoring mechanism that closes the loop back to measurement.</p>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Where it appears</span>
+                  <ul class="atp-gce-evidence__list">
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PRIORITIZATION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 5, Safety and Comfort scoring criteria (32 of 100 points)</span><span class="atp-gce-evidence__page">p. 41&ndash;42</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">ACTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 7 &mdash; No Right Turn on Red Policy</span><span class="atp-gce-evidence__page">p. 48</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">ACTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 7 &mdash; Improve Visibility at Intersections (Daylighting)</span><span class="atp-gce-evidence__page">p. 49</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PLAN CONNECTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">VZAP/LRSP, CC-8 &mdash; &#8220;Monitor crash data on a scheduled basis to measure progress toward VZ goals&#8221;</span><span class="atp-gce-evidence__page">Appendix D</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">EXISTING CONDITIONS</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">563 crashes 2015&ndash;2022 (11 fatal, 52 severe injury); 73% of FSI collisions on arterials &ge;35 mph</span><span class="atp-gce-evidence__page">p. 27</span></li>
+                  </ul>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">How it gets to the street</span>
+                  <ol class="atp-gce-chain">
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Goal</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Prioritization</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Design</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Delivery</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Measurement</li>
+                  </ol>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Reading</span>
+                  <p>Safety &amp; Comfort is the only element with an unbroken chain from goal to measurement. Its scoring weight is real, its Table 7 actions are concrete and already assigned to departments, and &mdash; uniquely &mdash; an external plan (VZAP/LRSP) supplies the ongoing measurement the ATP&#8217;s own KPI language leaves undefined.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="atp-gce-table__item">
+              <button type="button" class="atp-gce-table__row" aria-expanded="false" aria-controls="gce-panel-mobility" id="gce-toggle-mobility">
+                <span class="atp-gce-table__icon atp-gce-table__icon--mobility" aria-hidden="true"><i class="fas fa-project-diagram"></i></span>
+                <span class="atp-gce-table__meta">
+                  <span class="atp-gce-table__name">Mobility &amp; connectivity</span>
+                  <span class="atp-gce-table__desc">School/destination proximity scoring, TDM ordinance, holistic network maps</span>
+                </span>
+                <span class="atp-gce-table__assessment atp-gce-table__assessment--integrated"><span class="atp-gce-table__dot" aria-hidden="true"></span>Integrated</span>
+                <span class="atp-gce-table__chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="atp-gce-table__panel" id="gce-panel-mobility" role="region" aria-labelledby="gce-toggle-mobility" hidden>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">What the ATP does</span>
+                  <p>Mobility &amp; Connectivity carries the second-largest infrastructure scoring weight and is backed by an already-enacted TDM ordinance, but has no connectivity-specific design standard of its own.</p>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Where it appears</span>
+                  <ul class="atp-gce-evidence__list">
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PRIORITIZATION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 5, Mobility and Connectivity criteria (22 of 100 points)</span><span class="atp-gce-evidence__page">p. 42&ndash;43</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">ACTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 7 &mdash; Transportation Demand Management (TDM)</span><span class="atp-gce-evidence__page">p. 53</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">ACTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 7 &mdash; Update Bicycle Parking Standards</span><span class="atp-gce-evidence__page">p. 49</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">NETWORK</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Holistic Bicycle Network, Figure 27</span><span class="atp-gce-evidence__page">p. 35</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">ACTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 7 &mdash; Evaluation of Infrastructure Projects</span><span class="atp-gce-evidence__page">p. 53</span></li>
+                  </ul>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">How it gets to the street</span>
+                  <ol class="atp-gce-chain">
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Goal</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Prioritization</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Design</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Delivery</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Measurement</li>
+                  </ol>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Reading</span>
+                  <p>Mobility &amp; Connectivity is well-anchored at both ends of the chain &mdash; a substantial scoring weight and a real, already-enacted TDM ordinance &mdash; but the middle thins out: nothing in Table 7 sets a connectivity-specific design standard, so the criteria that decide which projects score well don&#8217;t map onto a design requirement that shapes how they get built.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="atp-gce-table__item">
+              <button type="button" class="atp-gce-table__row" aria-expanded="false" aria-controls="gce-panel-accessibility" id="gce-toggle-accessibility">
+                <span class="atp-gce-table__icon atp-gce-table__icon--accessibility" aria-hidden="true"><i class="fas fa-wheelchair"></i></span>
+                <span class="atp-gce-table__meta">
+                  <span class="atp-gce-table__name">Accessibility &amp; usability</span>
+                  <span class="atp-gce-table__desc">AAA network scoring; ADA Self-Evaluation and Transition Plan still in progress</span>
+                </span>
+                <span class="atp-gce-table__assessment atp-gce-table__assessment--explicit-limited"><span class="atp-gce-table__dot" aria-hidden="true"></span>Explicit but limited</span>
+                <span class="atp-gce-table__chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="atp-gce-table__panel" id="gce-panel-accessibility" role="region" aria-labelledby="gce-toggle-accessibility" hidden>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">What the ATP does</span>
+                  <p>The plan&#8217;s AAA bicycle network is a genuinely integrated planning input, but accessibility for people with disabilities depends on an ADA Self-Evaluation and Transition Plan the ATP itself says is still underway &mdash; two different evidentiary stories under one row.</p>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Where it appears</span>
+                  <ul class="atp-gce-evidence__list">
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">NETWORK</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">All Ages and Abilities (AAA) bicycle network, 2021 AccessMV analysis</span><span class="atp-gce-evidence__page">p. 22&ndash;24</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PRIORITIZATION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 5 &mdash; Fills a gap in AAA bicycle network / existing sidewalk network</span><span class="atp-gce-evidence__page">p. 41</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PLAN CONNECTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">&#8220;The City is currently undertaking an ADA Self-Evaluation and Transition Plan that will provide detailed data on accessibility&#8221;</span><span class="atp-gce-evidence__page">Appendix E, p. 36</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">ACTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 7 &mdash; Upgrade Pedestrian Signals to Accessible Pedestrian Signals (APS)</span><span class="atp-gce-evidence__page">p. 49</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">DESIGN</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Sidewalk maintenance &#8220;to meet Title II ADA requirements&#8221; noted as a byproduct of resurfacing, not a designed-in feature</span><span class="atp-gce-evidence__page">Appendix B</span></li>
+                  </ul>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">How it gets to the street</span>
+                  <ol class="atp-gce-chain">
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Goal</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Prioritization</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Design</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Delivery</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Measurement</li>
+                  </ol>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Reading</span>
+                  <p>This row holds two findings that shouldn&#8217;t be flattened into one. The AAA bicycle network is a real planning input carried through scoring and network design &mdash; that part looks integrated. But accessibility for people with disabilities is a different, weaker story: the ATP names the document that would actually govern this and says outright that it isn&#8217;t finished yet. Reading the row as fully accessible would overstate what the plan itself claims.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="atp-gce-table__item">
+              <button type="button" class="atp-gce-table__row" aria-expanded="false" aria-controls="gce-panel-trees" id="gce-toggle-trees">
+                <span class="atp-gce-table__icon atp-gce-table__icon--trees" aria-hidden="true"><i class="fas fa-tree"></i></span>
+                <span class="atp-gce-table__meta">
+                  <span class="atp-gce-table__name">Trees &amp; shade</span>
+                  <span class="atp-gce-table__desc">BUFP Actions 1/10/17, plantable-space scoring, standardized planting typologies</span>
+                </span>
+                <span class="atp-gce-table__assessment atp-gce-table__assessment--integrated"><span class="atp-gce-table__dot" aria-hidden="true"></span>Integrated</span>
+                <span class="atp-gce-table__chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="atp-gce-table__panel" id="gce-panel-trees" role="region" aria-labelledby="gce-toggle-trees" hidden>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">What the ATP does</span>
+                  <p>Trees &amp; Shade has the most complete non-safety chain in the plan: a named BUFP linkage, a real scoring criterion, and standardized design typologies already appearing in individual project cutsheets.</p>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Where it appears</span>
+                  <ul class="atp-gce-evidence__list">
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">ACTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 7 &mdash; Greening / Tree Canopy Improvements</span><span class="atp-gce-evidence__page">p. 50</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PLAN CONNECTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">BUFP Actions 1, 10, 17 (named directly)</span><span class="atp-gce-evidence__page">p. 50</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PRIORITIZATION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 5 &mdash; Provide Plantable Space (up to 4.5 of 9 points)</span><span class="atp-gce-evidence__page">p. 43</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">DESIGN</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Standardized green-street typologies (tree wells, planting strips), Figure 34</span><span class="atp-gce-evidence__page">p. 66&ndash;67</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">EXISTING CONDITIONS</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Canopy reported as 17.7% (2022 Tree Technical Manual) and, elsewhere, as 19.5% &mdash; both against the same 22.7% goal</span><span class="atp-gce-evidence__page">p. 49, p. 66</span></li>
+                  </ul>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">How it gets to the street</span>
+                  <ol class="atp-gce-chain">
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Goal</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Prioritization</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Design</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Delivery</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Measurement</li>
+                  </ol>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Reading</span>
+                  <p>Trees &amp; Shade is carried further into implementation than any element except Safety &amp; Comfort &mdash; the BUFP linkage is explicit and specific, the scoring criterion is real, and priority-project cutsheets already show tree additions at named locations. One inconsistency worth surfacing plainly: the plan reports two different current-canopy percentages (17.7% and 19.5%) against the same stated goal, which reads as either a drafting inconsistency or two data vintages cited without reconciliation.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="atp-gce-table__item">
+              <button type="button" class="atp-gce-table__row" aria-expanded="false" aria-controls="gce-panel-biodiversity" id="gce-toggle-biodiversity">
+                <span class="atp-gce-table__icon atp-gce-table__icon--biodiversity" aria-hidden="true"><i class="fas fa-seedling"></i></span>
+                <span class="atp-gce-table__meta">
+                  <span class="atp-gce-table__name">Biodiversity</span>
+                  <span class="atp-gce-table__desc">Shares Trees &amp; Shade&#8217;s Table 7 action; scoring criteria are generic, not biodiversity-specific</span>
+                </span>
+                <span class="atp-gce-table__assessment atp-gce-table__assessment--explicit-limited"><span class="atp-gce-table__dot" aria-hidden="true"></span>Explicit but limited</span>
+                <span class="atp-gce-table__chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="atp-gce-table__panel" id="gce-panel-biodiversity" role="region" aria-labelledby="gce-toggle-biodiversity" hidden>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">What the ATP does</span>
+                  <p>Biodiversity shares its Table 7 action and BUFP cross-references with Trees &amp; Shade, but the ATP&#8217;s own scoring criteria reward impervious-surface reduction and plantable space generically &mdash; nothing rewards native species selection or habitat value specifically.</p>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Where it appears</span>
+                  <ul class="atp-gce-evidence__list">
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">ACTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 7 &mdash; Greening / Tree Canopy Improvements (same action as Trees &amp; Shade)</span><span class="atp-gce-evidence__page">p. 50</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PLAN CONNECTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">BUFP Actions 1, 10</span><span class="atp-gce-evidence__page">p. 50</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">GOAL</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">&#8220;Green Streets = Active Transportation + Biodiversity + Green Infrastructure&#8221;</span><span class="atp-gce-evidence__page">p. 66; Appendix E, p. 46</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">EXISTING CONDITIONS</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">237 street tree species; shift from monoculture described as the BUFP&#8217;s approach</span><span class="atp-gce-evidence__page">Appendix E, p. 51&ndash;54</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PRIORITIZATION GAP</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 5&#8217;s Sustainability &amp; Biodiversity criteria score impervious surface and plantable space only &mdash; no native-species or habitat-value criterion</span><span class="atp-gce-evidence__page">p. 43</span></li>
+                  </ul>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">How it gets to the street</span>
+                  <ol class="atp-gce-chain">
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Goal</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Prioritization</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Design</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Delivery</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Measurement</li>
+                  </ol>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Reading</span>
+                  <p>Biodiversity is named consistently and its goal language is genuine, but the mechanism that would carry it forward &mdash; prioritization scoring &mdash; doesn&#8217;t measure biodiversity at all; it measures generic green-infrastructure proxies that Trees &amp; Shade and Green Infrastructure already claim. What&#8217;s substantively about biodiversity &mdash; native planting, habitat corridors, moving away from monoculture &mdash; is consistently attributed to the BUFP rather than operationalized by ATP-specific mechanisms.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="atp-gce-table__item">
+              <button type="button" class="atp-gce-table__row" aria-expanded="false" aria-controls="gce-panel-green-infra" id="gce-toggle-green-infra">
+                <span class="atp-gce-table__icon atp-gce-table__icon--green-infra" aria-hidden="true"><i class="fas fa-water"></i></span>
+                <span class="atp-gce-table__meta">
+                  <span class="atp-gce-table__name">Green infrastructure</span>
+                  <span class="atp-gce-table__desc">Impervious-surface scoring, MRP 3.0 compliance driver, standardized GI typologies</span>
+                </span>
+                <span class="atp-gce-table__assessment atp-gce-table__assessment--explicit-limited"><span class="atp-gce-table__dot" aria-hidden="true"></span>Explicit but limited</span>
+                <span class="atp-gce-table__chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="atp-gce-table__panel" id="gce-panel-green-infra" role="region" aria-labelledby="gce-toggle-green-infra" hidden>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">What the ATP does</span>
+                  <p>Green Infrastructure has a real scoring criterion and a genuine external compliance driver (MRP 3.0), with design guidance that&#8217;s more developed than its low scoring weight would suggest.</p>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Where it appears</span>
+                  <ul class="atp-gce-evidence__list">
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PRIORITIZATION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 5 &mdash; Reduces impervious surface area (up to 4.5 of 100 points)</span><span class="atp-gce-evidence__page">p. 43</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">REGULATORY DRIVER</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Green infrastructure required for Municipal Regional Stormwater Permit 3.0 compliance</span><span class="atp-gce-evidence__page">p. 66; Appendix E, p. 47</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">DESIGN</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">&#8220;Standardize designs&#8230; corner curb extensions with bioretention, mid-block rain gardens, and permeable parking lanes&#8221;</span><span class="atp-gce-evidence__page">p. 67</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">ACTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 7 &mdash; &#8220;include green infrastructure in updated standard details&#8221; (stated as not yet complete)</span><span class="atp-gce-evidence__page">p. 50</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">EXISTING CONDITIONS</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Neighborhood impervious-surface range, 46&ndash;68%, Figure 48</span><span class="atp-gce-evidence__page">Appendix E, p. 63</span></li>
+                  </ul>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">How it gets to the street</span>
+                  <ol class="atp-gce-chain">
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Goal</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Prioritization</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Design</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Delivery</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Measurement</li>
+                  </ol>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Reading</span>
+                  <p>Green Infrastructure&#8217;s evidence is real but concentrated almost entirely in the design stage &mdash; a genuine regulatory driver has produced actual standardized typologies. But the scoring weight that would push projects toward those typologies is small, and the plan is explicit that folding green infrastructure into standard details is still future work, not something already delivered.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="atp-gce-table__item">
+              <button type="button" class="atp-gce-table__row" aria-expanded="false" aria-controls="gce-panel-equity" id="gce-toggle-equity">
+                <span class="atp-gce-table__icon atp-gce-table__icon--equity" aria-hidden="true"><i class="fas fa-balance-scale"></i></span>
+                <span class="atp-gce-table__meta">
+                  <span class="atp-gce-table__name">Equity</span>
+                  <span class="atp-gce-table__desc">Lower-income scoring criterion, dedicated existing-conditions section; CIP lever sits in VZAP/LRSP</span>
+                </span>
+                <span class="atp-gce-table__assessment atp-gce-table__assessment--explicit-limited"><span class="atp-gce-table__dot" aria-hidden="true"></span>Explicit but limited</span>
+                <span class="atp-gce-table__chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="atp-gce-table__panel" id="gce-panel-equity" role="region" aria-labelledby="gce-toggle-equity" hidden>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">What the ATP does</span>
+                  <p>Equity has the most developed existing-conditions analysis of any social criterion and a substantial scoring weight, but its most concrete delivery mechanism &mdash; folding equity into the capital improvement program &mdash; belongs to the VZAP/LRSP rather than being an ATP-specific commitment.</p>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Where it appears</span>
+                  <ul class="atp-gce-evidence__list">
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PRIORITIZATION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 5 &mdash; Supports lower income residents (max 14 of 27 points, Census FPL data)</span><span class="atp-gce-evidence__page">p. 41</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">EXISTING CONDITIONS</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Appendix E, dedicated section &#8220;4. Access and Equity&#8221;</span><span class="atp-gce-evidence__page">p. 38&ndash;44</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PLAN CONNECTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">VZAP/LRSP, SR-2 &mdash; &#8220;Prioritize capital projects on the HIN, school routes and equity priority locations as part of the capital improvement program (CIP) process&#8221;</span><span class="atp-gce-evidence__page">Appendix D</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PROJECT-LEVEL</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Priority-project cutsheets flag specific projects serving &#8220;a disadvantaged community area of Mountain View&#8221;</span><span class="atp-gce-evidence__page">Appendix B</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">ACTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Table 7 &mdash; Walk Safe Designation, Road Safety Education, Leading Pedestrian Interval Policy (dual-tagged Access &amp; Equity)</span><span class="atp-gce-evidence__page">p. 49&ndash;51</span></li>
+                  </ul>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">How it gets to the street</span>
+                  <ol class="atp-gce-chain">
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Goal</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--strong">Prioritization</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Design</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Delivery</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Measurement</li>
+                  </ol>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Reading</span>
+                  <p>Equity&#8217;s goal and prioritization stages are unambiguously strong and ATP-owned. But its path into actual capital delivery runs through SR-2, which lives in the VZAP/LRSP rather than the ATP&#8217;s own Table 7 &mdash; the plan aligns with that mechanism rather than owning it. That is a meaningfully different claim than &#8220;the ATP delivers equity,&#8221; and the evidence supports the more limited one.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="atp-gce-table__item">
+              <button type="button" class="atp-gce-table__row" aria-expanded="false" aria-controls="gce-panel-heat" id="gce-toggle-heat">
+                <span class="atp-gce-table__icon atp-gce-table__icon--heat" aria-hidden="true"><i class="fas fa-temperature-high"></i></span>
+                <span class="atp-gce-table__meta">
+                  <span class="atp-gce-table__name">Heat &amp; climate resilience</span>
+                  <span class="atp-gce-table__desc">Consistently framed as a tree-canopy/impervious-surface co-benefit, never scored alone</span>
+                </span>
+                <span class="atp-gce-table__assessment atp-gce-table__assessment--weak"><span class="atp-gce-table__dot" aria-hidden="true"></span>Weak implementation connection</span>
+                <span class="atp-gce-table__chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="atp-gce-table__panel" id="gce-panel-heat" role="region" aria-labelledby="gce-toggle-heat" hidden>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">What the ATP does</span>
+                  <p>Heat &amp; Climate Resilience never appears as its own concern in the ATP &mdash; it is consistently a stated co-benefit of tree-canopy and green-infrastructure investment already counted under those rows.</p>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Where it appears</span>
+                  <ul class="atp-gce-evidence__list">
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">PLAN CONNECTION</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">BUFP &#8220;Heat Mitigation Strategy Zone&#8221; and &#8220;Cooling Zone&#8221; &mdash; named, never mapped or defined in the ATP</span><span class="atp-gce-evidence__page">p. 50</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">CO-BENEFIT</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">&#8220;Street trees and impermeable surfaces reduce heat island effects&#8221;</span><span class="atp-gce-evidence__page">Appendix E, p. 47</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">CO-BENEFIT</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">&#8220;More impervious surfaces mean higher surface temperatures&#8221;</span><span class="atp-gce-evidence__page">Appendix E, p. 62</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">DESIGN</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">Planting strip described as &#8220;Replaces heat-absorbing pavement,&#8221; Figure 34</span><span class="atp-gce-evidence__page">p. 67</span></li>
+                    <li class="atp-gce-evidence__item"><span class="atp-gce-evidence__type">GOAL</span><span class="atp-gce-evidence__sep">&middot;</span><span class="atp-gce-evidence__title">2021 City Council Sustainability &amp; Climate Resiliency strategic priority, underlying the BUFP</span><span class="atp-gce-evidence__page">p. 30; Appendix E, p. 45</span></li>
+                  </ul>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">How it gets to the street</span>
+                  <ol class="atp-gce-chain">
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Goal</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Prioritization</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--indirect">Design</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Delivery</li>
+                    <li class="atp-gce-chain__arrow" aria-hidden="true">&rarr;</li>
+                    <li class="atp-gce-chain__stage atp-gce-chain__stage--weak">Measurement</li>
+                  </ol>
+                </div>
+                <div class="atp-gce-evidence__block">
+                  <span class="atp-gce-evidence__label">Reading</span>
+                  <p>Of the eight elements, this is the one where no ATP mechanism treats heat as its own concern &mdash; no scoring criterion, no design standard, no Table 7 action, no KPI. It rides entirely on the coattails of tree-canopy and green-infrastructure investment. That is a legitimate co-benefit, but it means heat reduction has no independent claim on prioritization or delivery: if canopy or impervious-surface work stalls for unrelated reasons, nothing in the ATP specifically protects heat outcomes.</p>
+                </div>
+              </div>
+            </li>
           </ul>
-          <p class="atp-gcs__source">Source: MVATP Chapter 3, &#8220;Greening / Tree Canopy Improvements&#8221; (Table 7), pp.50&ndash;51.</p>
-        </div>
-
-        <div class="atp-gcs__outcome">
-          <div class="atp-gcs__outcome-head">
-            <h3>Biodiversity</h3>
-            <span class="atp-gcs__status atp-gcs__status--explicit">ATP addresses this explicitly</span>
-          </div>
-          <p class="atp-gcs__question">Does transportation investment create ecological value and habitat?</p>
-          <p>The BUFP states Mountain View&#8217;s commitment to planting and protecting native trees and vegetation &#8220;to enhance native biodiversity, strengthen climate resilience, and support community health and connections.&#8221; The MVATP and BUFP are described as complementary, sharing goals, principles and methods &mdash; incorporating greenery and street trees into infrastructural improvements of varying scale is framed as serving both environmental goals and safer street design.</p>
-          <p class="atp-gcs__source">Source: MVATP Chapter 3, &#8220;Greening / Tree Canopy Improvements&#8221; (Table 7), pp.50&ndash;51.</p>
-        </div>
-
-        <div class="atp-gcs__outcome">
-          <div class="atp-gcs__outcome-head">
-            <h3>Safety</h3>
-            <span class="atp-gcs__status atp-gcs__status--indirect">Analysis planned</span>
-          </div>
-          <p class="atp-gcs__question">Can people walk, bicycle and cross safely?</p>
-          <p class="bufp-transcription-note">Safety & Comfort is the highest-weighted scoring category (32 of 100 points) and the subject of several Table 7 actions &mdash; No Right Turn on Red, Daylighting, APS upgrades, speed-limit evaluation. A full Green Complete Streets reading of what this does and doesn&#8217;t cover is planned for this section.</p>
-        </div>
-
-        <div class="atp-gcs__outcome">
-          <div class="atp-gcs__outcome-head">
-            <h3>Accessibility &amp; usability</h3>
-            <span class="atp-gcs__status atp-gcs__status--indirect">Analysis planned</span>
-          </div>
-          <p class="atp-gcs__question">Can people of different ages and abilities actually use the network comfortably and reach useful destinations?</p>
-          <p class="bufp-transcription-note">Mobility & Connectivity scoring rewards proximity to schools, key destinations and transit; APS upgrades and the AAA bicycle network gap criteria speak to this too. A full accounting is planned for this section.</p>
-        </div>
-
-        <div class="atp-gcs__outcome">
-          <div class="atp-gcs__outcome-head">
-            <h3>Green infrastructure</h3>
-            <span class="atp-gcs__status atp-gcs__status--indirect">Analysis planned</span>
-          </div>
-          <p class="atp-gcs__question">Can street projects reduce impervious area and manage stormwater?</p>
-          <p class="bufp-transcription-note">The Sustainability & Biodiversity scoring criteria directly reward reduced impervious surface area and plantable space (9 of 100 points). Whether that&#8217;s sufficient weighting is a question for later analysis, not this pass.</p>
-        </div>
-
-        <div class="atp-gcs__outcome">
-          <div class="atp-gcs__outcome-head">
-            <h3>Equity</h3>
-            <span class="atp-gcs__status atp-gcs__status--indirect">Analysis planned</span>
-          </div>
-          <p class="atp-gcs__question">Who benefits, and how does prioritization account for different needs?</p>
-          <p class="bufp-transcription-note">Access & Equity is the second-highest-weighted category (27 of 100 points), led by the lower-income-residents criterion (up to 14 points). A full equity reading of the priority project list is planned for this section.</p>
         </div>
       </section>
 
@@ -1189,6 +1590,22 @@
     // to keep all five weights visible and comparable at once.
     (function () {
       var rows = Array.prototype.slice.call(document.querySelectorAll('.atp-scoring__row'));
+      if (!rows.length) { return; }
+
+      rows.forEach(function (row) {
+        row.addEventListener('click', function () {
+          var isOpen = row.getAttribute('aria-expanded') === 'true';
+          var panel = document.getElementById(row.getAttribute('aria-controls'));
+          row.setAttribute('aria-expanded', String(!isOpen));
+          if (panel) { panel.hidden = isOpen; }
+        });
+      });
+    })();
+
+    // Green Complete Streets element table -- same independent-toggle
+    // accordion pattern as the Scoring Framework rows above.
+    (function () {
+      var rows = Array.prototype.slice.call(document.querySelectorAll('.atp-gce-table__row'));
       if (!rows.length) { return; }
 
       rows.forEach(function (row) {
