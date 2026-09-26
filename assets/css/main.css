@@ -10173,6 +10173,112 @@ b,
 	}
 }
 
+/* ==================================================================
+   PAGE SIDEBAR NAVIGATION -- sticky left "On this page" sidebar
+   (desktop, >=1025px) paired with the existing .onpage-nav dropdown
+   below that breakpoint. Shared by any .rengstorff-microsite page
+   that wants a sidebar layout instead of the wide horizontal
+   .onpage-nav bar -- currently the Active Transportation Plan and
+   Biodiversity & Urban Forest Plan pages. Extracted here from what
+   was previously the ATP page's own page-scoped .atp-layout/
+   .atp-sidebar rules (mv-atp.css) so a second page adopting the same
+   pattern doesn't need a third near-identical copy. Same visual
+   language as the Standard Details page's .sd-layout/.sd-sidebar
+   (left as its own .sd-page-scoped rules -- consolidating that page
+   into this shared version too is a separate change from this one).
+   A page opts in by giving its <body> the sitewide .rengstorff-microsite
+   class (as all of these already do) and using these class names;
+   nothing here is scoped to any single page. ================================================================== */
+
+.rengstorff-microsite .page-sidebar-layout {
+	display: grid;
+	gap: 3rem;
+	grid-template-columns: 13rem minmax(0, 1fr);
+}
+
+.rengstorff-microsite .page-sidebar {
+	align-self: start;
+	display: none;
+	position: sticky;
+	top: 1.5rem;
+}
+
+.rengstorff-microsite.rengstorff-microsite p.page-sidebar__label {
+	color: #5a6c60 !important;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.85rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .page-sidebar__list {
+	border-left: 2px solid #d4ded4;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.rengstorff-microsite .page-sidebar__list li {
+	margin: 0;
+}
+
+.rengstorff-microsite .page-sidebar__list a {
+	color: #304238;
+	display: block;
+	font-size: 0.88rem;
+	font-weight: 600;
+	padding: 0.5rem 0 0.5rem 1rem;
+	text-decoration: none;
+}
+
+.rengstorff-microsite .page-sidebar__list a:hover,
+.rengstorff-microsite .page-sidebar__list a:focus-visible {
+	color: #16704d;
+}
+
+/* Active-section state -- thin green rule + darker/bolder text only
+   (no shaded box, no icons, no color-only signal: the rule + weight
+   change both carry the state). Set by each page's own
+   IntersectionObserver script (see the HTML). */
+.rengstorff-microsite .page-sidebar__list a.is-active {
+	border-left: 2px solid #16704d;
+	color: #0b2f1c;
+	font-weight: 700;
+	margin-left: -2px;
+	padding-left: calc(1rem + 1px);
+}
+
+/* Mobile/tablet dropdown trigger's "-- Section name" current-section
+   label, filled in by the same script. Scoped to
+   .page-onpage-nav-mobile (a modifier added alongside the shared
+   .onpage-nav classes) so it never affects a plain .onpage-nav
+   instance on a page with no sidebar. */
+.rengstorff-microsite .page-onpage-nav-mobile .onpage-nav__current {
+	color: #16704d;
+	font-weight: 700;
+}
+
+.rengstorff-microsite .page-onpage-nav-mobile .onpage-nav__current:not(:empty)::before {
+	content: "\2014\00a0";
+}
+
+@media screen and (min-width: 1025px) {
+	.rengstorff-microsite .page-sidebar {
+		display: block;
+	}
+
+	.rengstorff-microsite .page-onpage-nav-mobile {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.rengstorff-microsite .page-sidebar-layout {
+		display: block;
+	}
+}
+
 /* Lands each anchored heading below the sticky nav instead of tucked
    underneath it -- both for native no-JS anchor jumps and for the JS
    smooth-scroll enhancement, which targets the same offset. ~72px
@@ -13117,6 +13223,42 @@ b,
 	color: #d8ead9 !important;
 }
 
+/* Breadcrumb, light-on-dark variant, for use inside any dark
+   .rengstorff-hero -- the shared light-background .study-breadcrumb
+   used everywhere else on the site is untouched. Reuses the existing
+   .study-breadcrumb markup/structure (ol > li > a, last item a plain
+   aria-current="page" span) with just this color override, so a page
+   adds it by pairing both classes: class="study-breadcrumb
+   rengstorff-hero__breadcrumb". Consolidated here from what were
+   previously two near-identical page-scoped copies (the ATP and
+   Standard Details pages' own .atp-hero__breadcrumb/.sd-hero__breadcrumb
+   rules); the Standard Details page's copy is left as-is for now since
+   migrating it is a separate change from this one. */
+.rengstorff-microsite .rengstorff-hero__breadcrumb {
+	margin-bottom: 1.1rem;
+}
+
+.rengstorff-microsite .rengstorff-hero__breadcrumb ol {
+	color: #b9dcbf !important;
+}
+
+.rengstorff-microsite .rengstorff-hero__breadcrumb a {
+	color: #dbe9dd !important;
+}
+
+.rengstorff-microsite .rengstorff-hero__breadcrumb a:hover,
+.rengstorff-microsite .rengstorff-hero__breadcrumb a:focus-visible {
+	color: #ffffff !important;
+}
+
+.rengstorff-microsite .rengstorff-hero__breadcrumb li:not(:last-child)::after {
+	color: #4e745c;
+}
+
+.rengstorff-microsite .rengstorff-hero__breadcrumb [aria-current="page"] {
+	color: #ffffff !important;
+}
+
 /* Lands each of this page's on-page-nav targets below the sticky nav
    instead of tucked underneath it, same treatment as #at-a-glance /
    #project-scope / etc. on the parent Overview page above. */
@@ -15434,9 +15576,18 @@ b,
 	text-decoration: none;
 }
 
-.rengstorff-microsite .evidence-nav-card:hover,
-.rengstorff-microsite .evidence-nav-card:focus-visible {
+.rengstorff-microsite .evidence-nav-card:not(.pending):hover,
+.rengstorff-microsite .evidence-nav-card:not(.pending):focus-visible {
 	border-color: #4e9a73;
+}
+
+/* A pending card (no verified URL yet) is a plain non-interactive
+   element, not a link -- .pending's own muted color !important rule
+   is set on the card itself, but .evidence-nav-card__title has its
+   own explicit (non-inherited) color, so it needs its own override
+   here to actually read as muted/pending rather than as a live link. */
+.rengstorff-microsite .evidence-nav-card.pending .evidence-nav-card__title {
+	color: #65736a !important;
 }
 
 .rengstorff-microsite .evidence-nav-card__title {
@@ -16153,12 +16304,21 @@ b,
 
 .rengstorff-microsite #overview,
 .rengstorff-microsite #council-direction,
-.rengstorff-microsite #council-straw-poll,
-.rengstorff-microsite #council-vs-actions,
+.rengstorff-microsite #record-comparison,
 .rengstorff-microsite #community-recommendations,
-.rengstorff-microsite #implementation-watch,
-.rengstorff-microsite #documents-correspondence {
+.rengstorff-microsite #implementation,
+.rengstorff-microsite #sources {
 	scroll-margin-top: 4.5rem;
+}
+
+/* Widens this page's .rengstorff-shell beyond the sitewide 1120px
+   default (a page-scoped addition -- not a change to the shared
+   .rengstorff-shell rule every other page still uses at 1120px) so
+   the Council straw-poll/Actions-memorandum comparison table still
+   has comfortable room once the shared .page-sidebar-layout's 13rem
+   sidebar + 3rem gap (main.css) take space from the content column. */
+.rengstorff-microsite .bufp-shell--wide {
+	max-width: 1320px;
 }
 
 /* "Watch the straw-poll excerpt" source line -- sits between the
@@ -16190,61 +16350,98 @@ b,
 	font-size: 0.7rem;
 }
 
-/* Eight elements of Council direction -- full verbatim straw-poll
-   transcript per item. Two columns on desktop (never a 4-column
-   compressed grid) so each card has room for comfortable reading;
-   one column on mobile. */
-.rengstorff-microsite .bufp-elements-grid {
+/* Eight elements of Council direction -- compact expandable rows,
+   modeled directly on the "What Council programmed" .scope-grid /
+   .scope-definition-toggle pattern on the parent Rengstorff page: a
+   numbered circle (same visual language as .scope-icon) plus a title
+   communicate the eight-part structure at a glance, and each row is a
+   plain <details>/<summary> that expands in place to reveal the full
+   verbatim straw-poll transcript (kept in .bufp-element-card__text,
+   unchanged below) -- keyboard- and screen-reader-accessible for free,
+   no JS required. Replaces the earlier large 2-column card grid, which
+   showed all eight transcripts open at once and consumed much more
+   vertical space. */
+.rengstorff-microsite .bufp-council-list {
 	display: grid;
-	gap: 1.5rem 2rem;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.6rem;
 	list-style: none;
 	margin: 1.75rem 0 0;
 	padding: 0;
 }
 
-.rengstorff-microsite .bufp-element-card {
+.rengstorff-microsite .bufp-council-item {
 	background: #ffffff;
 	border: 1px solid #d4ded4;
-	border-radius: 10px;
-	padding: 1.5rem 1.6rem;
+	border-radius: 8px;
 }
 
-.rengstorff-microsite .bufp-element-card__head {
+.rengstorff-microsite .bufp-council-item > summary {
 	align-items: center;
+	cursor: pointer;
 	display: flex;
 	gap: 0.9rem;
-	margin-bottom: 0.9rem;
+	list-style: none;
+	padding: 0.85rem 2.5rem 0.85rem 1rem;
+	position: relative;
 }
 
-.rengstorff-microsite .bufp-element-card__num {
-	align-items: center;
-	background: #eef3ee;
-	border-radius: 50%;
-	color: #16704d !important;
-	display: flex;
-	flex-shrink: 0;
-	font-size: 1.15rem;
+.rengstorff-microsite .bufp-council-item > summary::-webkit-details-marker {
+	display: none;
+}
+
+.rengstorff-microsite .bufp-council-item > summary:hover,
+.rengstorff-microsite .bufp-council-item > summary:focus-visible {
+	background: #f4f8f4;
+}
+
+.rengstorff-microsite .bufp-council-item > summary::after {
+	color: #4e9a73;
+	content: '+';
+	font-size: 1.1rem;
 	font-weight: 700;
-	height: 2.75rem;
-	justify-content: center;
-	width: 2.75rem;
+	position: absolute;
+	right: 1.1rem;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
-.rengstorff-microsite .bufp-element-card__title {
+.rengstorff-microsite .bufp-council-item[open] > summary::after {
+	content: '\2212';
+}
+
+.rengstorff-microsite .bufp-council-item__num {
+	align-items: center;
+	background: #193c2b;
+	border-radius: 50%;
+	color: #ffffff !important;
+	display: flex;
+	flex: 0 0 1.9rem;
+	font-size: 0.7rem;
+	font-weight: 700;
+	height: 1.9rem;
+	justify-content: center;
+	width: 1.9rem;
+}
+
+.rengstorff-microsite .bufp-council-item__title {
 	color: #193c2b !important;
-	font-size: 1.02rem;
+	font-size: 0.98rem;
 	font-weight: 700;
 	line-height: 1.35;
-	margin: 0;
 }
 
-.rengstorff-microsite .bufp-element-card__label {
+.rengstorff-microsite .bufp-council-item__body {
+	border-top: 1px solid #eef3ee;
+	padding: 1rem 1.25rem 1.25rem calc(1.9rem + 1.25rem + 0.4rem);
+}
+
+.rengstorff-microsite .bufp-council-item__label {
 	color: #4e745c !important;
+	display: block;
 	font-size: 0.7rem;
 	font-weight: 700;
 	letter-spacing: 0.06em;
-	margin: 0.2rem 0 0;
+	margin: 0 0 0.5rem;
 	text-transform: uppercase;
 }
 
@@ -16702,33 +16899,82 @@ b,
 	font-weight: 700;
 }
 
-/* Implementation checklist. */
-.rengstorff-microsite .bufp-watch-list {
+/* Implementation watchlist -- compact, technical rows (number +
+   uppercase category label + description), not a completed-task
+   checklist. Deliberately no card backgrounds: open layout + thin
+   rules only, matching the Rengstorff page's restrained information
+   density. Number marker reuses the exact circle treatment already
+   established for this page's "Eight elements of Council direction"
+   rows (.bufp-council-item__num) rather than inventing a new one;
+   the category label reuses the same small uppercase micro-label
+   color/weight used throughout this page (e.g.
+   .bufp-detail-item__num, .bufp-council-item__label). Two columns on
+   desktop via grid-auto-flow: column (items 1-4 left, 5-7 right, a
+   balanced 4/3 split for 7 items), one column in DOM/numerical order
+   on mobile. */
+.rengstorff-microsite .bufp-watch-grid {
+	column-gap: 3rem;
 	display: grid;
-	gap: 0.65rem;
+	grid-auto-flow: column;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	grid-template-rows: repeat(4, auto);
 	list-style: none;
-	margin: 1.75rem 0 0;
-	max-width: 44rem;
+	margin: 1.5rem 0 0;
 	padding: 0;
 }
 
-.rengstorff-microsite .bufp-watch-list li {
-	color: #304238 !important;
-	font-size: 0.95rem;
-	line-height: 1.5;
-	padding-left: 1.5rem;
-	position: relative;
+.rengstorff-microsite .bufp-watch-item {
+	align-items: baseline;
+	border-bottom: 1px solid #d4ded4;
+	display: flex;
+	gap: 1rem;
+	padding: 1.1rem 0;
 }
 
-.rengstorff-microsite .bufp-watch-list li::before {
-	color: #16704d;
-	content: "\f00c";
-	font-family: "Font Awesome 5 Free";
-	font-size: 0.8rem;
-	font-weight: 900;
-	left: 0;
-	position: absolute;
-	top: 0.2rem;
+.rengstorff-microsite .bufp-watch-item:last-child {
+	border-bottom: 0;
+}
+
+.rengstorff-microsite .bufp-watch-item__num {
+	align-items: center;
+	background: #193c2b;
+	border-radius: 50%;
+	color: #ffffff !important;
+	display: flex;
+	flex: 0 0 1.9rem;
+	font-size: 0.7rem;
+	font-weight: 700;
+	height: 1.9rem;
+	justify-content: center;
+}
+
+.rengstorff-microsite .bufp-watch-item__body {
+	min-width: 0;
+}
+
+.rengstorff-microsite .bufp-watch-item__label {
+	color: #4e745c !important;
+	display: block;
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 0.3rem;
+	text-transform: uppercase;
+}
+
+.rengstorff-microsite .bufp-watch-item__text {
+	color: #193c2b !important;
+	font-size: 0.95rem;
+	line-height: 1.4;
+	margin: 0;
+}
+
+@media screen and (max-width: 700px) {
+	.rengstorff-microsite .bufp-watch-grid {
+		grid-auto-flow: row;
+		grid-template-columns: 1fr;
+		grid-template-rows: none;
+	}
 }
 
 /* Small group heading between clusters of source cards in the
@@ -16947,9 +17193,134 @@ b,
 	}
 }
 
-@media screen and (max-width: 780px) {
-	.rengstorff-microsite .bufp-elements-grid {
+@media screen and (max-width: 480px) {
+	.rengstorff-microsite .bufp-council-item__body {
+		padding-left: 1.25rem;
+	}
+}
+
+/* Hero right-column card (fills the slot .rengstorff-lead-photo uses on
+   the parent Rengstorff page). No decorative photo exists for the BUFP
+   plan, so instead of inventing generic imagery, the hero's right
+   column carries the Plan's own "foundational plan" quotation on a
+   plain white card -- reusing the existing .bufp-quote-block(*)
+   typographic components as-is (they're already styled for a light
+   background), just in a new white, shadowed container that reads as
+   the hero's featured element the way a photo would. */
+.rengstorff-microsite .bufp-hero-card {
+	align-self: center;
+	background: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 20px 45px rgba(15, 26, 20, 0.28);
+	padding: 1.85rem 2rem;
+}
+
+.rengstorff-microsite .bufp-hero-card .bufp-quote-block {
+	margin-top: 0;
+}
+
+.rengstorff-microsite .bufp-hero-card .bufp-quote-block__quote {
+	font-size: 1.1rem;
+}
+
+.rengstorff-microsite .bufp-hero-card .bufp-source-link {
+	margin-top: 1.1rem;
+}
+
+/* Compact date/context line (e.g. "APR. 28, 2026 · COUNCIL STUDY
+   SESSION") -- same visual treatment as the parent Rengstorff page's
+   .scope-decision-dates, but usable in any section on this page rather
+   than scoped to .scope-section. */
+.rengstorff-microsite .bufp-meta-line {
+	color: #4e9a73 !important;
+	font-size: 0.84rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	margin: 0 0 0.6rem;
+	text-transform: uppercase;
+}
+
+/* Compact variant of .bufp-video for use beside the Council-direction
+   rows below, where the recording is supporting source evidence rather
+   than the section's primary visual element. */
+.rengstorff-microsite .bufp-video--compact {
+	max-width: 20rem;
+}
+
+.rengstorff-microsite .bufp-video--compact .bufp-video__play {
+	font-size: 1.1rem;
+	height: 3.25rem;
+	width: 3.25rem;
+}
+
+.rengstorff-microsite .bufp-video--compact .bufp-video__title {
+	font-size: 0.92rem;
+}
+
+/* Two-column layout for the four "Differences that matter for
+   implementation" analysis items, so they read as compact evidence
+   cards rather than a tall single-column stack. Reuses
+   .bufp-detail-list/.bufp-detail-item as-is; this modifier only sets
+   the column count. */
+.rengstorff-microsite .bufp-detail-list--grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media screen and (max-width: 700px) {
+	.rengstorff-microsite .bufp-detail-list--grid {
 		grid-template-columns: 1fr;
+	}
+}
+
+/* Progressive disclosure for each Action's secondary supporting
+   material (the annotated transportation/shade/standards analysis
+   currently shown all at once, Action 26 especially). A plain
+   <details>/<summary> -- same accessible, no-JS-required pattern as
+   .scope-definition-toggle and .bufp-council-item above -- so the
+   30-second and 3-minute readers see only the default recommendation +
+   final-Plan finding, while the evidence-checking reader can expand
+   the rest without anything being deleted from the page. */
+.rengstorff-microsite .bufp-action-detail__more {
+	margin-top: 1.25rem;
+}
+
+.rengstorff-microsite .bufp-action-detail__more > summary {
+	align-items: center;
+	color: #16704d !important;
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 0.9rem;
+	font-weight: 700;
+	gap: 0.4rem;
+	list-style: none;
+}
+
+.rengstorff-microsite .bufp-action-detail__more > summary::-webkit-details-marker {
+	display: none;
+}
+
+.rengstorff-microsite .bufp-action-detail__more > summary::after {
+	color: #4e9a73;
+	content: '+';
+	font-weight: 700;
+}
+
+.rengstorff-microsite .bufp-action-detail__more[open] > summary::after {
+	content: '\2212';
+}
+
+.rengstorff-microsite .bufp-action-detail__more > summary:hover,
+.rengstorff-microsite .bufp-action-detail__more > summary:focus-visible {
+	text-decoration: underline;
+}
+
+.rengstorff-microsite .bufp-action-detail__more-body {
+	margin-top: 1.25rem;
+}
+
+@media screen and (max-width: 900px) {
+	.rengstorff-microsite .bufp-hero-card {
+		padding: 1.5rem 1.6rem;
 	}
 }
 
