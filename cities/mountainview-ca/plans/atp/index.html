@@ -27,7 +27,7 @@
          treatment rather than invent one. -->
     <section class="rengstorff-hero atp-hero" id="overview">
       <div class="rengstorff-hero__copy atp-hero__copy">
-        <nav class="study-breadcrumb atp-hero__breadcrumb" aria-label="Breadcrumb">
+        <nav class="study-breadcrumb rengstorff-hero__breadcrumb" aria-label="Breadcrumb">
           <ol>
             <li><a href="../../index.html">Mountain View</a></li>
             <li><a href="../">Plans</a></li>
@@ -46,13 +46,13 @@
         <dl class="atp-status-grid">
           <div class="atp-status-item">
             <dt>Status</dt>
-            <dd><span class="atp-status-pill">Council consideration</span></dd>
-            <p class="atp-status-item__note">Final plan scheduled for City Council</p>
+            <dd><span class="atp-status-pill">Adopted</span></dd>
+            <p class="atp-status-item__note">Adopted by City Council</p>
           </div>
           <div class="atp-status-item">
             <dt>Council meeting</dt>
             <dd>September 22, 2026</dd>
-            <p class="atp-status-item__note">(scheduled)</p>
+            <p class="atp-status-item__note"><a href="council-adoption/">Explore the adoption &amp; amendments &rarr;</a></p>
           </div>
           <div class="atp-status-item">
             <dt>City&#8217;s ATP page</dt>
@@ -69,32 +69,53 @@
     <!-- Timeline -- same milestones as before, moved out of the green
          hero into normal page flow (matching how the Standard Details
          page keeps its own timeline as a separate section) and
-         relabeled with the fuller two-line date/description form. -->
+         relabeled with the fuller two-line date/description form.
+         September 22 is now --done (Council has acted) and links to
+         the new Council Adoption page rather than scrolling within
+         this page. August 2026 links to the real Revised ATP PDF
+         already in the project (documents/atp/mv-atp-2026-08); April
+         2026, June 16, and August 31 have no verified public
+         meeting/document URL in this project yet, so they stay plain
+         text rather than linking to something invented. -->
     <div class="rengstorff-shell atp-timeline-shell">
       <ol class="atp-timeline" aria-label="Plan timeline">
         <li class="atp-timeline__step atp-timeline__step--done"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label">April 2026<br />Draft Plan</span></li>
         <li class="atp-timeline__arrow" aria-hidden="true">&rarr;</li>
         <li class="atp-timeline__step atp-timeline__step--done"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label">June 16, 2026<br />City Transportation Commission (CTC)</span></li>
         <li class="atp-timeline__arrow" aria-hidden="true">&rarr;</li>
-        <li class="atp-timeline__step atp-timeline__step--done"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label">August 2026<br />Revised ATP</span></li>
+        <li class="atp-timeline__step atp-timeline__step--done"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label"><a href="../../../../documents/atp/mv-atp-2026-08/mvatp-2026-08-executive-summary.pdf" target="_blank" rel="noopener noreferrer">August 2026<br />Revised ATP</a></span></li>
         <li class="atp-timeline__arrow" aria-hidden="true">&rarr;</li>
         <li class="atp-timeline__step atp-timeline__step--done"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label">August 31, 2026<br />CTC</span></li>
         <li class="atp-timeline__arrow" aria-hidden="true">&rarr;</li>
-        <li class="atp-timeline__step atp-timeline__step--upcoming"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label">September 22, 2026<br />City Council</span></li>
+        <li class="atp-timeline__step atp-timeline__step--done"><span class="atp-timeline__dot" aria-hidden="true"></span><span class="atp-timeline__label"><a href="council-adoption/">September 22, 2026<br />City Council</a></span></li>
       </ol>
+
+      <!-- Compact adoption update -- a summary card, not a full page
+           section: the detailed coalition/staff/Council record now
+           lives on its own page (council-adoption/) so it doesn't
+           interrupt the ATP explainer/analysis reading flow below. -->
+      <div class="atp-adoption-card">
+        <p class="atp-adoption-card__eyebrow">September 22, 2026 &middot; Council adoption</p>
+        <h2 class="atp-adoption-card__title">Council adopts the 2026 ATP</h2>
+        <p class="atp-adoption-card__text">Mountain View City Council adopted the 2026 Active Transportation Plan on September 22, 2026.</p>
+        <p class="atp-adoption-card__text">Before adoption, a coalition of local organizations and residents requested amendments addressing design standards, greening, performance measures, walkability, traffic calming, bicycle facilities, and smaller-scale safety improvements.</p>
+        <p class="atp-adoption-card__text">Staff responded to those requests during the Council meeting, and Council gave direction on several of them.</p>
+        <a class="atp-adoption-card__cta" href="council-adoption/">Explore the Council decision <span aria-hidden="true">&rarr;</span></a>
+        <p class="atp-adoption-card__meta">Coalition requests &middot; Staff response &middot; Council direction &middot; Source materials</p>
+      </div>
     </div>
 
     <!-- Mobile/tablet "On this page" -- the shared .onpage-nav
          component (same one used elsewhere on the site), collapsed to
          a dropdown trigger by its own CSS at <=1024px. Hidden above
-         that width via .atp-onpage-nav-mobile (see mv-atp.css) once
-         the sticky sidebar below takes over -- same split as the
-         Standard Details page's sd-onpage-nav-mobile/sd-sidebar pair.
-         Its existing click/smooth-scroll/IntersectionObserver script
-         (further down this file) now also drives the sidebar's active
-         state, so the two navs never disagree about the current
-         section. -->
-    <nav class="onpage-nav atp-onpage-nav-mobile" aria-label="On this page">
+         that width via the shared .page-onpage-nav-mobile modifier
+         (see main.css) once the sticky sidebar below takes over --
+         same split as the Standard Details page's own
+         sd-onpage-nav-mobile/sd-sidebar pair. Its existing click/
+         smooth-scroll/IntersectionObserver script (further down this
+         file) now also drives the sidebar's active state, so the two
+         navs never disagree about the current section. -->
+    <nav class="onpage-nav page-onpage-nav-mobile" aria-label="On this page">
       <span class="onpage-nav__label" aria-hidden="true">On this page</span>
       <button type="button" class="onpage-nav__trigger" aria-expanded="false" aria-controls="onpage-nav-list">
         <span>On this page</span>
@@ -103,6 +124,7 @@
       </button>
       <ul class="onpage-nav__list" id="onpage-nav-list">
         <li><a class="onpage-nav__link" href="#overview">Overview</a></li>
+        <li><a class="onpage-nav__link" href="council-adoption/">Council Adoption <span aria-hidden="true">&#8599;</span></a></li>
         <li><a class="onpage-nav__link" href="#vision">Vision</a></li>
         <li><a class="onpage-nav__link" href="#network-to-projects">Network to Projects</a></li>
         <li><a class="onpage-nav__link" href="#table-5">Scoring Framework</a></li>
@@ -114,17 +136,20 @@
       </ul>
     </nav>
 
-    <div class="rengstorff-shell atp-layout">
-      <!-- Desktop sticky sidebar -- shown only at >=1025px (see
-           mv-atp.css), replacing the wide horizontal on-page nav there.
-           Visual language matches the Standard Details page's
-           .sd-sidebar exactly: slim vertical rule, quiet inactive
-           links, thin green rule + darker/bolder text for the active
-           one (set by the shared script below), no shaded box. -->
-      <aside class="atp-sidebar" aria-label="On this page">
-        <p class="atp-sidebar__label">On this page</p>
-        <ul class="atp-sidebar__list">
+    <div class="rengstorff-shell page-sidebar-layout">
+      <!-- Desktop sticky sidebar -- shown only at >=1025px, using the
+           shared .page-sidebar-layout/.page-sidebar/.page-sidebar__list
+           component now in main.css (previously a page-scoped
+           .atp-layout/.atp-sidebar copy of the same rules). Visual
+           language matches the Standard Details page's .sd-sidebar
+           exactly: slim vertical rule, quiet inactive links, thin
+           green rule + darker/bolder text for the active one (set by
+           the shared script below), no shaded box. -->
+      <aside class="page-sidebar" aria-label="On this page">
+        <p class="page-sidebar__label">On this page</p>
+        <ul class="page-sidebar__list">
           <li><a href="#overview">Overview</a></li>
+          <li><a href="council-adoption/">Council Adoption <span aria-hidden="true">&#8599;</span></a></li>
           <li><a href="#vision">Vision</a></li>
           <li><a href="#network-to-projects">Network to Projects</a></li>
           <li><a href="#table-5">Scoring Framework</a></li>
@@ -136,7 +161,7 @@
         </ul>
       </aside>
 
-      <div class="atp-main">
+      <div class="page-sidebar-main">
 
       <!-- ==================================================
            02. What does the ATP envision? -- Vision Statement and the
@@ -1448,7 +1473,7 @@
   <script>
     // On this page: progressive enhancement over plain working anchor
     // links. Drives THREE things together so they never disagree: the
-    // desktop sticky sidebar (.atp-sidebar__list, >=1025px), the
+    // desktop sticky sidebar (.page-sidebar__list, >=1025px), the
     // mobile/tablet dropdown (.onpage-nav, <=1024px -- collapse/expand
     // behavior unchanged from the generic component), and that
     // dropdown trigger's "-- Section name" current-label span. Only
@@ -1457,13 +1482,13 @@
     // updated by the one shared IntersectionObserver below.
     (function () {
       var nav = document.querySelector('.onpage-nav');
-      var sidebar = document.querySelector('.atp-sidebar');
+      var sidebar = document.querySelector('.page-sidebar');
       if (!nav && !sidebar) { return; }
 
       var trigger = nav && nav.querySelector('.onpage-nav__trigger');
       var list = nav && nav.querySelector('.onpage-nav__list');
       var mobileLinks = nav ? Array.prototype.slice.call(nav.querySelectorAll('.onpage-nav__link')) : [];
-      var sidebarLinks = sidebar ? Array.prototype.slice.call(sidebar.querySelectorAll('.atp-sidebar__list a')) : [];
+      var sidebarLinks = sidebar ? Array.prototype.slice.call(sidebar.querySelectorAll('.page-sidebar__list a')) : [];
       var currentLabel = nav && nav.querySelector('.onpage-nav__current');
       var reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 

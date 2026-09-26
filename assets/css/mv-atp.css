@@ -112,6 +112,80 @@
   color: #9fb5a5;
 }
 
+/* A milestone can be a link to its own source/version page (e.g.
+   September 22 -> the Council Adoption page, August 2026 -> the
+   Revised ATP PDF) -- same color as the step's own --done/--upcoming
+   state (inherited), just without the default browser underline
+   until hover/focus. */
+.rengstorff-microsite .atp-timeline__label a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rengstorff-microsite .atp-timeline__label a:hover,
+.rengstorff-microsite .atp-timeline__label a:focus-visible {
+  text-decoration: underline;
+}
+
+/* Compact post-adoption update card -- a summary, not a full section
+   (the detailed coalition/staff/Council record lives on its own page,
+   linked from the CTA below). Same pale card language as
+   .atp-process__step elsewhere on this page, capped to a readable
+   measure rather than stretching full width, so it reads as "a card"
+   at a glance. */
+.rengstorff-microsite .atp-adoption-card {
+  background: #f5f8f4;
+  border: 1px solid #d4e2d7;
+  border-radius: 8px;
+  margin: 0 0 1.5rem;
+  max-width: 36rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.rengstorff-microsite .atp-adoption-card__eyebrow {
+  color: #4e745c !important;
+  font-size: 0.72rem !important;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.5rem !important;
+  text-transform: uppercase;
+}
+
+.rengstorff-microsite .atp-adoption-card__title {
+  color: #16412e !important;
+  font-size: 1.25rem !important;
+  margin: 0 0 0.6rem !important;
+}
+
+.rengstorff-microsite .atp-adoption-card__text {
+  color: #33483a !important;
+  font-size: 0.88rem !important;
+  line-height: 1.55;
+  margin: 0 0 0.6rem !important;
+}
+
+.rengstorff-microsite .atp-adoption-card__text:last-of-type {
+  margin-bottom: 0.9rem !important;
+}
+
+.rengstorff-microsite .atp-adoption-card__cta {
+  color: #16704d !important;
+  display: inline-block;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.rengstorff-microsite .atp-adoption-card__cta:hover,
+.rengstorff-microsite .atp-adoption-card__cta:focus-visible {
+  text-decoration: underline;
+}
+
+.rengstorff-microsite .atp-adoption-card__meta {
+  color: #6e8577 !important;
+  font-size: 0.76rem !important;
+  margin: 0.75rem 0 0 !important;
+}
+
 /* Compact variant, used for the "coming soon" 4-step preview under the
    August 31 table -- same shape, quieter (no dots/color-coding, since
    none of those steps have happened yet). */
@@ -170,30 +244,10 @@
   margin-top: 0.75rem;
 }
 
-.atp-hero-page .atp-hero__breadcrumb {
-  margin-bottom: 1.1rem;
-}
-
-.atp-hero-page .atp-hero__breadcrumb ol {
-  color: #b9dcbf !important;
-}
-
-.atp-hero-page .atp-hero__breadcrumb a {
-  color: #dbe9dd !important;
-}
-
-.atp-hero-page .atp-hero__breadcrumb a:hover,
-.atp-hero-page .atp-hero__breadcrumb a:focus-visible {
-  color: #ffffff !important;
-}
-
-.atp-hero-page .atp-hero__breadcrumb li:not(:last-child)::after {
-  color: #4e745c;
-}
-
-.atp-hero-page .atp-hero__breadcrumb [aria-current="page"] {
-  color: #ffffff !important;
-}
+/* Breadcrumb: now the shared .rengstorff-hero__breadcrumb in main.css
+   (see that file) -- this page just pairs that class with
+   .study-breadcrumb in its HTML instead of keeping a page-scoped
+   .atp-hero__breadcrumb copy of the same rules. */
 
 .atp-hero-page .atp-hero__image {
   position: absolute;
@@ -272,6 +326,21 @@
   color: #8a978c !important;
   font-size: 0.76rem !important;
   line-height: 1.3;
+}
+
+/* A note can itself be the action (e.g. "Explore the adoption &
+   amendments") rather than a muted caption under one -- give it real
+   link weight/color instead of inheriting the muted italic caption
+   treatment above. */
+.atp-hero-page .atp-status-item__note a {
+  color: #16704d !important;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.atp-hero-page .atp-status-item__note a:hover,
+.atp-hero-page .atp-status-item__note a:focus-visible {
+  text-decoration: underline;
 }
 
 .atp-hero-page .atp-status-pill {
@@ -381,6 +450,364 @@
   .rengstorff-microsite .atp-timeline__arrow {
     display: none;
   }
+}
+
+/* =========================================================
+   September 22, 2026 Council Meeting -- post-adoption record.
+   Three stages (coalition asked / staff responded / council acted),
+   each set off by a thin top rule and a small colored stage marker
+   (not a heading -- the real h3 for each stage carries the actual
+   heading text, or is omitted where the user gave none, rather than
+   inventing one). .atp-meeting__role-label reuses the exact small
+   uppercase micro-label treatment already established on this page
+   (.atp-vision__label) to mark which of the two artifacts inside
+   "Staff responded" is the primary-source screenshot vs. this site's
+   own interpretation/crosswalk table -- restrained text, not a
+   colored pill, so it doesn't compete with the status dots below.
+   ========================================================= */
+
+.rengstorff-microsite .atp-meeting__stage {
+  border-top: 1px solid #d4e2d7;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+}
+
+.rengstorff-microsite .atp-meeting__stage-marker {
+  color: #16704d !important;
+  font-size: 0.8rem !important;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  margin: 0 0 0.75rem !important;
+  text-transform: uppercase;
+}
+
+.rengstorff-microsite .atp-meeting__role-label {
+  margin: 0 0 0.5rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4e745c !important;
+}
+
+.rengstorff-microsite .atp-meeting h3 {
+  color: #16412e;
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+
+.rengstorff-microsite .atp-meeting__stage p.atp-meeting__lede {
+  color: #33483a !important;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 46rem;
+}
+
+/* Stage 1: coalition letter reference. A pending source card (no
+   verified URL yet -- see the HTML comment), not a styled link, so it
+   never implies a working citation that doesn't exist. */
+.rengstorff-microsite .atp-meeting__source-ref {
+  margin-top: 1rem;
+  max-width: 28rem;
+}
+
+/* Stage 2: staff presentation screenshot -- restrained document/
+   evidence treatment (plain border + thin frame, not a decorative
+   photo card), matching the technical tone of the rest of the page.
+   Clickable, opening the sitewide #evidence-modal lightbox already
+   used elsewhere on the site rather than a new viewer. */
+.rengstorff-microsite .atp-evidence-figure {
+  margin: 0 0 2rem;
+  max-width: 34rem;
+}
+
+.rengstorff-microsite .atp-evidence-figure__frame {
+  background: #eef1ee;
+  border: 1px solid #c9d4cb;
+  border-radius: 4px;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.rengstorff-microsite .atp-evidence-figure__frame img {
+  display: block;
+  width: 100%;
+}
+
+.rengstorff-microsite .atp-evidence-figure__zoom {
+  align-items: center;
+  background: rgba(25, 60, 43, 0.82);
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  font-size: 0.85rem;
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  width: 2.5rem;
+}
+
+.rengstorff-microsite .atp-evidence-figure__frame:hover .atp-evidence-figure__zoom,
+.rengstorff-microsite .atp-evidence-figure__frame:focus-visible .atp-evidence-figure__zoom {
+  background: rgba(22, 112, 77, 0.92);
+}
+
+.rengstorff-microsite .atp-evidence-figure figcaption {
+  margin-top: 0.65rem;
+}
+
+.rengstorff-microsite .atp-evidence-figure__title {
+  color: #16412e !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.rengstorff-microsite .atp-evidence-figure__caption {
+  color: #5a6c60 !important;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0.25rem 0 0;
+}
+
+/* Pending-evidence placeholder: same restrained "documented gap"
+   treatment used elsewhere on the site (dashed border, muted ink) --
+   not a broken image, not an invented one. Swappable for the real
+   .atp-evidence-figure__frame + img once the screenshot file exists. */
+.rengstorff-microsite .atp-evidence-figure__frame.pending {
+  align-items: center;
+  aspect-ratio: 16 / 10;
+  color: #65736a !important;
+  display: flex;
+  font-size: 0.85rem;
+  font-style: italic;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* Legend + comparison table ("Coalition requests compared with
+   staff's response"). Deliberately muted/desaturated status colors
+   -- not saturated traffic-light red/yellow/green -- consistent with
+   the rest of the site's restrained palette (see .bufp-missing-note's
+   amber/cream choice elsewhere for the same "documentary, not
+   alarming" reasoning). */
+.rengstorff-microsite .atp-compare-legend {
+  align-items: center;
+  color: #45594c !important;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  font-weight: 600;
+  gap: 0.4rem 1.25rem;
+  margin: 0 0 1.25rem;
+}
+
+.rengstorff-microsite .atp-compare-legend__item {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.45rem;
+}
+
+.rengstorff-microsite .atp-status-dot {
+  border-radius: 50%;
+  display: inline-block;
+  flex: 0 0 auto;
+  height: 0.65rem;
+  width: 0.65rem;
+}
+
+.rengstorff-microsite .atp-status-dot--as-is { background: #1f7a4d; }
+.rengstorff-microsite .atp-status-dot--modified { background: #a9822f; }
+.rengstorff-microsite .atp-status-dot--narrowed { background: #b56a2c; }
+.rengstorff-microsite .atp-status-dot--not-included { background: #a8503c; }
+
+.rengstorff-microsite .atp-compare-wrap {
+  margin: 0 0 1rem;
+  overflow-x: auto;
+}
+
+.rengstorff-microsite .atp-compare {
+  background: #ffffff;
+  border: 1px solid #d4ded4;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.rengstorff-microsite .atp-compare th,
+.rengstorff-microsite .atp-compare td {
+  border-bottom: 1px solid #d4ded4;
+  padding: 1.35rem 1.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.rengstorff-microsite .atp-compare tbody tr:last-child th,
+.rengstorff-microsite .atp-compare tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.rengstorff-microsite .atp-compare thead th {
+  background: #f4f8f4;
+  color: #193c2b !important;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.rengstorff-microsite .atp-compare__num-col {
+  color: #8a978c !important;
+  font-weight: 700;
+  text-align: center;
+  width: 2.75rem;
+}
+
+.rengstorff-microsite .atp-compare__request-title {
+  color: #16412e !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.rengstorff-microsite .atp-compare__request-ref {
+  color: #6e8577 !important;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  margin: 0.35rem 0 0;
+}
+
+.rengstorff-microsite .atp-compare__status {
+  align-items: center;
+  display: flex;
+  gap: 0.55rem;
+  white-space: nowrap;
+}
+
+.rengstorff-microsite .atp-compare__status-text {
+  color: #26392d !important;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.rengstorff-microsite .atp-compare td.atp-compare__said {
+  color: #33483a !important;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.rengstorff-microsite .atp-compare__footnote {
+  color: #6e8577 !important;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: 0.75rem 0 0;
+  max-width: 44rem;
+}
+
+@media screen and (max-width: 900px) {
+  .rengstorff-microsite .atp-compare,
+  .rengstorff-microsite .atp-compare tbody,
+  .rengstorff-microsite .atp-compare tr,
+  .rengstorff-microsite .atp-compare td {
+    display: block;
+    width: 100%;
+  }
+
+  .rengstorff-microsite .atp-compare thead {
+    display: none;
+  }
+
+  .rengstorff-microsite .atp-compare tr {
+    border-bottom: 6px solid #eef3ee;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .rengstorff-microsite .atp-compare tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .rengstorff-microsite .atp-compare td {
+    border-bottom: 0;
+    padding: 0.55rem 0 0;
+  }
+
+  .rengstorff-microsite .atp-compare td:first-child {
+    padding-top: 0;
+  }
+
+  .rengstorff-microsite .atp-compare__num-col {
+    text-align: left;
+    width: auto;
+  }
+
+  .rengstorff-microsite .atp-compare td[data-label]::before {
+    color: #4e745c;
+    content: attr(data-label);
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+  }
+}
+
+/* Stage 3: final decision record -- structural placeholder only.
+   Same restrained "documented gap" treatment as the pending evidence
+   frame above, ready to hold the actual Council motion/direction once
+   available rather than inferring it from the staff recommendations. */
+.rengstorff-microsite .atp-meeting__council-pending {
+  background: #f9f3e6;
+  border: 1px dashed #c9a86a;
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+}
+
+.rengstorff-microsite .atp-meeting__council-pending p {
+  color: #6b5423 !important;
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Sources / provenance strip at the foot of the meeting section --
+   reuses .evidence-nav-grid/.evidence-nav-card as-is (already generic,
+   used elsewhere on the site) for real links, combined with the
+   sitewide .pending class for the two references that don't have a
+   verified URL yet. */
+.rengstorff-microsite .atp-meeting__sources {
+  margin-top: 2.5rem;
+}
+
+.rengstorff-microsite .atp-meeting__sources-label {
+  color: #4e745c !important;
+  font-size: 0.72rem !important;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.75rem !important;
+  text-transform: uppercase;
+}
+
+/* Cross-reference line on the Council Adoption page, pointing back to
+   the coalition's earlier rounds tracked on the Community Advocacy
+   page -- small and quiet, a pointer rather than a callout. */
+.rengstorff-microsite .atp-meeting__crossref {
+  color: #6e8577 !important;
+  font-size: 0.85rem !important;
+  font-style: italic;
+  margin: 1.25rem 0 0 !important;
+  max-width: 44rem;
+}
+
+.rengstorff-microsite .atp-meeting__crossref a {
+  color: #4e8f6a !important;
 }
 
 /* =========================================================
@@ -2173,8 +2600,8 @@
      so the three cards use the full sidebar-adjusted content column
      instead of a further-inset one -- matched by .atp-gce-outcome
      below so the band stays flush with the cards above it. Doesn't
-     touch .rengstorff-shell/.atp-layout, so the sidebar and every
-     other section on the page are unaffected. */
+     touch .rengstorff-shell/.page-sidebar-layout, so the sidebar and
+     every other section on the page are unaffected. */
   margin-left: clamp(-3rem, -4vw, -1.25rem);
   margin-right: clamp(-3rem, -4vw, -1.25rem);
 }
@@ -2798,96 +3225,15 @@
 }
 
 /* =========================================================
-   "On this page" -- sticky left sidebar (desktop) replacing the wide
-   horizontal .onpage-nav bar, modeled directly on the Standard
-   Details page's .sd-layout/.sd-sidebar (same slim vertical rule,
-   quiet inactive links, thin green rule + darker/bolder text for the
-   active one, no shaded box, no icons). The mobile/tablet dropdown
-   below the breakpoint is the existing shared .onpage-nav component
-   itself, not a new control -- only .atp-onpage-nav-mobile's
-   desktop visibility changes here. Active-state + smooth-scroll for
-   both navs comes from one shared script (see the HTML's closing
-   script block); this file only supplies appearance. ========================================================= */
-
-.rengstorff-microsite .atp-layout {
-  display: grid;
-  grid-template-columns: 13rem minmax(0, 1fr);
-  gap: 3rem;
-}
-
-.rengstorff-microsite .atp-sidebar {
-  display: none;
-  position: sticky;
-  top: 1.5rem;
-  align-self: start;
-}
-
-.rengstorff-microsite.rengstorff-microsite p.atp-sidebar__label {
-  color: #5a6c60 !important;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  margin: 0 0 0.85rem;
-  text-transform: uppercase;
-}
-
-.rengstorff-microsite .atp-sidebar__list {
-  border-left: 2px solid #d4ded4;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.rengstorff-microsite .atp-sidebar__list li {
-  margin: 0;
-}
-
-.rengstorff-microsite .atp-sidebar__list a {
-  color: #304238;
-  display: block;
-  font-size: 0.88rem;
-  font-weight: 600;
-  padding: 0.5rem 0 0.5rem 1rem;
-  text-decoration: none;
-}
-
-.rengstorff-microsite .atp-sidebar__list a:hover,
-.rengstorff-microsite .atp-sidebar__list a:focus-visible {
-  color: #16704d;
-}
-
-.rengstorff-microsite .atp-sidebar__list a.is-active {
-  border-left: 2px solid #16704d;
-  color: #0b2f1c;
-  font-weight: 700;
-  margin-left: -2px;
-  padding-left: calc(1rem + 1px);
-}
-
-.rengstorff-microsite .atp-onpage-nav-mobile .onpage-nav__current {
-  color: #16704d;
-  font-weight: 700;
-}
-
-.rengstorff-microsite .atp-onpage-nav-mobile .onpage-nav__current:not(:empty)::before {
-  content: "\2014\00a0";
-}
-
-@media screen and (min-width: 1025px) {
-  .rengstorff-microsite .atp-sidebar {
-    display: block;
-  }
-
-  .rengstorff-microsite .atp-onpage-nav-mobile {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .rengstorff-microsite .atp-layout {
-    display: block;
-  }
-}
+   "On this page" -- sticky left sidebar (desktop). This used to be a
+   page-scoped .atp-layout/.atp-sidebar copy of the Standard Details
+   page's .sd-layout/.sd-sidebar; it's now the shared
+   .page-sidebar-layout/.page-sidebar/.page-sidebar__list/
+   .page-onpage-nav-mobile component in main.css (see that file),
+   reused here and by the Biodiversity & Urban Forest Plan page rather
+   than each page keeping its own copy. This page's HTML uses those
+   shared class names directly, so nothing further is needed here.
+   ========================================================= */
 
 @media screen and (max-width: 700px) {
   .rengstorff-microsite .atp-vision__statement {

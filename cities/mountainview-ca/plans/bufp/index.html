@@ -8,80 +8,186 @@
 </head>
 <body class="rengstorff-microsite">
   <main>
-    <div class="rengstorff-shell rengstorff-shell--breadcrumb">
-      <section class="section-block study-top">
-        <nav class="study-breadcrumb" aria-label="Breadcrumb">
+
+    <!-- Hero: reuses .rengstorff-hero / .rengstorff-hero__copy / .eyebrow /
+         .hero-subtitle / .rengstorff-hero__callout / .hero-summary exactly
+         as built for the Rengstorff project pages. Breadcrumb now sits
+         inside the hero itself, same placement/pattern as the Active
+         Transportation Plan page: .study-breadcrumb paired with the
+         shared .rengstorff-hero__breadcrumb light-on-dark color
+         variant (main.css), rather than a separate light-background
+         breadcrumb block above the hero. No decorative photo exists
+         for a plan document, so the hero's right column (the
+         .rengstorff-lead-photo slot on other pages) instead carries the
+         Plan's own "foundational plan" quotation on a plain white card
+         (.bufp-hero-card, new -- see main.css) -- a documentary element,
+         not stock imagery. -->
+    <section class="rengstorff-hero" aria-labelledby="page-title">
+      <div class="rengstorff-hero__copy">
+        <nav class="study-breadcrumb rengstorff-hero__breadcrumb" aria-label="Breadcrumb">
           <ol>
-            <li><a href="../../index.html">Mountain View, CA</a></li>
+            <li><a href="../../index.html">Mountain View</a></li>
             <li><a href="../">Plans</a></li>
             <li><span aria-current="page">Biodiversity &amp; Urban Forest Plan</span></li>
           </ol>
         </nav>
-      </section>
-    </div>
-
-    <div class="rengstorff-shell">
-      <section class="section-block" id="overview">
-        <div class="section-intro">
-          <h1 id="page-title">Biodiversity &amp; Urban Forest Plan</h1>
-          <p>Mountain View&#8217;s Biodiversity and Urban Forest Plan (BUFP) is intended to guide how the City protects and expands its urban forest, supports biodiversity, incorporates native vegetation, and integrates nature into the built environment.</p>
-          <p>The Plan is important not only for parks and open space. Its recommendations can affect how Mountain View designs streets, develops Capital Improvement Program projects, manages public land, and establishes standards for future development.</p>
-          <p><a class="bufp-source-link" href="../../../../documents/bufp/mountain-view-biodiversity-urban-forest-plan-2026.pdf">Read the final adopted Plan (PDF)</a></p>
+        <h1 id="page-title">Biodiversity &amp; Urban Forest Plan</h1>
+        <p class="hero-subtitle">Council gave eight implementation directions for this plan. This page compares that direction to the City&#8217;s written record, and tracks what happened to the three community recommendations Council specifically named.</p>
+        <div class="rengstorff-hero__callout">
+          <p>The BUFP is intended to guide how the City protects and expands its urban forest, supports biodiversity, incorporates native vegetation, and integrates nature into the built environment. <strong>Its recommendations affect how Mountain View designs streets, develops Capital Improvement Program projects, manages public land, and establishes standards for future development.</strong></p>
         </div>
+      </div>
 
-        <!-- Restrained final-Plan callout -- this quote lines up with
-             Council Straw Poll Item 1 (see #council-vs-actions below),
-             even though that item wasn't separately recorded in the
-             May 21 Actions memorandum. Presented here purely as source
-             chronology (straw poll -> Actions memorandum -> final
-             Plan), not as a claim about the memorandum. -->
+      <div class="bufp-hero-card">
         <div class="bufp-quote-block bufp-quote-block--callout">
           <p class="bufp-quote-block__label"><span class="bufp-quote-block__eyebrow">Foundational plan</span> The final adopted BUFP states:</p>
           <blockquote class="bufp-quote-block__quote">&#8220;While the Plan is not a regulatory document, it has the support of Mountain View City Council and should be considered as one of the foundational plans of the City.&#8221;</blockquote>
-          <p class="bufp-quote-block__footnote">This reflects <a href="#council-vs-actions">Council Straw Poll Item 1</a>, which was not separately recorded as its own feedback item in the May 21 Actions memorandum.</p>
+          <p class="bufp-quote-block__footnote">This reflects <a href="#record-comparison">Council Straw Poll Item 1</a>, which was not separately recorded as its own feedback item in the May 21 Actions memorandum.</p>
         </div>
-      </section>
-    </div>
+        <a class="bufp-source-link" href="../../../../documents/bufp/mountain-view-biodiversity-urban-forest-plan-2026.pdf">Read the final adopted Plan (PDF)</a>
+      </div>
+    </section>
 
-    <!-- On-page nav: same markup/JS as the Rengstorff Avenue project
-         pages' .onpage-nav (own copy of the same generic component --
-         it works off .onpage-nav classes + href="#id" + getElementById,
-         nothing page-specific, so it's safe to reuse verbatim here). -->
-    <nav class="onpage-nav" aria-label="On this page">
+    <!-- Mobile/tablet "On this page" -- the shared .onpage-nav
+         component, collapsed to a dropdown trigger by its own CSS at
+         <=1024px. Hidden above that width via the shared
+         .page-onpage-nav-mobile modifier (main.css) once the desktop
+         sticky sidebar below takes over -- same ATP-page pattern,
+         reused verbatim rather than re-approximated. Its click/
+         smooth-scroll/IntersectionObserver script (further down this
+         file) also drives the sidebar's active state, so the two navs
+         never disagree about the current section. -->
+    <nav class="onpage-nav page-onpage-nav-mobile" aria-label="On this page">
       <span class="onpage-nav__label" aria-hidden="true">On this page</span>
       <button type="button" class="onpage-nav__trigger" aria-expanded="false" aria-controls="onpage-nav-list">
         <span>On this page</span>
+        <span class="onpage-nav__current"></span>
         <span class="onpage-nav__chevron" aria-hidden="true">&#9662;</span>
       </button>
       <ul class="onpage-nav__list" id="onpage-nav-list">
         <li><a class="onpage-nav__link" href="#overview">Overview</a></li>
-        <li><a class="onpage-nav__link" href="#council-straw-poll">Council straw poll</a></li>
-        <li><a class="onpage-nav__link" href="#council-direction">Eight elements of Council direction</a></li>
-        <li><a class="onpage-nav__link" href="#council-vs-actions">What Council said vs. what was recorded</a></li>
+        <li><a class="onpage-nav__link" href="#council-direction">Council direction</a></li>
+        <li><a class="onpage-nav__link" href="#record-comparison">Record comparison</a></li>
         <li><a class="onpage-nav__link" href="#community-recommendations">Community recommendations</a></li>
-        <li><a class="onpage-nav__link" href="#implementation-watch">Implementation to watch</a></li>
-        <li><a class="onpage-nav__link" href="#documents-correspondence">Documents &amp; correspondence</a></li>
+        <li><a class="onpage-nav__link" href="#implementation">Implementation</a></li>
+        <li><a class="onpage-nav__link" href="#sources">Sources</a></li>
       </ul>
     </nav>
 
-    <div class="rengstorff-shell">
+    <!-- Desktop sticky sidebar + main content, using the shared
+         .page-sidebar-layout/.page-sidebar/.page-sidebar__list
+         component (main.css) -- the same one now powering the Active
+         Transportation Plan page's left-side "On this page" nav,
+         rather than a second implementation of the same pattern.
+         .bufp-shell--wide widens this page's .rengstorff-shell beyond
+         the sitewide 1120px default (a small, page-scoped addition,
+         not a change to the shared .rengstorff-shell rule other pages
+         use) so the Council-comparison table still has comfortable
+         room once the 13rem sidebar and its gap take space from the
+         content column. -->
+    <div class="rengstorff-shell bufp-shell--wide page-sidebar-layout">
+      <aside class="page-sidebar" aria-label="On this page">
+        <p class="page-sidebar__label">On this page</p>
+        <ul class="page-sidebar__list">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#council-direction">Council direction</a></li>
+          <li><a href="#record-comparison">Record comparison</a></li>
+          <li><a href="#community-recommendations">Community recommendations</a></li>
+          <li><a href="#implementation">Implementation</a></li>
+          <li><a href="#sources">Sources</a></li>
+        </ul>
+      </aside>
+
+      <div class="page-sidebar-main">
 
       <!-- ==================================================
-           Council straw poll -- video excerpt -->
-      <section class="section-block">
-        <span class="category-tag category-tag--record">Source recording</span>
+           Overview -- four proof-point cards establishing the
+           documentary sequence immediately: the Plan, Council's
+           direction, the written record, and the community
+           recommendations Council referenced. Reuses .evidence-cards /
+           .evidence-card / .glance-tech / .glance-source exactly as
+           built for the Rengstorff overview page's own "At a glance"
+           section -- no new CSS. -->
+      <section class="section-block" aria-labelledby="overview">
         <div class="section-intro">
-          <h2 id="council-straw-poll">Council straw poll</h2>
-          <p>During the April 28, 2026 Biodiversity &amp; Urban Forest Plan Study Session, Council conducted a straw poll on eight implementation-related items.</p>
+          <h2 id="overview">Overview</h2>
+        </div>
+        <div class="evidence-cards">
+          <article class="evidence-card">
+            <h3>Plan</h3>
+            <span class="card-headline">Biodiversity &amp; Urban Forest Plan</span>
+            <span class="card-body">Guides how the City protects and expands its urban forest, supports biodiversity, and integrates nature into the built environment.</span>
+            <div class="glance-tech">
+              <span class="glance-tech-label">Key facts</span>
+              <span class="glance-tech-line">Adopted June 2026</span>
+              <span class="glance-tech-line">Not regulatory, but a foundational City plan</span>
+            </div>
+            <div class="glance-source">
+              <span class="glance-source-label">Source</span>
+              <a class="glance-provenance" href="../../../../documents/bufp/mountain-view-biodiversity-urban-forest-plan-2026.pdf">Final adopted Plan (PDF)</a>
+            </div>
+          </article>
+          <article class="evidence-card">
+            <h3>Council direction</h3>
+            <span class="card-headline">Eight implementation-related items</span>
+            <span class="card-body">Council conducted a straw poll on eight implementation-related items during the BUFP Study Session.</span>
+            <div class="glance-tech">
+              <span class="glance-tech-label">Key facts</span>
+              <span class="glance-tech-line">April 28, 2026 Study Session</span>
+              <span class="glance-tech-line">Straw poll &middot; 1:42:52&ndash;1:56:53</span>
+            </div>
+            <div class="glance-source">
+              <span class="glance-source-label">Source</span>
+              <a class="glance-provenance" href="https://mountainview.legistar.com/MeetingDetail.aspx?ID=1352179&amp;GUID=4C2BB11E-2E60-4ADE-8DE6-9F5DE1622C6E&amp;Options=info|&amp;Search=#" target="_blank" rel="noopener noreferrer">City meeting recording</a>
+            </div>
+          </article>
+          <article class="evidence-card">
+            <h3>Written record</h3>
+            <span class="card-headline">City Clerk Actions memorandum</span>
+            <span class="card-body">Documents Council&#8217;s consensus and feedback from the April 28 study session.</span>
+            <div class="glance-tech">
+              <span class="glance-tech-label">Key facts</span>
+              <span class="glance-tech-line">May 21, 2026</span>
+              <span class="glance-tech-line">City Clerk memorandum</span>
+            </div>
+            <div class="glance-source">
+              <span class="glance-source-label">Source</span>
+              <a class="glance-provenance" href="https://mountainview.legistar.com/View.ashx?M=M&amp;ID=1352179&amp;GUID=4C2BB11E-2E60-4ADE-8DE6-9F5DE1622C6E" target="_blank" rel="noopener noreferrer">Actions memorandum (PDF)</a>
+            </div>
+          </article>
+          <article class="evidence-card">
+            <h3>Community recommendations</h3>
+            <span class="card-headline">Actions 1, 17 &amp; 26</span>
+            <span class="card-body">Explicitly referenced during Council&#8217;s straw poll, from MVCSP &amp; GreenSpacesMV&#8217;s eight recommended updates.</span>
+            <div class="glance-tech">
+              <span class="glance-tech-label">Key facts</span>
+              <span class="glance-tech-line">April 27, 2026 letter</span>
+              <span class="glance-tech-line">8 recommendations &middot; 3 named by Council</span>
+            </div>
+            <div class="glance-source">
+              <span class="glance-source-label">Source</span>
+              <a class="glance-provenance" href="../../../../documents/bufp/2026-04-28-mv-council-bufp-study-session-comment-letter-mvcsp-greenspacesmv.pdf">MVCSP &amp; GreenSpacesMV letter (PDF)</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           Council direction -- source video (compact, supporting
+           evidence) + the eight straw-poll items as compact expandable
+           rows (see .bufp-council-item in main.css). -->
+      <section class="section-block" aria-labelledby="council-direction">
+        <span class="category-tag category-tag--record">Council direction</span>
+        <div class="section-intro">
+          <h2 id="council-direction">What Council directed</h2>
+          <p class="bufp-meta-line">Apr. 28, 2026 &middot; Council study session</p>
+          <p>During the Biodiversity &amp; Urban Forest Plan Study Session, Council conducted a straw poll on eight implementation-related items.</p>
         </div>
 
-        <!-- Large video card -- the primary visual/source element on
-             this page. Thumbnail is YouTube's own hqdefault image (no
-             invented/custom thumbnail); clicking opens the same
-             evidence-modal lightbox used elsewhere on the site,
-             lazy-loading the iframe only on click rather than
-             embedding a live YouTube player on initial page load. -->
-        <figure class="bufp-video">
+        <!-- Source recording -- kept as supporting evidence for the
+             eight items below, not the section's dominant visual
+             element (see .bufp-video--compact in main.css). -->
+        <figure class="bufp-video bufp-video--compact">
           <a class="bufp-video__thumb" href="https://www.youtube.com/watch?v=MgdmeIk6GE0" data-evidence-id="bufp-strawpoll-video" aria-label="Play video: Council straw poll, Biodiversity and Urban Forest Plan Study Session, April 28, 2026">
             <img src="https://img.youtube.com/vi/MgdmeIk6GE0/hqdefault.jpg" alt="Video thumbnail: Mountain View City Council study session on the Biodiversity and Urban Forest Plan." />
             <span class="bufp-video__play fas fa-play" aria-hidden="true"></span>
@@ -97,136 +203,109 @@
           <p>The corresponding portion of the City of Mountain View&#8217;s original meeting recording runs from <span class="bufp-source-note__timestamp">1:42:52&ndash;1:56:53</span>.</p>
           <a class="bufp-source-link" href="https://mountainview.legistar.com/MeetingDetail.aspx?ID=1352179&amp;GUID=4C2BB11E-2E60-4ADE-8DE6-9F5DE1622C6E&amp;Options=info|&amp;Search=#" target="_blank" rel="noopener noreferrer">View the original City meeting recording <span aria-hidden="true">&#8599;</span></a>
         </div>
-      </section>
 
-      <!-- ==================================================
-           Eight elements of Council direction -- full verbatim
-           straw-poll transcript per item, as a modern 8-card layout.
-           Short titles are navigation aids only; the card body is the
-           verbatim transcript, reproduced exactly as recorded -- not
-           proofread, rewritten, shortened, or normalized. No
-           individual Council-member response boxes ("Mayor X gave...",
-           "I agree", etc.) -- this section presents only the
-           straw-poll record itself. -->
-      <section class="section-block">
-        <span class="category-tag category-tag--record">Council direction</span>
-        <div class="section-intro">
-          <h2 id="council-direction">Eight elements of Council direction</h2>
-          <p>During the April 28, 2026 BUFP Study Session, Council considered eight implementation-related items in a straw poll.</p>
-        </div>
-
-        <a class="bufp-elements-watch" href="https://www.youtube.com/watch?v=MgdmeIk6GE0" data-evidence-id="bufp-strawpoll-video">
-          <span class="bufp-elements-watch__icon fas fa-play" aria-hidden="true"></span>
-          <span>Watch the straw-poll excerpt <span aria-hidden="true">&middot;</span> 1:42:52&ndash;1:56:53</span>
-        </a>
-
-        <ol class="bufp-elements-grid">
-          <li class="bufp-element-card">
-            <div class="bufp-element-card__head">
-              <span class="bufp-element-card__num" aria-hidden="true">1</span>
-              <div>
-                <p class="bufp-element-card__title">Foundational City plan</p>
-                <p class="bufp-element-card__label">Council straw poll</p>
+        <!-- Eight elements of Council direction -- compact expandable
+             rows. Short titles communicate the eight-part structure at
+             a glance; expanding a row reveals the full verbatim
+             straw-poll transcript, reproduced exactly as recorded --
+             not proofread, rewritten, shortened, or normalized. -->
+        <h3 class="bufp-detail-section__heading" style="margin-top:2rem;">Eight elements of Council direction</h3>
+        <ol class="bufp-council-list">
+          <li>
+            <details class="bufp-council-item">
+              <summary><span class="bufp-council-item__num" aria-hidden="true">01</span><span class="bufp-council-item__title">Foundational City plan</span></summary>
+              <div class="bufp-council-item__body">
+                <span class="bufp-council-item__label">Council straw poll</span>
+                <p class="bufp-element-card__text">Although this Plan isn&#8217;t regulatory, Council supports the implementation of the Plan. This Plan should be considered as one of the <mark>foundational plans of the City</mark> like the General Plans or Precise Plans. Concepts and criteria in the Plan should be considered in <mark>City projects</mark> going forward and in <mark>budget development</mark>.</p>
               </div>
-            </div>
-            <p class="bufp-element-card__text">Although this Plan isn&#8217;t regulatory, Council supports the implementation of the Plan. This Plan should be considered as one of the <mark>foundational plans of the City</mark> like the General Plans or Precise Plans. Concepts and criteria in the Plan should be considered in <mark>City projects</mark> going forward and in <mark>budget development</mark>.</p>
+            </details>
           </li>
-
-          <li class="bufp-element-card">
-            <div class="bufp-element-card__head">
-              <span class="bufp-element-card__num" aria-hidden="true">2</span>
-              <div>
-                <p class="bufp-element-card__title">Dedicated staff oversight</p>
-                <p class="bufp-element-card__label">Council straw poll</p>
+          <li>
+            <details class="bufp-council-item">
+              <summary><span class="bufp-council-item__num" aria-hidden="true">02</span><span class="bufp-council-item__title">Dedicated staff oversight</span></summary>
+              <div class="bufp-council-item__body">
+                <span class="bufp-council-item__label">Council straw poll</span>
+                <p class="bufp-element-card__text">A <mark>specific staff member</mark> should be assigned to oversee the Plan&#8217;s <mark>monitoring program</mark> so it doesn&#8217;t get lost in the laundry list of responsibilities most staff have. This will also be crucial for making sure that <mark>collaborations across departments</mark> happen. Of course there will need to be staff from many departments involved. (AH)</p>
               </div>
-            </div>
-            <p class="bufp-element-card__text">A <mark>specific staff member</mark> should be assigned to oversee the Plan&#8217;s <mark>monitoring program</mark> so it doesn&#8217;t get lost in the laundry list of responsibilities most staff have. This will also be crucial for making sure that <mark>collaborations across departments</mark> happen. Of course there will need to be staff from many departments involved. (AH)</p>
+            </details>
           </li>
-
-          <li class="bufp-element-card">
-            <div class="bufp-element-card__head">
-              <span class="bufp-element-card__num" aria-hidden="true">3</span>
-              <div>
-                <p class="bufp-element-card__title">Objective standards</p>
-                <p class="bufp-element-card__label">Council straw poll</p>
+          <li>
+            <details class="bufp-council-item">
+              <summary><span class="bufp-council-item__num" aria-hidden="true">03</span><span class="bufp-council-item__title">Objective standards</span></summary>
+              <div class="bufp-council-item__body">
+                <span class="bufp-council-item__label">Council straw poll</span>
+                <p class="bufp-element-card__text">The Plan concepts will be used to develop <mark>objective standards</mark> as appropriate but especially with respect to <mark>roadways and development</mark>. (AH)</p>
               </div>
-            </div>
-            <p class="bufp-element-card__text">The Plan concepts will be used to develop <mark>objective standards</mark> as appropriate but especially with respect to <mark>roadways and development</mark>. (AH)</p>
+            </details>
           </li>
-
-          <li class="bufp-element-card">
-            <div class="bufp-element-card__head">
-              <span class="bufp-element-card__num" aria-hidden="true">4</span>
-              <div>
-                <p class="bufp-element-card__title">Adaptive management</p>
-                <p class="bufp-element-card__label">Council straw poll</p>
+          <li>
+            <details class="bufp-council-item">
+              <summary><span class="bufp-council-item__num" aria-hidden="true">04</span><span class="bufp-council-item__title">Adaptive management</span></summary>
+              <div class="bufp-council-item__body">
+                <span class="bufp-council-item__label">Council straw poll</span>
+                <p class="bufp-element-card__text">An adaptive management plan is needed to make sure that we learn as we go. It should include a <mark>community meeting in about one year</mark>. After that evaluations should be done <mark>every 3&ndash;5 years</mark>. (AH)</p>
               </div>
-            </div>
-            <p class="bufp-element-card__text">An adaptive management plan is needed to make sure that we learn as we go. It should include a <mark>community meeting in about one year</mark>. After that evaluations should be done <mark>every 3&ndash;5 years</mark>. (AH)</p>
+            </details>
           </li>
-
-          <li class="bufp-element-card">
-            <div class="bufp-element-card__head">
-              <span class="bufp-element-card__num" aria-hidden="true">5</span>
-              <div>
-                <p class="bufp-element-card__title">Native trees and understory</p>
-                <p class="bufp-element-card__label">Council straw poll</p>
+          <li>
+            <details class="bufp-council-item">
+              <summary><span class="bufp-council-item__num" aria-hidden="true">05</span><span class="bufp-council-item__title">Native trees and understory</span></summary>
+              <div class="bufp-council-item__body">
+                <span class="bufp-council-item__label">Council straw poll</span>
+                <p class="bufp-element-card__text">Emphasize planting <mark>native trees and understory</mark>, <mark>locally sourced</mark> where possible. This is <mark>particularly important with oaks</mark>. That was also <mark>increase the percentage of native</mark>.</p>
               </div>
-            </div>
-            <p class="bufp-element-card__text">Emphasize planting <mark>native trees and understory</mark>, <mark>locally sourced</mark> where possible. This is <mark>particularly important with oaks</mark>. That was also <mark>increase the percentage of native</mark>.</p>
+            </details>
           </li>
-
-          <li class="bufp-element-card">
-            <div class="bufp-element-card__head">
-              <span class="bufp-element-card__num" aria-hidden="true">6</span>
-              <div>
-                <p class="bufp-element-card__title">Community recommendations</p>
-                <p class="bufp-element-card__label">Council straw poll</p>
+          <li>
+            <details class="bufp-council-item">
+              <summary><span class="bufp-council-item__num" aria-hidden="true">06</span><span class="bufp-council-item__title">Community recommendations</span></summary>
+              <div class="bufp-council-item__body">
+                <span class="bufp-council-item__label">Council straw poll</span>
+                <p class="bufp-element-card__text">Staff should carefully consider comments from <mark>GreenSpacesMV</mark>, <mark>MVCSP</mark>, Daniel Shane, incorporating suggestions as reasonable. Also add the <mark>Bird Alliance</mark>. Emphasize on the <mark><a href="#community-recommendations">Actions 1, 17, and 26</a></mark> that was mentioned in GreenSpaces and MVCSP&#8217;s list. (AH)</p>
               </div>
-            </div>
-            <p class="bufp-element-card__text">Staff should carefully consider comments from <mark>GreenSpacesMV</mark>, <mark>MVCSP</mark>, Daniel Shane, incorporating suggestions as reasonable. Also add the <mark>Bird Alliance</mark>. Emphasize on the <mark><a href="#community-recommendations">Actions 1, 17, and 26</a></mark> that was mentioned in GreenSpaces and MVCSP&#8217;s list. (AH)</p>
+            </details>
           </li>
-
-          <li class="bufp-element-card">
-            <div class="bufp-element-card__head">
-              <span class="bufp-element-card__num" aria-hidden="true">7</span>
-              <div>
-                <p class="bufp-element-card__title">Volunteers and partners</p>
-                <p class="bufp-element-card__label">Council straw poll</p>
+          <li>
+            <details class="bufp-council-item">
+              <summary><span class="bufp-council-item__num" aria-hidden="true">07</span><span class="bufp-council-item__title">Volunteers and partners</span></summary>
+              <div class="bufp-council-item__body">
+                <span class="bufp-council-item__label">Council straw poll</span>
+                <p class="bufp-element-card__text">Use <mark>volunteers and partners</mark> in implementation, essentially <mark>funding for beautification</mark>. (PS)</p>
               </div>
-            </div>
-            <p class="bufp-element-card__text">Use <mark>volunteers and partners</mark> in implementation, essentially <mark>funding for beautification</mark>. (PS)</p>
+            </details>
           </li>
-
-          <li class="bufp-element-card">
-            <div class="bufp-element-card__head">
-              <span class="bufp-element-card__num" aria-hidden="true">8</span>
-              <div>
-                <p class="bufp-element-card__title">Greening in CIP funding</p>
-                <p class="bufp-element-card__label">Council straw poll</p>
+          <li>
+            <details class="bufp-council-item">
+              <summary><span class="bufp-council-item__num" aria-hidden="true">08</span><span class="bufp-council-item__title">Greening in CIP funding</span></summary>
+              <div class="bufp-council-item__body">
+                <span class="bufp-council-item__label">Council straw poll</span>
+                <p class="bufp-element-card__text">Include <mark>greening</mark> in <mark>CIP funding</mark>. (AH)</p>
               </div>
-            </div>
-            <p class="bufp-element-card__text">Include <mark>greening</mark> in <mark>CIP funding</mark>. (AH)</p>
+            </details>
           </li>
         </ol>
       </section>
 
       <!-- ==================================================
-           What Council said vs. what was recorded -->
-      <section class="section-block">
-        <span class="category-tag category-tag--record">Comparison</span>
+           Record comparison -- the analytical centerpiece of the page.
+           Left: Council straw-poll language transcribed from the
+           meeting recording. Right: the corresponding language in the
+           City Clerk's May 21 Actions memorandum. Both columns are
+           source material, reproduced exactly as supplied -- not
+           proofread, rewritten, or harmonized. -->
+      <section class="section-block" aria-labelledby="record-comparison">
+        <span class="category-tag category-tag--record">Record comparison</span>
         <div class="section-intro">
-          <h2 id="council-vs-actions">What Council said vs. what was recorded</h2>
+          <h2 id="record-comparison">What Council said vs. what was recorded</h2>
           <p>The City Clerk&#8217;s May 21, 2026 Actions memorandum documents Council&#8217;s consensus and feedback from the April 28 study session. The table below compares the language from the Council straw poll with the corresponding language in the Actions memorandum.</p>
-          <p class="bufp-transcription-note">The City Clerk&#8217;s May 21, 2026 Actions memorandum condensed and reframed portions of this straw-poll direction. The comparison below shows the source language side by side.</p>
         </div>
 
-        <p class="bufp-transcription-note">The Council straw-poll column is a transcription from the meeting video excerpt above. The Actions memorandum column reproduces the corresponding language in the City Clerk&#8217;s May 21, 2026 memorandum.</p>
+        <p class="bufp-transcription-note">Left: Council straw-poll language transcribed from the April 28 meeting recording, above. Right: the corresponding language in the City Clerk&#8217;s May 21, 2026 Actions memorandum.</p>
 
-        <!-- Real <table> on desktop; converted to stacked comparison
-             cards on mobile via CSS (thead hidden, td turned to
-             blocks with a data-label pseudo-heading) rather than
-             letting a 3-column table force horizontal scrolling.
+        <!-- Real <table> on desktop; converted to stacked, paired
+             comparison cards on mobile via CSS (thead hidden, td
+             turned to blocks with a data-label pseudo-heading) rather
+             than letting a 3-column table force horizontal scrolling.
              Both columns are source material, reproduced exactly as
              supplied -- not proofread, rewritten, or harmonized. -->
         <div class="bufp-compare-wrap">
@@ -295,13 +374,18 @@
           <blockquote class="bufp-quote-block__quote">&#8220;By consensus, the Council generally agreed that the draft Biodiversity and Urban Forest Plan is generally consistent with community priorities and City policies and plans, and that it provides an appropriate long-term policy framework that balances ambition with flexibility to support phased implementation, with the following feedback:&#8221;</blockquote>
         </div>
 
-        <!-- Details that matter for implementation -- a restrained
-             observation list, not its own top-level nav section. -->
+        <!-- Differences that matter for implementation -- this site's
+             own analysis of the comparison above, visually
+             distinguished from the primary-source material with the
+             ANALYSIS label. Describes the documentary difference and
+             its implementation relevance only -- no claim about intent
+             or why the Clerk's memorandum differs. -->
         <div class="bufp-detail-section">
-          <h3 class="bufp-detail-section__heading">Details that matter for implementation</h3>
+          <span class="category-tag category-tag--analysis">Analysis</span>
+          <h3 class="bufp-detail-section__heading">Differences that matter for implementation</h3>
           <p class="bufp-detail-section__intro">Several details stated during the straw poll do not appear in the same form in the Actions memorandum.</p>
 
-          <ol class="bufp-detail-list">
+          <ol class="bufp-detail-list bufp-detail-list--grid">
             <li class="bufp-detail-item">
               <span class="bufp-detail-item__num">Item 1</span>
               <p class="bufp-detail-item__text">The straw poll included treating the BUFP as a foundational City plan and considering its concepts and criteria in City projects and budget development. This does not appear as a separate feedback item in the Actions memorandum.</p>
@@ -324,8 +408,8 @@
 
       <!-- ==================================================
            Community recommendations -->
-      <section class="section-block">
-        <span class="category-tag category-tag--record">Community recommendations</span>
+      <section class="section-block" aria-labelledby="community-recommendations">
+        <span class="category-tag category-tag--community">Community recommendations</span>
         <div class="section-intro">
           <h2 id="community-recommendations">Community recommendations</h2>
           <p>Before the April 28 study session, Mountain View Coalition for Sustainable Planning (MVCSP) and GreenSpacesMV submitted detailed recommendations focused on implementation, accountability, transportation integration, shade and thermal comfort, standards, and coordination.</p>
@@ -348,133 +432,11 @@
         </div>
         <p class="bufp-action-grid__note">These are the Actions referenced during the Council straw poll.</p>
 
-        <!-- Expanded per-Action detail: what the community proposed,
-             and what appears in the final adopted Plan. Four distinct
-             voices stay visually distinct throughout: the community
-             recommendation (labeled paragraph), the final Plan's own
-             Action heading and added language (verbatim quotes, in
-             .bufp-callout), and restrained notes on what doesn't
-             appear in the same form (reusing the existing
-             .bufp-detail-item "Details that matter" treatment). -->
-        <div class="bufp-action-detail" id="action-1">
-          <p class="bufp-action-detail__eyebrow">Action 1</p>
-          <h3 class="bufp-action-detail__title">Green Infrastructure Integration in Transportation Projects</h3>
-          <p class="bufp-action-detail__recommendation"><strong>Community recommendation:</strong> Require transportation and public-realm projects to evaluate opportunities for trees and GSI, with documented exceptions and tradeoffs.</p>
-
-          <h4 class="bufp-action-detail__heading">What made it into the final Plan?</h4>
-          <p class="bufp-action-detail__text">The final Plan retains Action 1, but expands the supporting implementation language beyond the short Action heading.</p>
-
-          <blockquote class="bufp-quote-block__quote">&#8220;Action 1. Strategically integrate green features in active transportation improvement project design to both increase ecological value and achieve other City priorities.&#8221;</blockquote>
-
-          <p class="bufp-action-detail__text">The final Plan directs transportation projects to align with BUFP goals, and identifies streetscapes, bikeways, and walking paths as high-priority active-transportation corridors where habitat elements can be incorporated.</p>
-
-          <div class="bufp-callout">
-            <p class="bufp-callout__label">Added implementation direction in the final Plan</p>
-            <blockquote class="bufp-callout__quote">&#8220;Undertake feasibility studies and integrate biodiversity and urban forest elements as standard components of capital improvement projects to reduce dependence on additional funding where possible.&#8221;</blockquote>
-            <p class="bufp-callout__text">This does not adopt the community proposal&#8217;s project-by-project evaluation requirement, exception documentation, Chief Transportation Officer approval, or Council tradeoff-disclosure provisions. However, it does add explicit direction to integrate biodiversity and urban-forest elements as standard components of capital improvement projects.</p>
-          </div>
-
-          <p class="bufp-action-detail__meta">Priority: Medium-term &middot; Lead: Public Works Department &middot; Support: Community Services Department</p>
-        </div>
-
-        <div class="bufp-action-detail" id="action-17">
-          <p class="bufp-action-detail__eyebrow">Action 17</p>
-          <h3 class="bufp-action-detail__title">Shade Integration and Thermal Comfort</h3>
-          <p class="bufp-action-detail__recommendation"><strong>Community recommendation:</strong> Address shade gaps along active-transportation corridors and establish annual corridor shade monitoring/reporting.</p>
-
-          <h4 class="bufp-action-detail__heading">What made it into the final Plan?</h4>
-
-          <blockquote class="bufp-quote-block__quote">&#8220;Action 17. Prioritize shade tree planting in the Cooling Zone, mapped in Guide A: Urban Landscaping, to protect against heat and improve walkability.&#8221;</blockquote>
-
-          <p class="bufp-action-detail__text">The Action heading itself remains similar to the earlier draft language, but the final Plan adds substantial supporting implementation detail.</p>
-
-          <p class="bufp-subheading">Active transportation</p>
-          <p class="bufp-action-detail__text">The final Plan specifically identifies active transportation infrastructure among the locations where shade trees should be planted.</p>
-          <div class="bufp-callout">
-            <blockquote class="bufp-callout__quote">&#8220;Establish a shade goal for active transportation corridors.&#8221;</blockquote>
-            <p class="bufp-callout__text">This directly addresses part of the concern raised in the April 27 community letter.</p>
-          </div>
-
-          <p class="bufp-subheading">Equity / heat prioritization</p>
-          <p class="bufp-action-detail__text">The final Plan connects Action 17 to the Parks and Recreation Strategic Plan equity framework, saying that framework will help prioritize urban cooling, shade, and green-infrastructure investments in areas with higher heat exposure and lower access to parks, canopy, and other green amenities.</p>
-
-          <p class="bufp-subheading">Multiple benefits</p>
-          <p class="bufp-action-detail__text">The final Plan calls for aligning cooling-related tree planting with:</p>
-          <ul class="bufp-inline-list">
-            <li>Biodiversity support</li>
-            <li>Landscape connectivity</li>
-            <li>Walkability</li>
-            <li>Traffic calming</li>
-            <li>Public safety</li>
-          </ul>
-
-          <p class="bufp-subheading">Planting conditions</p>
-          <blockquote class="bufp-quote-block__quote">&#8220;Plant trees with larger canopies at maturity, and provide adequate planting conditions (e.g., soil volume, structure, and suspended pavement) to promote tree longevity and growth to their full size potential.&#8221;</blockquote>
-          <p class="bufp-action-detail__text">The final Plan also calls for appropriate spacing between shade trees so they can achieve adequate canopy at maturity.</p>
-
-          <div class="bufp-detail-item">
-            <span class="bufp-detail-item__num">What was not included</span>
-            <p class="bufp-detail-item__text">The final Plan does not appear to include the community proposal&#8217;s specific annual active-transportation shade-coverage reporting framework, including corridor shade coverage, net change over time, and annual reporting to Council.</p>
-          </div>
-        </div>
-
-        <div class="bufp-action-detail" id="action-26">
-          <p class="bufp-action-detail__eyebrow">Action 26</p>
-          <h3 class="bufp-action-detail__title">Standard Details and Specifications Update</h3>
-          <p class="bufp-action-detail__recommendation"><strong>Community recommendation:</strong> Create a new Action updating Standard Construction Details, including A-22, tree-planting details, and Green Streets specifications.</p>
-
-          <h4 class="bufp-action-detail__heading">What made it into the final Plan?</h4>
-          <p class="bufp-action-detail__text">The proposed Action 26 was not incorporated into the final BUFP as a standalone Action titled &#8220;Standard Details and Specifications Update.&#8221; Several of its underlying implementation concepts, however, appear elsewhere in the final Plan.</p>
-
-          <h5 class="bufp-action-detail__subheading">Objective standards and roadway design</h5>
-          <p class="bufp-action-detail__text">Section 5.4, Implementation Framework, establishes a cross-departmental City Implementation Team and includes responsibility for translating the Plan into operational City tools.</p>
-
-          <div class="bufp-callout">
-            <blockquote class="bufp-callout__quote">&#8220;Support the updates and/or development of ordinances, policies, objective standards, roadway design approaches, green infrastructure strategies, and technical resources that implement the Plan&#8217;s direction&#8221;</blockquote>
-            <p class="bufp-callout__text">This directly incorporates much of the broader Council direction that Plan concepts should be used to develop objective standards, particularly with respect to roadways and development. The final Plan does not, however, name Standard Detail A-22 in this implementation responsibility.</p>
-          </div>
-
-          <p class="bufp-action-detail__text">The Plan also states that although it is not regulatory itself, implementation will occur through binding mechanisms including City ordinances, standards, permitting, and capital project review and requirements &mdash; which is part of why these standards/implementation provisions matter even though the BUFP itself is not regulatory.</p>
-
-          <p class="bufp-subheading">Soil volume and tree design</p>
-          <p class="bufp-action-detail__text">Other portions of the final Plan also address several technical issues raised by the proposed Action 26. The Urban Forest Assessment says development standards such as minimum tree cover requirements, minimum soil volumes, and structural soil provisions can help the City support development while advancing urban-forest health and growth.</p>
-          <p class="bufp-action-detail__text">Guide A also contains technical guidance for soil systems in paved environments, including continuous planting strips, interconnected soil volumes, soil cells, and structural soil to support root expansion, infiltration, oxygen exchange, tree health, and longevity. Action 17 separately calls for adequate soil volume, soil structure, suspended pavement, and tree spacing to promote mature canopy and long-term tree growth.</p>
-          <p class="bufp-action-detail__text">These are related final-Plan provisions, not an adopted version of Action 26.</p>
-
-          <p class="bufp-subheading">Green stormwater infrastructure</p>
-          <p class="bufp-action-detail__text">Guide A contains a specific guideline for vegetated green stormwater infrastructure, discussing bioswales, rain gardens, bioretention areas, green roofs, infiltration, evapotranspiration, pollutant reduction, multi-layered wildlife-supporting planting, biodiversity, and urban cooling. This is additional evidence that the final Plan contains technical Green Infrastructure guidance, distinct from the proposed request to revise City Standard Construction Details.</p>
-
-          <h5 class="bufp-action-detail__subheading">What remains more general</h5>
-          <p class="bufp-action-detail__text">The final Plan incorporates a framework for objective standards, roadway design approaches, green infrastructure strategies, technical resources, soil-volume/tree-design guidance, and implementation through City standards and capital-project processes. However, the final Plan does not appear to include the specific proposed direction to:</p>
-          <ol class="bufp-detail-list">
-            <li class="bufp-detail-item">
-              <p class="bufp-detail-item__text">Revise Standard Detail A-22</p>
-            </li>
-            <li class="bufp-detail-item">
-              <p class="bufp-detail-item__text">Explicitly incorporate the ATP Existing Conditions sight-triangle analysis into A-22</p>
-            </li>
-            <li class="bufp-detail-item">
-              <p class="bufp-detail-item__text">Undertake a named comprehensive Standard Construction Details update for BUFP implementation</p>
-            </li>
-            <li class="bufp-detail-item">
-              <p class="bufp-detail-item__text">Explicitly review Emeryville&#8217;s integrated Green Streets Standard Details as part of a formal Action</p>
-            </li>
-          </ol>
-
-          <div class="bufp-detail-item">
-            <span class="bufp-detail-item__num">Community / stakeholder input preserved in the final Plan appendix</span>
-            <p class="bufp-detail-item__text">The final Plan&#8217;s Community Engagement Summary preserves related stakeholder input calling for road-design standards to incorporate natural elements &mdash; update road design standards to require natural elements, including issues such as street width, corner radii, driveway/sight triangles, dark skies, and plant palettes. This is community/stakeholder input preserved in the appendix, not adopted Action language.</p>
-          </div>
-        </div>
-
-        <!-- Compact summary of the three Action comparisons above.
-             Explanatory website copy, not verbatim source language --
-             no quotation marks, since this is our own summary, not a
-             quotation from any of the underlying documents. Reuses the
-             same .bufp-compare table component as the straw-poll/
-             Actions-memo comparison above (already responsive). -->
+        <!-- Executive summary first: the result before the supporting
+             analysis. Reuses the .bufp-compare component (already
+             responsive: real table desktop, stacked cards mobile). -->
         <div class="bufp-action-summary">
-          <h3 class="bufp-action-summary__heading">From recommendation to final Plan</h3>
+          <h3 class="bufp-action-summary__heading">From recommendation to Final Plan</h3>
           <div class="bufp-compare-wrap">
             <table class="bufp-compare">
               <thead>
@@ -505,6 +467,133 @@
           </div>
         </div>
 
+        <!-- Detailed per-Action analysis, below the summary. Each Action
+             shows the recommendation and final-Plan finding by default;
+             secondary supporting material is behind "Show detailed
+             analysis +" (.bufp-action-detail__more, new -- see
+             main.css) so the page stays scannable without deleting any
+             substantive content. -->
+        <div class="bufp-action-detail" id="action-1">
+          <p class="bufp-action-detail__eyebrow">Action 1</p>
+          <h3 class="bufp-action-detail__title">Green Infrastructure Integration in Transportation Projects</h3>
+          <p class="bufp-action-detail__recommendation"><strong>Community recommendation:</strong> Require transportation and public-realm projects to evaluate opportunities for trees and GSI, with documented exceptions and tradeoffs.</p>
+
+          <h4 class="bufp-action-detail__heading">What made it into the final Plan?</h4>
+          <p class="bufp-action-detail__text">The final Plan retains Action 1, but expands the supporting implementation language beyond the short Action heading.</p>
+
+          <blockquote class="bufp-quote-block__quote">&#8220;Action 1. Strategically integrate green features in active transportation improvement project design to both increase ecological value and achieve other City priorities.&#8221;</blockquote>
+
+          <details class="bufp-action-detail__more">
+            <summary>Show detailed analysis</summary>
+            <div class="bufp-action-detail__more-body">
+              <p class="bufp-action-detail__text">The final Plan directs transportation projects to align with BUFP goals, and identifies streetscapes, bikeways, and walking paths as high-priority active-transportation corridors where habitat elements can be incorporated.</p>
+
+              <div class="bufp-callout">
+                <p class="bufp-callout__label">Added implementation direction in the final Plan</p>
+                <blockquote class="bufp-callout__quote">&#8220;Undertake feasibility studies and integrate biodiversity and urban forest elements as standard components of capital improvement projects to reduce dependence on additional funding where possible.&#8221;</blockquote>
+                <p class="bufp-callout__text">This does not adopt the community proposal&#8217;s project-by-project evaluation requirement, exception documentation, Chief Transportation Officer approval, or Council tradeoff-disclosure provisions. However, it does add explicit direction to integrate biodiversity and urban-forest elements as standard components of capital improvement projects.</p>
+              </div>
+
+              <p class="bufp-action-detail__meta">Priority: Medium-term &middot; Lead: Public Works Department &middot; Support: Community Services Department</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="bufp-action-detail" id="action-17">
+          <p class="bufp-action-detail__eyebrow">Action 17</p>
+          <h3 class="bufp-action-detail__title">Shade Integration and Thermal Comfort</h3>
+          <p class="bufp-action-detail__recommendation"><strong>Community recommendation:</strong> Address shade gaps along active-transportation corridors and establish annual corridor shade monitoring/reporting.</p>
+
+          <h4 class="bufp-action-detail__heading">What made it into the final Plan?</h4>
+          <blockquote class="bufp-quote-block__quote">&#8220;Action 17. Prioritize shade tree planting in the Cooling Zone, mapped in Guide A: Urban Landscaping, to protect against heat and improve walkability.&#8221;</blockquote>
+          <p class="bufp-action-detail__text">The Action heading itself remains similar to the earlier draft language, but the final Plan adds substantial supporting implementation detail, including a shade goal specific to active transportation corridors.</p>
+
+          <div class="bufp-callout">
+            <blockquote class="bufp-callout__quote">&#8220;Establish a shade goal for active transportation corridors.&#8221;</blockquote>
+            <p class="bufp-callout__text">This directly addresses part of the concern raised in the April 27 community letter.</p>
+          </div>
+
+          <details class="bufp-action-detail__more">
+            <summary>Show detailed analysis</summary>
+            <div class="bufp-action-detail__more-body">
+              <p class="bufp-subheading">Equity / heat prioritization</p>
+              <p class="bufp-action-detail__text">The final Plan connects Action 17 to the Parks and Recreation Strategic Plan equity framework, saying that framework will help prioritize urban cooling, shade, and green-infrastructure investments in areas with higher heat exposure and lower access to parks, canopy, and other green amenities.</p>
+
+              <p class="bufp-subheading">Multiple benefits</p>
+              <p class="bufp-action-detail__text">The final Plan calls for aligning cooling-related tree planting with:</p>
+              <ul class="bufp-inline-list">
+                <li>Biodiversity support</li>
+                <li>Landscape connectivity</li>
+                <li>Walkability</li>
+                <li>Traffic calming</li>
+                <li>Public safety</li>
+              </ul>
+
+              <p class="bufp-subheading">Planting conditions</p>
+              <blockquote class="bufp-quote-block__quote">&#8220;Plant trees with larger canopies at maturity, and provide adequate planting conditions (e.g., soil volume, structure, and suspended pavement) to promote tree longevity and growth to their full size potential.&#8221;</blockquote>
+              <p class="bufp-action-detail__text">The final Plan also calls for appropriate spacing between shade trees so they can achieve adequate canopy at maturity.</p>
+
+              <div class="bufp-detail-item">
+                <span class="bufp-detail-item__num">What was not included</span>
+                <p class="bufp-detail-item__text">The final Plan does not appear to include the community proposal&#8217;s specific annual active-transportation shade-coverage reporting framework, including corridor shade coverage, net change over time, and annual reporting to Council.</p>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="bufp-action-detail" id="action-26">
+          <p class="bufp-action-detail__eyebrow">Action 26</p>
+          <h3 class="bufp-action-detail__title">Standard Details and Specifications Update</h3>
+          <p class="bufp-action-detail__recommendation"><strong>Community recommendation:</strong> Create a new Action updating Standard Construction Details, including A-22, tree-planting details, and Green Streets specifications.</p>
+
+          <h4 class="bufp-action-detail__heading">What made it into the final Plan?</h4>
+          <p class="bufp-action-detail__text">The proposed Action 26 was not incorporated into the final BUFP as a standalone Action titled &#8220;Standard Details and Specifications Update.&#8221; Several of its underlying implementation concepts, however, appear elsewhere in the final Plan.</p>
+
+          <div class="bufp-callout">
+            <blockquote class="bufp-callout__quote">&#8220;Support the updates and/or development of ordinances, policies, objective standards, roadway design approaches, green infrastructure strategies, and technical resources that implement the Plan&#8217;s direction&#8221;</blockquote>
+            <p class="bufp-callout__text">This directly incorporates much of the broader Council direction that Plan concepts should be used to develop objective standards, particularly with respect to roadways and development. The final Plan does not, however, name Standard Detail A-22 in this implementation responsibility.</p>
+          </div>
+
+          <details class="bufp-action-detail__more">
+            <summary>Show detailed analysis</summary>
+            <div class="bufp-action-detail__more-body">
+              <h5 class="bufp-action-detail__subheading">Objective standards and roadway design</h5>
+              <p class="bufp-action-detail__text">Section 5.4, Implementation Framework, establishes a cross-departmental City Implementation Team and includes responsibility for translating the Plan into operational City tools.</p>
+              <p class="bufp-action-detail__text">The Plan also states that although it is not regulatory itself, implementation will occur through binding mechanisms including City ordinances, standards, permitting, and capital project review and requirements &mdash; which is part of why these standards/implementation provisions matter even though the BUFP itself is not regulatory.</p>
+
+              <p class="bufp-subheading">Soil volume and tree design</p>
+              <p class="bufp-action-detail__text">Other portions of the final Plan also address several technical issues raised by the proposed Action 26. The Urban Forest Assessment says development standards such as minimum tree cover requirements, minimum soil volumes, and structural soil provisions can help the City support development while advancing urban-forest health and growth.</p>
+              <p class="bufp-action-detail__text">Guide A also contains technical guidance for soil systems in paved environments, including continuous planting strips, interconnected soil volumes, soil cells, and structural soil to support root expansion, infiltration, oxygen exchange, tree health, and longevity. Action 17 separately calls for adequate soil volume, soil structure, suspended pavement, and tree spacing to promote mature canopy and long-term tree growth.</p>
+              <p class="bufp-action-detail__text">These are related final-Plan provisions, not an adopted version of Action 26.</p>
+
+              <p class="bufp-subheading">Green stormwater infrastructure</p>
+              <p class="bufp-action-detail__text">Guide A contains a specific guideline for vegetated green stormwater infrastructure, discussing bioswales, rain gardens, bioretention areas, green roofs, infiltration, evapotranspiration, pollutant reduction, multi-layered wildlife-supporting planting, biodiversity, and urban cooling. This is additional evidence that the final Plan contains technical Green Infrastructure guidance, distinct from the proposed request to revise City Standard Construction Details.</p>
+
+              <h5 class="bufp-action-detail__subheading">What remains more general</h5>
+              <p class="bufp-action-detail__text">The final Plan incorporates a framework for objective standards, roadway design approaches, green infrastructure strategies, technical resources, soil-volume/tree-design guidance, and implementation through City standards and capital-project processes. However, the final Plan does not appear to include the specific proposed direction to:</p>
+              <ol class="bufp-detail-list">
+                <li class="bufp-detail-item">
+                  <p class="bufp-detail-item__text">Revise Standard Detail A-22</p>
+                </li>
+                <li class="bufp-detail-item">
+                  <p class="bufp-detail-item__text">Explicitly incorporate the ATP Existing Conditions sight-triangle analysis into A-22</p>
+                </li>
+                <li class="bufp-detail-item">
+                  <p class="bufp-detail-item__text">Undertake a named comprehensive Standard Construction Details update for BUFP implementation</p>
+                </li>
+                <li class="bufp-detail-item">
+                  <p class="bufp-detail-item__text">Explicitly review Emeryville&#8217;s integrated Green Streets Standard Details as part of a formal Action</p>
+                </li>
+              </ol>
+
+              <div class="bufp-detail-item">
+                <span class="bufp-detail-item__num">Community / stakeholder input preserved in the final Plan appendix</span>
+                <p class="bufp-detail-item__text">The final Plan&#8217;s Community Engagement Summary preserves related stakeholder input calling for road-design standards to incorporate natural elements &mdash; update road design standards to require natural elements, including issues such as street width, corner radii, driveway/sight triangles, dark skies, and plant palettes. This is community/stakeholder input preserved in the appendix, not adopted Action language.</p>
+              </div>
+            </div>
+          </details>
+        </div>
+
         <!-- Community letter document card. Path is the recommended
              local location for the PDF (not yet present in the repo
              as of this page's creation) -- see the delivery note for
@@ -520,38 +609,89 @@
       </section>
 
       <!-- ==================================================
-           Implementation to watch -->
-      <section class="section-block">
+           Implementation -- a monitoring framework (signals to watch),
+           not a completed-task checklist, so the seven items below are
+           deliberately not checkmarks. Compact numbered rows + thin
+           rules (.bufp-watch-grid/.bufp-watch-item), matching the
+           Rengstorff page's restrained information density -- no card
+           boxes. -->
+      <section class="section-block" aria-labelledby="implementation">
         <span class="category-tag category-tag--record">Looking ahead</span>
         <div class="section-intro">
-          <h2 id="implementation-watch">From plan to implementation</h2>
-          <p>Adopting the BUFP is only the beginning. GreenSpacesMV will continue tracking how the Plan&#8217;s recommendations and Council&#8217;s implementation direction are reflected in City projects, budgets, standards, and future updates.</p>
+          <h2 id="implementation">From plan to implementation</h2>
+          <p>The next question is implementation. This page will track how the Plan&#8217;s recommendations and Council&#8217;s direction appear in City projects, budgets, standards, and future updates.</p>
         </div>
 
-        <ul class="bufp-watch-list">
-          <li>Integration of BUFP concepts into City projects and budget development</li>
-          <li>Development of objective standards</li>
-          <li>Greening in Capital Improvement Program projects and funding</li>
-          <li>Native trees and understory</li>
-          <li>Implementation of Actions 1, 17, and 26</li>
-          <li>The approximately one-year community check-in</li>
-          <li>Subsequent monitoring and evaluation</li>
-        </ul>
+        <h3 class="bufp-detail-section__heading">What we&#8217;ll be tracking</h3>
+        <ol class="bufp-watch-grid">
+          <li class="bufp-watch-item">
+            <span class="bufp-watch-item__num" aria-hidden="true">01</span>
+            <div class="bufp-watch-item__body">
+              <span class="bufp-watch-item__label">Project delivery</span>
+              <p class="bufp-watch-item__text">BUFP concepts in City projects and budget development</p>
+            </div>
+          </li>
+          <li class="bufp-watch-item">
+            <span class="bufp-watch-item__num" aria-hidden="true">02</span>
+            <div class="bufp-watch-item__body">
+              <span class="bufp-watch-item__label">Standards</span>
+              <p class="bufp-watch-item__text">Development of objective standards</p>
+            </div>
+          </li>
+          <li class="bufp-watch-item">
+            <span class="bufp-watch-item__num" aria-hidden="true">03</span>
+            <div class="bufp-watch-item__body">
+              <span class="bufp-watch-item__label">Capital program</span>
+              <p class="bufp-watch-item__text">Greening in Capital Improvement Program projects and funding</p>
+            </div>
+          </li>
+          <li class="bufp-watch-item">
+            <span class="bufp-watch-item__num" aria-hidden="true">04</span>
+            <div class="bufp-watch-item__body">
+              <span class="bufp-watch-item__label">Biodiversity</span>
+              <p class="bufp-watch-item__text">Native trees and understory</p>
+            </div>
+          </li>
+          <li class="bufp-watch-item">
+            <span class="bufp-watch-item__num" aria-hidden="true">05</span>
+            <div class="bufp-watch-item__body">
+              <span class="bufp-watch-item__label">Plan actions</span>
+              <p class="bufp-watch-item__text">Implementation of Actions 1, 17 &amp; 26</p>
+            </div>
+          </li>
+          <li class="bufp-watch-item">
+            <span class="bufp-watch-item__num" aria-hidden="true">06</span>
+            <div class="bufp-watch-item__body">
+              <span class="bufp-watch-item__label">Community review</span>
+              <p class="bufp-watch-item__text">Approximately one-year community check-in</p>
+            </div>
+          </li>
+          <li class="bufp-watch-item">
+            <span class="bufp-watch-item__num" aria-hidden="true">07</span>
+            <div class="bufp-watch-item__body">
+              <span class="bufp-watch-item__label">Monitoring</span>
+              <p class="bufp-watch-item__text">Subsequent monitoring and evaluation</p>
+            </div>
+          </li>
+        </ol>
       </section>
 
       <!-- ==================================================
-           Documents & correspondence -->
-      <section class="section-block" aria-labelledby="documents-correspondence">
+           Sources -- documentary project record, grouped by City record
+           vs. community record. -->
+      <section class="section-block" aria-labelledby="sources">
         <span class="category-tag category-tag--record">Project record</span>
         <div class="section-intro">
-          <h2 id="documents-correspondence">Documents &amp; correspondence</h2>
+          <h2 id="sources">Documents &amp; correspondence</h2>
         </div>
 
+        <h3 class="bufp-doc-group__heading" style="margin-top:1.5rem;">City record</h3>
+
         <!-- Final adopted Plan -- the primary source document, placed
-             first, before the group headings below. Primary action
-             points to the recommended local/archive copy path (see
-             this task's delivery note if that file isn't in place
-             yet); secondary action links the official City PDF. -->
+             first. Primary action points to the recommended local/
+             archive copy path (see this task's delivery note if that
+             file isn't in place yet); secondary action links the
+             official City PDF. -->
         <div class="bufp-source-card">
           <p class="bufp-source-card__title">Final Biodiversity &amp; Urban Forest Plan</p>
           <p class="bufp-source-card__meta">City of Mountain View<br />Adopted June 2026<br />Final adopted plan &middot; PDF</p>
@@ -562,10 +702,9 @@
           <p class="bufp-source-card__note">GreenSpacesMV hosts a local copy for reference and archival access. The original document is linked from the City of Mountain View website.</p>
         </div>
 
-        <!-- Ordered 1-7 by source chronology (meeting -> straw poll ->
-             Actions memorandum -> correspondence -> community letter)
-             rather than grouped by type, per this task's explicit
-             DOCUMENT ORDER. -->
+        <!-- Ordered by source chronology (meeting -> straw poll ->
+             Actions memorandum -> correspondence) within the City
+             record group. -->
         <div class="evidence-nav-grid">
           <a class="evidence-nav-card" href="https://mountainview.legistar.com/MeetingDetail.aspx?ID=1352179&amp;GUID=4C2BB11E-2E60-4ADE-8DE6-9F5DE1622C6E&amp;Options=info|&amp;Search=#" target="_blank" rel="noopener noreferrer">
             <span class="evidence-nav-card__title">April 28, 2026 City Council meeting <span aria-hidden="true">&#8599;</span></span>
@@ -589,10 +728,7 @@
           </a>
         </div>
 
-        <div class="bufp-missing-note">
-          <p class="bufp-missing-note__label">Missing attachment in City correspondence record</p>
-          <p class="bufp-missing-note__body">The correspondence posted by the City includes the April 27, 2026 email submitting the MVCSP &amp; GreenSpacesMV comments and identifies the attached file, &#8220;2026-04-28 MV Council BUFP Study Session Comment Letter - MVCSP &amp; GreenSpacesMV.pdf.&#8221; However, the nine-page PDF attachment itself does not appear in the posted correspondence packet.</p>
-        </div>
+        <h3 class="bufp-doc-group__heading">Community record</h3>
 
         <div class="evidence-nav-grid">
           <a class="evidence-nav-card" href="../../../../documents/bufp/2026-04-28-mv-council-bufp-study-session-comment-letter-mvcsp-greenspacesmv.pdf">
@@ -600,10 +736,16 @@
             <span class="evidence-nav-card__desc">Community correspondence &middot; PDF &middot; 9 pages &middot; April 27, 2026. Read community comment letter (PDF)</span>
           </a>
         </div>
+
+        <div class="bufp-missing-note">
+          <p class="bufp-missing-note__label">Missing attachment in City correspondence record</p>
+          <p class="bufp-missing-note__body">The correspondence posted by the City includes the April 27, 2026 email submitting the MVCSP &amp; GreenSpacesMV comments and identifies the attached file, &#8220;2026-04-28 MV Council BUFP Study Session Comment Letter - MVCSP &amp; GreenSpacesMV.pdf.&#8221; However, the nine-page PDF attachment itself does not appear in the posted correspondence packet.</p>
+        </div>
       </section>
 
       <p class="study-back-link"><a href="../">&larr; Back to Plans</a></p>
 
+      </div>
     </div>
   </main>
 
@@ -737,19 +879,31 @@
 
   <script>
     // On this page: progressive enhancement over plain working anchor
-    // links -- scroll-margin-top in the CSS already makes native
-    // href="#id" jumps land below the sticky nav with no JS at all,
-    // and .onpage-nav__list ships visible in the HTML (no "hidden"
-    // attribute), so a no-JS mobile reader gets a plain, functional
-    // vertical list of links. Same generic component/script as the
-    // Rengstorff Avenue project pages' on-page nav.
+    // links. Drives THREE things together so they never disagree: the
+    // desktop sticky sidebar (.page-sidebar__list, >=1025px), the
+    // mobile/tablet dropdown (.onpage-nav, <=1024px -- collapse/expand
+    // behavior unchanged from the generic component), and that
+    // dropdown trigger's "-- Section name" current-label span. Only
+    // one of the sidebar/dropdown is ever visible at a given width
+    // (see the CSS), but both get real click handling and both get
+    // updated by the one shared IntersectionObserver below. Same
+    // script as the Active Transportation Plan page's own on-page
+    // nav, reused verbatim (not a second approximation of it) --
+    // scroll-margin-top in the CSS still makes native href="#id"
+    // jumps land clear of the mobile sticky dropdown with no JS at
+    // all, and .onpage-nav__list ships visible in the HTML (no
+    // "hidden" attribute), so a no-JS mobile reader gets a plain,
+    // functional vertical list of links.
     (function () {
       var nav = document.querySelector('.onpage-nav');
-      if (!nav) { return; }
+      var sidebar = document.querySelector('.page-sidebar');
+      if (!nav && !sidebar) { return; }
 
-      var trigger = nav.querySelector('.onpage-nav__trigger');
-      var list = nav.querySelector('.onpage-nav__list');
-      var links = Array.prototype.slice.call(nav.querySelectorAll('.onpage-nav__link'));
+      var trigger = nav && nav.querySelector('.onpage-nav__trigger');
+      var list = nav && nav.querySelector('.onpage-nav__list');
+      var mobileLinks = nav ? Array.prototype.slice.call(nav.querySelectorAll('.onpage-nav__link')) : [];
+      var sidebarLinks = sidebar ? Array.prototype.slice.call(sidebar.querySelectorAll('.page-sidebar__list a')) : [];
+      var currentLabel = nav && nav.querySelector('.onpage-nav__current');
       var reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
       if (trigger && list) {
@@ -773,49 +927,84 @@
         }
       }
 
-      links.forEach(function (link) {
+      var scrollToTarget = function (id, offset) {
+        var target = document.getElementById(id);
+        if (!target) { return; }
+
+        var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+        var scrollTarget = Math.max(0, targetTop - offset);
+
+        window.scrollTo({
+          top: scrollTarget,
+          behavior: reduceMotionQuery.matches ? 'auto' : 'smooth'
+        });
+
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, '', '#' + id);
+        }
+      };
+
+      mobileLinks.forEach(function (link) {
         link.addEventListener('click', function (event) {
           var id = link.getAttribute('href').slice(1);
-          var target = document.getElementById(id);
-          if (!target) { return; }
+          if (!document.getElementById(id)) { return; }
 
           event.preventDefault();
-
           var navHeight = nav.getBoundingClientRect().height;
-          var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-          var scrollTarget = Math.max(0, targetTop - navHeight - 16);
-
-          window.scrollTo({
-            top: scrollTarget,
-            behavior: reduceMotionQuery.matches ? 'auto' : 'smooth'
-          });
+          scrollToTarget(id, navHeight + 16);
 
           if (trigger && list && !list.hidden) {
             trigger.setAttribute('aria-expanded', 'false');
             list.hidden = true;
           }
-
-          target.setAttribute('tabindex', '-1');
-          target.focus({ preventScroll: true });
-          if (window.history && window.history.pushState) {
-            window.history.pushState(null, '', '#' + id);
-          }
         });
       });
 
-      var targets = links
-        .map(function (link) {
+      sidebarLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
           var id = link.getAttribute('href').slice(1);
+          if (!document.getElementById(id)) { return; }
+
+          event.preventDefault();
+          scrollToTarget(id, 24);
+        });
+      });
+
+      var mobileLinkFor = {};
+      mobileLinks.forEach(function (link) { mobileLinkFor[link.getAttribute('href').slice(1)] = link; });
+
+      var sidebarLinkFor = {};
+      sidebarLinks.forEach(function (link) { sidebarLinkFor[link.getAttribute('href').slice(1)] = link; });
+
+      var allIds = Object.keys(mobileLinkFor).concat(Object.keys(sidebarLinkFor))
+        .filter(function (id, i, arr) { return arr.indexOf(id) === i; });
+
+      var sections = allIds
+        .map(function (id) {
           var section = document.getElementById(id);
-          return section ? { link: link, section: section } : null;
+          return section ? { id: id, section: section } : null;
         })
         .filter(Boolean);
 
-      if (targets.length && 'IntersectionObserver' in window) {
-        var setActive = function (activeSection) {
-          targets.forEach(function (entry) {
-            entry.link.classList.toggle('is-active', entry.section === activeSection);
-          });
+      if (sections.length && 'IntersectionObserver' in window) {
+        var setActive = function (id) {
+          mobileLinks.forEach(function (l) { l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
+          sidebarLinks.forEach(function (l) { l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
+
+          var mobileLink = mobileLinkFor[id];
+          if (mobileLink) {
+            mobileLink.classList.add('is-active');
+            mobileLink.setAttribute('aria-current', 'true');
+            if (currentLabel) { currentLabel.textContent = mobileLink.textContent; }
+          }
+
+          var sidebarLink = sidebarLinkFor[id];
+          if (sidebarLink) {
+            sidebarLink.classList.add('is-active');
+            sidebarLink.setAttribute('aria-current', 'true');
+          }
         };
 
         var observer = new IntersectionObserver(function (entries) {
@@ -823,14 +1012,14 @@
           if (!visible.length) { return; }
 
           visible.sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
-          var match = targets.filter(function (entry) { return entry.section === visible[0].target; })[0];
-          if (match) { setActive(match.section); }
+          var match = sections.filter(function (entry) { return entry.section === visible[0].target; })[0];
+          if (match) { setActive(match.id); }
         }, {
-          rootMargin: '-90px 0px -70% 0px',
+          rootMargin: '-10% 0px -70% 0px',
           threshold: 0
         });
 
-        targets.forEach(function (entry) { observer.observe(entry.section); });
+        sections.forEach(function (entry) { observer.observe(entry.section); });
       }
     })();
   </script>
